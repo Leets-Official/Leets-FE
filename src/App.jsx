@@ -1,5 +1,16 @@
-function App() {
-  return <div>안녕하세요</div>;
-}
+import { Routes, Route } from 'react-router-dom';
+import { Global } from '@emotion/react';
 
-export default App;
+import GlobalStyle from './GlobalStyle';
+import Main from './pages/Main';
+
+export default function App() {
+  return (
+    <>
+      <Global styles={GlobalStyle} />
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </>
+  );
+}
