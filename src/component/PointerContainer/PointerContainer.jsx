@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
-
 import { useState } from 'react';
-import { containerStyle, pointerStyle } from './PointerContainer.style';
+import { Link } from 'react-router-dom';
+import Nav from '../Nav/Nav';
+import { pointerContainerStyle, pointerStyle, sectionContainer, linkStyle } from './PointerContainer.style';
 
 export default function PointerContainer({ size }) {
   const [position, setPosition] = useState({
@@ -17,10 +18,14 @@ export default function PointerContainer({ size }) {
   };
 
   return (
-    <div css={containerStyle} onPointerMove={handleMouseMove}>
+    <div css={pointerContainerStyle} onPointerMove={handleMouseMove}>
+      <Nav />
       <div css={pointerStyle(position.x, position.y, size)} />
-      <div css={pointerStyle(position.x, position.y, size)} />
-      <div css={pointerStyle(position.x, position.y, size)} />
+      <div css={sectionContainer}>
+        <Link to="/Apply" css={linkStyle}>
+          지원하기
+        </Link>
+      </div>
     </div>
   );
 }
