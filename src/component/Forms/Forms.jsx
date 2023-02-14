@@ -60,6 +60,7 @@ export default function Forms() {
     });
 
     setInfo(initialInfo);
+    alert('if문 3개 제출 완료되었습니다.');
   };
 
   return (
