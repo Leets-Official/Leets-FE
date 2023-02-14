@@ -1,5 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+
+// 파이어베이스 파일에서 import 해온 db
+import db from '../../firebase-config';
 
 import {
   formContainer,
@@ -15,7 +19,7 @@ import {
 } from './Forms.style';
 
 export default function Forms() {
-  const [info, setInfo] = useState({
+  const initialInfo = {
     name: '',
     SID: '',
     major: '',
@@ -25,29 +29,46 @@ export default function Forms() {
     project: '',
     link: '',
     phone: '',
-  });
-  const [coverLetters, setCoverLettes] = useState({
+
     goal: '',
     completion: '',
     fight: '',
-  });
+  };
+  const [info, setInfo] = useState(initialInfo);
+
+  // db의 users 컬렉션을 가져옴
+  const usersCollectionRef = collection(db, 'LEETS');
+
+  const createUsers = async e => {
+    e.preventDefault();
+
+    // addDoc을 이용해서 내가 원하는 collection에 내가 원하는 key로 값을 추가한다.
+    await addDoc(usersCollectionRef, {
+      name: info.name,
+      SID: info.SID,
+      major: info.major,
+      career: info.career,
+      GPA: info.GPA,
+      algorithm: info.algorithm,
+      project: info.project,
+      link: info.link,
+      phone: info.phone,
+
+      goal: info.goal,
+      completion: info.completion,
+      fight: info.fight,
+    });
+
+    setInfo(initialInfo);
+  };
 
   return (
     <div css={formContainer}>
-      <form method="post" css={formStyle}>
+      <form css={formStyle} onSubmit={createUsers}>
         <fieldset css={fieldsetStyle}>
           <ul>
             <h1 css={headStyle}>지원 양식</h1>
 
-            {/* {datas.map(({ type, holderText }) => (
-            <Form
-              key={type}
-              value={info[type]}
-              type={type}
-              placeholder={holderText}
-              onChange={e => setInfo(...info, type: e.target.value)}
-            />
-          ))} */}
             <li css={listStyle}>
               <label htmlFor="name" css={labelStyle}>
                 <p>이름</p>
@@ -187,10 +208,10 @@ export default function Forms() {
               </label>
               <textarea
                 css={textareaStyle}
-                value={coverLetters.goal}
+                value={info.goal}
                 name="goal"
                 placeholder="내용을 입력해주세요."
-                onChange={e => setCoverLettes({ ...coverLetters, goal: e.target.value })}
+                onChange={e => setInfo({ ...info, goal: e.target.value })}
                 required
               />
             </li>
@@ -200,10 +221,10 @@ export default function Forms() {
               </label>
               <textarea
                 css={textareaStyle}
-                value={coverLetters.completion}
+                value={info.completion}
                 name="completion"
                 placeholder="내용을 입력해주세요."
-                onChange={e => setCoverLettes({ ...coverLetters, completion: e.target.value })}
+                onChange={e => setInfo({ ...info, completion: e.target.value })}
                 required
               />
             </li>
@@ -213,10 +234,10 @@ export default function Forms() {
               </label>
               <textarea
                 css={textareaStyle}
-                value={coverLetters.fight}
+                value={info.fight}
                 name="fight"
                 placeholder="내용을 입력해주세요."
-                onChange={e => setCoverLettes({ ...coverLetters, fight: e.target.value })}
+                onChange={e => setInfo({ ...info, fight: e.target.value })}
                 required
               />
             </li>
