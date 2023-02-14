@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
 
-export const navContainer = css`
+export const navStyle = css`
+  width: 100%;
+  height: content;
+`;
+
+export const homeContainer = css`
   width 10vw;
   height: content;
   background-color: black;

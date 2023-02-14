@@ -1,5 +1,11 @@
-import ApplyContainer from '../component/ApplyContainer/ApplyContainer';
+import Forms from '../component/Forms/Forms';
+import Nav from '../component/Nav/Nav';
 
 export default function Apply() {
-  return <ApplyContainer />;
+  return (
+    <>
+      <Nav />
+      <Forms />
+    </>
+  );
 }

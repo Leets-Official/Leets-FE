@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
-import { navContainer, home } from './Nav.style';
+import { navStyle, homeContainer, home } from './Nav.style';
 
 export default function Nav() {
   return (
-    <nav>
-      <div css={navContainer}>
+    <nav css={navStyle}>
+      <div css={homeContainer}>
         <div css={home}>LEETS</div>
       </div>
     </nav>

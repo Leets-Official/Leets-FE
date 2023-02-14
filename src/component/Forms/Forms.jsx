@@ -1,0 +1,233 @@
+/** @jsxImportSource @emotion/react */
+import { useState } from 'react';
+
+import {
+  formContainer,
+  formStyle,
+  headStyle,
+  fieldsetStyle,
+  listStyle,
+  labelStyle,
+  inputStyle,
+  buttonContainer,
+  buttonStyle,
+  textareaStyle,
+} from './Forms.style';
+
+export default function Forms() {
+  const [info, setInfo] = useState({
+    name: '',
+    SID: '',
+    major: '',
+    career: '',
+    GPA: '',
+    algorithm: '',
+    project: '',
+    link: '',
+    phone: '',
+  });
+  const [coverLetters, setCoverLettes] = useState({
+    goal: '',
+    completion: '',
+    fight: '',
+  });
+
+  return (
+    <div css={formContainer}>
+      <form method="post" css={formStyle}>
+        <fieldset css={fieldsetStyle}>
+          <ul>
+            <h1 css={headStyle}>지원 양식</h1>
+
+            {/* {datas.map(({ type, holderText }) => (
+            <Form
+              key={type}
+              value={info[type]}
+              type={type}
+              placeholder={holderText}
+              onChange={e => setInfo(...info, type: e.target.value)}
+            />
+          ))} */}
+            <li css={listStyle}>
+              <label htmlFor="name" css={labelStyle}>
+                <p>이름</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="name"
+                value={info.name}
+                placeholder="이름을 입력하세요."
+                onChange={e => setInfo({ ...info, name: e.target.value })}
+                required
+              />
+            </li>
+            <li css={listStyle}>
+              <label htmlFor="SID" css={labelStyle}>
+                <p>학번</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="SID"
+                value={info.SID}
+                placeholder="학점을 입력하세요."
+                onChange={e => setInfo({ ...info, SID: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="major" css={labelStyle}>
+                <p>학과</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="major"
+                value={info.major}
+                placeholder="학과를 입력하세요."
+                onChange={e => setInfo({ ...info, major: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="career" css={labelStyle}>
+                <p>희망 직무</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="career"
+                value={info.career}
+                placeholder="희망 직무를 입력하세요. (필수 입력은 아닙니다.)"
+                onChange={e => setInfo({ ...info, career: e.target.value })}
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="GPA" css={labelStyle}>
+                <p>학점</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="GPA"
+                value={info.GPA}
+                placeholder="학점을 입력하세요."
+                onChange={e => setInfo({ ...info, GPA: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="algorithm" css={labelStyle}>
+                <p>알고리즘</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="algorithm"
+                value={info.algorithm}
+                placeholder="알고리즘 실력을 입력하세요. ex) 백준/릿코드/프로그래머스"
+                onChange={e => setInfo({ ...info, algorithm: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="project" css={labelStyle}>
+                <p>프로젝트</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="project"
+                value={info.project}
+                placeholder="프로젝트 경험을 입력하세요. ex) TODO 프로젝트 배포 1회/기여 내용 등"
+                onChange={e => setInfo({ ...info, project: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="link" css={labelStyle}>
+                <p>Github/Figma</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="link"
+                value={info.link}
+                placeholder="Github/Figma 주소를 적어주세요."
+                onChange={e => setInfo({ ...info, link: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="phone" css={labelStyle}>
+                <p>전화번호</p>
+              </label>
+              <input
+                css={inputStyle}
+                type="text"
+                id="phone"
+                value={info.phone}
+                placeholder="전화번호 적어주세요. 개인 정보는 안내 이외에는 사용되지 않습니다."
+                onChange={e => setInfo({ ...info, phone: e.target.value })}
+                required
+              />
+            </li>
+
+            <li css={listStyle}>
+              <label htmlFor="goal" css={labelStyle}>
+                <p>우리 동아리에 들어와서 얻어가고 싶은 것은 무엇인가요?</p>
+              </label>
+              <textarea
+                css={textareaStyle}
+                value={coverLetters.goal}
+                name="goal"
+                placeholder="내용을 입력해주세요."
+                onChange={e => setCoverLettes({ ...coverLetters, goal: e.target.value })}
+                required
+              />
+            </li>
+            <li css={listStyle}>
+              <label htmlFor="completion" css={labelStyle}>
+                <p>무언가 열심히 해서 결과물을 낸 경험을 적어주세요.</p>
+              </label>
+              <textarea
+                css={textareaStyle}
+                value={coverLetters.completion}
+                name="completion"
+                placeholder="내용을 입력해주세요."
+                onChange={e => setCoverLettes({ ...coverLetters, completion: e.target.value })}
+                required
+              />
+            </li>
+            <li css={listStyle}>
+              <label htmlFor="fight" css={labelStyle}>
+                <p>갈등 해결 경험을 설명해주세요.</p>
+              </label>
+              <textarea
+                css={textareaStyle}
+                value={coverLetters.fight}
+                name="fight"
+                placeholder="내용을 입력해주세요."
+                onChange={e => setCoverLettes({ ...coverLetters, fight: e.target.value })}
+                required
+              />
+            </li>
+          </ul>
+          <div css={buttonContainer}>
+            <button type="submit" css={buttonStyle}>
+              제출하기
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  );
+}
