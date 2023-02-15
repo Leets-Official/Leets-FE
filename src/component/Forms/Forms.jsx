@@ -60,6 +60,7 @@ export default function Forms() {
     });
 
     setInfo(initialInfo);
+    alert(`${info.GPA}점 밖에 안 되는 ${info.name}님 if문 3개 제출 완료되었습니다.`);
   };
 
   const clearStorage = () => {
