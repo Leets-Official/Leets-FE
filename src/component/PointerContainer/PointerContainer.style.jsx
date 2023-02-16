@@ -2,13 +2,13 @@ import { css } from '@emotion/react';
 
 export const pointerContainerStyle = css`
   width: 100vw;
-  height: 100vh;
+  height: auto;
   background-color: black;
 `;
 
 export const pointerStyle = (x, y, size) => css`
   transform: translate(${x}px, ${y}px);
-  position: absolute;
+  position: fixed;
   background-color: red;
   border-radius: 50%;
   width: ${size}rem;
@@ -20,10 +20,31 @@ export const pointerStyle = (x, y, size) => css`
   pointer-events: none;
 `;
 
-export const sectionContainer = css`
+export const titleContainer = css`
+  width: 100%;
+  height: 200px;
+
+  margin-top: 150px;
+  margin-bottom: 50px;
+`;
+
+export const titleStyle = css`
+  color: white;
+  font-family: 'DM Sans';
+  font-weight: 500;
+  font-size: 11vw;
+  letter-spacing: -0.03em;
+
+  line-height: 220px;
+  text-align: center;
+`;
+
+export const applyContainer = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background: black;
 `;
 
 export const linkStyle = css`
