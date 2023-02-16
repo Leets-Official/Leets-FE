@@ -1,11 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
-// import firebaseConfig from './config/firebase';
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyALRpkHOUa3PGGtddlO5WzVC959Z-YH9p8',
   authDomain: 'leets-203bb.firebaseapp.com',
@@ -16,7 +16,6 @@ const firebaseConfig = {
   measurementId: 'G-L2YMPFNE0G',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
