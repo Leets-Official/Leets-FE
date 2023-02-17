@@ -35,6 +35,7 @@ export const describeStyle = css`
   margin-bottom: 100px;
 `;
 
-export const textStyle = css`
+export const listStyle = css`
   margin-top: 10px;
+  list-style: none;
 `;

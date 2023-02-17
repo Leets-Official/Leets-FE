@@ -1,27 +1,5 @@
 import { css } from '@emotion/react';
 
-export const pointerContainerStyle = css`
-  width: 100vw;
-  height: auto;
-  background-color: black;
-`;
-
-export const pointerStyle = (x, y, size) => css`
-  transform: translate(${x}px, ${y}px);
-  position: fixed;
-
-  background-color: red;
-  border-radius: 50%;
-  width: ${size}rem;
-  height: ${size}rem;
-  left: -${size / 2}rem;
-  top: -${size / 2}rem;
-
-  opacity: 0.4;
-
-  pointer-events: none;
-`;
-
 export const applyContainer = css`
   display: flex;
   flex-direction: column;
