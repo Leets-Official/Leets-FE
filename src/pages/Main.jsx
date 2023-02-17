@@ -1,5 +1,5 @@
-import PointerContainer from '../component/PointerContainer/PointerContainer';
+import MainContainer from '../component/MainContainer/MainContainer';
 
 export default function Main() {
-  return <PointerContainer size={7} />;
+  return <MainContainer />;
 }
