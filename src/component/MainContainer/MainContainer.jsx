@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
-import BackgroundImage from '../../assets/svg/BackgroundImage/svg/BackgroundImage';
+import BackgroundImage from '../BackgroundImage/svg/BackgroundImage';
 import Promotions from '../Promotions/Promotions';
 import pointerContainerStyle from './MainContainer.style';
 import Header from '../Header/Header';
@@ -20,9 +20,11 @@ export default function PointerContainer() {
       y: e.clientY,
     });
   };
+
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
-      <Header height={500} />
+      {/* <Header height={450} /> */}
+      <Header height={400} />
 
       <BackgroundImage />
 

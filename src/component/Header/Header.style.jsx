@@ -4,7 +4,7 @@ export const headContainer = height => css`
   width: 100%;
   height: ${height}px;
 
-  line-height: ${height + 150}px;
+  line-height: ${height + 200}px;
   text-align: center;
 `;
 

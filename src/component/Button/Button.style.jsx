@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 
 export const applyContainer = css`
+  height: 300px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,23 +11,25 @@ export const applyContainer = css`
 `;
 
 export const linkStyle = css`
-  width: 100px;
-  height: 50px;
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-size: 18px;
+
+  width: 150px;
+  height: 60px;
 
   text-align: center;
-  line-height: 50px;
+  line-height: 60px;
 
   border: none;
   border-radius: 8px;
 
-  font-weight: 400;
-
   color: black;
-  background: #f89b00;
+  background: #29b69a;
 
   &:hover {
-    color: black;
-    background: white;
+    color: white;
+    background: #29b69a;
   }
   cursor: pointer;
   text-decoration: none;

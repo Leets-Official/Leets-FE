@@ -1,16 +1,18 @@
 export default [
   {
-    imageSrc: 'PromotionImage.Project.png',
+    imageSrc: '../../assets/image/PromotionImage/Project.png',
     title: 'Project',
     benefits: [
-      '다양한 분야(웹, 앱)의 프로젝트를 경험하며 진로를 구체화할 수 있어요',
-      '프로젝트 배포를 통해 실무 경험을 쌓을 수 있어요.',
-      '디자이너라면 개발자와의 협업할 수 있어요.',
-      '개발자라면 디자이너와 협업할 수 있어요.',
+      '졸업 프로젝트를 제외하면, 사람들과 협업할 기회를 접하기는 어렵습니다.',
+      '7주간 진행되는 프로젝트를 통해 직무에 대한 방향성을 제공합니다.',
+      '프로젝트를 통해 코딩, 디자인, 프로젝트 관리, 형상 관리(Git) 등 컴퓨터 공학의 여러 분야에서 성장합니다.',
+      '프로젝트 결과물은 기업, 대학원, 공모전 등에 지원하거나 참여할 때 자신의 기술을 보여주는 물리적 근거로 작용합니다.',
+      '프로젝트를 완성하는 것은 성취감과 자부심을 고양시킵니다.',
+      '자신감의 향상과 동기부여 제공은 컴퓨터 공학에 대한 꾸준한 흥미로 이어집니다.',
     ],
   },
   {
-    imageSrc: '../assets/svg/PromotionImage.Study.png',
+    imageSrc: '/assets/image/PromotionImage/Study.png',
     title: `Study & 
     Networking`,
     benefits: [
@@ -24,7 +26,7 @@ export default [
     ],
   },
   {
-    imageSrc: '../assets/svg/PromotionImage.Entertainment.png',
+    imageSrc: '../../assets/image/PromotionImage/Entertainment.png',
     title: 'Entertainment',
     benefits: [
       '규율 위에 세워진 자율을 지향합니다.',

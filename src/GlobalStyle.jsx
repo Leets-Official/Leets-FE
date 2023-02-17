@@ -4,6 +4,7 @@ export default css`
   * {
     margin: 0rem;
     box-sizing: border-box;
+    background: black;
   }
 
   @font-face {
