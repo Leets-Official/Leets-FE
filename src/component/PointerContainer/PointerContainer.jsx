@@ -2,16 +2,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackgroundImage from '../../assets/svg/BackgroundImage/svg/BackgroundImage';
-import Nav from '../Nav/Nav';
 import Promotion from '../Promotion/Promotion';
-import {
-  pointerContainerStyle,
-  titleContainer,
-  titleStyle,
-  pointerStyle,
-  applyContainer,
-  linkStyle,
-} from './PointerContainer.style';
+import { pointerContainerStyle, pointerStyle, applyContainer, linkStyle } from './PointerContainer.style';
+import Header from '../Header/Header';
 
 export default function PointerContainer({ size }) {
   const [position, setPosition] = useState({
@@ -28,10 +21,7 @@ export default function PointerContainer({ size }) {
 
   return (
     <div css={pointerContainerStyle} onPointerMove={handleMouseMove}>
-      <Nav />
-      <div css={titleContainer}>
-        <p css={titleStyle}>Leets</p>
-      </div>
+      <Header height={500} />
 
       <BackgroundImage />
 

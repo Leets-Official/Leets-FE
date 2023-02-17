@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
-import { navStyle, homeContainer, home } from './Nav.style';
+import { Link } from 'react-router-dom';
+import { navStyle, home, linkStyle } from './Nav.style';
 
 export default function Nav() {
   return (
     <nav css={navStyle}>
-      <div css={homeContainer}>
-        <div css={home}>LEETS</div>
+      <div css={home}>
+        <Link css={linkStyle} to="/">
+          LEETS
+        </Link>
       </div>
     </nav>
   );

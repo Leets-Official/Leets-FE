@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import Project from '../../assets/svg/Project/Project';
+import ProjectImage from '../../assets/svg/ProjectImage/ProjectImage';
 import { sectionContainer, subjectStyle, describeStyle, textStyle } from './Promotion.style';
 
 export default function Promotion() {
@@ -8,7 +8,7 @@ export default function Promotion() {
     <secion css={sectionContainer}>
       <div css={subjectStyle}>Project</div>
 
-      <Project />
+      <ProjectImage />
 
       <div css={describeStyle}>
         <p css={textStyle}>
