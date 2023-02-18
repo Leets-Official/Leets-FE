@@ -10,10 +10,6 @@ export const sectionContainer = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  // border-bottom: 6px double #29b69a;
-
-  // border: 2px solid pink;
 `;
 
 export const subjectStyle = css`
@@ -23,8 +19,6 @@ export const subjectStyle = css`
   color: white;
 
   padding-left: 120px;
-
-  // border: 1px solid skyblue;
 `;
 
 export const describeStyle = css`
@@ -36,8 +30,6 @@ export const describeStyle = css`
 
   padding-left: 120px;
   margin-top: 50px;
-
-  // border: 1px solid red;
 `;
 
 export const listStyle = css`
@@ -49,8 +41,6 @@ export const listStyle = css`
 export const imgStyle = size => css`
   width: ${size}px;
   height: ${size}px;
-
-  // border: 1px solid blue;
 `;
 
 export const infoContainer = css`
@@ -59,18 +49,15 @@ export const infoContainer = css`
 
   display: flex;
   flex-direction: column;
-  // border: 3px solid yellow;
 `;
 export const imgContainer = css`
   width: 40%;
   height: 600px;
 
   display: flex;
-  // border: 3px solid yellow;
 `;
 
 export const hrStyle = css`
-  // height: 1px;
   border: 0;
   background: #29b69a;
 
