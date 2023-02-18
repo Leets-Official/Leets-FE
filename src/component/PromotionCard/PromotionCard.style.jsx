@@ -65,16 +65,16 @@ export const subjectStyle = css`
 
   color: white;
 
-  padding-left: 40px;
+  padding-left: 5vw;
 
   ${mobile} {
     font-size: 60px;
-    padding-left: 60px;
+    // padding-left: 10vw;
   }
 
   ${desktop} {
     font-size: 96px;
-    padding-left: 120px;
+    // padding-left: 10vw;
   }
 `;
 
@@ -86,14 +86,13 @@ export const describeStyle = css`
   color: white;
 
   margin-top: 10px;
-  padding-left: 40px;
+  padding-left: 5vw;
 
   ${mobile} {
     font-size: 16px;
 
     margin-top: 15px;
     margin-bottom: 10px;
-    padding-left: 60px;
   }
 
   ${desktop} {
@@ -101,7 +100,6 @@ export const describeStyle = css`
 
     margin-top: 10px;
     margin-bottom: 5px;
-    padding-left: 120px;
   }
 `;
 
@@ -113,15 +111,14 @@ export const listStyle = css`
   list-style: none;
 
   margin-bottom: 5px;
-
   font-size: 12px;
 
-  @media screen and (min-width: 768px) {
+  ${mobile} {
     font-size: 16px;
     margin-bottom: 10px;
   }
 
-  @media screen and (min-width: 1024px) {
+  ${desktop} {
     font-size: 18px;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -129,18 +126,21 @@ export const listStyle = css`
 `;
 
 export const imgStyle = css`
-  width: 250px;
-  height: 250px;
+  // width: 150px;
+  // height: 150px;
 
-  @media screen and (min-width: 768px) {
-    width: 250px;
-    height: 250px;
-  }
+  // ${mobile} {
+  //   width: 250px;
+  //   height: 250px;
+  // }
 
-  @media screen and (min-width: 1024px) {
-    width: 450px;
-    height: 450px;
-  }
+  // ${desktop} {
+  //   width: 450px;
+  //   height: 450px;
+  // }
+
+  width: 35vw;
+  height: 35vw;
 
   // border: 1px solid white;
 `;
