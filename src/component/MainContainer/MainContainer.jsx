@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 import Button from '../Button/Button';
 import Pointer from '../Pointer/Pointer';
 
-export default function PointerContainer() {
+export default function MainContainer() {
   // console.log('main 렌더링');
   const [position, setPosition] = useState({
     x: 0,
@@ -23,8 +23,7 @@ export default function PointerContainer() {
 
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
-      {/* <Header height={450} /> */}
-      <Header height={400} />
+      <Header />
 
       <BackgroundImage />
 
