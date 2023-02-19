@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-
+import Fade from 'react-reveal/Fade';
 import {
   sectionContainer,
   contentContainer,
@@ -18,7 +18,9 @@ export default function PromotionCard({ imageSrc, title, benefits }) {
     <section css={sectionContainer}>
       <div css={contentContainer}>
         <div css={infoContainer}>
-          <div css={subjectStyle}>{title}</div>
+          <Fade left>
+            <div css={subjectStyle}>{title}</div>
+          </Fade>
           <div css={describeStyle}>
             <ul css={ulStyle}>
               {benefits.map((benefit, index) => (

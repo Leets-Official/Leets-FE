@@ -3,21 +3,19 @@ import { tablet, desktop } from '../../utils/viewports';
 
 export const headContainer = height => css`
   width: 100%;
-  height: ${height}px;
-
-  line-height: ${height + 200}px;
+  height: ${height + 50}px;
 
   ${tablet} {
     height: ${height + 250}px;
-    line-height: ${height + 450}px;
   }
 
   ${desktop} {
     height: ${height}px;
-    line-height: ${height + 200}px;
   }
 
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 `;
 
 export const titleStyle = css`
@@ -26,6 +24,9 @@ export const titleStyle = css`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 10vw;
+
+  width: content;
+  height: 90%;
 
   letter-spacing: -0.03em;
 `;
