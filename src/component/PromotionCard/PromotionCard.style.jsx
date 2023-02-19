@@ -1,16 +1,14 @@
 import { css } from '@emotion/react';
 
-const breakpoints = [768, 1024];
-
-const [mobile, desktop] = breakpoints.map(bp => `@media (min-width: ${bp}px)`);
+import { tablet, middle, desktop, mobile } from '../../utils/viewports';
 
 export const sectionContainer = css`
   font-family: 'DM Sans';
   width: 100%;
   height: 400px;
 
-  ${mobile} {
-    height: 800px;
+  ${tablet} {
+    height: 700px;
   }
 
   ${desktop} {
@@ -38,7 +36,7 @@ export const contentContainer = css`
 `;
 
 export const infoContainer = css`
-  width: 60%;
+  width: 50%;
   height: 50vw;
 
   display: flex;
@@ -57,24 +55,46 @@ export const imgContainer = css`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${mobile} {
+    align-items: start;
+    height: 70vw;
+  }
+
+  ${tablet} {
+    align-items: start;
+  }
+
+  ${middle} {
+    align-items: center;
+  }
+
+  ${desktop} {
+    align-items: center;
+  }
 `;
 
 export const subjectStyle = css`
   font-weight: 500;
-  font-size: 24px;
-
+  font-size: 38px;
   color: white;
+
+  // border: 1px solid white;
 
   padding-left: 5vw;
 
+  z-index: 3;
+
   ${mobile} {
-    font-size: 60px;
-    // padding-left: 10vw;
+    font-size: 28px;
+  }
+
+  ${tablet} {
+    font-size: 64px;
   }
 
   ${desktop} {
     font-size: 96px;
-    // padding-left: 10vw;
   }
 `;
 
@@ -88,7 +108,7 @@ export const describeStyle = css`
   margin-top: 10px;
   padding-left: 5vw;
 
-  ${mobile} {
+  ${tablet} {
     font-size: 16px;
 
     margin-top: 15px;
@@ -113,7 +133,7 @@ export const listStyle = css`
   margin-bottom: 5px;
   font-size: 12px;
 
-  ${mobile} {
+  ${tablet} {
     font-size: 16px;
     margin-bottom: 10px;
   }
@@ -129,7 +149,7 @@ export const imgStyle = css`
   // width: 150px;
   // height: 150px;
 
-  // ${mobile} {
+  // ${tablet} {
   //   width: 250px;
   //   height: 250px;
   // }

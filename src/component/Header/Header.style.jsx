@@ -1,10 +1,17 @@
 import { css } from '@emotion/react';
+import { tablet, desktop } from '../../utils/viewports';
 
 export const headContainer = height => css`
   width: 100%;
   height: ${height + 50}px;
 
-  text-align: center;
+  ${tablet} {
+    height: ${height + 250}px;
+  }
+
+  ${desktop} {
+    height: ${height}px;
+  }
 
   display: flex;
   justify-content: center;

@@ -14,4 +14,6 @@ export default (x, y, size) => css`
   opacity: 0.4;
 
   pointer-events: none;
+
+  z-index: 4;
 `;
