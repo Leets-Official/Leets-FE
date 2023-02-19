@@ -1,6 +1,6 @@
 export default [
   {
-    imageSrc: '../../assets/image/PromotionImage/Project.png',
+    imageSrc: '../../assets/image/Project.png',
     title: 'Project',
     benefits: [
       '졸업 프로젝트를 제외하면, 사람들과 협업할 기회를 접하기는 어렵습니다.',
@@ -11,7 +11,7 @@ export default [
     ],
   },
   {
-    imageSrc: '/assets/image/PromotionImage/Study.png',
+    imageSrc: '/assets/image/Study.png',
     title: `Study & 
     Networking`,
     benefits: [
@@ -23,7 +23,7 @@ export default [
     ],
   },
   {
-    imageSrc: '../../assets/image/PromotionImage/Entertainment.png',
+    imageSrc: '../../assets/image/Entertainment.png',
     title: 'Entertainment',
     benefits: [
       '규율 위에 세워진 자율을 지향합니다.',
