@@ -2,10 +2,13 @@ import { css } from '@emotion/react';
 
 export const headContainer = height => css`
   width: 100%;
-  height: ${height}px;
+  height: ${height + 50}px;
 
-  line-height: ${height + 200}px;
   text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
 `;
 
 export const titleStyle = css`
@@ -14,6 +17,9 @@ export const titleStyle = css`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 10vw;
+
+  width: content;
+  height: 90%;
 
   letter-spacing: -0.03em;
 `;
