@@ -191,7 +191,7 @@ export const sectionContainer = css`
 
   color: white;
 
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 export const contentContainer = css`
@@ -208,8 +208,8 @@ export const contentContainer = css`
 `;
 
 export const topContainer = css`
-  width: 90%;
-  border: 1px solid white;
+  width: 92%;
+  // border: 1px solid white;
   height: auto;
 
   display: flex;
@@ -223,9 +223,7 @@ export const subjectStyle = css`
   width: 60%;
   height: content;
 
-  border: 1px solid red;
-
-  padding-left: 5vw;
+  // border: 1px solid red;
 
   overflow: visible;
 
@@ -243,14 +241,15 @@ export const subjectStyle = css`
 `;
 
 export const imgStyle = css`
-  width: 27vw;
-  height: 27vw;
+  width: 36.25vw;
+  height: 26.6vw;
 
-  border: 1px solid blue;
+  // border: 1px solid blue;
 `;
 export const bottomContainer = css`
-  width: 90%;
-  height: 27vw;
+  width: 92%;
+  height: 25.5vw;
 
-  border: 1px solid white;
+  // border: 1px solid blue;
+  margin-top: 7.1%;
 `;

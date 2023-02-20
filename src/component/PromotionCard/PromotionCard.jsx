@@ -46,6 +46,7 @@ import {
   imgStyle,
   bottomContainer,
 } from './PromotionCard.style';
+import Project from '../Project/Project';
 
 export default function PromotionCard({ imageSrc, title, benefits }) {
   return (
@@ -53,13 +54,11 @@ export default function PromotionCard({ imageSrc, title, benefits }) {
       <div css={contentContainer}>
         <div css={topContainer}>
           <div css={subjectStyle}>{title}</div>
-          {/* <div css={imgContainer}> */}
           <img src={imageSrc} alt={title} css={imgStyle} />
-          {/* </div> */}
         </div>
         <div css={bottomContainer}>
-          {/* {title === 'Project' && <Project benefits={benefits} />}
-          {title === 'Study' && <Study benefits={benefits} />}
+          {title === 'Project' && <Project benefits={benefits} />}
+          {/* {title === 'Study' && <Study benefits={benefits} />}
           {title === 'Entertainment' && <Entertainment benefits={benefits} />} */}
         </div>
       </div>
