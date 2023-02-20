@@ -8,7 +8,7 @@ export default function Nav() {
     <nav css={navStyle}>
       <div css={home}>
         <Link css={linkStyle} to="/">
-          LEETS
+          Leets
         </Link>
       </div>
     </nav>

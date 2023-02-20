@@ -3,37 +3,68 @@ import { css } from '@emotion/react';
 export const formContainer = css`
   display: flex;
   justify-content: center;
-  // align-items: center;
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
-  border-top: 1px solid blue;
+  background: white;
 `;
 
 export const formStyle = css`
-  width: 80%;
+  width: 45%;
   height: auto;
+
+  background: white;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  // border: 1px solid black;
+
+  padding-bottom: 260px;
 `;
 
 export const headStyle = css`
-  width: 100%;
-  height: 10vh;
+  width: content;
+  height: auto;
+  background: white;
+  text-align: center;
 
-  margin-left: 90px;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8.8vw;
+
+  letter-spacing: -0.03em;
+
+  padding-bottom: 148px;
+`;
+
+export const writeStyle = css`
+  background: white;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+
+  text-align: center;
+  letter-spacing: 0;
 `;
 
 export const fieldsetStyle = css`
-  width: 80%;
+  width: 100%;
   height: content;
-  border: 1px solid blue;
+  border: none;
   border-radius: 10px;
+  background: white;
 
-  padding: 50px;
+  padding: 0;
+`;
+
+export const ulStyle = css`
+  padding: 0;
 `;
 
 export const listStyle = css`
@@ -41,21 +72,48 @@ export const listStyle = css`
 
   display: flex;
   flex-direction: column;
-
   justyfi-content: center;
-  padding: 10px;
 
-  margin-left: 80px;
-  margin-bottom: 5px;
+  background: white;
+  padding-bottom: 40px;
 `;
 
 export const labelStyle = css`
   margin-bottom: 8px;
+  background: white;
+
+  display: flex;
+  align-items: center;
+
+  // border: 1px solid blue;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #666666;
+`;
+
+export const pStyle = css`
+  background: white;
+
+  margin-right: 8px;
+`;
+
+export const requireStyle = css`
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #e15241;
 `;
 
 export const inputStyle = css`
-  width: 400px;
-  height: 15px;
+  width: 100%;
+  height: 56px;
+  padding-left: 5px;
+  background: white;
 
   &::placeholder {
     color: #adb1bd;
@@ -63,42 +121,49 @@ export const inputStyle = css`
 
   border: 1px solid #eaeaea;
   border-radius: 10px;
-
-  padding: 15px;
 `;
 
 export const buttonContainer = css`
   display: flex;
   justify-content: center;
-
-  margin: 40px 0;
+  background: white;
 `;
 
 export const buttonStyle = css`
-  width: 100px;
-  height: 40px;
+  width: 208px;
+  height: 64px;
 
+  background: #1a1a1a;
+  border-radius: 40px;
   border: none;
-  border-radius: 8px;
 
-  color: black;
-  background: #f89b00;
-
+  color: white;
   cursor: pointer;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+
+  &:hover {
+    background: #29b69a;
+  }
 `;
 
 export const textareaStyle = css`
-  width: 600px;
-  height: 300px;
+  width: 100%;
+  height: 168px;
+  background: white;
 
   &::placeholder {
     color: #adb1bd;
   }
 
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
 
-  padding: 15px;
+  padding-left: 5px;
+  padding-top: 15px;
 
   resize: none;
 `;

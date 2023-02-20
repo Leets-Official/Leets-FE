@@ -9,13 +9,17 @@ import {
   formContainer,
   formStyle,
   headStyle,
+  writeStyle,
   fieldsetStyle,
+  ulStyle,
   listStyle,
   labelStyle,
+  requireStyle,
   inputStyle,
   buttonContainer,
   buttonStyle,
   textareaStyle,
+  pStyle,
 } from './Forms.style';
 
 export default function Forms() {
@@ -99,12 +103,16 @@ export default function Forms() {
     <div css={formContainer}>
       <form css={formStyle} onSubmit={createUsers}>
         <fieldset css={fieldsetStyle}>
-          <ul>
-            <h1 css={headStyle}>지원 양식</h1>
+          <ul css={ulStyle}>
+            <div css={headStyle}>
+              Join us!
+              <div css={writeStyle}>지원서 작성하기</div>
+            </div>
 
             <li css={listStyle}>
               <label htmlFor="name" css={labelStyle}>
-                <p>이름</p>
+                <p css={pStyle}>이름</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -121,7 +129,8 @@ export default function Forms() {
             </li>
             <li css={listStyle}>
               <label htmlFor="SID" css={labelStyle}>
-                <p>학번</p>
+                <p css={pStyle}>학번</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -139,7 +148,8 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="major" css={labelStyle}>
-                <p>학과</p>
+                <p css={pStyle}>학과</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -157,7 +167,7 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="career" css={labelStyle}>
-                <p>희망 직무</p>
+                <p css={pStyle}>희망 직무</p>
               </label>
               <input
                 css={inputStyle}
@@ -174,7 +184,8 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="GPA" css={labelStyle}>
-                <p>학점</p>
+                <p css={pStyle}>학점</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -192,7 +203,7 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="algorithm" css={labelStyle}>
-                <p>알고리즘</p>
+                <p css={pStyle}>알고리즘</p>
               </label>
               <input
                 css={inputStyle}
@@ -210,7 +221,7 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="project" css={labelStyle}>
-                <p>프로젝트</p>
+                <p css={pStyle}>프로젝트</p>
               </label>
               <input
                 css={inputStyle}
@@ -228,7 +239,8 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="link" css={labelStyle}>
-                <p>Github/Figma</p>
+                <p css={pStyle}>Github/Figma</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -246,7 +258,8 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="phone" css={labelStyle}>
-                <p>전화번호</p>
+                <p css={pStyle}>전화번호</p>
+                <div css={requireStyle} />
               </label>
               <input
                 css={inputStyle}
@@ -264,7 +277,8 @@ export default function Forms() {
 
             <li css={listStyle}>
               <label htmlFor="goal" css={labelStyle}>
-                <p>우리 동아리에 들어와서 얻어가고 싶은 것은 무엇인가요?</p>
+                <p css={pStyle}>우리 동아리에 들어와서 얻어가고 싶은 것은 무엇인가요?</p>
+                <div css={requireStyle} />
               </label>
               <textarea
                 css={textareaStyle}
@@ -280,7 +294,8 @@ export default function Forms() {
             </li>
             <li css={listStyle}>
               <label htmlFor="completion" css={labelStyle}>
-                <p>무언가 열심히 해서 결과물을 낸 경험을 적어주세요.</p>
+                <p css={pStyle}>무언가 열심히 해서 결과물을 낸 경험을 적어주세요.</p>
+                <div css={requireStyle} />
               </label>
               <textarea
                 css={textareaStyle}
@@ -296,7 +311,8 @@ export default function Forms() {
             </li>
             <li css={listStyle}>
               <label htmlFor="fight" css={labelStyle}>
-                <p>갈등 해결 경험을 설명해주세요.</p>
+                <p css={pStyle}>갈등 해결 경험을 설명해주세요.</p>
+                <div css={requireStyle} />
               </label>
               <textarea
                 css={textareaStyle}
@@ -312,7 +328,11 @@ export default function Forms() {
             </li>
           </ul>
           <div css={buttonContainer}>
-            <button type="button" css={buttonStyle} style={{ background: 'white' }} onClick={clearStorage}>
+            <button
+              type="button"
+              css={buttonStyle}
+              style={{ background: 'white', color: 'black' }}
+              onClick={clearStorage}>
               로컬 스토리지 초기화
             </button>
             <button type="submit" css={buttonStyle}>
