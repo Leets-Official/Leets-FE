@@ -3,39 +3,29 @@ import Fade from 'react-reveal/Fade';
 import {
   sectionContainer,
   contentContainer,
-  infoContainer,
-  imgContainer,
+  topContainer,
   subjectStyle,
-  describeStyle,
-  ulStyle,
-  listStyle,
   imgStyle,
-  hrStyle,
+  bottomContainer,
 } from './PromotionCard.style';
+import Project from '../Project/Project';
+import Study from '../Study/Study';
+import Entertainment from '../Entertainment/Entertainment';
 
-export default function PromotionCard({ imageSrc, title, benefits }) {
+export default function PromotionCard({ imageSrc, height, title, benefits }) {
   return (
     <section css={sectionContainer}>
       <div css={contentContainer}>
-        <div css={infoContainer}>
+        <div css={topContainer}>
           <Fade left>
             <div css={subjectStyle}>{title}</div>
           </Fade>
-          <div css={describeStyle}>
-            <ul css={ulStyle}>
-              {benefits.map((benefit, index) => (
-                <>
-                  <li key={index} css={listStyle}>
-                    {benefit}
-                  </li>
-                  <hr css={hrStyle} />
-                </>
-              ))}
-            </ul>
-          </div>
+          <img src={imageSrc} alt={title} css={imgStyle(height)} />
         </div>
-        <div css={imgContainer}>
-          <img src={imageSrc} alt={title} css={imgStyle} />
+        <div css={bottomContainer}>
+          {title === 'Project' && <Project benefits={benefits} />}
+          {title === 'Study & Networking' && <Study benefits={benefits} />}
+          {title === 'Entertainment' && <Entertainment benefits={benefits} />}
         </div>
       </div>
     </section>

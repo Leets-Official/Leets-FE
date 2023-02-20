@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
-import { tablet, desktop } from '../../utils/viewports';
+import { tablet, landscape } from '../../utils/viewports';
 
 export const headContainer = height => css`
   width: 100%;
-  height: ${height + 50}px;
+  height: ${height}px;
 
   ${tablet} {
     height: ${height + 250}px;
   }
 
-  ${desktop} {
-    height: ${height}px;
+  ${landscape} {
+    height: ${height + 50}px;
   }
 
   display: flex;
@@ -26,7 +26,7 @@ export const titleStyle = css`
   font-size: 10vw;
 
   width: content;
-  height: 90%;
+  height: content;
 
   letter-spacing: -0.03em;
 `;
