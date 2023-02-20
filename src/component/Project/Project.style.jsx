@@ -9,7 +9,7 @@ export const contentContainer = css`
   height: 100%;
   gap: 2%;
 
-  // border: 1px solid white;
+  border: 1px solid white;
 `;
 
 export const blockStyle = css`
@@ -82,6 +82,6 @@ export const iconContainer = css`
 
 export const imgStyle = css`
   background: #0f0f0f;
-  width: 72px;
-  height: 72px;
+  width: 5vw;
+  height: 5vw;
 `;

@@ -240,16 +240,15 @@ export const subjectStyle = css`
   }
 `;
 
-export const imgStyle = css`
+export const imgStyle = height => css`
   width: 36.25vw;
-  height: 26.6vw;
+  height: ${(height / 1440) * 100}vw;
 
-  // border: 1px solid blue;
+  border: 1px solid blue;
 `;
 export const bottomContainer = css`
   width: 92%;
   height: 25.5vw;
 
-  // border: 1px solid blue;
   margin-top: 7.1%;
 `;

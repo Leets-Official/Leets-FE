@@ -1,6 +1,7 @@
 export default [
   {
     imageSrc: '../../assets/image/Project.png',
+    height: 384,
     title: 'Project',
     benefits: [
       '졸업 프로젝트를 제외하면, 사람들과 협업할 기회를 접하기는 어렵습니다.',
@@ -12,8 +13,8 @@ export default [
   },
   {
     imageSrc: '/assets/image/Study.png',
-    title: `Study & 
-    Networking`,
+    height: 455,
+    title: `Study & Networking`,
     benefits: [
       '토이 프로젝트는 단편적인 지식만으로 수행할 수 없습니다.',
       '꾸준하게 지식을 공유하고 학습하여 완성도를 높여야 합니다.',
@@ -24,6 +25,7 @@ export default [
   },
   {
     imageSrc: '../../assets/image/Entertainment.png',
+    height: 434,
     title: 'Entertainment',
     benefits: [
       '규율 위에 세워진 자율을 지향합니다.',

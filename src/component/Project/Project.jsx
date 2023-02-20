@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { imgSrc, title, benefits } from './datas';
+import { project } from '../../utils/datas';
 import {
   contentContainer,
   blockStyle,
@@ -14,7 +14,7 @@ import {
 export default function Project() {
   return (
     <div css={contentContainer}>
-      {benefits.map((benefit, index) => (
+      {project.benefits.map((benefit, index) => (
         <div css={blockStyle}>
           <div css={numberContainer}>
             <div css={numberStyle}>{`${0}${index + 1}`}</div>
@@ -22,7 +22,7 @@ export default function Project() {
           <div css={benefitContainer}>
             <div css={textStyle}>{benefit}</div>
             <div css={iconContainer}>
-              <img src={`${imgSrc}${index + 1}.png`} alt={title} css={imgStyle} />
+              <img src={`${project.imgSrc}${index + 1}.png`} alt={project.title} css={imgStyle} />
             </div>
           </div>
         </div>
