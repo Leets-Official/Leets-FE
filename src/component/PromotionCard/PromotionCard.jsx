@@ -1,43 +1,5 @@
 /** @jsxImportSource @emotion/react */
-
-// import {
-//   sectionContainer,
-//   contentContainer,
-//   infoContainer,
-//   imgContainer,
-//   subjectStyle,
-//   describeStyle,
-//   ulStyle,
-//   listStyle,
-//   imgStyle,
-//   hrStyle,
-// } from './PromotionCard.style';
-
-// return (
-//   <section css={sectionContainer}>
-//     <div css={contentContainer}>
-//       <div css={infoContainer}>
-//         <div css={subjectStyle}>{title}</div>
-//         <div css={describeStyle}>
-//           <ul css={ulStyle}>
-//             {benefits.map((benefit, index) => (
-//               <>
-//                 <li key={index} css={listStyle}>
-//                   {benefit}
-//                 </li>
-//                 <hr css={hrStyle} />
-//               </>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-//       <div css={imgContainer}>
-//         <img src={imageSrc} alt={title} css={imgStyle} />
-//       </div>
-//     </div>
-//   </section>
-// );
-
+import Fade from 'react-reveal/Fade';
 import {
   sectionContainer,
   contentContainer,
@@ -55,7 +17,9 @@ export default function PromotionCard({ imageSrc, height, title, benefits }) {
     <section css={sectionContainer}>
       <div css={contentContainer}>
         <div css={topContainer}>
-          <div css={subjectStyle}>{title}</div>
+          <Fade left>
+            <div css={subjectStyle}>{title}</div>
+          </Fade>
           <img src={imageSrc} alt={title} css={imgStyle(height)} />
         </div>
         <div css={bottomContainer}>
