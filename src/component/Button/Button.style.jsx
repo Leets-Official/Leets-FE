@@ -21,27 +21,22 @@ export const applyContainer = css`
 
 export const linkStyle = css`
   font-family: 'Pretendard';
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
 
-  font-size: 16px;
-  width: 100px;
-  height: 40px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 18px;
-    width: 150px;
-    height: 60px;
-  }
+  width: 30%;
+  height: 5.5vw;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   border: none;
-  border-radius: 8px;
+  background: #10dab2;
+  border-radius: 40px;
 
-  color: black;
-  background: #29b69a;
+  color: #1a1a1a;
 
   &:hover {
     color: white;

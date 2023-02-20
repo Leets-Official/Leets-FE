@@ -204,7 +204,7 @@ export const contentContainer = css`
 
   flex-direction: column;
 
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
 
 export const topContainer = css`
@@ -244,7 +244,7 @@ export const imgStyle = height => css`
   width: 36.25vw;
   height: ${(height / 1440) * 100}vw;
 
-  border: 1px solid blue;
+  // border: 1px solid blue;
 `;
 export const bottomContainer = css`
   width: 92%;

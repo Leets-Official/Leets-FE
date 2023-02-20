@@ -9,7 +9,7 @@ export const contentContainer = css`
   height: 100%;
   gap: 2%;
 
-  border: 1px solid white;
+  // border: 1px solid white;
 `;
 
 export const blockStyle = css`
