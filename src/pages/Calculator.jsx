@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const divider = 1440;
 // const standard = 1180;
-const defaultStandards = [819, 820, 1180];
+const defaultStandards = [819, 820, 1180, 1440];
 
 export default function Calculator() {
   const [value, setValue] = useState(0);

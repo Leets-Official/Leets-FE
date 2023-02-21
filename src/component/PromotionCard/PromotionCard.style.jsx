@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-// import { tablet, desktop, mobile } from '../../utils/viewports';
 import mq from '../../utils/viewports';
 
 export const sectionContainer = css(

@@ -30,14 +30,7 @@ export const numberContainer = css(
     background: '#0f0f0f',
     borderRadius: '24px',
 
-    fontFamily: 'DM Sans',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: [27, 27, 39, 48],
-
     padding: [15, 16, 22, 28],
-
-    color: '#666666',
 
     // border: '1px solid red',
   })
@@ -45,11 +38,18 @@ export const numberContainer = css(
 
 export const numberStyle = css(
   mq({
+    width: '50%',
+    height: 'auto',
+
     background: '#0f0f0f',
     borderRadius: '24px',
 
-    width: '50%',
-    height: 'auto',
+    fontFamily: 'DM Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: [27, 27, 39, 48],
+
+    color: '#666666',
 
     // border: '1px solid white',
   })

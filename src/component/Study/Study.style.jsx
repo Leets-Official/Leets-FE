@@ -1,85 +1,96 @@
 import { css } from '@emotion/react';
+import mq from '../../utils/viewports';
 
 export const contentContainer = css`
   width: 100%;
   height: 100%;
 
-  // border: 1px solid white;
-
   color: white;
-`;
 
-export const gridContainer = css`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2%;
-
-  height: content;
-
-  // border: 3px solid blue;
-`;
-
-export const blockStyle = css`
-  width: 100%;
-  height: 11.6vw;
-
-  // border: 1px solid red;
-
-  background: #0f0f0f;
-  border-radius: 24px;
-`;
-
-export const benefitContainer = css`
-  display: flex;
-  flex-direction: column;
-  background: #0f0f0f;
-  border-radius: 24px;
-
-  height: 11.6vw;
-
-  padding-left: 2vw;
-  padding-top: 0.8vw;
-`;
-
-export const numberStyle = css`
-  background: #0f0f0f;
-  border-radius: 24px;
-
-  width: 30%;
-  height: auto;
-
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-
-  color: #666666;
-`;
-export const textStyle = css`
-  background: #0f0f0f;
-
-  margin-top: 1.1%;
   // border: 1px solid white;
-  width: 80%;
 `;
+
+export const gridContainer = css(
+  mq({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: [9.1, 9.1, 13.1, 16.0],
+
+    height: 'content',
+    // border: '3px solid blue',
+  })
+);
+
+export const benefitContainer = css(
+  mq({
+    display: 'flex',
+    flexDirection: 'column',
+    background: '#0f0f0f',
+    borderRadius: '24px',
+
+    height: [97, 100, 140, 172],
+
+    paddingLeft: [18, 18.2, 26.2, 32.0],
+    paddingTop: [6.8, 6.8, 9.8, 12.0],
+
+    // border: '1px solid yellow',
+  })
+);
+
+export const numberStyle = css(
+  mq({
+    width: '20%',
+    height: 'auto',
+
+    background: '#0f0f0f',
+    borderRadius: '24px',
+
+    fontFamily: 'DM Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: [27, 27, 39, 48],
+
+    color: '#666666',
+
+    // border: '1px solid white',
+  })
+);
+
+export const textStyle = css(
+  mq({
+    background: '#0f0f0f',
+    width: '90%',
+
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: [9, 13, 14, 16],
+    marginTop: [6.8, 6.8, 9.8, 12.0],
+
+    // border: 1px solid blue;
+  })
+);
 
 export const flexContainer = css`
   width: 100%;
-  // border: 1px solid yellow;
 
   display: flex;
   justify-content: center;
+
+  // border: 1px solid yellow;
 `;
 
-export const flexBlockStyle = css`
-  width: 33%;
-  height: 11.6vw;
+export const flexBlockStyle = css(
+  mq({
+    width: '33%',
+    height: [97, 100, 140, 172],
 
-  // border: 1px solid red;
+    background: '#0f0f0f',
+    borderRadius: '24px',
 
-  background: #0f0f0f;
-  border-radius: 24px;
+    margin: [4.5, 4.6, 6.6, 8.0],
+    marginTop: [9.1, 9.1, 13.1, 16.0],
 
-  margin: 1%;
-  margin-top: 1.5%;
-`;
+    // border: '1px solid white',
+  })
+);
