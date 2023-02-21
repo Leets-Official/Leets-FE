@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import BackgroundImage from '../BackgroundImage/svg/BackgroundImage';
 import Promotions from '../Promotions/Promotions';
 import pointerContainerStyle from './MainContainer.style';
@@ -24,9 +24,9 @@ export default function MainContainer() {
 
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
-      <Link style={{ width: '80px', height: '50px' }} to="/Calculator">
+      {/* <Link style={{ width: '80px', height: '50px' }} to="/Calculator">
         계산하기
-      </Link>
+      </Link> */}
       <Header />
 
       <BackgroundImage />
