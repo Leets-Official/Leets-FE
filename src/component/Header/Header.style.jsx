@@ -1,22 +1,16 @@
 import { css } from '@emotion/react';
-import { tablet, landscape } from '../../utils/viewports';
+import mq from '../../utils/viewports';
 
-export const headContainer = height => css`
-  width: 100%;
-  height: ${height}px;
+export const headContainer = css(
+  mq({
+    width: '100%',
+    height: [400, 650, 400, 450],
 
-  ${tablet} {
-    height: ${height + 250}px;
-  }
-
-  ${landscape} {
-    height: ${height + 50}px;
-  }
-
-  display: flex;
-  justify-content: center;
-  align-items: end;
-`;
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'end',
+  })
+);
 
 export const titleStyle = css`
   color: white;

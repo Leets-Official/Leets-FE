@@ -1,87 +1,110 @@
 import { css } from '@emotion/react';
+import mq from '../../utils/viewports';
 
-export const contentContainer = css`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+export const contentContainer = css(
+  mq({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
 
-  width: 100%;
+    width: '100%',
+    height: '100%',
+    gap: [18, 18, 26, 32],
+    // border: '1px solid white';
+  })
+);
 
-  height: 100%;
-  gap: 2%;
+export const blockStyle = css(
+  mq({
+    width: '100%',
+    height: [95, 96, 137, 168],
 
-  // border: 1px solid white;
-`;
+    display: 'flex',
+  })
+);
 
-export const blockStyle = css`
-  width: 100%;
-  height: 11.6vw;
+export const numberContainer = css(
+  mq({
+    width: '32.5%',
+    // width: [117, 118, 170, 208],
 
-  display: flex;
-`;
+    background: '#0f0f0f',
+    borderRadius: '24px',
 
-export const numberContainer = css`
-  width: 32.5%;
+    padding: [15, 16, 22, 28],
 
-  background: #0f0f0f;
-  border-radius: 24px;
+    // border: '1px solid red',
+  })
+);
 
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
+export const numberStyle = css(
+  mq({
+    width: '50%',
+    height: 'auto',
 
-  padding-top: 1.9vw;
+    background: '#0f0f0f',
+    borderRadius: '24px',
 
-  color: #666666;
-`;
+    fontFamily: 'DM Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: [27, 27, 39, 48],
 
-export const numberStyle = css`
-  background: #0f0f0f;
-  border-radius: 24px;
+    color: '#666666',
 
-  padding-left: 13%;
+    // border: '1px solid white',
+  })
+);
 
-  width: 50%;
-  height: auto;
-`;
+export const benefitContainer = css(
+  mq({
+    width: '67.5%',
 
-export const benefitContainer = css`
-  width: 67.5%;
+    display: 'flex',
+    justifyContent: 'space-between',
 
-  display: flex;
-  background: #0f0f0f;
-  border-radius: 24px;
+    background: '#0f0f0f',
+    borderRadius: '24px',
+    // border: '1px solid white',
+  })
+);
 
-  padding-left: 7%;
-  padding-top: 6.5%;
+export const textStyle = css(
+  mq({
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: [9, 13, 14, 16],
+    background: '#0f0f0f',
 
-  justify-content: space-between;
-`;
+    width: '100%',
+    height: 'content',
 
-export const textStyle = css`
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  background: #0f0f0f;
+    marginTop: [20, 21, 27, 33],
+    marginLeft: [18, 18, 26, 32],
 
-  width: 65%;
-  height: 72px;
-`;
+    // border: '1px solid blue',
+  })
+);
 
 export const iconContainer = css`
   background: #0f0f0f;
 
   display: flex;
   align-items: end;
-  padding-bottom: 3.7%;
-  padding-right: 3.7%;
 
   border-radius: 24px;
+  // border: 1px solid white;
 `;
 
-export const imgStyle = css`
-  background: #0f0f0f;
-  width: 5vw;
-  height: 5vw;
-`;
+export const imgStyle = css(
+  mq({
+    background: '#0f0f0f',
+    borderRadius: '24px',
+
+    width: [41, 41, 59, 72],
+    height: [41, 41, 59, 72],
+
+    marginRight: [9, 9, 13, 16],
+    marginBottom: [9, 9, 13, 16],
+  })
+);

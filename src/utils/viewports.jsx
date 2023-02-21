@@ -1,5 +1,10 @@
-const breakpoints = [768, 840, 1180, 1400];
-const [tablet, middle, landscape, desktop] = breakpoints.map(bp => `@media (min-width: ${bp}px)`);
-const mobile = '@media (max-width: 420px)';
+import facepaint from 'facepaint';
 
-export { tablet, middle, landscape, mobile, desktop };
+const breakpoints = [820, 1180, 1440];
+const mq = facepaint(breakpoints.map(breakpoint => `@media(min-width: ${breakpoint}px)`));
+export default mq;
+
+// const mq = facepaint(['@media(min-width: 820px)', '@media(min-width: 1180px)', '@media(min-width: 1440px)']);
+// const [tablet, landscape, desktop] = breakpoints.map(bp => `@media (min-width: ${bp}px)`);
+// const mobile = '@media (max-width: 420px)';
+// export { tablet, landscape, desktop, mobile, mq };

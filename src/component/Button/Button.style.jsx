@@ -1,47 +1,48 @@
 import { css } from '@emotion/react';
+import mq from '../../utils/viewports';
 
-export const applyContainer = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+export const applyContainer = css(
+  mq({
+    display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'center',
+    justifyContent: 'center',
 
-  background: black;
+    background: 'black',
 
-  height: 200px;
+    width: '100%',
+    height: [193.4, 193.6, 278.6, 340.0],
 
-  @media screen and (min-width: 768px) {
-    height: 400px;
-  }
+    // border: '1px solid white',
+  })
+);
 
-  @media screen and (min-width: 1024px) {
-    height: 400px;
-  }
-`;
+export const linkStyle = css(
+  mq({
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    fontSize: [11.4, 11.4, 16.4, 20.0],
 
-export const linkStyle = css`
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+    width: [245.7, 246.0, 354.0, 432.0],
+    height: [45.5, 45.6, 65.6, 80.0],
 
-  width: 30%;
-  height: 5.5vw;
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    border: 'none',
+    background: '#10dab2',
+    borderRadius: '40px',
 
-  border: none;
-  background: #10dab2;
-  border-radius: 40px;
+    color: '#1a1a1a',
 
-  color: #1a1a1a;
+    '&:hover': {
+      color: 'white',
+      background: '#29b69a',
+    },
 
-  &:hover {
-    color: white;
-    background: #29b69a;
-  }
-  cursor: pointer;
-  text-decoration: none;
-`;
+    cursor: 'pointer',
+    textDecoration: 'none',
+  })
+);

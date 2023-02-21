@@ -3,7 +3,7 @@ import { study } from '../../utils/datas';
 import {
   contentContainer,
   gridContainer,
-  blockStyle,
+  // blockStyle,
   numberStyle,
   benefitContainer,
   textStyle,
@@ -16,11 +16,9 @@ export default function Study() {
     <div css={contentContainer}>
       <div css={gridContainer}>
         {study.benefits.slice(0, 3).map((benefit, index) => (
-          <div css={blockStyle}>
-            <div css={benefitContainer}>
-              <div css={numberStyle}>{`${0}${index + 1}`}</div>
-              <div css={textStyle}>{benefit}</div>
-            </div>
+          <div css={benefitContainer}>
+            <div css={numberStyle}>{`${0}${index + 1}`}</div>
+            <div css={textStyle}>{benefit}</div>
           </div>
         ))}
       </div>

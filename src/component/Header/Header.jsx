@@ -4,7 +4,7 @@ import { headContainer, titleStyle } from './Header.style';
 
 export default function Header() {
   return (
-    <div css={headContainer(400)}>
+    <div css={headContainer}>
       <Fade>
         <div css={titleStyle}>Leets</div>
       </Fade>

@@ -6,7 +6,7 @@ export default function Entertainment() {
   return (
     <div css={contentContainer}>
       {entertainment.benefits.map((benefit, index) => (
-        <div css={balloon(index)}>
+        <div key={index} css={balloon(index)}>
           <div css={textStyle}>{benefit}</div>
         </div>
       ))}
