@@ -5,10 +5,11 @@ export const contentContainer = css(
   mq({
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-
-    border: '1px solid red',
+    gap: [9.1, 9.1, 13.1, 16.0],
 
     height: [122.8, 123.0, 177.0, 216.0],
+
+    // border: '1px solid white',
   })
 );
 
@@ -76,5 +77,7 @@ export const textStyle = css(
     fontSize: [9, 13, 14, 16],
 
     background: '#0f0f0f',
+
+    // border: '1px solid yellow',
   })
 );
