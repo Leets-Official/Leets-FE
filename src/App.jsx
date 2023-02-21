@@ -3,6 +3,7 @@ import { Global } from '@emotion/react';
 import GlobalStyle from './GlobalStyle';
 import Main from './pages/Main';
 import Apply from './pages/Apply';
+import Calculator from './pages/Calculator';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Apply" element={<Apply />} />
+        <Route path="/Calculator" element={<Calculator />} />
       </Routes>
     </>
   );

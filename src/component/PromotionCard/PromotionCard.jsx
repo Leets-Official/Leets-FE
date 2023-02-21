@@ -22,11 +22,28 @@ export default function PromotionCard({ imageSrc, height, title, benefits }) {
           </Fade>
           <img src={imageSrc} alt={title} css={imgStyle(height)} />
         </div>
-        <div css={bottomContainer}>
+        {/* <div css={bottomContainer}>
           {title === 'Project' && <Project benefits={benefits} />}
           {title === 'Study & Networking' && <Study benefits={benefits} />}
           {title === 'Entertainment' && <Entertainment benefits={benefits} />}
-        </div>
+        </div> */}
+
+        {title === 'Project' && (
+          <div css={bottomContainer}>
+            <Project benefits={benefits} />
+          </div>
+        )}
+        {title === 'Study & Networking' && (
+          <div css={bottomContainer}>
+            <Study benefits={benefits} />
+          </div>
+        )}
+
+        {title === 'Entertainment' && (
+          <div css={bottomContainer}>
+            <Entertainment benefits={benefits} />
+          </div>
+        )}
       </div>
     </section>
   );
