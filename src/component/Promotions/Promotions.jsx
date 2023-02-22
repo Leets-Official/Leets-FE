@@ -1,5 +1,5 @@
 import PromotionCard from '../PromotionCard/PromotionCard';
-import promotionDatas from '../../utils/datas';
+import promotionDatas from '../../utils/promotionDatas';
 
 export default function Promotions() {
   return promotionDatas.map(({ imageSrc, title, height, benefits }) => (

@@ -28,7 +28,7 @@ export const benefitContainer = css(
     background: '#0f0f0f',
     borderRadius: '24px',
 
-    width: [245.7, 246.0, 354.0, 432.0],
+    // width: [245.7, 246.0, 354.0, 432.0],
     height: [97, 100, 140, 172],
 
     paddingLeft: [18, 18.2, 26.2, 32.0],
