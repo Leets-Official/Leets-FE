@@ -28,6 +28,7 @@ export const benefitContainer = css(
     background: '#0f0f0f',
     borderRadius: '24px',
 
+    // width: [245.7, 246.0, 354.0, 432.0],
     height: [97, 100, 140, 172],
 
     paddingLeft: [18, 18.2, 26.2, 32.0],
@@ -65,9 +66,9 @@ export const textStyle = css(
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: [9, 13, 14, 16],
-    marginTop: [6.8, 6.8, 9.8, 12.0],
+    marginTop: [1, 1, 3, 8.0],
 
-    // border: 1px solid blue;
+    // border: '1px solid red',
   })
 );
 

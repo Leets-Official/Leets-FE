@@ -1,18 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import Fade from 'react-reveal/Fade';
+
 import {
   sectionContainer,
   contentContainer,
   topContainer,
   subjectStyle,
+  imgContianer,
   imgStyle,
   bottomContainer,
-} from './PromotionCard.style';
-import Project from '../Project/Project';
-import Study from '../Study/Study';
-import Entertainment from '../Entertainment/Entertainment';
+} from './MobilePromotionCard.style';
+import MobileProject from '../MobileProject/MobileProject';
+import MobileStudy from '../MobileStudy/MobileStudy';
+import MobileEntertainment from '../MobileEntertainment/MobileEntertainment';
 
-export default function PromotionCard({ imageSrc, height, title, benefits }) {
+export default function MobilePromotionCard({ imageSrc, height, title, benefits }) {
   return (
     <section css={sectionContainer}>
       <div css={contentContainer}>
@@ -20,23 +22,23 @@ export default function PromotionCard({ imageSrc, height, title, benefits }) {
           <Fade left>
             <div css={subjectStyle}>{title}</div>
           </Fade>
-          <img src={`${imageSrc}.png`} alt={title} css={imgStyle(height)} />
+          <div css={imgContianer}>
+            <img src={`${imageSrc}.png`} alt={title} css={imgStyle(height)} />
+          </div>
         </div>
-
         {title === 'Project' && (
           <div css={bottomContainer}>
-            <Project benefits={benefits} imageSrc={imageSrc} />
+            <MobileProject benefits={benefits} imageSrc={imageSrc} />
           </div>
         )}
         {title === 'Study & Networking' && (
           <div css={bottomContainer}>
-            <Study benefits={benefits} />
+            <MobileStudy benefits={benefits} />
           </div>
         )}
-
         {title === 'Entertainment' && (
           <div css={bottomContainer}>
-            <Entertainment benefits={benefits} />
+            <MobileEntertainment benefits={benefits} />
           </div>
         )}
       </div>

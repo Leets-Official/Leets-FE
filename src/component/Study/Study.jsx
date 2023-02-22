@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { study } from '../../utils/datas';
 import {
   contentContainer,
   gridContainer,
@@ -11,11 +10,11 @@ import {
   flexBlockStyle,
 } from './Study.style';
 
-export default function Study() {
+export default function Study({ benefits }) {
   return (
     <div css={contentContainer}>
       <div css={gridContainer}>
-        {study.benefits.slice(0, 3).map((benefit, index) => (
+        {benefits.slice(0, 3).map((benefit, index) => (
           <div css={benefitContainer}>
             <div css={numberStyle}>{`${0}${index + 1}`}</div>
             <div css={textStyle}>{benefit}</div>
@@ -23,7 +22,7 @@ export default function Study() {
         ))}
       </div>
       <div css={flexContainer}>
-        {study.benefits.slice(3).map((benefit, index) => (
+        {benefits.slice(3).map((benefit, index) => (
           <div css={flexBlockStyle}>
             <div css={benefitContainer}>
               <div css={numberStyle}>{`${0}${index + 4}`}</div>

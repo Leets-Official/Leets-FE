@@ -30,7 +30,8 @@ export const numberContainer = css(
     background: '#0f0f0f',
     borderRadius: '24px',
 
-    padding: [15, 16, 22, 28],
+    paddingTop: [12.5, 12.5, 12.0, 22.0],
+    paddingLeft: [15, 16, 22, 28],
 
     // border: '1px solid red',
   })
@@ -79,7 +80,7 @@ export const textStyle = css(
     width: '100%',
     height: 'content',
 
-    marginTop: [20, 21, 27, 33],
+    marginTop: [16, 18, 22, 33],
     marginLeft: [18, 18, 26, 32],
 
     // border: '1px solid blue',
