@@ -22,6 +22,7 @@ export default function MainContainer() {
     });
   };
 
+  console.log('main');
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
       {/* <Link style={{ width: '80px', height: '50px' }} to="/Calculator">

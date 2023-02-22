@@ -34,7 +34,7 @@ export const benefitContainer = css(
     paddingLeft: [18, 18.2, 26.2, 32.0],
     paddingTop: [6.8, 6.8, 9.8, 12.0],
 
-    border: '1px solid yellow',
+    // border: '1px solid yellow',
   })
 );
 

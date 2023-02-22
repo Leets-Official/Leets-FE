@@ -12,6 +12,7 @@ import {
 } from './MobilePromotionCard.style';
 import MobileProject from '../MobileProject/MobileProject';
 import MobileStudy from '../MobileStudy/MobileStudy';
+import MobileEntertainment from '../MobileEntertainment/MobileEntertainment';
 
 export default function MobilePromotionCard({ imageSrc, height, title, benefits }) {
   return (
@@ -33,6 +34,11 @@ export default function MobilePromotionCard({ imageSrc, height, title, benefits 
         {title === 'Study & Networking' && (
           <div css={bottomContainer}>
             <MobileStudy benefits={benefits} />
+          </div>
+        )}
+        {title === 'Entertainment' && (
+          <div css={bottomContainer}>
+            <MobileEntertainment benefits={benefits} />
           </div>
         )}
       </div>
