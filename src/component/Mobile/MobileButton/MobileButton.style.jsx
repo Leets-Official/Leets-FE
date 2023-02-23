@@ -4,16 +4,16 @@ export const buttonContainer = css`
   width: 100%;
   height: 48px;
 
-  // border: 1px solid white;
-
   padding-left: 16px;
   padding-right: 16px;
 
   margin-top: 80px;
-  margin-bottom: 16px;
+  margin-bottom: 100px;
+
+  // border: 1px solid white;
 `;
 
-export const linkStyle = css`
+export const buttonStyle = css`
   width: 100%;
   height: 100%;
 
@@ -24,8 +24,7 @@ export const linkStyle = css`
   background: #10dab2;
   border-radius: 24px;
 
-  cursor: pointer;
-  text-decoration: none;
+  border: none;
   color: black;
 
   // border: 1px solid blue;

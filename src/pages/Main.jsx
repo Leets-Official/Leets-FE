@@ -1,8 +1,8 @@
 import MainContainer from '../component/MainContainer/MainContainer';
 import MobileContainer from '../component/Mobile/MobileContanier/MobileContanier';
-import isMobile from '../utils/isMobile';
+import { isMobile } from '../utils/deviceChecker';
 
 export default function Main() {
-  // console.log(isMobile());
+  console.log('isMobile(): ', isMobile());
   return isMobile() ? <MobileContainer /> : <MainContainer />;
 }
