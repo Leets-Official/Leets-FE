@@ -28,7 +28,7 @@ export const balloon = index => css`
     content: '';
     position: absolute;
 
-    margin-left: ${index % 2 ? 20 : 290}px;
+    margin-left: ${index % 2 ? 6.6 : 75}%;
     bottom: -8px;
 
     transform: rotate(${index % 2 ? '-22deg' : '22deg'});
