@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
-import mq from '../../utils/viewports';
+import mq from '../../../utils/mobileViewports';
 
 export const headContainer = css(
   mq({
     width: '100%',
-    height: [500, 550, 450, 400],
+    height: [100, 400, 350, 420, 470],
 
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
 
-    marginBottom: [100, 200, 0, 0],
+    marginBottom: [50, 100, 50, 150],
   })
 );
 
@@ -25,4 +25,6 @@ export const titleStyle = css`
   height: content;
 
   letter-spacing: -0.03em;
+
+  // border: 1px solid green;
 `;
