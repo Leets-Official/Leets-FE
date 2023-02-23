@@ -8,7 +8,7 @@ export const headContainer = css(
 
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'end',
+    alignItems: 'flex-end',
   })
 );
 
