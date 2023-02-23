@@ -45,30 +45,30 @@ export const balloon = index =>
       '&:after': {
         content: '""',
         position: 'absolute',
-        marginLeft: index % 2 ? [27.3, 27.3, 39.3, 48.0] : [129.7, 129.8, 186.8, 228.0],
+        marginLeft: index % 2 ? '-45%' : '15.8%',
         transform: `rotate(${index % 2 ? '-22deg' : '22deg'})`,
         bottom: [-4.9, -4.9, -7.1, -8.6],
-        left: index % 2 ? [-11.4, -11.4, -16.4, -20.0] : 0,
+        // left: index % 2 ? [-11.4, -11.4, -16.4, -20.0] : 0,
 
         width: '0px',
         height: '0px',
 
         borderRight: [
-          '32.8px solid transparent',
+          '20px solid transparent',
           '32.8px solid transparent',
           '47.2px solid transparent',
           '57.6px solid transparent',
         ],
 
         borderLeft: [
-          '32.8px solid transparent',
+          '20px solid transparent',
           '32.8px solid transparent',
           '47.2px solid transparent',
           '57.6px solid transparent',
         ],
 
-        borderBottom: ['56.9px solid #0f0f0f', '57px solid #0f0f0f', '81.9px solid #0f0f0f', '100px solid #0f0f0f'],
-        // borderBottom: ['56.9px solid olive', '57px solid olive', '81.9px solid olive', '100px solid olive'],
+        borderBottom: ['40px solid #0f0f0f', '57px solid #0f0f0f', '81.9px solid #0f0f0f', '100px solid #0f0f0f'],
+        // borderBottom: ['45px solid olive', '57px solid olive', '81.9px solid olive', '100px solid olive'],
       },
 
       ':nth-of-type(2)': {
@@ -85,7 +85,7 @@ export const textStyle = css(
     transform: 'translate(-50%, -50%)',
     zIndex: '3',
 
-    width: '65%',
+    width: 'content',
     whiteSpace: 'pre-wrap',
 
     fontFamily: 'Pretendard',

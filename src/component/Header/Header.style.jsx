@@ -4,7 +4,7 @@ import mq from '../../utils/viewports';
 export const headContainer = css(
   mq({
     width: '100%',
-    height: [400, 650, 400, 450],
+    height: [300, 400, 350, 400],
 
     display: 'flex',
     justifyContent: 'center',

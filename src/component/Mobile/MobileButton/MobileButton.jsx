@@ -1,13 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import { Link } from 'react-router-dom';
-import { buttonContainer, linkStyle } from './MobileButton.style';
+import { buttonContainer, buttonStyle } from './MobileButton.style';
+import { isDesktop } from '../../../utils/deviceChecker';
 
 export default function MobileButton() {
+  const handleClick = e => {
+    if (!isDesktop()) {
+      e.preventDefault();
+      alert('지원하기는 PC를 이용해주세요.');
+    }
+  };
+
   return (
     <div css={buttonContainer}>
-      <Link to="/NoApply" css={linkStyle}>
+      <button type="button" css={buttonStyle} onClick={handleClick}>
         지원하기
-      </Link>
+      </button>
     </div>
   );
 }

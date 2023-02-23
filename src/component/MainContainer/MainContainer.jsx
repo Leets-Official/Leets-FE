@@ -9,7 +9,6 @@ import Button from '../Button/Button';
 import Pointer from '../Pointer/Pointer';
 
 export default function MainContainer() {
-  // console.log('main 렌더링');
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -22,7 +21,6 @@ export default function MainContainer() {
     });
   };
 
-  console.log('main');
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
       {/* <Link style={{ width: '80px', height: '50px' }} to="/Calculator">
