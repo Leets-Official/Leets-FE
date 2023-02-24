@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { listStyle, labelStyle, pStyle, requireStyle, textareaStyle } from './InputTextarea.style';
 
-export default function InputText({ id, title, value, holderText, required, handleOnChange, maxLength }) {
+export default function InputTextarea({ id, title, value, holderText, required, handleOnChange, maxLength }) {
   return (
     <li css={listStyle}>
       <label htmlFor={id} css={labelStyle}>
