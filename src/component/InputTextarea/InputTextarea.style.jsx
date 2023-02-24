@@ -51,11 +51,17 @@ export const textareaStyle = css`
     color: #adb1bd;
   }
 
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
   border: 1px solid #e6e6e6;
   border-radius: 8px;
 
-  padding-left: 5px;
-  padding-top: 15px;
+  padding-left: 8px;
+  padding-top: 8px;
 
   resize: none;
 `;

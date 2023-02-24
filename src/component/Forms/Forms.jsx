@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect } from 'react';
-import { inputs, textareas } from '../../utils/inputForms';
-import initialInfo from '../../utils/formDatas';
+import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
 import InputText from '../InputText/InputText';
 import InputTextarea from '../InputTextarea/InputTextarea';
@@ -42,8 +41,7 @@ export default function Forms() {
     alert(`${info.name}님 제출 완료되었습니다.`);
   };
 
-  const handleOnChange = e => {
-    const { id, value } = e.target;
+  const handleOnChange = (id, value) => {
     setInfo({ ...info, [id]: value });
     saveStorage();
   };
@@ -62,25 +60,29 @@ export default function Forms() {
               <div css={writeStyle}>지원서 작성하기</div>
             </div>
 
-            {inputs.map(({ id, title, holderText, required }) => (
+            {inputs.map(({ id, title, holderText, required, maxLength }) => (
               <InputText
+                key={id}
                 id={id}
                 value={info[id]}
                 title={title}
                 holderText={holderText}
                 required={required}
                 handleOnChange={handleOnChange}
+                maxLength={maxLength}
               />
             ))}
 
-            {textareas.map(({ id, title, holderText, required }) => (
+            {textareas.map(({ id, title, holderText, required, maxLength }) => (
               <InputTextarea
+                key={id}
                 id={id}
                 value={info[id]}
                 title={title}
                 holderText={holderText}
                 required={required}
                 handleOnChange={handleOnChange}
+                maxLength={maxLength}
               />
             ))}
           </ul>

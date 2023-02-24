@@ -52,6 +52,12 @@ export const inputStyle = css`
     color: #adb1bd;
   }
 
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
   border: 1px solid #eaeaea;
   border-radius: 10px;
 `;
