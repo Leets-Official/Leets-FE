@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-
-// 파이어베이스 파일에서 import 해온 db
-import db from '../../firebase-config';
+import initialInfo from '../../utils/formDatas';
+import submitForm from '../../utils/submitForm';
 
 import {
   formContainer,
@@ -23,49 +21,7 @@ import {
 } from './Forms.style';
 
 export default function Forms() {
-  const initialInfo = {
-    name: '',
-    SID: '',
-    major: '',
-    career: '',
-    GPA: '',
-    algorithm: '',
-    project: '',
-    link: '',
-    phone: '',
-
-    goal: '',
-    completion: '',
-    fight: '',
-  };
   const [info, setInfo] = useState(initialInfo);
-
-  // db의 users 컬렉션을 가져옴
-  const usersCollectionRef = collection(db, 'LEETS');
-
-  const createUsers = async e => {
-    e.preventDefault();
-
-    // addDoc을 이용해서 내가 원하는 collection에 내가 원하는 key로 값을 추가한다.
-    await addDoc(usersCollectionRef, {
-      name: info.name,
-      SID: info.SID,
-      major: info.major,
-      career: info.career,
-      GPA: info.GPA,
-      algorithm: info.algorithm,
-      project: info.project,
-      link: info.link,
-      phone: info.phone,
-
-      goal: info.goal,
-      completion: info.completion,
-      fight: info.fight,
-    });
-
-    setInfo(initialInfo);
-    alert(`${info.GPA}점 밖에 안 되는 ${info.name}님 if문 3개 제출 완료되었습니다.`);
-  };
 
   const clearStorage = () => {
     localStorage.clear();
@@ -74,25 +30,25 @@ export default function Forms() {
 
   const loadStorage = () => {
     const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || initialInfo;
-    setInfo({
-      name: tempInfo.name,
-      SID: tempInfo.SID,
-      major: tempInfo.major,
-      career: tempInfo.career,
-      GPA: tempInfo.GPA,
-      algorithm: tempInfo.algorithm,
-      project: tempInfo.project,
-      link: tempInfo.link,
-      phone: tempInfo.phone,
-
-      goal: tempInfo.goal,
-      completion: tempInfo.completion,
-      fight: tempInfo.fight,
-    });
+    setInfo(tempInfo);
   };
 
   const saveStorage = () => {
     localStorage.setItem('tempInfo', JSON.stringify(info));
+  };
+
+  const createUsers = async e => {
+    e.preventDefault();
+    await submitForm(info);
+    clearStorage();
+
+    alert(`${info.name}님 제출 완료되었습니다.`);
+  };
+
+  const handleOnChange = e => {
+    const { id, value } = e.target;
+    setInfo({ ...info, [id]: value });
+    saveStorage();
   };
 
   useEffect(() => {
@@ -120,10 +76,7 @@ export default function Forms() {
                 id="name"
                 value={info.name}
                 placeholder="이름을 입력하세요."
-                onChange={e => {
-                  setInfo({ ...info, name: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -138,10 +91,7 @@ export default function Forms() {
                 id="SID"
                 value={info.SID}
                 placeholder="학점을 입력하세요."
-                onChange={e => {
-                  setInfo({ ...info, SID: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -157,10 +107,7 @@ export default function Forms() {
                 id="major"
                 value={info.major}
                 placeholder="학과를 입력하세요."
-                onChange={e => {
-                  setInfo({ ...info, major: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -175,10 +122,7 @@ export default function Forms() {
                 id="career"
                 value={info.career}
                 placeholder="희망 직무를 입력하세요. (필수 입력은 아닙니다.)"
-                onChange={e => {
-                  setInfo({ ...info, career: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
               />
             </li>
 
@@ -193,10 +137,7 @@ export default function Forms() {
                 id="GPA"
                 value={info.GPA}
                 placeholder="학점을 입력하세요."
-                onChange={e => {
-                  setInfo({ ...info, GPA: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -211,10 +152,7 @@ export default function Forms() {
                 id="algorithm"
                 value={info.algorithm}
                 placeholder="알고리즘 실력을 입력하세요. ex) 백준/릿코드/프로그래머스"
-                onChange={e => {
-                  setInfo({ ...info, algorithm: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -229,10 +167,7 @@ export default function Forms() {
                 id="project"
                 value={info.project}
                 placeholder="프로젝트 경험을 입력하세요. ex) TODO 프로젝트 배포 1회/기여 내용 등"
-                onChange={e => {
-                  setInfo({ ...info, project: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -248,10 +183,7 @@ export default function Forms() {
                 id="link"
                 value={info.link}
                 placeholder="Github/Figma 주소를 적어주세요."
-                onChange={e => {
-                  setInfo({ ...info, link: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -267,10 +199,7 @@ export default function Forms() {
                 id="phone"
                 value={info.phone}
                 placeholder="전화번호 적어주세요. 개인 정보는 안내 이외에는 사용되지 않습니다."
-                onChange={e => {
-                  setInfo({ ...info, phone: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -283,12 +212,10 @@ export default function Forms() {
               <textarea
                 css={textareaStyle}
                 value={info.goal}
+                id="goal"
                 name="goal"
                 placeholder="내용을 입력해주세요."
-                onChange={e => {
-                  setInfo({ ...info, goal: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -300,12 +227,10 @@ export default function Forms() {
               <textarea
                 css={textareaStyle}
                 value={info.completion}
+                id="completion"
                 name="completion"
                 placeholder="내용을 입력해주세요."
-                onChange={e => {
-                  setInfo({ ...info, completion: e.target.value });
-                  saveStorage();
-                }}
+                onChange={handleOnChange}
                 required
               />
             </li>
@@ -317,12 +242,10 @@ export default function Forms() {
               <textarea
                 css={textareaStyle}
                 value={info.fight}
+                id="fight"
                 name="fight"
                 placeholder="내용을 입력해주세요."
-                onChange={e => {
-                  setInfo({ ...info, fight: e.target.value });
-                  saveStorage();
-                }}
+                onChange={e => handleOnChange(e)}
                 required
               />
             </li>
