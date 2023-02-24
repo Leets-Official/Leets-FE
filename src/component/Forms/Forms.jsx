@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 
 // 파이어베이스 파일에서 import 해온 db
 import db from '../../firebase-config';
@@ -41,13 +41,36 @@ export default function Forms() {
   const [info, setInfo] = useState(initialInfo);
 
   // db의 users 컬렉션을 가져옴
-  const usersCollectionRef = collection(db, 'LEETS');
+  // const usersCollectionRef = collection(db, 'LEETS');
+
+  // const createUsers = async e => {
+  //   e.preventDefault();
+
+  //   // addDoc을 이용해서 내가 원하는 collection에 내가 원하는 key로 값을 추가한다.
+  //   await addDoc(usersCollectionRef, {
+  //     name: info.name,
+  //     SID: info.SID,
+  //     major: info.major,
+  //     career: info.career,
+  //     GPA: info.GPA,
+  //     algorithm: info.algorithm,
+  //     project: info.project,
+  //     link: info.link,
+  //     phone: info.phone,
+
+  //     goal: info.goal,
+  //     completion: info.completion,
+  //     fight: info.fight,
+  //   });
+
+  //   setInfo(initialInfo);
+  // };
 
   const createUsers = async e => {
     e.preventDefault();
 
-    // addDoc을 이용해서 내가 원하는 collection에 내가 원하는 key로 값을 추가한다.
-    await addDoc(usersCollectionRef, {
+    await setDoc(doc(db, 'LEETS', `${info.name}$${info.SID}`), {
+      id: `${info.name}$${info.SID}`,
       name: info.name,
       SID: info.SID,
       major: info.major,
@@ -62,7 +85,6 @@ export default function Forms() {
       completion: info.completion,
       fight: info.fight,
     });
-
     setInfo(initialInfo);
     alert(`${info.name}님 제출 완료되었습니다.`);
   };
