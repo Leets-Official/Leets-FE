@@ -8,7 +8,7 @@ const phoneValidator = value => {
   return numberValidator(value);
 };
 
-export default function FormValidator(id, value) {
+export default function validator(id, value) {
   if (id === 'name' || id === 'major' || id === 'career') {
     return koreanValidator(value);
   }

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
-import InputText from '../InputText/InputText';
+import TextInput from '../TextInput/TextInput';
 import InputTextarea from '../InputTextarea/InputTextarea';
 
 import {
@@ -61,7 +61,7 @@ export default function Forms() {
             </div>
 
             {inputs.map(({ id, title, holderText, required, maxLength }) => (
-              <InputText
+              <TextInput
                 key={id}
                 id={id}
                 value={info[id]}
