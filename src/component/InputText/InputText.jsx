@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { listStyle, labelStyle, pStyle, requireStyle, inputStyle } from './InputText.style';
-import FormValidator from '../../utils/formValidator';
+import formValidator from '../../utils/formValidator';
 
 export default function InputText({ id, title, value, holderText, required, handleOnChange, maxLength }) {
   const onChange = e => {
     const [eventId, eventValue] = [e.target.id, e.target.value];
-    const newValue = FormValidator(eventId, eventValue);
+    const newValue = formValidator(eventId, eventValue);
     handleOnChange(eventId, newValue);
   };
 
