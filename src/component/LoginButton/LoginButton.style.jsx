@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import mq from '../../utils/viewports';
 
 export const loginBackground = css`
   width: 100%;
@@ -25,7 +26,6 @@ export const loginContainer = css`
 `;
 
 export const buttonContainer = css`
-  margin-top: 200px;
   width: 100%;
   background: white;
 
@@ -37,42 +37,68 @@ export const buttonContainer = css`
 `;
 
 export const buttonStyle = css`
-  // margin-top: 200px;
+  width: 320px;
+  height: 60px;
 
-  width: 432px;
-  height: 80px;
+  border-radius: 5px;
 
-  border-radius: 42px;
-
-  background: #e6e6e6;
+  background: white;
 
   cursor: pointer;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
-  // border: 1px solid black;
-  border: none;
+  border: 1px solid #d3d3d3;
 `;
+
 export const imageStyle = css`
-  width: 50px;
-  height: 50px;
-  background: #e6e6e6;
+  width: 30px;
+  height: 30px;
+  background: white;
 
   // border: 1px solid black;
 `;
 
-export const textStyle = css`
-  background: #e6e6e6;
+export const textStyle = css(
+  mq({
+    background: 'white',
 
-  margin-left: 40px;
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: [13, 18, 18, 20.0],
+    lineHeight: '24px',
+
+    // border: 1px solid blue,
+  })
+);
+
+export const headStyle = css`
+  width: content;
+  height: auto;
+  background: white;
+  text-align: center;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 8.8vw;
+
+  letter-spacing: -0.03em;
+
+  padding-bottom: 148px;
+`;
+
+export const writeStyle = css`
+  background: white;
 
   font-family: 'Pretendard';
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 600;
+  font-size: 24px;
 
-  // border: 1px solid blue;
+  text-align: center;
+  letter-spacing: 0;
 `;
