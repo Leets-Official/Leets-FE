@@ -12,7 +12,10 @@ import Project from '../Project/Project';
 import Study from '../Study/Study';
 import Entertainment from '../Entertainment/Entertainment';
 
-export default function PromotionCard({ imageSrc, height, title, benefits }) {
+export default function PromotionCard({ height, title, benefits, color }) {
+  const imageSrc = `../../assets/image/Main/${color}/${title}.png`;
+  const projectImageSrc = `../../assets/image/Project/${color}`;
+
   return (
     <section css={sectionContainer}>
       <div css={contentContainer}>
@@ -20,12 +23,12 @@ export default function PromotionCard({ imageSrc, height, title, benefits }) {
           <Fade left>
             <div css={subjectStyle}>{title}</div>
           </Fade>
-          <img src={`${imageSrc}.png`} alt={title} css={imgStyle(height)} />
+          <img src={imageSrc} alt={title} css={imgStyle(height)} />
         </div>
 
         {title === 'Project' && (
           <div css={bottomContainer}>
-            <Project benefits={benefits} imageSrc={imageSrc} />
+            <Project benefits={benefits} imageSrc={projectImageSrc} />
           </div>
         )}
         {title === 'Study & Networking' && (

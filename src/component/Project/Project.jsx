@@ -14,7 +14,7 @@ export default function Project({ imageSrc, benefits }) {
   return (
     <div css={contentContainer}>
       {benefits.map((benefit, index) => (
-        <div css={blockStyle}>
+        <div key={benefit} css={blockStyle}>
           <div css={numberContainer}>
             <div css={numberStyle}>{`${0}${index + 1}`}</div>
           </div>

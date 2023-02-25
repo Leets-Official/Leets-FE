@@ -8,7 +8,7 @@ import Header from '../Header/Header';
 import Button from '../Button/Button';
 import Pointer from '../Pointer/Pointer';
 
-export default function MainContainer() {
+export default function MainContainer({ color }) {
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -28,11 +28,11 @@ export default function MainContainer() {
       </Link> */}
       <Header />
 
-      <BackgroundImage />
+      <BackgroundImage color={color} />
 
-      <Promotions />
+      <Promotions color={color} />
 
-      <Button title="지원하기" link="/Apply" />
+      <Button title="지원하기" link="/Apply" color={color} />
 
       <Pointer position={position} size={7} />
     </main>

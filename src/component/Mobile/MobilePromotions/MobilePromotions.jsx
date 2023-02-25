@@ -1,8 +1,8 @@
 import MobilePromotionCard from '../MobilePromotionCard/MobilePromotionCard';
 import promotionDatas from '../../../utils/mobilePromotionDatas';
 
-export default function MobilePromotions() {
-  return promotionDatas.map(({ imageSrc, title, height, benefits }) => (
-    <MobilePromotionCard key={imageSrc} height={height} imageSrc={`${imageSrc}`} title={title} benefits={benefits} />
+export default function MobilePromotions({ color }) {
+  return promotionDatas.map(({ title, height, benefits }) => (
+    <MobilePromotionCard key={title} height={height} title={title} benefits={benefits} color={color} />
   ));
 }

@@ -1,7 +1,6 @@
 export default [
   {
     title: 'Project',
-    imageSrc: '../../assets/image/Project',
     height: 384,
     benefits: [
       '웹페이지, 모바일 앱을 만들어 배포하며 실무 경험을 쌓아요.',
@@ -12,7 +11,6 @@ export default [
   },
   {
     title: `Study & Networking`,
-    imageSrc: '/assets/image/Study',
     height: 455,
     benefits: [
       '전공, CS, 언어, 직무와 관련된 스터디를 통해 전문성을 갖춰요.',
@@ -24,7 +22,6 @@ export default [
   },
   {
     title: 'Entertainment',
-    imageSrc: '../../assets/image/Entertainment',
     height: 434,
     benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLEETS DAY!', 'LEET’S GO PICNIC'],
   },
