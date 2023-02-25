@@ -8,6 +8,8 @@ export const initialInfo = {
   project: '',
   link: '',
   phone: '',
+  interviewDay: '',
+  interviewTime: '',
 
   goal: '',
   completion: '',
@@ -29,7 +31,7 @@ export const inputs = [
   {
     id: 'algorithm',
     title: '알고리즘',
-    holderText: '알고리즘을 입력하세요. ex) 백준/릿코드/프로그래머스',
+    holderText: '알고리즘 수준을 입력하세요. ex) 백준/릿코드/프로그래머스',
     required: false,
     maxLength: 50,
   },
@@ -40,11 +42,25 @@ export const inputs = [
     required: false,
     maxLength: 50,
   },
-  { id: 'link', title: 'Github/Figma', holderText: 'Github/Figma 주소를 입력하세요', required: false, maxLength: 50 },
+  { id: 'link', title: 'Github/Figma', holderText: 'Github/Figma 주소를 입력하세요.', required: false, maxLength: 50 },
   {
     id: 'phone',
     title: '전화번호',
     holderText: '전화번호를 입력하세요. 개인 정보는 안내 이외에는 사용되지 않습니다.',
+    required: true,
+    maxLength: 13,
+  },
+  {
+    id: 'interviewDay',
+    title: '면접 선호 요일',
+    holderText: '3/13, 3/14 중 선택해주시면 됩니다. 어렵다면 다른 날짜를 적어주세요.',
+    required: true,
+    maxLength: 10,
+  },
+  {
+    id: 'interviewTime',
+    title: '면접 선호 시간',
+    holderText: '면접이 가능한 시간대를 적어주세요. ex) 6~7시 사이',
     required: true,
     maxLength: 13,
   },
@@ -53,7 +69,7 @@ export const inputs = [
 export const textareas = [
   {
     id: 'goal',
-    title: '우리 동아리에 들어와서 얻어가고 싶은 것은 무엇인가요?',
+    title: 'Leets에 들어와서 얻어가고 싶은 것은 무엇인가요?',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: 5000,
