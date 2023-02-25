@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { applyContainer, linkStyle } from './Button.style';
 import { isDesktop } from '../../utils/deviceChecker';
 
-export default function Button({ link, title }) {
+export default function Button({ link, title, color }) {
   const handleClick = e => {
     if (!isDesktop()) {
       e.preventDefault();
@@ -13,7 +13,7 @@ export default function Button({ link, title }) {
 
   return (
     <div css={applyContainer}>
-      <Link to={link} css={linkStyle} onClick={handleClick}>
+      <Link to={link} css={linkStyle(color)} onClick={handleClick}>
         {title}
       </Link>
     </div>

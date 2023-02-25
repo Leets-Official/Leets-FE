@@ -100,7 +100,7 @@ export const iconContainer = css`
 export const imgStyle = css(
   mq({
     background: '#0f0f0f',
-    borderRadius: '24px',
+    // borderRadius: '24px',
 
     width: [41, 41, 59, 72],
     height: [41, 41, 59, 72],
