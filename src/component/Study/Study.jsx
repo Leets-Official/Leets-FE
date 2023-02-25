@@ -15,7 +15,7 @@ export default function Study({ benefits }) {
     <div css={contentContainer}>
       <div css={gridContainer}>
         {benefits.slice(0, 3).map((benefit, index) => (
-          <div css={benefitContainer}>
+          <div key={benefit} css={benefitContainer}>
             <div css={numberStyle}>{`${0}${index + 1}`}</div>
             <div css={textStyle}>{benefit}</div>
           </div>
@@ -23,7 +23,7 @@ export default function Study({ benefits }) {
       </div>
       <div css={flexContainer}>
         {benefits.slice(3).map((benefit, index) => (
-          <div css={flexBlockStyle}>
+          <div key={benefit} css={flexBlockStyle}>
             <div css={benefitContainer}>
               <div css={numberStyle}>{`${0}${index + 4}`}</div>
               <div css={textStyle}>{benefit}</div>

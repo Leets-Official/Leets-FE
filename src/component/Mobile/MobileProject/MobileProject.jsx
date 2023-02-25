@@ -6,7 +6,7 @@ export default function MobileProject({ benefits, imageSrc }) {
   return (
     <div css={contentContainer}>
       {benefits.map((benefit, index) => (
-        <div css={blockStyle}>
+        <div key={benefit} css={blockStyle}>
           <div css={headContainer}>
             {`0${index + 1}`}
             <img src={`${imageSrc}/star${index + 1}.png`} alt="Project" css={imgStyle} />
