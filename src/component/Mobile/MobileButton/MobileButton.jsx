@@ -2,7 +2,7 @@
 import { buttonContainer, buttonStyle } from './MobileButton.style';
 import { isDesktop } from '../../../utils/deviceChecker';
 
-export default function MobileButton() {
+export default function MobileButton({ color }) {
   const handleClick = e => {
     if (!isDesktop()) {
       e.preventDefault();
@@ -12,7 +12,7 @@ export default function MobileButton() {
 
   return (
     <div css={buttonContainer}>
-      <button type="button" css={buttonStyle} onClick={handleClick}>
+      <button type="button" css={buttonStyle(color)} onClick={handleClick}>
         지원하기
       </button>
     </div>

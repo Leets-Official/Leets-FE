@@ -1,5 +1,17 @@
 import { css } from '@emotion/react';
 
+const backgrounds = {
+  green: '#10DAB2',
+  blue: '#3685FC',
+  yellow: '#FCB836',
+};
+
+const colors = {
+  green: 'black',
+  blue: 'white',
+  yellow: 'black',
+};
+
 export const buttonContainer = css`
   width: 100%;
   height: 48px;
@@ -13,7 +25,7 @@ export const buttonContainer = css`
   // border: 1px solid white;
 `;
 
-export const buttonStyle = css`
+export const buttonStyle = color => css`
   width: 100%;
   height: 100%;
 
@@ -21,11 +33,11 @@ export const buttonStyle = css`
   justify-content: center;
   align-items: center;
 
-  background: #10dab2;
+  background: ${backgrounds[color]};
   border-radius: 24px;
 
   border: none;
-  color: black;
+  color: ${colors[color]};
 
   // border: 1px solid blue;
 `;
