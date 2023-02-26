@@ -5,6 +5,7 @@ import MobilePromotions from '../MobilePromotions/MobilePromotions';
 import containerStyle from './MobileContanier.style';
 import MobileHeader from '../MobileHeader/MobileHeader';
 import MobileContact from '../MobileContact/MobileContact';
+import MobileTimeline from '../MobileTimeline/MobileTimeline';
 
 export default function MobileContainer({ color = 'green' }) {
   return (
@@ -12,6 +13,7 @@ export default function MobileContainer({ color = 'green' }) {
       <MobileHeader />
       <BackgroundImage color={color} />
       <MobilePromotions color={color} />
+      <MobileTimeline color={color} />
       <MobileButton color={color} />
       <MobileContact />
     </main>

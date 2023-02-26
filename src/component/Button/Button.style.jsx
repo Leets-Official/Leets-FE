@@ -25,6 +25,8 @@ export const applyContainer = css(
     width: '100%',
     height: [193.4, 193.6, 278.6, 340.0],
 
+    marginTop: [18.2, 18.2, 26.2, 32.0],
+
     // border: '1px solid white',
   })
 );
