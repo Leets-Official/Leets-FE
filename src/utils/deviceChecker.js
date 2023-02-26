@@ -1,24 +1,24 @@
 export function isTablet() {
-  const device = navigator.userAgent;
+  const { userAgent, maxTouchPoints } = navigator;
   const tablets = ['iPad', 'tablet', 'Tablet', 'Kindle', 'Tab', 'Galaxy Tab'];
+  const isMacintosh = /Macintosh/.test(userAgent);
 
-  return tablets.some(tablet => device.includes(tablet));
+  if (isMacintosh && maxTouchPoints) {
+    return true;
+  }
+  return tablets.some(tablet => userAgent.includes(tablet));
 }
 
 export function isMobile() {
-  const { userAgent, maxTouchPoints } = navigator;
-  const isMacintosh = /Macintosh/i.test(userAgent);
+  const { userAgent } = navigator;
   const phones = ['Android', 'webOS', 'iPhone', 'iPod', 'BlackBerry', 'IEMobile', 'Opera Mini', 'Mobi', 'mobi'];
 
   if (isTablet()) {
-    return false;
-  }
-  if (isMacintosh && maxTouchPoints) {
     return false;
   }
   return phones.some(phone => userAgent.includes(phone));
 }
 
 export function isDesktop() {
-  return !isTablet() && !isMobile();
+  return !isMobile() && !isTablet();
 }
