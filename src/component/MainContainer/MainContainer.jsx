@@ -7,6 +7,7 @@ import pointerContainerStyle from './MainContainer.style';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
 import Pointer from '../Pointer/Pointer';
+import Contact from '../Contact/Contact';
 
 export default function MainContainer({ color }) {
   const [position, setPosition] = useState({
@@ -23,9 +24,6 @@ export default function MainContainer({ color }) {
 
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
-      {/* <Link style={{ width: '80px', height: '50px' }} to="/Calculator">
-        계산하기
-      </Link> */}
       <Header />
 
       <BackgroundImage color={color} />
@@ -33,6 +31,8 @@ export default function MainContainer({ color }) {
       <Promotions color={color} />
 
       <Button title="지원하기" link="/Apply" color={color} />
+
+      <Contact />
 
       <Pointer position={position} size={7} />
     </main>

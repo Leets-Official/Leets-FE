@@ -51,8 +51,7 @@ export const linkStyle = color =>
       color: colors[color],
 
       '&:hover': {
-        color: 'white',
-        background: '#29b69a',
+        color: color === 'blue' ? 'black' : 'white',
       },
 
       cursor: 'pointer',
