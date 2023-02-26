@@ -14,7 +14,7 @@ export function isMobile() {
     return false;
   }
   if (isMacintosh && maxTouchPoints) {
-    return true;
+    return false;
   }
   return phones.some(phone => userAgent.includes(phone));
 }
