@@ -10,10 +10,10 @@ export default function Apply() {
     window.location.href = '/';
   }
 
-  const user = useSelector(state => state.name);
+  const userName = useSelector(state => state.user.name);
   // console.log('name', user);
 
-  return user ? (
+  return userName ? (
     <>
       <Nav />
       <Forms />

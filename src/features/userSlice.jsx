@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 
 const initialState = {
   name: null,
@@ -17,6 +18,9 @@ export const userSlice = createSlice({
       state.user = null;
       state.email = null;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(PURGE, () => initialState);
   },
 });
 
