@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import mq from '../../utils/viewports';
 
 export const navStyle = css`
   background-color: black;
@@ -22,9 +23,10 @@ export const home = css`
 
 export const welcomeContainer = userName => css`
   background: white;
+
   display: flex;
-  justify-content: ${userName ? 'space-around' : 'flex-end'};
-  width: 300px;
+  justify-content: ${userName ? 'space-between' : 'flex-end'};
+
   margin-right: 3.81vw;
 
   // border: 1px solid red;
@@ -56,20 +58,26 @@ export const welcomeStyle = css`
   // border: 1px solid red;
 `;
 
-export const buttonStyle = userName => css`
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+export const buttonStyle = userName =>
+  css(
+    mq({
+      fontFamily: 'Pretendard',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: '14px',
 
-  padding: 0;
+      padding: 0,
 
-  display: ${userName ? '' : 'none'};
+      display: userName ? '' : 'none',
 
-  color: #29b69a;
-  background: white;
+      color: '#29b69a',
+      background: 'white',
 
-  cursor: pointer;
+      cursor: 'pointer',
 
-  border: none;
-`;
+      border: 'none',
+
+      paddingLeft: [17.1, 17.1, 24.6, 30.0],
+      // border: 1px solid blue;
+    })
+  );
