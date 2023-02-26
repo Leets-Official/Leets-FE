@@ -37,7 +37,6 @@ export default function LoginButton() {
   return (
     <>
       <Nav />
-
       <div css={loginBackground}>
         <div css={loginContainer}>
           <div css={headStyle}>
