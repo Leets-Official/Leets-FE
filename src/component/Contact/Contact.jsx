@@ -20,7 +20,7 @@ export default function Contact() {
           Contact
           <div css={gridContainer}>
             {Object.entries(data).map(([key, value]) => (
-              <div css={infoContainer}>
+              <div key={key} css={infoContainer}>
                 <div css={titleStyle}>{key}</div>
                 <div css={infoStyle}>{value}</div>
               </div>
