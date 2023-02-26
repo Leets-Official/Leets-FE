@@ -30,7 +30,7 @@ export default function MainContainer({ color }) {
 
       <Promotions color={color} />
 
-      <Timeline />
+      <Timeline color={color} />
 
       <Button title="지원하기" link="/Apply" color={color} />
 

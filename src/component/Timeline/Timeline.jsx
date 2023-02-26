@@ -15,7 +15,7 @@ import {
 import TimelineImage from '../TimelineImage/TimelineImage';
 import data from '../../utils/timelineData';
 
-export default function Timeline() {
+export default function Timeline({ color }) {
   return (
     <div css={sectionContaier}>
       <div css={contentContainer}>
@@ -25,7 +25,7 @@ export default function Timeline() {
           </Fade>
         </div>
         <div css={bottomContainer}>
-          <TimelineImage />
+          <TimelineImage color={color} />
           <div css={infoStyle}>
             {Object.entries(data).map(([key, value]) => (
               <div key={key} css={dateStyle}>
