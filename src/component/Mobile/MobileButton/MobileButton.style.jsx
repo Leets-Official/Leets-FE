@@ -19,7 +19,6 @@ export const buttonContainer = css`
   padding-left: 16px;
   padding-right: 16px;
 
-  margin-top: 80px;
   margin-bottom: 100px;
 
   // border: 1px solid white;
