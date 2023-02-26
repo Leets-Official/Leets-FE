@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 
-// width: 360px
-
 export const sectionContainer = css`
   margin-top: 80px;
 
@@ -53,8 +51,8 @@ export const imgStyle = height => css`
 `;
 
 export const bottomContainer = css`
-  // border: 1px solid green;
-
   width: 100%;
   height: 100%;
+
+  // border: 1px solid green;
 `;
