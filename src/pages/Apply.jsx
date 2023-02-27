@@ -13,12 +13,13 @@ export default function Apply() {
   }
 
   const userName = useSelector(state => state.user.name);
+  const userEmail = useSelector(state => state.user.email);
   // console.log('name', user);
 
   return userName ? (
     <>
       <Nav color={todayColor} />
-      <Forms color={todayColor} />
+      <Forms color={todayColor} email={userEmail} />
     </>
   ) : (
     <Login />

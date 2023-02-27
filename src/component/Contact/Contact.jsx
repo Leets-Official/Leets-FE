@@ -8,6 +8,7 @@ import {
   infoContainer,
   titleStyle,
   infoStyle,
+  linkStyle,
 } from './Contact.style';
 import data from '../../utils/contactData';
 
@@ -22,7 +23,15 @@ export default function Contact() {
             {Object.entries(data).map(([key, value]) => (
               <div key={key} css={infoContainer}>
                 <div css={titleStyle}>{key}</div>
-                <div css={infoStyle}>{value}</div>
+                {key === 'Github' || key === 'Open Kakao' ? (
+                  <div css={infoStyle}>
+                    <a href={value} target={value} css={linkStyle}>
+                      {value}
+                    </a>
+                  </div>
+                ) : (
+                  <div css={infoStyle}>{value}</div>
+                )}
               </div>
             ))}
           </div>

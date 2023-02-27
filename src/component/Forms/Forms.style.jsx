@@ -103,3 +103,19 @@ export const buttonStyle = color => css`
     background: ${backgrounds[color]};
   }
 `;
+
+export const guidStyle = css`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #666666;
+
+  margin-top: 40px;
+
+  display: flex;
+  justify-content: center;
+  background: white;
+`;
