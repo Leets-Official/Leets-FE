@@ -1,6 +1,12 @@
 import { css } from '@emotion/react';
 import mq from '../../utils/viewports';
 
+const backgrounds = {
+  blue: '#3685FC',
+  green: '#29B69A',
+  yellow: '#FCB836',
+};
+
 export const navStyle = css`
   background-color: black;
 
@@ -58,7 +64,7 @@ export const welcomeStyle = css`
   // border: 1px solid red;
 `;
 
-export const buttonStyle = userName =>
+export const buttonStyle = (userName, color) =>
   css(
     mq({
       fontFamily: 'Pretendard',
@@ -70,7 +76,7 @@ export const buttonStyle = userName =>
 
       display: userName ? '' : 'none',
 
-      color: '#29b69a',
+      color: backgrounds[color],
       background: 'white',
 
       cursor: 'pointer',

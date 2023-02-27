@@ -5,7 +5,7 @@ import { navStyle, home, linkStyle, welcomeContainer, welcomeStyle, buttonStyle 
 import persistor from '../..';
 import { userSlice } from '../../features/userSlice';
 
-export default function Nav() {
+export default function Nav({ color }) {
   const userName = useSelector(state => state.user.name);
   const dispatch = useDispatch();
   // console.log(userName);
@@ -25,7 +25,7 @@ export default function Nav() {
         <div css={welcomeContainer(userName)}>
           <div css={welcomeStyle}>{userName && `${userName}님 `}환영해요!</div>
           {userName && (
-            <button type="button" css={buttonStyle(userName)} onClick={purge}>
+            <button type="button" css={buttonStyle(userName, color)} onClick={purge}>
               로그아웃
             </button>
           )}

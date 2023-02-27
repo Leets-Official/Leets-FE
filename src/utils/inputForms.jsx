@@ -27,7 +27,13 @@ export const inputs = [
     required: false,
     maxLength: 15,
   },
-  { id: 'GPA', title: '학점', holderText: '학점을 입력하세요.', required: true, maxLength: 4 },
+  {
+    id: 'GPA',
+    title: '학점',
+    holderText: '학점을 입력하세요. 1학년은 마침표 1개만 입력하세요.',
+    required: true,
+    maxLength: 4,
+  },
   {
     id: 'algorithm',
     title: '알고리즘',
