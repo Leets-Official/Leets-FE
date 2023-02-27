@@ -16,7 +16,7 @@ import {
   buttonStyle,
 } from './Forms.style';
 
-export default function Forms() {
+export default function Forms({ color }) {
   const [info, setInfo] = useState(initialInfo);
 
   const clearStorage = () => {
@@ -88,14 +88,14 @@ export default function Forms() {
           </ul>
 
           <div css={buttonContainer}>
-            <button
+            {/* <button
               type="button"
               css={buttonStyle}
               style={{ background: 'white', color: 'black' }}
               onClick={clearStorage}>
               로컬 스토리지 초기화
-            </button>
-            <button type="submit" css={buttonStyle}>
+            </button> */}
+            <button type="submit" css={buttonStyle(color)}>
               제출하기
             </button>
           </div>

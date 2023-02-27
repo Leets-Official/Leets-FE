@@ -97,7 +97,7 @@ export const iconContainer = css`
   background: #0f0f0f;
 
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 
   border-radius: 24px;
   // border: 1px solid white;

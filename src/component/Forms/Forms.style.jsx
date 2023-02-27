@@ -1,5 +1,11 @@
 import { css } from '@emotion/react';
 
+const backgrounds = {
+  blue: '#3685FC',
+  green: '#29B69A',
+  yellow: '#FCB836',
+};
+
 export const formContainer = css`
   display: flex;
   justify-content: center;
@@ -20,9 +26,9 @@ export const formStyle = css`
   flex-direction: column;
   align-items: center;
 
-  // border: 1px solid black;
-
   padding-bottom: 260px;
+
+  // border: 1px solid black;
 `;
 
 export const headStyle = css`
@@ -71,9 +77,13 @@ export const buttonContainer = css`
   display: flex;
   justify-content: center;
   background: white;
+
+  // border: 1px solid black;
+
+  margin-top: 60px;
 `;
 
-export const buttonStyle = css`
+export const buttonStyle = color => css`
   width: 208px;
   height: 64px;
 
@@ -90,6 +100,6 @@ export const buttonStyle = css`
   font-size: 16px;
 
   &:hover {
-    background: #29b69a;
+    background: ${backgrounds[color]};
   }
 `;

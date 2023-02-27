@@ -55,7 +55,7 @@ export const bottomContainer = css(
   mq({
     width: '92%',
     marginTop: [45.5, 45.6, 65.6, 80.0],
-    paddingLeft: [120, 255.1, 367.1, 448.0],
+    paddingLeft: ['35%', 255.1, 367.1, 448.0],
 
     display: 'flex',
 
