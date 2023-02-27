@@ -65,8 +65,12 @@ export const textStyle = css(
     fontFamily: 'Pretendard',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: [9, 13, 14, 16],
+    fontSize: [9, 11, 16, 18],
     marginTop: [1, 1, 3, 8.0],
+
+    whiteSpace: 'pre-wrap',
+
+    lineHeight: 1.5,
 
     // border: '1px solid red',
   })

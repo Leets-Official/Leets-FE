@@ -85,16 +85,15 @@ export const textStyle = css(
     transform: 'translate(-50%, -50%)',
     zIndex: '3',
 
-    width: 'content',
+    width: '80%',
     whiteSpace: 'pre-wrap',
+    lineHeight: 1.5,
 
     fontFamily: 'Pretendard',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: [9, 13, 14, 16],
+    fontSize: [9, 11, 16, 20],
 
     background: '#0f0f0f',
-
-    // border: '1px solid yellow',
   })
 );

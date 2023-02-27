@@ -19,6 +19,8 @@ export const blockStyle = css(
     height: [95, 96, 137, 168],
 
     display: 'flex',
+
+    // border: '1px solid blue',
   })
 );
 
@@ -74,8 +76,12 @@ export const textStyle = css(
     fontFamily: 'Pretendard',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: [9, 13, 14, 16],
+    fontSize: [9, 11, 16, 18],
     background: '#0f0f0f',
+
+    lineHeight: 1.5,
+
+    whiteSpace: 'pre-wrap',
 
     width: '100%',
     height: 'content',
