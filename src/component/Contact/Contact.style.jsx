@@ -61,15 +61,20 @@ export const gridContainer = css(
     width: 'content',
     height: '100%',
 
-    // border: '1px solid blue',
+    // border: '1px solid red',
 
     marginRight: [54.6, 54.7, 78.7, 96.0],
   })
 );
 
-export const infoContainer = css`
-  // border: 1px solid pink;
-`;
+export const infoContainer = css(
+  mq({
+    width: [163.2, 163.4, 235.2, 287.0],
+    height: [31.9, 31.9, 45.9, 56.0],
+
+    // border: '1px solid blue',
+  })
+);
 
 export const titleStyle = css(
   mq({
@@ -83,7 +88,7 @@ export const titleStyle = css(
 
     color: '#666666',
 
-    // border: 1px solid pink;
+    // border: '1px solid pink',
   })
 );
 
@@ -96,7 +101,20 @@ export const infoStyle = css(
     fontSize: [13, 13, 16.4, 20.0],
     letterSpacing: '-0.01em',
     color: '#e6e6e6',
+  })
+);
 
-    // border: 1px solid pink;
+export const linkStyle = css(
+  mq({
+    fontFamily: 'DM Sans',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: [13, 13, 16.4, 20.0],
+    letterSpacing: '-0.01em',
+    color: '#e6e6e6',
+
+    cursor: 'pointer',
+
+    textDecorationLine: 'none',
   })
 );

@@ -4,7 +4,6 @@ import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
 import TextInput from '../TextInput/TextInput';
 import InputTextarea from '../InputTextarea/InputTextarea';
-
 import {
   formContainer,
   formStyle,
@@ -14,9 +13,10 @@ import {
   ulStyle,
   buttonContainer,
   buttonStyle,
+  guidStyle,
 } from './Forms.style';
 
-export default function Forms({ color }) {
+export default function Forms({ color, email }) {
   const [info, setInfo] = useState(initialInfo);
 
   const clearStorage = () => {
@@ -35,7 +35,7 @@ export default function Forms({ color }) {
 
   const createUsers = async e => {
     e.preventDefault();
-    await submitForm(info);
+    await submitForm({ ...info, email });
     clearStorage();
 
     alert(`${info.name}님 제출 완료되었습니다.`);
@@ -86,7 +86,6 @@ export default function Forms({ color }) {
               />
             ))}
           </ul>
-
           <div css={buttonContainer}>
             {/* <button
               type="button"
@@ -99,6 +98,7 @@ export default function Forms({ color }) {
               제출하기
             </button>
           </div>
+          <div css={guidStyle}>여러 번 제출시 최종 제출 자료만 인정됩니다.</div>
         </fieldset>
       </form>
     </div>
