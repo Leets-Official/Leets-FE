@@ -58,3 +58,18 @@ export const infoStyle = css`
 
   color: #e6e6e6;
 `;
+
+export const linkStyle = css`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  letter-spacing: -0.01em;
+
+  color: #e6e6e6;
+
+  cursor: pointer;
+  text-decoration-line: none;
+`;

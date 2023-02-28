@@ -1,17 +1,23 @@
 import { css } from '@emotion/react';
 
-export default (x, y, size) => css`
+const backgrounds = {
+  blue: '#3685FC',
+  green: '#29B69A',
+  yellow: '#FCB836',
+};
+
+export default (x, y, size, color) => css`
   transform: translate(${x}px, ${y}px);
   position: fixed;
 
-  background-color: red;
+  background-color: ${backgrounds[color]};
   border-radius: 50%;
   width: ${size}rem;
   height: ${size}rem;
   left: -${size / 2}rem;
   top: -${size / 2}rem;
 
-  opacity: 0.4;
+  opacity: 0.7;
 
   pointer-events: none;
 

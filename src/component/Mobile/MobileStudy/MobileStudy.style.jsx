@@ -50,5 +50,9 @@ export const benefitContainer = css`
   margin-right: 26px;
   margin-top: 27.63px;
 
+  white-space: pre-wrap;
+
+  line-height: 1.5;
+
   color: white;
 `;
