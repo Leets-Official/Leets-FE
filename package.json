@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "ESLINT_NO_DEV_ERRORS='true' react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN='true' react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN='true' react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
