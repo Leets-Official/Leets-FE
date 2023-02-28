@@ -1,4 +1,4 @@
-const koreanValidator = value => value.replace(/[^ㄱ-하-ㅣ가-힣]/g, '');
+const koreanValidator = value => value.replace(/[^ㄱ-하-ㅣ가-힣A-Za-z]/g, '');
 const numberValidator = value => value.replace(/[^0-9]/g, '');
 const GPAValidator = value => value.replace(/[^0-9.]/g, '');
 const phoneValidator = value => {

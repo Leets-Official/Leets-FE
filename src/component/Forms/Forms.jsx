@@ -19,10 +19,10 @@ import {
 export default function Forms({ color, email }) {
   const [info, setInfo] = useState(initialInfo);
 
-  const clearStorage = () => {
-    localStorage.clear();
-    setInfo(initialInfo);
-  };
+  // const clearStorage = () => {
+  //   localStorage.clear();
+  //   setInfo(initialInfo);
+  // };
 
   const loadStorage = () => {
     const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || initialInfo;
@@ -36,7 +36,7 @@ export default function Forms({ color, email }) {
   const createUsers = async e => {
     e.preventDefault();
     await submitForm({ ...info, email });
-    clearStorage();
+    // clearStorage();
 
     alert(`${info.name}님 제출 완료되었습니다.`);
   };
@@ -98,7 +98,7 @@ export default function Forms({ color, email }) {
               제출하기
             </button>
           </div>
-          <div css={guidStyle}>여러 번 제출시 최종 제출 자료만 인정됩니다.</div>
+          <div css={guidStyle}>여러 번 제출 시 최종 제출 자료만 인정됩니다.</div>
         </fieldset>
       </form>
     </div>

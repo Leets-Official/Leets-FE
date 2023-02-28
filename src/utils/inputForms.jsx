@@ -18,7 +18,7 @@ export const initialInfo = {
 
 export const inputs = [
   { id: 'name', title: '이름', holderText: '이름을 입력하세요.', required: true, maxLength: 4 },
-  { id: 'SID', title: '학번', holderText: '학번을 입력하세요. ex) 202012345', required: true, maxLength: 7 },
+  { id: 'SID', title: '학번', holderText: '학번을 입력하세요. (ex 19, 20, 21)', required: true, maxLength: 2 },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: 10 },
   {
     id: 'career',
@@ -30,21 +30,21 @@ export const inputs = [
   {
     id: 'GPA',
     title: '학점',
-    holderText: '학점을 입력하세요. 1학년은 마침표 1개만 입력하세요.',
+    holderText: '학점을 입력하세요. (1학년은 마침표 1개만 입력하세요.)',
     required: true,
     maxLength: 4,
   },
   {
     id: 'algorithm',
     title: '알고리즘',
-    holderText: '알고리즘 수준을 입력하세요. ex) 백준/릿코드/프로그래머스',
+    holderText: '알고리즘 수준을 입력하세요. (ex 백준/릿코드/프로그래머스)',
     required: false,
     maxLength: 50,
   },
   {
     id: 'project',
     title: '프로젝트',
-    holderText: '프로젝트 경험을 입력하세요. ex) TODO 프로젝트 배포 1회/기여 내용 등',
+    holderText: '프로젝트 경험을 입력하세요. (ex TODO 프로젝트 배포 1회/기여 내용 등)',
     required: false,
     maxLength: 50,
   },
@@ -52,21 +52,21 @@ export const inputs = [
   {
     id: 'phone',
     title: '전화번호',
-    holderText: '전화번호를 입력하세요. 개인 정보는 안내 이외에는 사용되지 않습니다.',
+    holderText: '전화번호를 입력하세요. (모든 개인 정보는 안내 이외에는 사용되지 않습니다.)',
     required: true,
     maxLength: 13,
   },
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '3/13, 3/14 중 선택해주시면 됩니다. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3/13, 3/14 중 하루를 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: 10,
   },
   {
     id: 'interviewTime',
     title: '면접 선호 시간',
-    holderText: '면접이 가능한 시간대를 적어주세요. ex) 6~7시 사이',
+    holderText: '면접이 가능한 시간대를 적어주세요. (ex 6~7시 사이)',
     required: true,
     maxLength: 13,
   },
