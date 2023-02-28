@@ -36,7 +36,7 @@ export default function MainContainer({ color }) {
 
       <Contact />
 
-      <Pointer position={position} size={7} />
+      <Pointer position={position} size={7} color={color} />
     </main>
   );
 }

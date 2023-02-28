@@ -7,6 +7,7 @@ import {
   infoContainer,
   titleStyle,
   infoStyle,
+  linkStyle,
 } from './MobileContact.style';
 
 export default function MobileContact() {
@@ -17,7 +18,15 @@ export default function MobileContact() {
         {Object.entries(data).map(([key, value]) => (
           <div key={key} css={infoContainer}>
             <div css={titleStyle}>{key}</div>
-            <div css={infoStyle}>{value}</div>
+            {key === 'Github' || key === 'Open Kakao' ? (
+              <div css={infoStyle}>
+                <a href={value} target={value} css={linkStyle}>
+                  {value}
+                </a>
+              </div>
+            ) : (
+              <div css={infoStyle}>{value}</div>
+            )}
           </div>
         ))}
       </div>

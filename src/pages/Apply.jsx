@@ -4,7 +4,7 @@ import Nav from '../component/Nav/Nav';
 import Forms from '../component/Forms/Forms';
 import Login from './Login';
 
-const todayColor = 'yellow';
+const todayColor = 'blue';
 
 export default function Apply() {
   if (!isDesktop()) {
