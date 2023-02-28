@@ -5,10 +5,13 @@ import { isDesktop } from '../../utils/deviceChecker';
 
 export default function Button({ link, title, color }) {
   const handleClick = e => {
-    if (!isDesktop()) {
-      e.preventDefault();
-      alert('지원하기는 PC를 이용해주세요.');
-    }
+    e.preventDefault();
+    alert('3/2부터 지원 가능합니다.');
+
+    // if (!isDesktop()) {
+    //   e.preventDefault();
+    //   alert('지원하기는 PC를 이용해주세요.');
+    // }
   };
 
   return (
