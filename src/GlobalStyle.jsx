@@ -9,11 +9,11 @@ export default css`
 
   @font-face {
     font-family: 'DM Sans';
-    src: url('/fonts/DMSans-Medium.ttf');
+    src: url('/fonts/dm-sans-v11-latin-regular.woff2');
   }
 
   @font-face {
     font-family: 'Pretendard';
-    src: url('/fonts/Pretendard-Regular.ttf');
+    src: url('/fonts/Pretendard-Regular.woff2');
   }
 `;
