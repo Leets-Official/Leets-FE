@@ -28,9 +28,9 @@ export const footerContainer = css(
 export const textStyle = css(
   mq({
     fontFamily: 'DM Sans',
-    fontStyle: 'italic',
+    fontStyle: 'normal',
     fontWeight: '400',
-    fontSize: [15, 15, 16.4, 20.0],
+    fontSize: [13, 14, 14, 18],
 
     lineHeight: '100%',
 

@@ -21,9 +21,9 @@ export const footerContainer = css`
 export const textStyle = css(
   mq({
     fontFamily: 'Pretendard',
-    fontStyle: 'italic',
+    fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: [14, 15, 16, 16, 18],
+    fontSize: [13, 13, 14, 14, 16],
     lineHeight: '100%',
 
     color: '#666666',
