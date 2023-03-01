@@ -7,9 +7,9 @@ const backgrounds = {
 };
 
 const colors = {
-  green: 'black',
+  green: '#1A1A1A',
   blue: 'white',
-  yellow: 'black',
+  yellow: '#1A1A1A',
 };
 
 export const buttonContainer = css`
@@ -25,6 +25,12 @@ export const buttonContainer = css`
 `;
 
 export const buttonStyle = color => css`
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+
   width: 100%;
   height: 100%;
 
@@ -37,6 +43,4 @@ export const buttonStyle = color => css`
 
   border: none;
   color: ${colors[color]};
-
-  // border: 1px solid blue;
 `;

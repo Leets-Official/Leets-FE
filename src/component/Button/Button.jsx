@@ -6,7 +6,7 @@ import { isDesktop } from '../../utils/deviceChecker';
 export default function Button({ link, title, color }) {
   const handleClick = e => {
     e.preventDefault();
-    alert('3/2부터 지원 가능합니다.');
+    alert('3/2 12시부터 지원 가능합니다.');
 
     // if (!isDesktop()) {
     //   e.preventDefault();

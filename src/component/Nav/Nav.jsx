@@ -8,7 +8,6 @@ import { userSlice } from '../../features/userSlice';
 export default function Nav({ color }) {
   const userName = useSelector(state => state.user.name);
   const dispatch = useDispatch();
-  // console.log(userName);
 
   const purge = async () => {
     // window.location.reload();

@@ -26,22 +26,11 @@ export default function PromotionCard({ height, title, benefits, color }) {
           <img src={imageSrc} alt={title} css={imgStyle(height)} />
         </div>
 
-        {title === 'Project' && (
-          <div css={bottomContainer}>
-            <Project benefits={benefits} imageSrc={projectImageSrc} />
-          </div>
-        )}
-        {title === 'Study & Networking' && (
-          <div css={bottomContainer}>
-            <Study benefits={benefits} />
-          </div>
-        )}
-
-        {title === 'Entertainment' && (
-          <div css={bottomContainer}>
-            <Entertainment benefits={benefits} />
-          </div>
-        )}
+        <div css={bottomContainer}>
+          {title === 'Project' && <Project benefits={benefits} imageSrc={projectImageSrc} />}
+          {title === 'Study & Networking' && <Study benefits={benefits} />}
+          {title === 'Entertainment' && <Entertainment benefits={benefits} />}
+        </div>
       </div>
     </section>
   );

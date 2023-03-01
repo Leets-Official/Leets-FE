@@ -5,7 +5,7 @@ import { isDesktop } from '../../../utils/deviceChecker';
 export default function MobileButton({ color }) {
   const handleClick = e => {
     e.preventDefault();
-    alert('3/2부터 지원 가능합니다.');
+    alert('3/2 12시부터 지원 가능합니다.');
     // if (!isDesktop()) {
     //   e.preventDefault();
     //   alert('지원하기는 PC를 이용해주세요.');

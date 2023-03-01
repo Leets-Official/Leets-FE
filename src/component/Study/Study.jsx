@@ -2,7 +2,6 @@
 import {
   contentContainer,
   gridContainer,
-  // blockStyle,
   numberStyle,
   benefitContainer,
   textStyle,

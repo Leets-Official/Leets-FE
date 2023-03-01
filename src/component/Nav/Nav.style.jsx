@@ -83,7 +83,7 @@ export const buttonStyle = (userName, color) =>
 
       border: 'none',
 
-      paddingLeft: [17.1, 17.1, 24.6, 30.0],
+      marginLeft: [17.1, 17.1, 24.6, 30.0],
       // border: 1px solid blue;
     })
   );
