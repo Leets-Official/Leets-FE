@@ -16,7 +16,7 @@ import MobileTimelineImage from '../MobileTimelineImage/MobileTimelineImage';
 
 export default function MobileTimeline({ color }) {
   return (
-    <div css={sectionContaier}>
+    <section css={sectionContaier}>
       <div css={contentContainer}>
         <div css={topContainer}>
           <Fade left>
@@ -36,6 +36,6 @@ export default function MobileTimeline({ color }) {
         </div>
       </div>
       <div>모바일 타임라인</div>
-    </div>
+    </section>
   );
 }

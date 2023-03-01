@@ -17,7 +17,7 @@ import data from '../../utils/timelineData';
 
 export default function Timeline({ color }) {
   return (
-    <div css={sectionContaier}>
+    <section css={sectionContaier}>
       <div css={contentContainer}>
         <div css={topContainer}>
           <Fade left>
@@ -36,6 +36,6 @@ export default function Timeline({ color }) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
