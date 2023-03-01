@@ -8,6 +8,7 @@ import Button from '../Button/Button';
 import Pointer from '../Pointer/Pointer';
 import Contact from '../Contact/Contact';
 import Timeline from '../Timeline/Timeline';
+import Footer from '../Footer/Footer';
 
 export default function MainContainer({ color }) {
   const [position, setPosition] = useState({
@@ -35,6 +36,8 @@ export default function MainContainer({ color }) {
       <Button title="지원하기" link="/Apply" color={color} />
 
       <Contact />
+
+      <Footer />
 
       <Pointer position={position} size={7} color={color} />
     </main>
