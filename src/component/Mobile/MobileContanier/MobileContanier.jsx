@@ -6,6 +6,7 @@ import containerStyle from './MobileContanier.style';
 import MobileHeader from '../MobileHeader/MobileHeader';
 import MobileContact from '../MobileContact/MobileContact';
 import MobileTimeline from '../MobileTimeline/MobileTimeline';
+import MobileFooter from '../MobileFooter/MobileFooter';
 
 export default function MobileContainer({ color = 'green' }) {
   return (
@@ -16,6 +17,7 @@ export default function MobileContainer({ color = 'green' }) {
       <MobileTimeline color={color} />
       <MobileButton color={color} />
       <MobileContact />
+      <MobileFooter />
     </main>
   );
 }
