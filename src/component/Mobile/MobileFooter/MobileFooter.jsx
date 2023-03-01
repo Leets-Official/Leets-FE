@@ -3,10 +3,10 @@ import { sectionContainer, footerContainer, textStyle } from './MobileFooter.sty
 
 export default function MobileFooter() {
   return (
-    <section css={sectionContainer}>
+    <footer css={sectionContainer}>
       <div css={footerContainer}>
         <div css={textStyle}>Copyright 2023. Collection50 all right reseved.</div>
       </div>
-    </section>
+    </footer>
   );
 }
