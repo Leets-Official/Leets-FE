@@ -4,7 +4,7 @@ import Nav from '../component/Nav/Nav';
 import Forms from '../component/Forms/Forms';
 import Login from './Login';
 
-const todayColor = 'green';
+const todayColor = 'blue';
 
 export default function Apply() {
   if (!isDesktop()) {
@@ -14,7 +14,6 @@ export default function Apply() {
 
   const userName = useSelector(state => state.user.name);
   const userEmail = useSelector(state => state.user.email);
-  // console.log('name', user);
 
   return userName ? (
     <>
