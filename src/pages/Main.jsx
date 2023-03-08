@@ -5,6 +5,5 @@ import { isMobile } from '../utils/deviceChecker';
 const todayColor = 'blue';
 
 export default function Main() {
-  // console.log('isMobile(): ', isMobile());
   return isMobile() ? <MobileContainer color={todayColor} /> : <MainContainer color={todayColor} />;
 }
