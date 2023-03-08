@@ -2,7 +2,7 @@ import MainContainer from '../component/MainContainer/MainContainer';
 import MobileContainer from '../component/Mobile/MobileContanier/MobileContanier';
 import { isMobile } from '../utils/deviceChecker';
 
-const todayColor = 'green';
+const todayColor = 'blue';
 
 export default function Main() {
   // console.log('isMobile(): ', isMobile());
