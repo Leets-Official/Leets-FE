@@ -6,7 +6,6 @@ import {
   topContainer,
   subjectStyle,
   bottomContainer,
-  // imageContainer,
   infoStyle,
   dateStyle,
   keyStyle,

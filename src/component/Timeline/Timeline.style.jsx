@@ -11,8 +11,6 @@ export const sectionContaier = css(
     alignItems: 'center',
 
     color: 'white',
-
-    // border: '1px solid white',
   })
 );
 
@@ -25,8 +23,6 @@ export const contentContainer = css`
   align-items: center;
 
   flex-direction: column;
-
-  // border: 1px solid red;
 `;
 
 export const topContainer = css`
@@ -46,8 +42,6 @@ export const subjectStyle = css(
     color: 'white',
     width: 'auto',
     height: 'content',
-
-    // border: '1px solid red',
   })
 );
 
@@ -58,8 +52,6 @@ export const bottomContainer = css(
     paddingLeft: ['35%', 255.1, 367.1, 448.0],
 
     display: 'flex',
-
-    // border: '1px solid blue',
   })
 );
 
@@ -70,8 +62,6 @@ export const infoStyle = css(
 
     marginTop: [95.5, 95.7, 137.7, 168.0],
     marginLeft: [22.8, 22.8, 32.8, 40.0],
-
-    // border: '1px solid pink',
   })
 );
 
@@ -80,7 +70,6 @@ export const dateStyle = css(
     marginBottom: [70, 70, 101, 124.0],
     fontFamily: 'Pretendard',
     fontStyle: 'normal',
-    // border: '1px solid white',
   })
 );
 
@@ -88,13 +77,10 @@ export const keyStyle = css(
   mq({
     fontWeight: '500',
     fontSize: [11.4, 11.4, 16.4, 20.0],
-    // lineHeight: [13.7, 13.7, 19.7, 24.0],
 
     color: '#cccccc',
 
     marginBottom: [4.5, 4.6, 6.6, 8.0],
-
-    // border: '1px solid blue',
   })
 );
 
@@ -102,10 +88,7 @@ export const valueStyle = css(
   mq({
     fontWeight: '700',
     fontSize: [15.9, 15.9, 22.9, 28.0],
-    // lineHeight: [13.7, 13.7, 19.7, 24.0],
 
     color: '#cccccc',
-
-    // border: '1px solid red',
   })
 );
