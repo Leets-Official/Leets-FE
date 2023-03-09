@@ -10,7 +10,6 @@ export default function Nav({ color }) {
   const dispatch = useDispatch();
 
   const purge = async () => {
-    // window.location.reload();
     await persistor.purge();
     dispatch(userSlice.actions.logout());
   };
