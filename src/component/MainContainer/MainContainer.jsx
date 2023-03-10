@@ -26,19 +26,12 @@ export default function MainContainer({ color }) {
   return (
     <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
       <Header />
-
       <BackgroundImage color={color} />
-
       <Promotions color={color} />
-
       <Timeline color={color} />
-
       <Button title="지원하기" link="/Apply" color={color} />
-
       <Contact />
-
       <Footer />
-
       <Pointer position={position} size={7} color={color} />
     </main>
   );
