@@ -24,19 +24,21 @@
 ![image](https://user-images.githubusercontent.com/86355699/224532415-82b23799-61ae-48bc-aad0-c80b8d44cacf.png)
 ![image](https://user-images.githubusercontent.com/86355699/224532433-8653c12a-195f-4b83-8cf7-4c059a410707.png)
 
+<br>
+
 # 📚 STACKS
 
-- [`React`](https://beta.reactjs.org/)
-- [`Emotion`](https://emotion.sh/docs/introduction) (CSS-in-JS)
-- [`Redux Toolkit`](https://redux-toolkit.js.org/) (Managing State)
-- [`Firebase`](https://firebase.google.com/?hl=ko) (Server)
-- [`Cloudflare`](https://www.cloudflare.com/ko-kr/) (Deploy)
+- [React](https://beta.reactjs.org/)
+- [Emotion](https://emotion.sh/docs/introduction) (CSS-in-JS)
+- [Redux Toolkit](https://redux-toolkit.js.org/) (Managing State)
+- [Firebase](https://firebase.google.com/?hl=ko) (Server)
+- [Cloudflare](https://www.cloudflare.com/ko-kr/) (Deploy)
 
 <br>
 
 # ❓ Why Leets?
 
-- [Why Leets?]()
+- [Why Leets?](https://github.com/Collection50/LEETS/wiki)
 
 <br>
 
