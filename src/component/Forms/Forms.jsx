@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
 import TextInput from '../TextInput/TextInput';
 import InputTextarea from '../InputTextarea/InputTextarea';
+import { setForm } from '../../features/formSlice';
 import {
   formContainer,
   formStyle,
@@ -17,32 +19,26 @@ import {
 } from './Forms.style';
 
 export default function Forms({ color, email }) {
-  const [info, setInfo] = useState(initialInfo);
-
-  // const clearStorage = () => {
-  //   localStorage.clear();
-  //   setInfo(initialInfo);
-  // };
+  const dispatch = useDispatch();
+  const formSlice = useSelector(state => state.form);
 
   const loadStorage = () => {
     const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || initialInfo;
-    setInfo(tempInfo);
+    dispatch(setForm(tempInfo));
   };
 
   const saveStorage = () => {
-    localStorage.setItem('tempInfo', JSON.stringify(info));
+    localStorage.setItem('tempInfo', JSON.stringify(formSlice));
   };
 
   const createUsers = async e => {
     e.preventDefault();
-    await submitForm({ ...info, email });
-    // clearStorage();
-
-    alert(`${info.name}님 제출 완료되었습니다.`);
+    await submitForm({ ...formSlice, email });
+    alert(`${formSlice.name}님 제출 완료되었습니다.`);
   };
 
   const handleOnChange = (id, value) => {
-    setInfo({ ...info, [id]: value });
+    dispatch(setForm({ id, value }));
     saveStorage();
   };
 
@@ -64,7 +60,7 @@ export default function Forms({ color, email }) {
               <TextInput
                 key={id}
                 id={id}
-                value={info[id]}
+                value={formSlice[id]}
                 title={title}
                 holderText={holderText}
                 required={required}
@@ -77,7 +73,7 @@ export default function Forms({ color, email }) {
               <InputTextarea
                 key={id}
                 id={id}
-                value={info[id]}
+                value={formSlice[id]}
                 title={title}
                 holderText={holderText}
                 required={required}
@@ -87,13 +83,6 @@ export default function Forms({ color, email }) {
             ))}
           </ul>
           <div css={buttonContainer}>
-            {/* <button
-              type="button"
-              css={buttonStyle}
-              style={{ background: 'white', color: 'black' }}
-              onClick={clearStorage}>
-              로컬 스토리지 초기화
-            </button> */}
             <button type="submit" css={buttonStyle(color)}>
               제출하기
             </button>

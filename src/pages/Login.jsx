@@ -4,6 +4,6 @@ import LoginButton from '../component/LoginButton/LoginButton';
 import Apply from './Apply';
 
 export default function Login() {
-  const userName = useSelector(state => state.user.name);
-  return userName ? <Apply /> : <LoginButton />;
+  const { name } = useSelector(state => state.user);
+  return name ? <Apply /> : <LoginButton />;
 }
