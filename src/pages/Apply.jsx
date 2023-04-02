@@ -15,13 +15,12 @@ export default function Apply() {
   //   window.location.href = '/';
   // }
 
-  const userName = useSelector(state => state.user.name);
-  const userEmail = useSelector(state => state.user.email);
+  const { name, email } = useSelector(state => state.user);
 
-  return userName ? (
+  return name ? (
     <>
       <Nav color={todayColor} />
-      <Forms color={todayColor} email={userEmail} />
+      <Forms color={todayColor} email={email} />
     </>
   ) : (
     <Login />
