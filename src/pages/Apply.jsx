@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { isDesktop } from '../utils/deviceChecker';
+// import { isDesktop } from '../utils/deviceChecker';
 import Nav from '../component/Nav/Nav';
 import Forms from '../component/Forms/Forms';
 import Login from './Login';

@@ -2,8 +2,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { navStyle, home, linkStyle, welcomeContainer, welcomeStyle, buttonStyle } from './Nav.style';
-import persistor from '../..';
 import { userSlice } from '../../features/userSlice';
+import persistor from '../../utils/persistor';
 
 export default function Nav({ color }) {
   const userName = useSelector(state => state.user.name);

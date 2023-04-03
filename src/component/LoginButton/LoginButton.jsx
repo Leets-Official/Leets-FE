@@ -24,7 +24,7 @@ export default function LoginButton() {
       .then(data => {
         dispatch(
           userSlice.actions.login({
-            user: data.user.displayName,
+            name: data.user.displayName,
             email: data.user.email,
           })
         );
