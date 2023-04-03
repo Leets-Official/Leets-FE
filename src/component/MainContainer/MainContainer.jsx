@@ -16,15 +16,21 @@ export default function MainContainer({ color }) {
     y: 0,
   });
 
-  const handleMouseMove = e => {
-    setPosition({
-      x: e.clientX,
-      y: e.clientY,
+  const updatePosition = (x, y) => {
+    requestAnimationFrame(() => {
+      setPosition({
+        x,
+        y,
+      });
     });
   };
 
+  const handleMouseMove = e => {
+    updatePosition(e.clientX, e.clientY);
+  };
+
   return (
-    <main css={pointerContainerStyle} onPointerMove={handleMouseMove}>
+    <main css={pointerContainerStyle} onMouseMove={handleMouseMove}>
       <Header />
       <BackgroundImage color={color} />
       <Promotions color={color} />
