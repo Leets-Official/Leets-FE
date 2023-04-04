@@ -2,12 +2,11 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
 import store from './store/store';
 import App from './App';
 import ScrollToTop from './component/ScrollTop/ScrollTop';
+import persistor from './utils/persistor';
 
-const persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -20,5 +19,3 @@ root.render(
     </PersistGate>
   </Provider>
 );
-
-export default persistor;
