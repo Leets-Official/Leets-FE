@@ -12,7 +12,7 @@ import {
   valueStyle,
 } from './MobileTimeline.style';
 import data from '../../../utils/timelineData';
-import MobileTimelineImage from '../MobileTimelineImage/MobileTimelineImage';
+import MobileTimelineImage from '../MobileTimelineImage';
 
 export default function MobileTimeline({ color }) {
   return (

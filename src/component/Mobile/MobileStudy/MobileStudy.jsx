@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { blockStyle, contentContainer, headContainer, benefitContainer } from './MobileStudy.style';
 
 export default function MobileStudy({ benefits }) {

@@ -9,9 +9,9 @@ import {
   imgStyle,
   bottomContainer,
 } from './MobilePromotionCard.style';
-import MobileProject from '../MobileProject/MobileProject';
-import MobileStudy from '../MobileStudy/MobileStudy';
-import MobileEntertainment from '../MobileEntertainment/MobileEntertainment';
+import MobileProject from '../MobileProject';
+import MobileStudy from '../MobileStudy';
+import MobileEntertainment from '../MobileEntertainment';
 
 export default function MobilePromotionCard({ height, title, benefits, color }) {
   const imageSrc = `../../assets/image/Main/${color}/${title}.png`;

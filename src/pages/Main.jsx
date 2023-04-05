@@ -1,5 +1,5 @@
 import MainContainer from '../component/MainContainer';
-import MobileContainer from '../component/Mobile/MobileContanier/MobileContanier';
+import MobileContainer from '../component/Mobile/MobileContanier';
 import { isMobile } from '../utils/deviceChecker';
 
 const todayColor = 'green';

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer css={sectionContainer}>
       <div css={footerContainer}>
         <hr css={hrStyle} />
-        <div css={textStyle}>Copyright 2023. Collection50 all right reseved.</div>
+        <div css={textStyle}>Copyright 2023. Collection50 all right reserved.</div>
       </div>
     </footer>
   );
