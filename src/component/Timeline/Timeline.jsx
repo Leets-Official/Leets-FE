@@ -11,7 +11,7 @@ import {
   keyStyle,
   valueStyle,
 } from './Timeline.style';
-import TimelineImage from '../TimelineImage/TimelineImage';
+import TimelineImage from '../TimelineImage';
 import data from '../../utils/timelineData';
 
 export default function Timeline({ color }) {

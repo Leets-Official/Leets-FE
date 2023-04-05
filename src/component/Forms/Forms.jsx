@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
-import TextInput from '../TextInput/TextInput';
+import InputText from '../InputText/InputText';
 import InputTextarea from '../InputTextarea/InputTextarea';
 import { setForm } from '../../features/formSlice';
 import {
@@ -15,7 +15,7 @@ import {
   ulStyle,
   buttonContainer,
   buttonStyle,
-  guidStyle,
+  guideStyle,
 } from './Forms.style';
 
 export default function Forms({ color, email }) {
@@ -57,7 +57,7 @@ export default function Forms({ color, email }) {
             </div>
 
             {inputs.map(({ id, title, holderText, required, maxLength }) => (
-              <TextInput
+              <InputText
                 key={id}
                 id={id}
                 value={formSlice[id]}
@@ -87,7 +87,7 @@ export default function Forms({ color, email }) {
               제출하기
             </button>
           </div>
-          <div css={guidStyle}>여러 번 제출 시 최종 제출 자료만 인정됩니다.</div>
+          <div css={guideStyle}>여러 번 제출 시 최종 제출 자료만 인정됩니다.</div>
         </fieldset>
       </form>
     </div>

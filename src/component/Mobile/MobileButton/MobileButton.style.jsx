@@ -20,13 +20,10 @@ export const buttonContainer = css`
   padding-right: 16px;
 
   margin-bottom: 100px;
-
-  // border: 1px solid white;
 `;
 
 export const buttonStyle = color => css`
   font-family: 'Pretendard';
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -39,8 +36,8 @@ export const buttonStyle = color => css`
   align-items: center;
 
   background: ${backgrounds[color]};
-  border-radius: 24px;
+  color: ${colors[color]};
 
   border: none;
-  color: ${colors[color]};
+  border-radius: 24px;
 `;

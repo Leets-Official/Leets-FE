@@ -1,4 +1,4 @@
-import MobilePromotionCard from '../MobilePromotionCard/MobilePromotionCard';
+import MobilePromotionCard from '../MobilePromotionCard';
 import promotionDatas from '../../../utils/mobilePromotionDatas';
 
 export default function MobilePromotions({ color }) {

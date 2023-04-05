@@ -1,31 +1,26 @@
 import { css } from '@emotion/react';
 
 export const listStyle = css`
-  list-style: none;
-
   display: flex;
   flex-direction: column;
   justyfi-content: center;
 
   background: white;
+  list-style: none;
   padding-bottom: 40px;
 `;
 
 export const labelStyle = css`
-  margin-bottom: 8px;
-  background: white;
-
-  display: flex;
-  align-items: center;
-
-  // border: 1px solid blue;
-
   font-family: 'Pretendard';
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 
+  display: flex;
+  align-items: center;
+
+  background: white;
+  margin-bottom: 8px;
   color: #666666;
 `;
 
@@ -38,26 +33,27 @@ export const pStyle = css`
 export const requireStyle = css`
   width: 8px;
   height: 8px;
-  border-radius: 8px;
+
   background: #e15241;
+  border-radius: 8px;
 `;
 
 export const inputStyle = css`
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
   width: 100%;
   height: 56px;
+
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+
   padding-left: 5px;
   background: white;
 
   &::placeholder {
     color: #adb1bd;
   }
-
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
 `;

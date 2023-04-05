@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
-import BackgroundImage from '../BackgroundImage/svg/BackgroundImage';
-import Promotions from '../Promotions/Promotions';
 import pointerContainerStyle from './MainContainer.style';
-import Header from '../Header/Header';
-import Button from '../Button/Button';
-import Pointer from '../Pointer/Pointer';
-import Contact from '../Contact/Contact';
-import Timeline from '../Timeline/Timeline';
-import Footer from '../Footer/Footer';
+import BackgroundImage from '../BackgroundImage/svg';
+import Promotions from '../Promotions';
+import Header from '../Header';
+import Button from '../Button';
+import Pointer from '../Pointer';
+import Contact from '../Contact';
+import Timeline from '../Timeline';
+import Footer from '../Footer';
 
 export default function MainContainer({ color }) {
   const [position, setPosition] = useState({

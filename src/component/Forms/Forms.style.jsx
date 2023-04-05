@@ -17,55 +17,49 @@ export const formContainer = css`
 `;
 
 export const formStyle = css`
-  width: 45%;
-  height: auto;
-
-  background: white;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  padding-bottom: 260px;
+  width: 45%;
+  height: auto;
 
-  // border: 1px solid black;
+  background: white;
+  padding-bottom: 260px;
 `;
 
 export const headStyle = css`
   width: content;
   height: auto;
-  background: white;
-  text-align: center;
 
   font-family: 'DM Sans';
-  font-style: normal;
   font-weight: 500;
   font-size: 8.8vw;
+  text-align: center;
 
+  background: white;
   letter-spacing: -0.03em;
-
   padding-bottom: 148px;
 `;
 
 export const writeStyle = css`
-  background: white;
-
   font-family: 'Pretendard';
-  font-style: normal;
   font-weight: 600;
   font-size: 24px;
-
   text-align: center;
   letter-spacing: 0;
+
+  background: white;
 `;
 
 export const fieldsetStyle = css`
   width: 100%;
   height: content;
+
   border: none;
   border-radius: 10px;
-  background: white;
 
+  background: white;
   padding: 0;
 `;
 
@@ -76,46 +70,41 @@ export const ulStyle = css`
 export const buttonContainer = css`
   display: flex;
   justify-content: center;
+
   background: white;
-
-  // border: 1px solid black;
-
   margin-top: 60px;
 `;
 
 export const buttonStyle = color => css`
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-size: 16px;
+
   width: 208px;
   height: 64px;
 
-  background: #1a1a1a;
   border-radius: 40px;
   border: none;
 
+  background: #1a1a1a;
   color: white;
   cursor: pointer;
-
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
 
   &:hover {
     background: ${backgrounds[color]};
   }
 `;
 
-export const guidStyle = css`
+export const guideStyle = css`
   font-family: 'Pretendard';
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 
-  color: #666666;
-
-  margin-top: 40px;
-
   display: flex;
   justify-content: center;
+
   background: white;
+  color: #666666;
+  margin-top: 40px;
 `;

@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import BackgroundImage from '../../BackgroundImage/svg/BackgroundImage';
-import MobileButton from '../MobileButton/MobileButton';
-import MobilePromotions from '../MobilePromotions/MobilePromotions';
 import containerStyle from './MobileContanier.style';
-import MobileHeader from '../MobileHeader/MobileHeader';
-import MobileContact from '../MobileContact/MobileContact';
-import MobileTimeline from '../MobileTimeline/MobileTimeline';
-import MobileFooter from '../MobileFooter/MobileFooter';
+import BackgroundImage from '../../BackgroundImage/svg';
+import MobileButton from '../MobileButton';
+import MobilePromotions from '../MobilePromotions';
+import MobileHeader from '../MobileHeader';
+import MobileContact from '../MobileContact';
+import MobileTimeline from '../MobileTimeline';
+import MobileFooter from '../MobileFooter';
 
 export default function MobileContainer({ color = 'green' }) {
   return (
