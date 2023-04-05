@@ -3,7 +3,6 @@ import Fade from 'react-reveal/Fade';
 import {
   sectionContaier,
   contentContainer,
-  topContainer,
   subjectStyle,
   bottomContainer,
   infoStyle,
@@ -18,20 +17,18 @@ export default function MobileTimeline({ color }) {
   return (
     <section css={sectionContaier}>
       <div css={contentContainer}>
-        <div css={topContainer}>
-          <Fade left>
-            <div css={subjectStyle}>Timeline</div>
-          </Fade>
-          <div css={bottomContainer}>
-            <MobileTimelineImage color={color} />
-            <div css={dateStyle}>
-              {Object.entries(data).map(([key, value]) => (
-                <div key={key} css={infoStyle}>
-                  <div css={keyStyle}>{key}</div>
-                  <div css={valueStyle}>{value}</div>
-                </div>
-              ))}
-            </div>
+        <Fade left>
+          <div css={subjectStyle}>Timeline</div>
+        </Fade>
+        <div css={bottomContainer}>
+          <MobileTimelineImage color={color} />
+          <div css={dateStyle}>
+            {Object.entries(data).map(([key, value]) => (
+              <div key={key} css={infoStyle}>
+                <div css={keyStyle}>{key}</div>
+                <div css={valueStyle}>{value}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

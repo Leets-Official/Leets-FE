@@ -10,49 +10,36 @@ export const blockStyle = css`
   height: 168px;
 
   background: #0f0f0f;
-
   margin-top: 16px;
-
   border-radius: 24px;
-
-  // border: 1px solid green;
 `;
+
 export const headContainer = css`
   font-family: 'DM Sans';
-  font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
-
-  color: #666666;
-
-  height: 40px;
-
-  // border: 1px solid white;
-
-  margin-top: 16px;
-  margin-left: 24px;
-  margin-right: 16px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  height: 40px;
+
+  color: #666666;
+  margin-top: 16px;
+  margin-left: 24px;
+  margin-right: 16px;
   background: #0f0f0f;
 `;
 
 export const benefitContainer = css`
+  line-height: 1.5;
+
   background: #0f0f0f;
-
-  // border: 1px solid blue;
-
+  white-space: pre-wrap;
+  color: white;
   margin-left: 24px;
   margin-right: 26px;
   margin-top: 27.63px;
-
-  white-space: pre-wrap;
-
-  line-height: 1.5;
-
-  color: white;
 `;
