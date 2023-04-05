@@ -1,4 +1,4 @@
-import MainContainer from '../component/MainContainer/MainContainer';
+import MainContainer from '../component/MainContainer';
 import MobileContainer from '../component/Mobile/MobileContanier/MobileContanier';
 import { isMobile } from '../utils/deviceChecker';
 

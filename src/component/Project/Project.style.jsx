@@ -5,11 +5,10 @@ export const contentContainer = css(
   mq({
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: [18, 18, 26, 32],
 
     width: '100%',
     height: '100%',
-    gap: [18, 18, 26, 32],
-    // border: '1px solid white';
   })
 );
 
@@ -19,44 +18,32 @@ export const blockStyle = css(
     height: [95, 96, 137, 168],
 
     display: 'flex',
-
-    // border: '1px solid blue',
   })
 );
 
 export const numberContainer = css(
   mq({
     width: '32.5%',
-    // width: [117, 118, 170, 208],
 
-    background: '#0f0f0f',
+    fontFamily: 'DM Sans',
+    fontWeight: '400',
+    fontSize: [27, 27, 39, 48],
+
+    backgroundColor: '#0f0f0f',
     borderRadius: '24px',
 
     paddingTop: [12.5, 12.5, 12.0, 22.0],
     paddingLeft: [15, 16, 22, 28],
-
-    // border: '1px solid red',
   })
 );
 
-export const numberStyle = css(
-  mq({
-    width: '50%',
-    height: 'auto',
+export const numberStyle = css`
+  width: 50%;
+  height: auto;
 
-    background: '#0f0f0f',
-    borderRadius: '24px',
-
-    fontFamily: 'DM Sans',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    fontSize: [27, 27, 39, 48],
-
-    color: '#666666',
-
-    // border: '1px solid white',
-  })
-);
+  background: #0f0f0f;
+  color: #666666;
+`;
 
 export const benefitContainer = css(
   mq({
@@ -67,14 +54,12 @@ export const benefitContainer = css(
 
     background: '#0f0f0f',
     borderRadius: '24px',
-    // border: '1px solid white',
   })
 );
 
 export const textStyle = css(
   mq({
     fontFamily: 'Pretendard',
-    fontStyle: 'normal',
     fontWeight: '500',
     fontSize: [9, 11, 16, 18],
     background: '#0f0f0f',

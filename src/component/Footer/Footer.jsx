@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { sectionContainer, footerContainer, textStyle, hrStyle } from './Footer.style';
 
 export default function Footer() {

@@ -10,7 +10,7 @@ import {
   infoStyle,
   linkStyle,
 } from './Contact.style';
-import data from '../../utils/contactData';
+import datas from '../../utils/contactData';
 
 export default function Contact() {
   return (
@@ -20,18 +20,18 @@ export default function Contact() {
         <div css={headContainer}>
           Contact
           <div css={gridContainer}>
-            {Object.entries(data).map(([key, value]) => (
-              <div key={key} css={infoContainer}>
-                <div css={titleStyle}>{key}</div>
-                {key === 'Github' || key === 'Open Kakao' ? (
-                  <div css={infoStyle}>
+            {datas.map(({ title, value, hasLink }) => (
+              <div key={title} css={infoContainer}>
+                <div css={titleStyle}>{title}</div>
+                <div css={infoStyle}>
+                  {hasLink ? (
                     <a href={value} target={value} css={linkStyle}>
                       {value}
                     </a>
-                  </div>
-                ) : (
-                  <div css={infoStyle}>{value}</div>
-                )}
+                  ) : (
+                    value
+                  )}
+                </div>
               </div>
             ))}
           </div>

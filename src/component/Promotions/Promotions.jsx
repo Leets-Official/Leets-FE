@@ -1,4 +1,4 @@
-import PromotionCard from '../PromotionCard/PromotionCard';
+import PromotionCard from '../PromotionCard';
 import promotionDatas from '../../utils/promotionDatas';
 
 export default function Promotions({ color }) {

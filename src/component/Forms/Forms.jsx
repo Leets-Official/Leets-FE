@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialInfo, inputs, textareas } from '../../utils/inputForms';
 import submitForm from '../../utils/submitForm';
-import TextInput from '../TextInput/TextInput';
+import InputText from '../InputText/InputText';
 import InputTextarea from '../InputTextarea/InputTextarea';
 import { setForm } from '../../features/formSlice';
 import {
@@ -57,7 +57,7 @@ export default function Forms({ color, email }) {
             </div>
 
             {inputs.map(({ id, title, holderText, required, maxLength }) => (
-              <TextInput
+              <InputText
                 key={id}
                 id={id}
                 value={formSlice[id]}

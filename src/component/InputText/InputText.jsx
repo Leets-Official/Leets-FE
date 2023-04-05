@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { listStyle, labelStyle, pStyle, requireStyle, inputStyle } from './TextInput.style';
+import { listStyle, labelStyle, pStyle, requireStyle, inputStyle } from './InputText.style';
 import validator from '../../utils/validator';
 
 export default function InputText({ id, title, value, holderText, required, handleOnChange, maxLength }) {

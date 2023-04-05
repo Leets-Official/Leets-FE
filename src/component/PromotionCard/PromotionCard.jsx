@@ -8,9 +8,9 @@ import {
   imgStyle,
   bottomContainer,
 } from './PromotionCard.style';
-import Project from '../Project/Project';
-import Study from '../Study/Study';
-import Entertainment from '../Entertainment/Entertainment';
+import Project from '../Project';
+import Study from '../Study';
+import Entertainment from '../Entertainment';
 
 export default function PromotionCard({ height, title, benefits, color }) {
   const imageSrc = `../../assets/image/Main/${color}/${title}.png`;

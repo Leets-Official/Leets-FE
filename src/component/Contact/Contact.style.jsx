@@ -104,17 +104,8 @@ export const infoStyle = css(
   })
 );
 
-export const linkStyle = css(
-  mq({
-    fontFamily: 'DM Sans',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: [13, 13, 16.4, 20.0],
-    letterSpacing: '-0.01em',
-    color: '#e6e6e6',
-
-    cursor: 'pointer',
-
-    textDecorationLine: 'none',
-  })
-);
+export const linkStyle = css`
+  color: #e6e6e6;
+  cursor: pointer;
+  text-decoration-line: none;
+`;
