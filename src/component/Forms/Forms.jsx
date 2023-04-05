@@ -15,7 +15,7 @@ import {
   ulStyle,
   buttonContainer,
   buttonStyle,
-  guidStyle,
+  guideStyle,
 } from './Forms.style';
 
 export default function Forms({ color, email }) {
@@ -87,7 +87,7 @@ export default function Forms({ color, email }) {
               제출하기
             </button>
           </div>
-          <div css={guidStyle}>여러 번 제출 시 최종 제출 자료만 인정됩니다.</div>
+          <div css={guideStyle}>여러 번 제출 시 최종 제출 자료만 인정됩니다.</div>
         </fieldset>
       </form>
     </div>

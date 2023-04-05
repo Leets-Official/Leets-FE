@@ -1,12 +1,10 @@
 import { css } from '@emotion/react';
 import mq from '../../utils/viewports';
 
-export const contentContainer = css(
-  mq({
-    width: '100%',
-    height: '100%',
-  })
-);
+export const contentContainer = css`
+  width: 100%;
+  height: 100%;
+`;
 
 export const gridContainer = css(
   mq({
@@ -18,7 +16,6 @@ export const gridContainer = css(
     height: [122.8, 123.0, 177.0, 216.0],
 
     margin: '0 auto',
-
     textAlign: 'center',
   })
 );
@@ -68,6 +65,12 @@ export const balloon = index =>
 
 export const textStyle = css(
   mq({
+    fontFamily: 'Pretendard',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: [9, 11, 16, 20],
+    lineHeight: 1.5,
+
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -75,14 +78,8 @@ export const textStyle = css(
     zIndex: '3',
 
     width: '80%',
+
     whiteSpace: 'pre-wrap',
-    lineHeight: 1.5,
-
-    fontFamily: 'Pretendard',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: [9, 11, 16, 20],
-
     background: '#0f0f0f',
   })
 );

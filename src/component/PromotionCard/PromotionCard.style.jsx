@@ -3,14 +3,15 @@ import mq from '../../utils/viewports';
 
 export const sectionContainer = css(
   mq({
-    width: '100%',
-    height: [700, 800, 900, 1200],
+    fontFamily: 'DM Sans',
 
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
 
-    fontFamily: 'DM Sans',
+    width: '100%',
+    height: [700, 800, 900, 1200],
+
     color: 'white',
   })
 );
@@ -37,9 +38,11 @@ export const subjectStyle = css(
   mq({
     fontWeight: '500',
     fontSize: [54.7, 54.7, 78.7, 96],
-    color: 'white',
+
     width: 'auto',
     height: 'content',
+
+    color: 'white',
   })
 );
 

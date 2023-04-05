@@ -23,15 +23,14 @@ export const blockStyle = css(
 
 export const numberContainer = css(
   mq({
-    width: '32.5%',
-
     fontFamily: 'DM Sans',
     fontWeight: '400',
     fontSize: [27, 27, 39, 48],
 
+    width: '32.5%',
+
     backgroundColor: '#0f0f0f',
     borderRadius: '24px',
-
     paddingTop: [12.5, 12.5, 12.0, 22.0],
     paddingLeft: [15, 16, 22, 28],
   })
@@ -62,40 +61,32 @@ export const textStyle = css(
     fontFamily: 'Pretendard',
     fontWeight: '500',
     fontSize: [9, 11, 16, 18],
-    background: '#0f0f0f',
-
     lineHeight: 1.5,
-
-    whiteSpace: 'pre-wrap',
 
     width: '100%',
     height: 'content',
 
+    background: '#0f0f0f',
+    whiteSpace: 'pre-wrap',
     marginTop: [16, 18, 22, 33],
     marginLeft: [18, 18, 26, 32],
-
-    // border: '1px solid blue',
   })
 );
 
 export const iconContainer = css`
-  background: #0f0f0f;
-
   display: flex;
   align-items: flex-end;
 
+  background: #0f0f0f;
   border-radius: 24px;
-  // border: 1px solid white;
 `;
 
 export const imgStyle = css(
   mq({
-    background: '#0f0f0f',
-    // borderRadius: '24px',
-
     width: [41, 41, 59, 72],
     height: [41, 41, 59, 72],
 
+    background: '#0f0f0f',
     marginRight: [9, 9, 13, 16],
     marginBottom: [9, 9, 13, 16],
   })

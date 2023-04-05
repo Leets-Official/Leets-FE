@@ -16,18 +16,13 @@ const colors = {
 export const applyContainer = css(
   mq({
     display: 'flex',
-    // flexDirection: 'column',
-    // alignItems: 'center',
     justifyContent: 'center',
 
     background: 'black',
 
     width: '100%',
     height: [193.4, 193.6, 278.6, 340.0],
-
     marginTop: [18.2, 18.2, 26.2, 32.0],
-
-    // border: '1px solid white',
   })
 );
 
@@ -35,7 +30,6 @@ export const linkStyle = color =>
   css(
     mq({
       fontFamily: 'Pretendard',
-      fontStyle: 'normal',
       fontWeight: 700,
       fontSize: [11.4, 11.4, 16.4, 20.0],
 
@@ -47,9 +41,9 @@ export const linkStyle = color =>
       alignItems: 'center',
 
       border: 'none',
-      background: backgrounds[color],
       borderRadius: '40px',
 
+      background: backgrounds[color],
       color: colors[color],
 
       '&:hover': {

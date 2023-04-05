@@ -3,55 +3,55 @@ import mq from '../../utils/viewports';
 
 export const sectionContaier = css(
   mq({
-    width: '100%',
-    height: 'auto',
-
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+
+    width: '100%',
+    height: 'auto',
 
     color: 'white',
   })
 );
 
 export const contentContainer = css`
-  width: 100%;
-  height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-direction: column;
+
+  width: 100%;
+  height: 100%;
 `;
 
 export const topContainer = css`
-  width: 92%;
-  height: auto;
-
   display: flex;
   justify-content: space-between;
 
-  // border: 1px solid white;
+  width: 92%;
+  height: auto;
 `;
 
 export const subjectStyle = css(
   mq({
     fontWeight: '500',
     fontSize: [54.7, 54.7, 78.7, 96],
-    color: 'white',
+
     width: 'auto',
     height: 'content',
+
+    color: 'white',
   })
 );
 
 export const bottomContainer = css(
   mq({
+    display: 'flex',
+
     width: '92%',
+
     marginTop: [45.5, 45.6, 65.6, 80.0],
     paddingLeft: ['35%', 255.1, 367.1, 448.0],
-
-    display: 'flex',
   })
 );
 
@@ -67,9 +67,9 @@ export const infoStyle = css(
 
 export const dateStyle = css(
   mq({
-    marginBottom: [70, 70, 101, 124.0],
     fontFamily: 'Pretendard',
-    fontStyle: 'normal',
+
+    marginBottom: [70, 70, 101, 124.0],
   })
 );
 
@@ -79,7 +79,6 @@ export const keyStyle = css(
     fontSize: [11.4, 11.4, 16.4, 20.0],
 
     color: '#cccccc',
-
     marginBottom: [4.5, 4.6, 6.6, 8.0],
   })
 );
