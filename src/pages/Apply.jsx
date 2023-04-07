@@ -3,9 +3,7 @@ import Nav from '../component/Nav';
 import Forms from '../component/Forms';
 import LoginButton from '../component/LoginButton';
 
-const todayColor = 'green';
-
-export default function Apply() {
+export default function Apply({ color }) {
   alert('지원 기간이 아닙니다.');
   window.location.href = '/';
 
@@ -13,8 +11,8 @@ export default function Apply() {
 
   return (
     <>
-      <Nav color={todayColor} />
-      {name ? <Forms color={todayColor} email={email} /> : <LoginButton />}
+      <Nav color={color} />
+      {name ? <Forms color={color} email={email} /> : <LoginButton />}
     </>
   );
 }
