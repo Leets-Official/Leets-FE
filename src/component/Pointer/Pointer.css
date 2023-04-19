@@ -1,0 +1,19 @@
+.Pointer {
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 4;
+  border-radius: 50%;
+  position: fixed;
+}
+
+.Pointer--blue {
+  background-color: #3685fc;
+}
+
+.Pointer--green {
+  background-color: #29b69a;
+}
+
+.Pointer--yellow {
+  background-color: #fcb836;
+}
