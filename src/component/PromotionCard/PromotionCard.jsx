@@ -13,7 +13,7 @@ import Study from '../Study';
 import Entertainment from '../Entertainment';
 
 export default function PromotionCard({ height, title, benefits, color }) {
-  const imageSrc = `../../assets/image/Main/${color}/${title}.png`;
+  const imageSrc = `../../assets/image/Main/${color}/${title}.svg`;
   const projectImageSrc = `../../assets/image/Project/${color}`;
 
   return (
