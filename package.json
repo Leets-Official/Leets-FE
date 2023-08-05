@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@typescript-eslint/parser": "^6.2.1",
+    "eslint-import-resolver-typescript": "^3.5.5",
     "facepaint": "^1.2.1",
     "firebase": "^9.17.1",
     "next": "^13.4.12",
