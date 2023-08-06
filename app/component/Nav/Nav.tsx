@@ -1,6 +1,6 @@
 import persistor from '@/utils/persistor';
 import { useAppSelector, useAppDispatch } from '@/store';
-import { logout } from '@/features/userSlice';
+import { logout } from '@/store/userSlice';
 import * as S from './Nav.styled';
 
 const Nav = ({ color }) => {
