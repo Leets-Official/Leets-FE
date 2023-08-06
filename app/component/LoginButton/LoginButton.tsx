@@ -2,7 +2,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { auth } from '@/firebase-config';
 import { login } from '@/features/userSlice';
-import * as S from './LoginButton.style';
+import * as S from './LoginButton.styled';
 
 const LoginButton = () => {
   const dispatch = useDispatch();

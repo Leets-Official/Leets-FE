@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { contentContainer, gridContainer, balloon, textStyle } from './Entertainment.style';
+import { contentContainer, gridContainer, balloon, textStyle } from './Entertainment.styled';
 
 export default function Entertainment({ benefits }) {
   return (

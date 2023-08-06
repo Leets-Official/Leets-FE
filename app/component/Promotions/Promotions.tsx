@@ -2,7 +2,7 @@ import promotionDatas from '@/utils/promotionDatas';
 import Project from '../Project';
 import Study from '../Study';
 import Entertainment from '../Entertainment';
-import * as S from './Promotions.style';
+import * as S from './Promotions.styled';
 
 const Promotions = ({ color }: any) => (
   <>

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { sectionContainer, footerContainer, textStyle } from './MobileFooter.style';
+import { sectionContainer, footerContainer, textStyle } from './MobileFooter.styled';
 
 export default function MobileFooter() {
   return (

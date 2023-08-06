@@ -7,7 +7,7 @@ import {
   textStyle,
   flexContainer,
   flexBlockStyle,
-} from './Study.style';
+} from './Study.styled';
 
 export default function Study({ benefits }) {
   const DIVIDER = 3;

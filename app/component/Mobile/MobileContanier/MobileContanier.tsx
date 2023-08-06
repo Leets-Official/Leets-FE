@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import containerStyle from './MobileContanier.style';
+import containerStyle from './MobileContanier.styled';
 import BackgroundImage from '../../BackgroundImage/svg';
 import MobileButton from '../MobileButton';
 import MobilePromotions from '../MobilePromotions';

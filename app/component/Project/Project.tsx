@@ -8,7 +8,7 @@ import {
   textStyle,
   iconContainer,
   imgStyle,
-} from './Project.style';
+} from './Project.styled';
 
 export default function Project({ imageSrc, benefits }) {
   return (

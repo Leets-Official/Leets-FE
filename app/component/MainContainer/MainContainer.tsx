@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
-import pointerContainerStyle from './MainContainer.style';
+import pointerContainerStyle from './MainContainer.styled';
 import BackgroundImage from '../BackgroundImage/svg';
 import Promotions from '../Promotions';
 import Header from '../Header';
@@ -25,7 +25,7 @@ export default function MainContainer({ color }) {
     });
   };
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e) => {
     updatePosition(e.clientX, e.clientY);
   };
 

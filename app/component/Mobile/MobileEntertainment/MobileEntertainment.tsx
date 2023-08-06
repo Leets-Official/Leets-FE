@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { contentContainer, balloon, textContainer } from './MobileEntertainment.style';
+import { contentContainer, balloon, textContainer } from './MobileEntertainment.styled';
 
 export default function MobileEntertainment({ benefits }) {
   return (

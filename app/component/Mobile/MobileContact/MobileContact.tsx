@@ -8,7 +8,7 @@ import {
   titleStyle,
   infoStyle,
   linkStyle,
-} from './MobileContact.style';
+} from './MobileContact.styled';
 
 export default function MobileContact() {
   return (

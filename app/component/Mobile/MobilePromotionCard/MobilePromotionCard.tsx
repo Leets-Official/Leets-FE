@@ -7,7 +7,7 @@ import {
   imgContianer,
   imgStyle,
   bottomContainer,
-} from './MobilePromotionCard.style';
+} from './MobilePromotionCard.styled';
 import MobileProject from '../MobileProject';
 import MobileStudy from '../MobileStudy';
 import MobileEntertainment from '../MobileEntertainment';

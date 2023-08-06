@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { blockStyle, contentContainer, headContainer, benefitContainer, imgStyle } from './MobileProject.style';
+import { blockStyle, contentContainer, headContainer, benefitContainer, imgStyle } from './MobileProject.styled';
 
 export default function MobileProject({ benefits, imageSrc }) {
   return (

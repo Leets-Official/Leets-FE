@@ -20,7 +20,7 @@ export const gridContainer = css(
   })
 );
 
-export const balloon = index =>
+export const balloon = (index) =>
   css(
     mq({
       width: '100%',

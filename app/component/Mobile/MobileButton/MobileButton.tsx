@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { buttonContainer, buttonStyle } from './MobileButton.style';
+import { buttonContainer, buttonStyle } from './MobileButton.styled';
 
 export default function MobileButton({ color }) {
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault();
     alert('지원 기간이 아닙니다.');
   };

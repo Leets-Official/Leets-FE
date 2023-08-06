@@ -1,4 +1,4 @@
-import * as S from './Header.style';
+import * as S from './Header.styled';
 
 const Header = () => {
   return (

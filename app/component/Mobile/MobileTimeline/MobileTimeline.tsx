@@ -8,7 +8,7 @@ import {
   dateStyle,
   keyStyle,
   valueStyle,
-} from './MobileTimeline.style';
+} from './MobileTimeline.styled';
 import data from '../../../utils/timelineData';
 import MobileTimelineImage from '../MobileTimelineImage';
 

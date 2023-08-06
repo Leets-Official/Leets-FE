@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import imageStyle from './TimelineImage.style';
+import imageStyle from './TimelineImage.styled';
 
 import Green from './Green';
 import Blue from './Blue';

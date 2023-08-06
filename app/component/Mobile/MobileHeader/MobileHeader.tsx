@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { headContainer, titleStyle } from './MobileHeader.style';
+import { headContainer, titleStyle } from './MobileHeader.styled';
 
 export default function Header() {
   return (

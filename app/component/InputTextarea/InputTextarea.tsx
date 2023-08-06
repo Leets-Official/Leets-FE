@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { listStyle, labelStyle, pStyle, requireStyle, textareaStyle } from './InputTextarea.style';
+import { listStyle, labelStyle, pStyle, requireStyle, textareaStyle } from './InputTextarea.styled';
 
 export default function InputTextarea({ id, title, value, holderText, required, handleOnChange, maxLength }) {
   return (
