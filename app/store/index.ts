@@ -2,8 +2,8 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from '@/features/userSlice';
-import formReducer from '@/features/formSlice';
+import userReducer from '@/store/userSlice';
+import formReducer from '@/store/formSlice';
 
 const createNoopStorage = () => {
   return {
