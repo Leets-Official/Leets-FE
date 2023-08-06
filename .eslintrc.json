@@ -31,7 +31,8 @@
         "tsx": "never",
         "json": "never"
       }
-    ]
+    ],
+    "arrow-body-style": "off"
   },
   "settings": {
     "import/parsers": {
