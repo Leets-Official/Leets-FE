@@ -1,8 +1,9 @@
-import data from '@/utils/timelineData';
+import { TIMELINE_LAYOUT } from '@/constants';
+import { ThemeColor } from '@/types';
 import * as S from './Timeline.styled';
 import TimelineImage from './TimelineImage';
 
-export default function Timeline({ color }) {
+const Timeline = ({ color }: ThemeColor) => {
   return (
     <S.SectionContainer>
       <S.ContentContainer>
@@ -12,7 +13,7 @@ export default function Timeline({ color }) {
         <S.BottomContainer>
           <TimelineImage color={color} />
           <S.InfoStyle>
-            {Object.entries(data).map(([key, value]) => (
+            {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
               <div key={key}>
                 <S.DateStyle>
                   <S.KeyStyle>{key}</S.KeyStyle>
@@ -25,4 +26,6 @@ export default function Timeline({ color }) {
       </S.ContentContainer>
     </S.SectionContainer>
   );
-}
+};
+
+export default Timeline;

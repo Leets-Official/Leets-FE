@@ -1,15 +1,23 @@
-/** @jsxImportSource @emotion/react */
-import { listStyle, labelStyle, pStyle, requireStyle, textareaStyle } from './InputTextarea.styled';
+import * as S from './InputTextarea.styled';
 
-export default function InputTextarea({ id, title, value, holderText, required, handleOnChange, maxLength }) {
+type Textarea = {
+  id: string;
+  title: string;
+  value: string;
+  holderText: string;
+  required: boolean;
+  handleOnChange: (id: string, value: string) => void;
+  maxLength: number;
+};
+
+const InputTextarea = ({ id, title, value, holderText, required, handleOnChange, maxLength }: Textarea) => {
   return (
-    <li css={listStyle}>
-      <label htmlFor={id} css={labelStyle}>
-        <p css={pStyle}>{title}</p>
-        {required && <div css={requireStyle} />}
-      </label>
-      <textarea
-        css={textareaStyle}
+    <S.ListStyle>
+      <S.LabelStyle htmlFor={id}>
+        <S.PStyle>{title}</S.PStyle>
+        {required && <S.RequireStyle />}
+      </S.LabelStyle>
+      <S.TextareaStyle
         value={value}
         id={id}
         placeholder={holderText}
@@ -17,6 +25,8 @@ export default function InputTextarea({ id, title, value, holderText, required, 
         required={required}
         maxLength={maxLength}
       />
-    </li>
+    </S.ListStyle>
   );
-}
+};
+
+export default InputTextarea;

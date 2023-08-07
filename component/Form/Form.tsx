@@ -1,20 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { initialInfo, inputs, textareas } from '@/utils/inputForms';
+import { useEffect, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import submitForm from '@/utils/submitForm';
 import { setForm } from '@/store/formSlice';
+import { INITAIL_INFO, INPUTS, TEXTAREAS } from '@/constants';
+import { ThemeColor } from '@/types';
+import { useAppSelector } from '@/store';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
 
-export default function Forms({ color, email }) {
+const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
   const dispatch = useDispatch();
-  const formSlice = useSelector((state) => state.form);
+  const formSlice = useAppSelector((state) => state.form);
 
   const loadStorage = () => {
-    const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || initialInfo;
+    const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || INITAIL_INFO;
     dispatch(setForm(tempInfo));
   };
 
@@ -22,13 +24,13 @@ export default function Forms({ color, email }) {
     localStorage.setItem('tempInfo', JSON.stringify(formSlice));
   };
 
-  const createUsers = async (e) => {
+  const createUsers = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await submitForm({ ...formSlice, email });
     alert(`${formSlice.name}님 제출 완료되었습니다.`);
   };
 
-  const handleOnChange = (id, value) => {
+  const handleOnChange = (id: string, value: string) => {
     dispatch(setForm({ id, value }));
     saveStorage();
   };
@@ -46,7 +48,7 @@ export default function Forms({ color, email }) {
               Join us!
               <S.WriteStyle>지원서 작성하기</S.WriteStyle>
             </S.HeadStyle>
-            {inputs.map(({ id, title, holderText, required, maxLength }) => (
+            {INPUTS.map(({ id, title, holderText, required, maxLength }) => (
               <InputText
                 key={id}
                 id={id}
@@ -58,7 +60,7 @@ export default function Forms({ color, email }) {
                 maxLength={maxLength}
               />
             ))}
-            {textareas.map(({ id, title, holderText, required, maxLength }) => (
+            {TEXTAREAS.map(({ id, title, holderText, required, maxLength }) => (
               <InputTextarea
                 key={id}
                 id={id}
@@ -81,4 +83,6 @@ export default function Forms({ color, email }) {
       </S.FormStyle>
     </S.FormContainer>
   );
-}
+};
+
+export default Form;

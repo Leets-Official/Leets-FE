@@ -1,16 +1,16 @@
-import { css } from '@emotion/react';
+import styled from 'styled-components';
 
-export const listStyle = css`
+export const ListStyle = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  background: white;
   list-style: none;
+  background: white;
   padding-bottom: 40px;
 `;
 
-export const labelStyle = css`
+export const LabelStyle = styled.label`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -24,13 +24,12 @@ export const labelStyle = css`
   color: #666666;
 `;
 
-export const pStyle = css`
+export const PStyle = styled.p`
   background: white;
-
   margin-right: 8px;
 `;
 
-export const requireStyle = css`
+export const RequireStyle = styled.div`
   width: 8px;
   height: 8px;
 
@@ -38,7 +37,7 @@ export const requireStyle = css`
   border-radius: 8px;
 `;
 
-export const inputStyle = css`
+export const InputStyle = styled.input`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -49,7 +48,6 @@ export const inputStyle = css`
 
   border: 1px solid #eaeaea;
   border-radius: 10px;
-
   padding-left: 5px;
   background: white;
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import mq from '@/utils/viewports';
+import { MQ } from '@/constants';
 
 export const Section = styled.section`
-  ${mq({
+  ${MQ({
     fontFamily: 'DM Sans',
 
     display: 'flex',
@@ -35,7 +35,7 @@ export const TopContainer = styled.div`
 `;
 
 export const Subject = styled.div`
-  ${mq({
+  ${MQ({
     fontWeight: '500',
     fontSize: [54.7, 54.7, 78.7, 96],
 
@@ -47,14 +47,14 @@ export const Subject = styled.div`
 `;
 
 export const Image = styled.img(({ height }) =>
-  mq({
+  MQ({
     width: ['36.25vw', 297, 427, 522],
     height: [(height / 1440) * 820, (height / 1440) * 820, (height / 1440) * 1180, height],
   })
 );
 
 export const BottomContainer = styled.div`
-  ${mq({
+  ${MQ({
     width: '92%',
     height: [209, 210, 301, 368],
     marginTop: [58, 59, 84, 103],

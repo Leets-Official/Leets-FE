@@ -1,9 +1,9 @@
-import persistor from '@/utils/persistor';
-import { useAppSelector, useAppDispatch } from '@/store';
+import { persistor, useAppSelector, useAppDispatch } from '@/store';
 import { logout } from '@/store/userSlice';
+import { ThemeColor } from '@/types';
 import * as S from './Nav.styled';
 
-const Nav = ({ color }) => {
+const Nav = ({ color }: ThemeColor) => {
   const { name } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 

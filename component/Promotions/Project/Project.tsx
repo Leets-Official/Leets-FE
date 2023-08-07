@@ -1,31 +1,23 @@
-/** @jsxImportSource @emotion/react */
-import {
-  contentContainer,
-  blockStyle,
-  numberContainer,
-  numberStyle,
-  benefitContainer,
-  textStyle,
-  iconContainer,
-  imgStyle,
-} from './Project.styled';
+import * as S from './Project.styled';
 
-export default function Project({ imageSrc, benefits }) {
+const Project = ({ imageSrc, benefits }) => {
   return (
-    <div css={contentContainer}>
+    <S.ContentContainer>
       {benefits.map((benefit, index) => (
-        <div key={benefit} css={blockStyle}>
-          <div css={numberContainer}>
-            <div css={numberStyle}>{`${0}${index + 1}`}</div>
-          </div>
-          <div css={benefitContainer}>
-            <div css={textStyle}>{benefit}</div>
-            <div css={iconContainer}>
-              <img src={`${imageSrc}/star${index + 1}.png`} alt={`title${index + 1}`} css={imgStyle} />
-            </div>
-          </div>
-        </div>
+        <S.BlockStyle key={benefit}>
+          <S.NumberContainer>
+            <S.NumberStyle>{`${0}${index + 1}`}</S.NumberStyle>
+          </S.NumberContainer>
+          <S.BenefitContainer>
+            <S.TextStyle>{benefit}</S.TextStyle>
+            <S.IconContainer>
+              <S.ImgStyle src={`${imageSrc}/star${index + 1}.png`} alt={`title${index + 1}`} />
+            </S.IconContainer>
+          </S.BenefitContainer>
+        </S.BlockStyle>
       ))}
-    </div>
+    </S.ContentContainer>
   );
-}
+};
+
+export default Project;

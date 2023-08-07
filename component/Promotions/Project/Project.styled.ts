@@ -1,28 +1,28 @@
-import { css } from '@emotion/react';
-import mq from '@/utils/viewports';
+import styled from 'styled-components';
+import { MQ } from '@/constants';
 
-export const contentContainer = css(
-  mq({
+export const ContentContainer = styled.div`
+  ${MQ({
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: [18, 18, 26, 32],
 
     width: '100%',
     height: '100%',
-  })
-);
+  })}
+`;
 
-export const blockStyle = css(
-  mq({
+export const BlockStyle = styled.div`
+  ${MQ({
     width: '100%',
     height: [95, 96, 137, 168],
 
     display: 'flex',
-  })
-);
+  })}
+`;
 
-export const numberContainer = css(
-  mq({
+export const NumberContainer = styled.div`
+  ${MQ({
     fontFamily: 'DM Sans',
     fontWeight: '400',
     fontSize: [27, 27, 39, 48],
@@ -33,10 +33,10 @@ export const numberContainer = css(
     borderRadius: '24px',
     paddingTop: [12.5, 12.5, 12.0, 22.0],
     paddingLeft: [15, 16, 22, 28],
-  })
-);
+  })}
+`;
 
-export const numberStyle = css`
+export const NumberStyle = styled.div`
   width: 50%;
   height: auto;
 
@@ -44,8 +44,8 @@ export const numberStyle = css`
   color: #666666;
 `;
 
-export const benefitContainer = css(
-  mq({
+export const BenefitContainer = styled.div`
+  ${MQ({
     width: '67.5%',
 
     display: 'flex',
@@ -53,11 +53,11 @@ export const benefitContainer = css(
 
     background: '#0f0f0f',
     borderRadius: '24px',
-  })
-);
+  })}
+`;
 
-export const textStyle = css(
-  mq({
+export const TextStyle = styled.div`
+  ${MQ({
     fontFamily: 'Pretendard',
     fontWeight: '500',
     fontSize: [9, 11, 16, 18],
@@ -70,10 +70,10 @@ export const textStyle = css(
     whiteSpace: 'pre-wrap',
     marginTop: [16, 18, 22, 33],
     marginLeft: [18, 18, 26, 32],
-  })
-);
+  })}
+`;
 
-export const iconContainer = css`
+export const IconContainer = styled.div`
   display: flex;
   align-items: flex-end;
 
@@ -81,13 +81,13 @@ export const iconContainer = css`
   border-radius: 24px;
 `;
 
-export const imgStyle = css(
-  mq({
+export const ImgStyle = styled.img`
+  ${MQ({
     width: [41, 41, 59, 72],
     height: [41, 41, 59, 72],
 
     background: '#0f0f0f',
     marginRight: [9, 9, 13, 16],
     marginBottom: [9, 9, 13, 16],
-  })
-);
+  })}
+`;

@@ -1,40 +1,32 @@
-/** @jsxImportSource @emotion/react */
-import {
-  contentContainer,
-  gridContainer,
-  numberStyle,
-  benefitContainer,
-  textStyle,
-  flexContainer,
-  flexBlockStyle,
-} from './Study.styled';
+import * as S from './Study.styled';
 
-export default function Study({ benefits }) {
+const Study = ({ benefits }) => {
   const DIVIDER = 3;
   const ONE_INDEX = 1;
   const ZERO = 0;
 
   return (
-    <div css={contentContainer}>
-      <div css={gridContainer}>
+    <S.ContentContainer>
+      <S.GridContainer>
         {benefits.slice(ZERO, DIVIDER).map((benefit, index) => (
-          <div key={benefit} css={benefitContainer}>
-            <div css={numberStyle}>{`${ZERO}${index + ONE_INDEX}`}</div>
-            <div css={textStyle}>{benefit}</div>
-          </div>
+          <S.BenefitContainer key={benefit}>
+            <S.NumberStyle>{`${ZERO}${index + ONE_INDEX}`}</S.NumberStyle>
+            <S.TextStyle>{benefit}</S.TextStyle>
+          </S.BenefitContainer>
         ))}
-      </div>
-
-      <div css={flexContainer}>
+      </S.GridContainer>
+      <S.FlexContainer>
         {benefits.slice(DIVIDER).map((benefit, index) => (
-          <div key={benefit} css={flexBlockStyle}>
-            <div css={benefitContainer}>
-              <div css={numberStyle}>{`${ZERO}${index + DIVIDER + ONE_INDEX}`}</div>
-              <div css={textStyle}>{benefit}</div>
-            </div>
-          </div>
+          <S.FlexBlockStyle key={benefit}>
+            <S.BenefitContainer>
+              <S.NumberStyle>{`${ZERO}${index + DIVIDER + ONE_INDEX}`}</S.NumberStyle>
+              <S.TextStyle>{benefit}</S.TextStyle>
+            </S.BenefitContainer>
+          </S.FlexBlockStyle>
         ))}
-      </div>
-    </div>
+      </S.FlexContainer>
+    </S.ContentContainer>
   );
-}
+};
+
+export default Study;

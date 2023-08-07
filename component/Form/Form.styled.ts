@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { BACKGROUND_COLOR } from '@/constants';
+import { ThemeColor } from '@/types';
 
 export const FormContainer = styled.div`
   display: flex;
@@ -70,7 +71,7 @@ export const ButtonContainer = styled.div`
   margin-top: 60px;
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button<ThemeColor>`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;

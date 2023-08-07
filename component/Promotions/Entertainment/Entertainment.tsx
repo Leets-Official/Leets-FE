@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import { contentContainer, gridContainer, balloon, textStyle } from './Entertainment.styled';
+import * as S from './Entertainment.styled';
 
-export default function Entertainment({ benefits }) {
+const Entertainment = ({ benefits }) => {
   return (
-    <div css={contentContainer}>
-      <div css={gridContainer}>
+    <S.ContentContainer>
+      <S.GridContainer>
         {benefits.map((benefit, index) => (
-          <div key={index} css={balloon(index)}>
-            <div css={textStyle}>{benefit}</div>
-          </div>
+          <S.Balloon key={benefit} index={index}>
+            <S.TextStyle>{benefit}</S.TextStyle>
+          </S.Balloon>
         ))}
-      </div>
-    </div>
+      </S.GridContainer>
+    </S.ContentContainer>
   );
-}
+};
+export default Entertainment;

@@ -1,22 +1,31 @@
-/** @jsxImportSource @emotion/react */
-import validator from '@/utils/validator';
-import { listStyle, labelStyle, pStyle, requireStyle, inputStyle } from './InputText.styled';
+import { Validator } from '@/utils';
+import { ChangeEvent } from 'react';
+import * as S from './InputText.styled';
 
-export default function InputText({ id, title, value, holderText, required, handleOnChange, maxLength }) {
-  const onChange = (e) => {
+type Input = {
+  id: string;
+  title: string;
+  value: string;
+  holderText: string;
+  required: boolean;
+  handleOnChange: (id: string, value: string) => void;
+  maxLength: number;
+};
+
+const InputText = ({ id, title, value, holderText, required, handleOnChange, maxLength }: Input) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const [eventId, eventValue] = [e.target.id, e.target.value];
-    const newValue = validator(eventId, eventValue);
+    const newValue = Validator.isValidInput(eventId, eventValue);
     handleOnChange(eventId, newValue);
   };
 
   return (
-    <li css={listStyle}>
-      <label htmlFor={id} css={labelStyle}>
-        <p css={pStyle}>{title}</p>
-        {required && <div css={requireStyle} />}
-      </label>
-      <input
-        css={inputStyle}
+    <S.ListStyle>
+      <S.LabelStyle htmlFor={id}>
+        <S.PStyle>{title}</S.PStyle>
+        {required && <S.RequireStyle />}
+      </S.LabelStyle>
+      <S.InputStyle
         type="text"
         id={id}
         value={value}
@@ -25,6 +34,8 @@ export default function InputText({ id, title, value, holderText, required, hand
         required={required}
         maxLength={maxLength}
       />
-    </li>
+    </S.ListStyle>
   );
-}
+};
+
+export default InputText;

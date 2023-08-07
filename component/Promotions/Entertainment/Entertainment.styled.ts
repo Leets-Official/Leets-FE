@@ -1,13 +1,13 @@
-import { css } from '@emotion/react';
-import mq from '@/utils/viewports';
+import styled from 'styled-components';
+import { MQ } from '@/constants';
 
-export const contentContainer = css`
+export const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-export const gridContainer = css(
-  mq({
+export const GridContainer = styled.div`
+  ${MQ({
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
     gap: [9.1, 9.1, 13.1, 16.0],
@@ -17,12 +17,12 @@ export const gridContainer = css(
 
     margin: '0 auto',
     textAlign: 'center',
-  })
-);
+  })}
+`;
 
-export const balloon = (index) =>
-  css(
-    mq({
+export const Balloon = styled.div<{ index: number }>`
+  ${({ index }) =>
+    MQ({
       width: '100%',
       height: [86.5, 86.6, 124.6, 152.0],
       position: 'relative',
@@ -60,11 +60,11 @@ export const balloon = (index) =>
       ':nth-of-type(2)': {
         alignSelf: 'end',
       },
-    })
-  );
+    })}
+`;
 
-export const textStyle = css(
-  mq({
+export const TextStyle = styled.div`
+  ${MQ({
     fontFamily: 'Pretendard',
     fontStyle: 'normal',
     fontWeight: '500',
@@ -81,5 +81,5 @@ export const textStyle = css(
 
     whiteSpace: 'pre-wrap',
     background: '#0f0f0f',
-  })
-);
+  })}
+`;

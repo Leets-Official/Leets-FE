@@ -13,8 +13,8 @@ import MobileStudy from '../MobileStudy';
 import MobileEntertainment from '../MobileEntertainment';
 
 export default function MobilePromotionCard({ height, title, benefits, color }) {
-  const imageSrc = `../../assets/image/Main/${color}/${title}.png`;
-  const projectImageSrc = `../../assets/image/Project/${color}`;
+  const imageSrc = `/assets/image/Main/${color}/${title}.png`;
+  const projectImageSrc = `/assets/image/Project/${color}`;
 
   return (
     <section css={sectionContainer}>

@@ -1,4 +1,4 @@
-import promotionDatas from '@/utils/promotionDatas';
+import { PROMOTION_LAYOUT } from '@/constants';
 import Project from './Project';
 import Study from './Study';
 import Entertainment from './Entertainment';
@@ -6,9 +6,9 @@ import * as S from './Promotions.styled';
 
 const Promotions = ({ color }: any) => (
   <>
-    {promotionDatas.map(({ title, height, benefits }) => {
-      const imageSrc = `../../assets/image/Main/${color}/${title}.svg`;
-      const projectImageSrc = `../../assets/image/Project/${color}`;
+    {PROMOTION_LAYOUT.map(({ title, height, benefits }) => {
+      const imageSrc = `/assets/image/Main/${color}/${title}.svg`;
+      const projectImageSrc = `/assets/image/Project/${color}`;
 
       return (
         <S.Section key={title}>

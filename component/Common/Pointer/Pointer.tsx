@@ -1,8 +1,8 @@
 import './Pointer.css';
-import { isDesktop } from '@/utils/deviceChecker';
+import { DeviceChecker } from '@/utils';
 
 export default function Pointer({ position, size, color }: any) {
-  if (!isDesktop()) {
+  if (!DeviceChecker.isDesktop()) {
     return null;
   }
   return (

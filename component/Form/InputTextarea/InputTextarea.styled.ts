@@ -1,17 +1,16 @@
-import { css } from '@emotion/react';
+import styled from 'styled-components';
 
-export const listStyle = css`
+export const ListStyle = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   list-style: none;
-
   background: white;
   padding-bottom: 40px;
 `;
 
-export const labelStyle = css`
+export const LabelStyle = styled.label`
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 500;
@@ -23,17 +22,15 @@ export const labelStyle = css`
 
   margin-bottom: 8px;
   background: white;
-
   color: #666666;
 `;
 
-export const pStyle = css`
+export const PStyle = styled.p`
   background: white;
-
   margin-right: 8px;
 `;
 
-export const requireStyle = css`
+export const RequireStyle = styled.div`
   width: 8px;
   height: 8px;
 
@@ -41,7 +38,7 @@ export const requireStyle = css`
   background: #e15241;
 `;
 
-export const textareaStyle = css`
+export const TextareaStyle = styled.textarea`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -53,10 +50,8 @@ export const textareaStyle = css`
   &::placeholder {
     color: #adb1bd;
   }
-
   border: 1px solid #e6e6e6;
   border-radius: 8px;
-
   background: white;
   padding-left: 8px;
   padding-top: 8px;

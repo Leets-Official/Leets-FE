@@ -1,4 +1,4 @@
-import datas from '@/utils/contactData';
+import { CONTACT_LAYOUT } from '@/constants';
 import * as S from './Contact.styled';
 
 export default function Contact() {
@@ -9,7 +9,7 @@ export default function Contact() {
         <S.HeadContainer>
           Contact
           <S.GridContainer>
-            {datas.map(({ title, value, hasLink }) => (
+            {CONTACT_LAYOUT.map(({ title, value, hasLink }) => (
               <S.InfoContainer key={title}>
                 <S.TitleStyle>{title}</S.TitleStyle>
                 <S.InfoStyle>
