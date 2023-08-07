@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Application, Input } from '@/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export const initialState = {
+export const initialState: Application = {
   name: '',
   SID: '',
   major: '',
@@ -22,7 +23,7 @@ export const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    setForm: (state, action) => {
+    setForm: (state: Application, action: PayloadAction<Input>) => {
       const { id, value } = action.payload;
       return { ...state, [id]: value };
     },
