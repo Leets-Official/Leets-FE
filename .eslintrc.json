@@ -32,7 +32,8 @@
         "json": "never"
       }
     ],
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/parsers": {
