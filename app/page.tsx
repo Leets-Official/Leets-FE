@@ -5,13 +5,13 @@ import { PointerWrapper } from '@/styles/global-style';
 import BackgroundImage from '@/component/BackgroundImage/';
 import Promotions from '@/component/Promotions';
 import Header from '@/component/Header';
-import Button from '@/component/Button';
+import ApplyButton from '@/component/ApplyButton';
 import Pointer from '@/component/Common/Pointer';
 import Contact from '@/component/Contact';
 import Timeline from '@/component/Promotions/Timeline';
 import Footer from '@/component/Footer';
 
-const color = 'green';
+const color = 'blue';
 
 const Index = () => {
   const [position, setPosition] = useState({
@@ -38,7 +38,7 @@ const Index = () => {
       <BackgroundImage color={color} />
       <Promotions color={color} />
       <Timeline color={color} />
-      <Button color={color} />
+      <ApplyButton color={color} />
       <Contact />
       <Footer />
       <Pointer position={position} size={7} color={color} />
