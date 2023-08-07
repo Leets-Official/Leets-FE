@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
+import ScrollToTop from '@/component/Common/ScrollTop';
 
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s | Leets' },
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <body>
+        <ScrollToTop />
         <RTProvider>
           <StyledProvider>{children}</StyledProvider>
         </RTProvider>
