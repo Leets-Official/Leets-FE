@@ -1,7 +1,7 @@
 'use client';
 
 import Nav from '@/component/Nav';
-import Forms from '@/component/Forms';
+import Forms from '@/component/Form';
 import LoginButton from '@/component/LoginButton';
 import { useAppSelector } from '@/store';
 
