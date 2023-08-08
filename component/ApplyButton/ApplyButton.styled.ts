@@ -8,10 +8,10 @@ export const Container = styled.div`
     display: 'flex',
     justifyContent: 'center',
 
-    background: 'black',
-
     width: '100%',
     height: [193.4, 193.6, 278.6, 340.0],
+
+    background: 'black',
     marginTop: [18.2, 18.2, 26.2, 32.0],
   })}
 `;
