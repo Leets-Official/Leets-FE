@@ -10,6 +10,7 @@ import Pointer from '@/component/Common/Pointer';
 import Contact from '@/component/Contact';
 import Timeline from '@/component/Promotions/Timeline';
 import Footer from '@/component/Footer';
+import { POINTER_SIZE } from '@/constants';
 
 const color = 'blue';
 
@@ -41,7 +42,7 @@ const Index = () => {
       <ApplyButton color={color} />
       <Contact />
       <Footer />
-      <Pointer position={position} size={7} color={color} />
+      <Pointer position={position} size={POINTER_SIZE} color={color} />
     </PointerWrapper>
   );
 };
