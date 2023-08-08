@@ -1,16 +1,16 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
-import { PointerWrapper } from '@/styles/global-style';
-import BackgroundImage from '@/component/BackgroundImage/';
+import { POINTER_SIZE } from '@/constants';
+import BackgroundImage from '@/component/BackgroundImage/svg';
 import Promotions from '@/component/Promotions';
 import Header from '@/component/Header';
-import ApplyButton from '@/component/ApplyButton';
-import Pointer from '@/component/Common/Pointer';
+import Button from '@/component/Button';
+import Pointer from '@/component/Pointer';
 import Contact from '@/component/Contact';
-import Timeline from '@/component/Promotions/Timeline';
+import Timeline from '@/component/Timeline';
 import Footer from '@/component/Footer';
-import { POINTER_SIZE } from '@/constants';
+import { PointerWrapper } from '@/styles/global-style';
 
 const color = 'blue';
 
@@ -39,7 +39,7 @@ const Index = () => {
       <BackgroundImage color={color} />
       <Promotions color={color} />
       <Timeline color={color} />
-      <ApplyButton color={color} />
+      <Button color={color} />
       <Contact />
       <Footer />
       <Pointer position={position} size={POINTER_SIZE} color={color} />

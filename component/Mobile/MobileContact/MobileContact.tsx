@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import datas from '../@/utils/contactData';
+import datas from '../../../utils/contactData';
 import {
   sectionContainer,
   headContainer,

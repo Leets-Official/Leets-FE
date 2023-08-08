@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MQ } from '@/constants';
+import mq from '@/utils/viewports';
 
 export const LoginBackground = styled.div`
   width: 100%;
@@ -52,7 +52,7 @@ export const ImageStyle = styled.img`
 `;
 
 export const TextStyle = styled.div`
-  ${MQ({
+  ${mq({
     fontFamily: 'Pretendard',
     fontWeight: '700',
     fontSize: [13, 18, 18, 20.0],

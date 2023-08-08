@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import mq from '@/utils/viewports';
 import Link from 'next/link';
-import { MQ } from '@/constants';
 
 export const SectionContainer = styled.section`
-  ${MQ({
+  ${mq({
     width: '100%',
     height: [159.3, 159.4, 229.4, 280.0],
 
@@ -28,7 +28,7 @@ export const HrStyle = styled.hr`
 `;
 
 export const HeadContainer = styled.div`
-  ${MQ({
+  ${mq({
     fontFamily: 'DM Sans',
     fontStyle: 'normal',
     fontWeight: '500',
@@ -44,7 +44,7 @@ export const HeadContainer = styled.div`
 `;
 
 export const GridContainer = styled.div`
-  ${MQ({
+  ${mq({
     fontFamily: 'Pretendard',
     fontWeight: '500',
 
@@ -61,7 +61,7 @@ export const GridContainer = styled.div`
 `;
 
 export const InfoContainer = styled.div`
-  ${MQ({
+  ${mq({
     fontWeight: '500',
     lineHeight: '24px',
 
@@ -71,7 +71,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const TitleStyle = styled.div`
-  ${MQ({
+  ${mq({
     fontSize: [15, 15, 16.4, 20.0],
     marginBottom: [1, 2, 6.6, 8.0],
     color: '#666666',
@@ -79,7 +79,7 @@ export const TitleStyle = styled.div`
 `;
 
 export const InfoStyle = styled.div`
-  ${MQ({
+  ${mq({
     fontSize: [13, 13, 16.4, 20.0],
     letterSpacing: '-0.01em',
     color: '#e6e6e6',

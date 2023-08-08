@@ -1,11 +1,11 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 import { auth } from '@/firebase-config';
 import { login } from '@/store/userSlice';
-import { useAppDispatch } from '@/store';
 import * as S from './LoginButton.styled';
 
 const LoginButton = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
@@ -13,8 +13,8 @@ const LoginButton = () => {
       .then(({ user }) => {
         dispatch(
           login({
-            name: user.displayName as string,
-            email: user.email as string,
+            name: user.displayName,
+            email: user.email,
           })
         );
       })
@@ -32,7 +32,7 @@ const LoginButton = () => {
         </S.HeadStyle>
         <S.ButtonContainer>
           <S.ButtonStyle type="button" onClick={handleGoogleLogin}>
-            <S.ImageStyle src="/assets/image/googleLogo.png" alt="logo" />
+            <S.ImageStyle src="../assets/image/googleLogo.png" alt="logo" />
             <S.TextStyle>구글 아이디로 로그인</S.TextStyle>
           </S.ButtonStyle>
         </S.ButtonContainer>

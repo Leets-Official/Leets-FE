@@ -1,8 +1,8 @@
 'use client';
 
-import Nav from '@/component/Nav';
-import Forms from '@/component/Form';
-import LoginButton from '@/component/LoginButton';
+import Nav from '../../component/Nav';
+import Forms from '../../component/Forms';
+import LoginButton from '../../component/LoginButton';
 import { useAppSelector } from '@/store';
 
 const Apply = ({ color }: any) => {

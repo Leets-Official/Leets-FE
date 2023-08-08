@@ -9,7 +9,7 @@ import {
   keyStyle,
   valueStyle,
 } from './MobileTimeline.styled';
-import data from '../@/utils/timelineData';
+import data from '../../../utils/timelineData';
 import MobileTimelineImage from '../MobileTimelineImage';
 
 export default function MobileTimeline({ color }) {

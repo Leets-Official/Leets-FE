@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import mq from '../@/utils/mobileViewports';
+import mq from '../../../utils/mobileViewports';
 
 export const sectionContainer = css`
   display: flex;

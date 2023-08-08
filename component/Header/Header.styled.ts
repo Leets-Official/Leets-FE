@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { MQ } from '@/constants';
+import mq from '@/utils/viewports';
 
-export const HeadContainer = styled.header`
-  ${MQ({
+export const HeadContainer = styled.div`
+  ${mq({
     width: '100%',
     height: [500, 550, 450, 400],
 
