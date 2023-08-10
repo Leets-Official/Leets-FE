@@ -10,6 +10,7 @@ export const SearchBarContainer = styled.div`
   border-radius: 8px;
   border: 1px solid #e0e2e7;
   background: #ffffff;
+  margin-right: 15px;
 `;
 
 export const SearchBarImageContainer = styled.div`
