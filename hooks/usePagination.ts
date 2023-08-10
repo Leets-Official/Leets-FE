@@ -7,7 +7,7 @@ type PaginationResult<T> = {
   handlePageChange: (pageNumber: number) => void;
 };
 
-export function usePagination<T>({ items }: { items: T[] }): PaginationResult<T> {
+const usePagination = <T>({ items }: { items: T[] }): PaginationResult<T> => {
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get('pageNumber');
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -29,4 +29,6 @@ export function usePagination<T>({ items }: { items: T[] }): PaginationResult<T>
     currentItems,
     handlePageChange,
   };
-}
+};
+
+export { usePagination };
