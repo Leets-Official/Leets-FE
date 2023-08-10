@@ -9,7 +9,7 @@ export default function SearchBar({ value, onChangeHandler }: SearchInput) {
         <S.SearchBarImageContainer>
           <SearchBarImage />
         </S.SearchBarImageContainer>
-        <S.SearchInput type="text" value={value} onChange={onChangeHandler} placeholder="이름 검색." />
+        <S.SearchInput type="text" value={value} onChange={onChangeHandler} placeholder="이름 검색" />
       </S.SearchDiv>
     </S.SearchBarContainer>
   );

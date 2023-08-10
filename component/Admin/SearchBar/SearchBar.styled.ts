@@ -37,23 +37,11 @@ export const SearchInput = styled.input`
   border: none;
   margin-left: 9px;
   padding-left: 3px;
+  outline: none;
 
   &::placeholder {
     font-size: 14px;
 
     color: #94a3b8;
   }
-
-  :focus {
-    border: 1px solid red;
-    outline: none;
-  }
-`;
-
-export const Hr = styled.hr`
-  width: 100%;
-  height: 1px;
-
-  border: 0;
-  background-color: #fa9625;
 `;
