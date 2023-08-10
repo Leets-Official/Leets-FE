@@ -101,7 +101,7 @@ export const MOCK_DATA = [
   },
   {
     id: 11,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -111,7 +111,7 @@ export const MOCK_DATA = [
   },
   {
     id: 12,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -121,7 +121,7 @@ export const MOCK_DATA = [
   },
   {
     id: 13,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -131,7 +131,7 @@ export const MOCK_DATA = [
   },
   {
     id: 14,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -141,7 +141,7 @@ export const MOCK_DATA = [
   },
   {
     id: 15,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -151,7 +151,7 @@ export const MOCK_DATA = [
   },
   {
     id: 16,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -161,7 +161,7 @@ export const MOCK_DATA = [
   },
   {
     id: 17,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -171,7 +171,7 @@ export const MOCK_DATA = [
   },
   {
     id: 18,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -181,7 +181,7 @@ export const MOCK_DATA = [
   },
   {
     id: 19,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
@@ -191,7 +191,7 @@ export const MOCK_DATA = [
   },
   {
     id: 20,
-    name: '김길동',
+    name: '이길동',
     GPA: '3.5',
     grade: 3,
     career: 'BE',
