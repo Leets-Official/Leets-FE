@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { PAGINATION } from '@/constants';
 
 type PaginationResult<T> = {
   currentPage: number;
@@ -9,7 +10,7 @@ type PaginationResult<T> = {
 
 const usePagination = <T>({ items }: { items: T[] }): PaginationResult<T> => {
   const searchParams = useSearchParams();
-  const pageNumber = searchParams.get('pageNumber');
+  const pageNumber = searchParams.get(PAGINATION.QUERY);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handlePageChange = (page: number) => {
