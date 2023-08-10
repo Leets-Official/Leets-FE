@@ -24,7 +24,6 @@ import Status from './Status';
 
 const ListComponent = () => {
   const [checkedIdsSet, setCheckedIdsSet] = useState(new Set());
-  const allCheckboxesChecked = checkedIdsSet.size === MOCK_DATA.length;
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -41,6 +40,7 @@ const ListComponent = () => {
   const { currentPage, currentItems, handlePageChange } = usePagination({
     items: filteredList,
   });
+  const allCheckboxesChecked = checkedIdsSet.size === currentItems.length;
 
   const toggleAllCheckboxes = () => {
     if (allCheckboxesChecked) {

@@ -17,3 +17,9 @@ export const PAGINATION = {
 } as const;
 
 export const POSITION_LIST = [{ target: 'All' }, { target: 'dev' }, { target: 'design' }] as const;
+
+export const POSITION_MAP = {
+  All: 'All',
+  dev: '개발',
+  design: '디자인',
+} as const;
