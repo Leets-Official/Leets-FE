@@ -1,5 +1,9 @@
 export const SEARCH_TARGETS = {
   NAME: 'name',
+  APPLICATION_STATUS: 'applicationStatus',
+  INTERVIEW_STATUS: 'interviewStatus',
+  GPA: 'gpa',
+  INTERVIEW_DATE: 'interviewDate',
 } as const;
 
 export const SORT_TARGETS = {
@@ -11,3 +15,5 @@ export const PAGINATION = {
   QUERY: 'pageNumber',
   DEFAULT_PAGE: '1',
 } as const;
+
+export const POSITION_LIST = [{ target: 'All' }, { target: 'dev' }, { target: 'design' }] as const;
