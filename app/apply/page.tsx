@@ -1,9 +1,9 @@
 'use client';
 
 import Nav from '@/component/Nav';
-import Forms from '@/component/Forms';
 import LoginButton from '@/component/LoginButton';
 import { useAppSelector } from '@/store';
+import Form from '@/component/Form';
 
 const Apply = ({ color }: any) => {
   const { name, email } = useAppSelector((state) => state.user);
@@ -11,7 +11,7 @@ const Apply = ({ color }: any) => {
   return (
     <>
       <Nav color={color} />
-      {name ? <Forms color={color} email={email} /> : <LoginButton />}
+      {name ? <Form color={color} email={email} /> : <LoginButton />}
     </>
   );
 };
