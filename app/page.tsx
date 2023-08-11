@@ -2,14 +2,14 @@
 
 import { useState, MouseEvent } from 'react';
 import { PointerWrapper } from '@/styles/global-style';
-import BackgroundImage from '@/component/BackgroundImage/';
 import Promotions from '@/component/Promotions';
 import Header from '@/component/Header';
+import Contact from '@/component/Contact';
+import Footer from '@/component/Footer';
+import BackgroundImage from '@/component/BackgroundImage/';
 import ApplyButton from '@/component/ApplyButton';
 import Pointer from '@/component/Common/Pointer';
-import Contact from '@/component/Contact';
 import Timeline from '@/component/Promotions/Timeline';
-import Footer from '@/component/Footer';
 
 const color = 'blue';
 

@@ -1,4 +1,5 @@
 import { ThemeColor } from '@/types';
+
 import * as S from './ApplyButton.styled';
 
 export default function Button({ color }: ThemeColor) {
