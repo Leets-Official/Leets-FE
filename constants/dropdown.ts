@@ -14,6 +14,7 @@ export const APPLICATIONS_MAP = {
   PASS_PAPER: '서류 합격',
   FAIL: '최종 탈락',
   PASS: '최종 합격',
+  PENDING: '보류중',
 } as const;
 
 export const INTERVIEW_MAP = {
