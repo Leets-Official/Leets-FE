@@ -24,6 +24,7 @@
     "react-redux": "^8.0.5",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.0.7",
+    "sweetalert2": "^11.7.22",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
