@@ -4,7 +4,7 @@ import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/component/Common/ScrollTop';
 
 export const metadata: Metadata = {
-  title: { default: 'Leets', template: '%s | Leets' },
+  title: { default: 'Leets', template: '%s · Leets' },
   description: 'Who Cares?',
   openGraph: {
     title: 'Leets',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
       <body>
@@ -34,4 +34,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
