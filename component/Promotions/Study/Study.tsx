@@ -1,6 +1,6 @@
 import * as S from './Study.styled';
 
-const Study = ({ benefits }) => {
+const Study = ({ benefits }: { benefits: any[] }) => {
   const DIVIDER = 3;
   const ONE_INDEX = 1;
   const ZERO = 0;

@@ -4,7 +4,7 @@ import Yellow from '@/public/assets/image/Background/Yellow.svg';
 import { ThemeColor } from '@/types';
 import { THEME_COLOR } from '@/constants';
 
-export default function BackgroundImage({ color }: ThemeColor) {
+export default function BackgroundImage({ color }: { color: ThemeColor }) {
   if (color === THEME_COLOR.GREEN) {
     return <Green />;
   }

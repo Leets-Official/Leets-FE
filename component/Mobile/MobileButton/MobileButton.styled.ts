@@ -1,3 +1,4 @@
+import { ThemeColor } from '@/types';
 import { css } from '@emotion/react';
 
 const backgrounds = {
@@ -22,7 +23,7 @@ export const buttonContainer = css`
   margin-bottom: 100px;
 `;
 
-export const buttonStyle = color => css`
+export const buttonStyle = (color: ThemeColor) => css`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;

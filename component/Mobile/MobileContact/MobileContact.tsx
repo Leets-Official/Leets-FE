@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import datas from '../@/utils/contactData';
+import { CONTACT_LAYOUT } from '@/constants';
 import {
   sectionContainer,
   headContainer,
@@ -15,7 +15,7 @@ export default function MobileContact() {
     <section css={sectionContainer}>
       <div css={headContainer}>Contact</div>
       <div css={flexContainer}>
-        {datas.map(({ title, value, hasLink }) => (
+        {CONTACT_LAYOUT.map(({ title, value, hasLink }) => (
           <div key={title} css={infoContainer}>
             <div css={titleStyle}>{title}</div>
             <div css={infoStyle}>

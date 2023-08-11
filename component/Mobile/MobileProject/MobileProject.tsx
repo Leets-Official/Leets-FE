@@ -2,7 +2,7 @@
 
 import { blockStyle, contentContainer, headContainer, benefitContainer, imgStyle } from './MobileProject.styled';
 
-export default function MobileProject({ benefits, imageSrc }) {
+export default function MobileProject({ benefits, imageSrc }: { benefits: any[]; imageSrc: string }) {
   return (
     <div css={contentContainer}>
       {benefits.map((benefit, index) => (

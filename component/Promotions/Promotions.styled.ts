@@ -49,7 +49,12 @@ export const Subject = styled.div`
 export const Image = styled.img(({ height }) =>
   MQ({
     width: ['36.25vw', 297, 427, 522],
-    height: [(height / 1440) * 820, (height / 1440) * 820, (height / 1440) * 1180, height],
+    height: [
+      ((height as number) / 1440) * 820,
+      ((height as number) / 1440) * 820,
+      ((height as number) / 1440) * 1180,
+      height,
+    ],
   })
 );
 

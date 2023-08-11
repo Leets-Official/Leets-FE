@@ -1,11 +1,7 @@
 import { styled } from 'styled-components';
 import Link from 'next/link';
-
-const backgrounds = {
-  blue: '#3685FC',
-  green: '#29B69A',
-  yellow: '#FCB836',
-};
+import { ThemeColor } from '@/types';
+import { BACKGROUND_COLOR } from '@/constants';
 
 export const NavContainer = styled.nav`
   background-color: black;
@@ -33,7 +29,7 @@ export const LinkContainer = styled(Link)`
   color: black;
 `;
 
-export const WelcomeContainer = styled.div`
+export const WelcomeContainer = styled.div<{ name: string }>`
   display: flex;
   justify-content: ${({ name }) => (name ? 'space-between' : 'flex-end')};
 
@@ -51,14 +47,14 @@ export const WelcomeStyle = styled.div`
   background: white;
 `;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.button<{ color: ThemeColor }>`
   font-family: 'Pretendard';
   font-weight: 600;
   font-size: 14px;
 
   display: ${({ name }) => (name ? '' : 'none')};
 
-  color: ${({ color }) => backgrounds[color]};
+  color: ${({ color }) => BACKGROUND_COLOR[color]};
   background: white;
   padding: 0;
   cursor: pointer;

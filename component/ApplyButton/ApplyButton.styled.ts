@@ -32,10 +32,10 @@ export const ApplyButton = styled(Link)`
     border: 'none',
     borderRadius: '40px',
 
-    background: ({ color }: ThemeColor) => BUTTON_COLOR[color],
-    color: ({ color }: ThemeColor) => TEXT_COLOR[color],
+    background: ({ color }: { color: ThemeColor }) => BUTTON_COLOR[color],
+    color: ({ color }: { color: ThemeColor }) => TEXT_COLOR[color],
     '&:hover': {
-      color: ({ color }: ThemeColor) => (color === 'blue' ? 'black' : 'white'),
+      color: ({ color }: { color: ThemeColor }) => (color === 'blue' ? 'black' : 'white'),
     },
   })}
   cursor: pointer;

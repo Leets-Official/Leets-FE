@@ -1,8 +1,8 @@
+import { mobileMQ } from '@/constants';
 import { css } from '@emotion/react';
-import mq from '../@/utils/mobileViewports';
 
 export const headContainer = css(
-  mq({
+  mobileMQ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',

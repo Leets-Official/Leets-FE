@@ -1,10 +1,11 @@
 import { PROMOTION_LAYOUT } from '@/constants';
+import { ThemeColor } from '@/types';
 import Project from './Project';
 import Study from './Study';
 import Entertainment from './Entertainment';
 import * as S from './Promotions.styled';
 
-const Promotions = ({ color }: any) => (
+const Promotions = ({ color }: { color: ThemeColor }) => (
   <>
     {PROMOTION_LAYOUT.map(({ title, height, benefits }) => {
       const imageSrc = `/assets/image/Main/${color}/${title}.svg`;

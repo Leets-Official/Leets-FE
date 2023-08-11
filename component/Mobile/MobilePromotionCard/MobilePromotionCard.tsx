@@ -12,7 +12,7 @@ import MobileProject from '../MobileProject';
 import MobileStudy from '../MobileStudy';
 import MobileEntertainment from '../MobileEntertainment';
 
-export default function MobilePromotionCard({ height, title, benefits, color }) {
+export default function MobilePromotionCard({ height, title, benefits, color }: any) {
   const imageSrc = `/assets/image/Main/${color}/${title}.png`;
   const projectImageSrc = `/assets/image/Project/${color}`;
 

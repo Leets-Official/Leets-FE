@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { ThemeColor } from '@/types';
+import { TIMELINE_LAYOUT } from '@/constants';
 import {
   sectionContaier,
   contentContainer,
@@ -9,10 +11,9 @@ import {
   keyStyle,
   valueStyle,
 } from './MobileTimeline.styled';
-import data from '../@/utils/timelineData';
 import MobileTimelineImage from '../MobileTimelineImage';
 
-export default function MobileTimeline({ color }) {
+export default function MobileTimeline({ color }: { color: ThemeColor }) {
   return (
     <section css={sectionContaier}>
       <div css={contentContainer}>
@@ -20,7 +21,7 @@ export default function MobileTimeline({ color }) {
         <div css={bottomContainer}>
           <MobileTimelineImage color={color} />
           <div css={dateStyle}>
-            {Object.entries(data).map(([key, value]) => (
+            {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
               <div key={key} css={infoStyle}>
                 <div css={keyStyle}>{key}</div>
                 <div css={valueStyle}>{value}</div>

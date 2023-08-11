@@ -5,19 +5,21 @@ import { useDispatch } from 'react-redux';
 import submitForm from '@/utils/submitForm';
 import { setForm } from '@/store/formSlice';
 import { INITAIL_INFO, INPUTS, TEXTAREAS } from '@/constants';
-import { ThemeColor } from '@/types';
+import { ThemeColor, KeyOf, ValueOf } from '@/types';
 import { useAppSelector } from '@/store';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
 
-const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
+type abc = { color: ThemeColor; email: string };
+
+const Form = ({ color, email }: abc) => {
   const dispatch = useDispatch();
   const formSlice = useAppSelector((state) => state.form);
 
   const loadStorage = () => {
-    const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || INITAIL_INFO;
-    dispatch(setForm(tempInfo));
+    // const tempInfo = JSON.parse(localStorage.getItem('tempInfo')) || INITAIL_INFO;
+    // dispatch(setForm(tempInfo));
   };
 
   const saveStorage = () => {

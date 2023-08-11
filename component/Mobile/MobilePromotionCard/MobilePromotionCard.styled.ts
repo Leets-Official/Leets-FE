@@ -35,7 +35,7 @@ export const imgContianer = css`
   margin-top: 80px;
 `;
 
-export const imgStyle = height => css`
+export const imgStyle = (height: number) => css`
   width: 240px;
   height: ${height}px;
 `;

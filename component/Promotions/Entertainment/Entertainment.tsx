@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as S from './Entertainment.styled';
 
-const Entertainment = ({ benefits }) => {
+const Entertainment = ({ benefits }: { benefits: any[] }) => {
   return (
     <S.ContentContainer>
       <S.GridContainer>

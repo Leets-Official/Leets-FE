@@ -1,6 +1,6 @@
 import * as S from './Project.styled';
 
-const Project = ({ imageSrc, benefits }) => {
+const Project = ({ imageSrc, benefits }: { benefits: string[]; imageSrc: string }) => {
   return (
     <S.ContentContainer>
       {benefits.map((benefit, index) => (

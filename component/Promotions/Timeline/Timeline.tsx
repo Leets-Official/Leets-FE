@@ -3,7 +3,7 @@ import { ThemeColor } from '@/types';
 import * as S from './Timeline.styled';
 import TimelineImage from './TimelineImage';
 
-const Timeline = ({ color }: ThemeColor) => {
+const Timeline = ({ color }: { color: ThemeColor }) => {
   return (
     <S.SectionContainer>
       <S.ContentContainer>

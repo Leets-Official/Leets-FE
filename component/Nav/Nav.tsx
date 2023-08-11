@@ -3,7 +3,7 @@ import { logout } from '@/store/userSlice';
 import { ThemeColor } from '@/types';
 import * as S from './Nav.styled';
 
-const Nav = ({ color }: ThemeColor) => {
+const Nav = ({ color }: { color: ThemeColor }) => {
   const { name } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 

@@ -5,7 +5,7 @@ import Green from './Green';
 import Blue from './Blue';
 import Yellow from './Yellow';
 
-export default function TimelineImage({ color }: ThemeColor) {
+export default function TimelineImage({ color }: { color: ThemeColor }) {
   return (
     <S.TimelineImageContainer>
       {color === THEME_COLOR.GREEN && <Green />}

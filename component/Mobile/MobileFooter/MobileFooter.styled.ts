@@ -1,5 +1,5 @@
+import { mobileMQ } from '@/constants';
 import { css } from '@emotion/react';
-import mq from '../@/utils/mobileViewports';
 
 export const sectionContainer = css`
   display: flex;
@@ -17,7 +17,7 @@ export const footerContainer = css`
 `;
 
 export const textStyle = css(
-  mq({
+  mobileMQ({
     fontFamily: 'Pretendard',
     fontWeight: '500',
     fontSize: [13, 13, 14, 14, 16],

@@ -5,8 +5,9 @@ import LoginButton from '@/component/LoginButton';
 import { useAppSelector } from '@/store';
 import Form from '@/component/Form';
 
-const Apply = ({ color }: any) => {
+const Apply = () => {
   const { name, email } = useAppSelector((state) => state.user);
+  const color = 'blue';
 
   return (
     <>

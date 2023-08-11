@@ -1,8 +1,8 @@
+import { isDesktop } from 'react-device-detect';
 import './Pointer.css';
-import { DeviceChecker } from '@/utils';
 
 export default function Pointer({ position, size, color }: any) {
-  if (!DeviceChecker.isDesktop()) {
+  if (!isDesktop) {
     return null;
   }
   return (

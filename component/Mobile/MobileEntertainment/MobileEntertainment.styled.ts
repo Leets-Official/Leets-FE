@@ -4,7 +4,7 @@ export const contentContainer = css`
   width: 100%;
 `;
 
-export const balloon = index => css`
+export const balloon = (index: number) => css`
   position: relative;
 
   width: 100%;

@@ -71,7 +71,7 @@ export const ButtonContainer = styled.div`
   margin-top: 60px;
 `;
 
-export const SubmitButton = styled.button<ThemeColor>`
+export const SubmitButton = styled.button<{ color: ThemeColor }>`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { blockStyle, contentContainer, headContainer, benefitContainer } from './MobileStudy.styled';
 
-export default function MobileStudy({ benefits }) {
+export default function MobileStudy({ benefits }: { benefits: any[] }) {
   return (
     <div css={contentContainer}>
       {benefits.map((benefit, index) => (
