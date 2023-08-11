@@ -13,6 +13,7 @@ type FilterDropdownProps = {
   setSortBy?: Dispatch<SetStateAction<SortByType>>;
   otherSortInit?: () => void;
   setToggle?: Dispatch<SetStateAction<boolean>>;
+  customWidth?: number;
 };
 
 export default function FilterDropDown({
@@ -23,6 +24,7 @@ export default function FilterDropDown({
   setSortBy,
   otherSortInit,
   setToggle,
+  customWidth,
 }: FilterDropdownProps) {
   const [isOpen, toggleDropdown, dropdownRef] = useDropdown();
 
@@ -41,7 +43,7 @@ export default function FilterDropDown({
   };
 
   const newSelected = DROPDOWN_MAP[selected] ?? selected;
-  const width = newSelected.length > 2 ? 10 : 7;
+  const width = customWidth ?? (newSelected.length > 2 ? 20 : 14);
 
   return (
     <S.DropdownWrapper ref={dropdownRef} width={width}>
