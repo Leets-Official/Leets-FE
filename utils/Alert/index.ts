@@ -6,7 +6,7 @@ export class Alert {
       icon: 'error',
       title,
       confirmButtonText: '확인',
-      confirmButtonColor: '#fa9625',
+      confirmButtonColor: '#4a93ff',
     });
   }
 
@@ -15,7 +15,7 @@ export class Alert {
       icon: 'success',
       title,
       confirmButtonText: '확인',
-      confirmButtonColor: '#fa9625',
+      confirmButtonColor: '#4a93ff',
     });
   }
 }
