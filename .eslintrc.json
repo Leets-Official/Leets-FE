@@ -32,7 +32,10 @@
         "json": "never"
       }
     ],
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/parsers": {
