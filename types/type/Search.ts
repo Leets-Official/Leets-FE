@@ -24,3 +24,11 @@ export type FilterConditionMaker = {
   filterValueList: string[];
   defaultValueList: string[];
 };
+
+export type ApplicationFilterType = {
+  gpa?: string;
+  interviewDate?: string;
+  interviewStatus?: string;
+  passStatus?: string;
+  applicationStatus?: string;
+};
