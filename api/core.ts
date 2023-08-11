@@ -42,7 +42,7 @@ const createApiMethod =
       .then(handleResponse)
       .catch(handleError);
 
-export default {
+export const http = {
   get: createApiMethod(axiosInstance, HTTP_METHODS.GET),
   post: createApiMethod(axiosInstance, HTTP_METHODS.POST),
   patch: createApiMethod(axiosInstance, HTTP_METHODS.PATCH),
