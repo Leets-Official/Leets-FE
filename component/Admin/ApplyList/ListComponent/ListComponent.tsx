@@ -23,10 +23,9 @@ import * as S from './ListComponent.styled';
 import Status from './Status';
 
 const ListComponent = () => {
-  const [checkedIdsSet, setCheckedIdsSet] = useState(new Set());
-
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [checkedIdsSet, setCheckedIdsSet] = useState(new Set());
   const queryCreator = useQueryCreator();
   const { searchInput, onChangeHandler, renderList } = useSearch({
     list: MOCK_DATA,
@@ -40,7 +39,7 @@ const ListComponent = () => {
   const { currentPage, currentItems, handlePageChange } = usePagination({
     items: filteredList,
   });
-  const allCheckboxesChecked = checkedIdsSet.size === currentItems.length;
+  const allCheckboxesChecked = checkedIdsSet.size === currentItems.length && currentItems.length > 0;
 
   const toggleAllCheckboxes = () => {
     if (allCheckboxesChecked) {
@@ -75,49 +74,50 @@ const ListComponent = () => {
       <PositionFilter />
       <S.SearchContainer>
         <SearchBar value={searchInput} onChangeHandler={onChangeHandler} />
-        <FilterDropDown
-          list={APPLICATION_STAUTS_LIST}
-          selected={applicationCondition.applicationStatus as KeyOf<typeof DROPDOWN_MAP>}
-          setSelected={(selected) =>
-            setApplicationCondition((prev) => ({ ...prev, applicationStatus: selected as string }))
-          }
-          sortTarget={SEARCH_TARGETS.APPLICATION_STATUS}
-        />
-        <FilterDropDown
-          list={INTERVIEW_STATUS_LIST}
-          selected={applicationCondition.interviewStatus as KeyOf<typeof DROPDOWN_MAP>}
-          setSelected={(selected) =>
-            setApplicationCondition((prev) => ({ ...prev, interviewStatus: selected as string }))
-          }
-        />
-        <FilterDropDown
-          list={ORDER_LIST}
-          selected={applicationCondition.gpa as KeyOf<typeof DROPDOWN_MAP>}
-          setSelected={(selected) => setApplicationCondition((prev) => ({ ...prev, gpa: selected as string }))}
-          sortTarget={SEARCH_TARGETS.GPA}
-          setSortBy={setSortBy}
-          otherSortInit={() => {
-            setApplicationCondition({
-              ...applicationCondition,
-              interviewDate: APPPLICATION_LIST.interviewDate,
-            });
-          }}
-        />
-        <FilterDropDown
-          list={ORDER_LIST}
-          selected={applicationCondition.interviewDate as KeyOf<typeof DROPDOWN_MAP>}
-          setSelected={(selected) =>
-            setApplicationCondition((prev) => ({ ...prev, interviewDate: selected as string }))
-          }
-          sortTarget={SEARCH_TARGETS.INTERVIEW_DATE}
-          setSortBy={setSortBy}
-          otherSortInit={() => {
-            setApplicationCondition({
-              ...applicationCondition,
-              gpa: APPPLICATION_LIST.gpa,
-            });
-          }}
-        />
+        <S.DropDownContainer>
+          <FilterDropDown
+            list={APPLICATION_STAUTS_LIST}
+            selected={applicationCondition.applicationStatus as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) =>
+              setApplicationCondition((prev) => ({ ...prev, applicationStatus: selected as string }))
+            }
+          />
+          <FilterDropDown
+            list={INTERVIEW_STATUS_LIST}
+            selected={applicationCondition.interviewStatus as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) =>
+              setApplicationCondition((prev) => ({ ...prev, interviewStatus: selected as string }))
+            }
+          />
+          <FilterDropDown
+            list={ORDER_LIST}
+            selected={applicationCondition.gpa as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) => setApplicationCondition((prev) => ({ ...prev, gpa: selected as string }))}
+            sortTarget={SEARCH_TARGETS.GPA}
+            setSortBy={setSortBy}
+            otherSortInit={() => {
+              setApplicationCondition({
+                ...applicationCondition,
+                interviewDate: APPPLICATION_LIST.interviewDate,
+              });
+            }}
+          />
+          <FilterDropDown
+            list={ORDER_LIST}
+            selected={applicationCondition.interviewDate as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) =>
+              setApplicationCondition((prev) => ({ ...prev, interviewDate: selected as string }))
+            }
+            sortTarget={SEARCH_TARGETS.INTERVIEW_DATE}
+            setSortBy={setSortBy}
+            otherSortInit={() => {
+              setApplicationCondition({
+                ...applicationCondition,
+                gpa: APPPLICATION_LIST.gpa,
+              });
+            }}
+          />
+        </S.DropDownContainer>
         <S.InitFilterButton onClick={initHandler}>
           초기화
           <S.ImageContainer>
@@ -138,7 +138,7 @@ const ListComponent = () => {
         <S.Status>합격 여부</S.Status>
       </S.ApplicationColumn>
       {currentItems.map(({ uid, name, gpa, grade, career, interviewDate, interviewStatus, applicationStatus }) => (
-        <S.Application key={uid}>
+        <S.Application key={uid} onClick={() => router.push(`/admin/${uid}`)}>
           <S.Name>
             <S.Checkbox type="checkbox" checked={checkedIdsSet.has(uid)} onChange={() => toggleCheckbox(uid)} />
             {name}
