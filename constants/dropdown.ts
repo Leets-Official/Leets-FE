@@ -9,7 +9,7 @@ export const APPLICATION_STAUTS_LIST = ['PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAI
 
 export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK'] as const;
 
-export const APPLICATIONS_MAP = {
+export const APPLICATION_STATUS_MAP = {
   FAIL_PAPER: '서류 탈락',
   PASS_PAPER: '서류 합격',
   FAIL: '최종 탈락',
@@ -28,7 +28,7 @@ export const ORDER_MAP = {
 } as const;
 
 export const DROPDOWN_MAP = {
-  ...APPLICATIONS_MAP,
+  ...APPLICATION_STATUS_MAP,
   ...INTERVIEW_MAP,
   ...ORDER_MAP,
 } as const;

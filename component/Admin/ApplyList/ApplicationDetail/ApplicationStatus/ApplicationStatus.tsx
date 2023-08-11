@@ -1,6 +1,6 @@
 import FilterDropDown from '@/component/Admin/FilterDropDown';
 import {
-  APPLICATIONS_MAP,
+  APPLICATION_STATUS_MAP,
   APPLICATION_STAUTS_LIST,
   DETAIL_APPLICATION_DATA,
   DROPDOWN_MAP,
@@ -18,7 +18,7 @@ const ApplicationStatus = ({
   applicationDate,
   interviewDate,
 }: {
-  applicationStatus: KeyOf<typeof APPLICATIONS_MAP>;
+  applicationStatus: KeyOf<typeof APPLICATION_STATUS_MAP>;
   applicationDate: string;
   interviewDate: string;
 }) => {
@@ -43,7 +43,7 @@ const ApplicationStatus = ({
     <S.ApplicationStatusContainer>
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
-        <S.ApplicationStatus isPass={isPass}>{APPLICATIONS_MAP[applicationStatus]}</S.ApplicationStatus>
+        <S.ApplicationStatus isPass={isPass}>{APPLICATION_STATUS_MAP[applicationStatus]}</S.ApplicationStatus>
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown
