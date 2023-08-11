@@ -9,9 +9,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Leets',
     description: 'Who Cares?',
+    url: 'https://leets.land',
     images: [
       {
-        url: '/assets/OG.png',
+        url: '/assets/image/OG.png',
       },
     ],
     locale: 'ko-KR',
