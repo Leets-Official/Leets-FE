@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { BACKGROUND_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
+import Link from 'next/link';
 
 export const FormContainer = styled.div`
   display: flex;
@@ -70,15 +71,31 @@ export const DropDownContainer = styled.div`
 `;
 
 export const PositionContainer = styled.div`
-  /* width: 20%; */
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   margin-right: 15px;
   color: gray;
-  /* border: 1px solid black; */
+`;
+
+export const PrivacyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const PrivacyCheckBox = styled.input``;
+
+export const Text = styled.div`
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+`;
+export const LinkConatiner = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
 
 export const ButtonContainer = styled.div`

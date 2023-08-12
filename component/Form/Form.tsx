@@ -46,6 +46,15 @@ const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
             </S.DropDownContainer>
             <InputText position={position} changeHandler={changeHandler} />
             <InputTextarea position={position} text={applicationText} setText={setApplicationText} />
+            <S.PrivacyContainer>
+              <S.PrivacyCheckBox type="checkbox" required />
+              <S.Text>
+                <S.LinkConatiner href="/certificate" target="_blank">
+                  <u>개인정보 처리 방침</u>
+                </S.LinkConatiner>
+                에 동의합니다.
+              </S.Text>
+            </S.PrivacyContainer>
           </S.InputContainer>
           <S.ButtonContainer>
             <S.SubmitButton type="submit" color={color}>
