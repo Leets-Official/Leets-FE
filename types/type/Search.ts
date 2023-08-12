@@ -1,4 +1,6 @@
 import { ChangeEvent } from 'react';
+import { SORT_METHOD, SORT_TARGET } from '@/constants';
+import { ValueOf } from '../Helper';
 
 export type SearchInput = {
   value: string;
@@ -6,7 +8,7 @@ export type SearchInput = {
 };
 
 export type SearchList<T> = {
-  list: T[];
+  applications: T[];
 };
 
 export type Order = {
@@ -15,8 +17,8 @@ export type Order = {
 };
 
 export type SortByType = {
-  target: 'gpa' | 'interviewDate' | null;
-  method: 'ASC' | 'DESC' | null;
+  target: ValueOf<typeof SORT_TARGET> | null;
+  method: ValueOf<typeof SORT_METHOD>;
 };
 
 export type FilterConditionMaker = {

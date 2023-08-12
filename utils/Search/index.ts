@@ -1,7 +1,7 @@
-import { SORT_TARGETS, SEARCH_TARGETS, DEFAULT_VALUE } from '@/constants';
+import { SORT_METHOD, SEARCH_TARGET, DEFAULT_VALUE } from '@/constants';
 import { KeyOf, SortByType, ApplicationFilterType } from '@/types';
 
-const { APPLICATION_STATUS, INTERVIEW_STATUS } = SEARCH_TARGETS;
+const { APPLICATION_STATUS, INTERVIEW_STATUS } = SEARCH_TARGET;
 
 export type FilterConditionMaker = {
   defaultValueList: string[];
@@ -37,7 +37,7 @@ export class Search {
 
   static sort<T>(list: T[], { target, method }: SortByType): T[] {
     return list.sort((elemA: T, elemB: T) => {
-      if (method === SORT_TARGETS.ASC) {
+      if (method === SORT_METHOD.ASC) {
         return String(elemA[target as KeyOf<T>]).localeCompare(String(elemB[target as KeyOf<T>]));
       }
       return String(elemB[target as KeyOf<T>]).localeCompare(String(elemA[target as KeyOf<T>]));
