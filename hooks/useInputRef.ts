@@ -1,16 +1,16 @@
-import { KeyOf } from '@/types';
+import { KeyOf, ValueOf } from '@/types';
 import { useRef, ChangeEvent, MutableRefObject } from 'react';
 
-export type LoginInput = {
-  id: string;
-  password: string;
+export type InputRefProp<T> = {
+  defaultValues: T;
 };
 
-export function useInputRef() {
-  const inputRef: MutableRefObject<LoginInput> = useRef<LoginInput>({ id: '', password: '' });
-
-  const changeHandler = (e: ChangeEvent<HTMLInputElement>, value: KeyOf<LoginInput>) => {
-    inputRef.current[value] = e.target.value;
+const useInputRef = <T>({ defaultValues }: InputRefProp<T>) => {
+  const inputRef: MutableRefObject<T> = useRef<T>(defaultValues);
+  const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: KeyOf<T>) => {
+    inputRef.current[value] = e.target.value as ValueOf<T>;
   };
   return { inputRef, changeHandler };
-}
+};
+
+export { useInputRef };
