@@ -2,8 +2,6 @@
 
 import Login from '@/component/Admin/Login';
 
-const Admin = () => {
-  return <Login />;
-};
+const Admin = () => <Login />;
 
 export default Admin;

@@ -1,7 +1,7 @@
 'use client';
 
-import ApplyList from '@/component/Admin/ApplyList';
+import ApplicationList from '@/component/Admin/ApplicationList';
 
 export default function Admin() {
-  return <ApplyList />;
+  return <ApplicationList />;
 }
