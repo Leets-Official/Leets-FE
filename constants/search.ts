@@ -16,10 +16,10 @@ export const PAGINATION = {
   DEFAULT_PAGE: '1',
 } as const;
 
-export const POSITION_LIST = [{ target: 'All' }, { target: 'dev' }, { target: 'design' }] as const;
-
-export const POSITION_MAP = {
+export const POSITION_INFO = {
   All: 'All',
   dev: '개발',
   design: '디자인',
 } as const;
+
+export const POSITION_TYPES = Object.keys(POSITION_INFO) as (keyof typeof POSITION_INFO)[];
