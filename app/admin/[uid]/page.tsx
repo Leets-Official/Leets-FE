@@ -1,7 +1,12 @@
-import ApplicationDetail from '@/component/Admin/ApplyList/ApplicationDetail';
+'use client';
+
+import ApplicationDetail from '@/component/Admin/ApplicationList/ApplicationDetail';
+import { useSearchParams } from 'next/navigation';
 
 const ApplicationDetailPage = () => {
-  return <ApplicationDetail />;
+  const id = useSearchParams().get('id') as string;
+
+  return <ApplicationDetail id={id} />;
 };
 
 export default ApplicationDetailPage;

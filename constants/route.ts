@@ -1,3 +1,4 @@
 export const ADMIN = {
-  HOME: '/admin',
+  HOME: '/admin/application',
+  LOGIN: '/admin',
 } as const;

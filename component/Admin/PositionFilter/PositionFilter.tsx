@@ -1,21 +1,22 @@
-import { POSITION_LIST, POSITION_MAP } from '@/constants';
-import { useRouter } from 'next/navigation';
+import { POSITION_TYPES, POSITION_MAP } from '@/constants';
+import { Dispatch, SetStateAction } from 'react';
+import { KeyOf } from '@/types';
 import * as S from './PositionFilter.styled';
 
-const PositionFilter = () => {
-  const router = useRouter();
+type PositionFilterProps = {
+  clickHandler: Dispatch<SetStateAction<KeyOf<typeof POSITION_MAP>>>;
+  type: KeyOf<typeof POSITION_MAP>;
+};
 
-  // TODO: Query
-  const onClickHandler = (link: string) => {
-    router.push(link);
-  };
+const PositionFilter = ({ clickHandler, type }: PositionFilterProps) => {
+  const isTargetEnabled = (position: string) => position === type;
 
   return (
     <S.FilterContainer>
       <S.FilterByPosition>
-        {POSITION_LIST.map(({ target }) => (
-          <S.FilterBackground key={target} onClick={() => onClickHandler(target)} enable={target === 'All'}>
-            <S.FilterText enable={target === 'All'}>{POSITION_MAP[target]}</S.FilterText>
+        {POSITION_TYPES.map((position) => (
+          <S.FilterBackground key={position} onClick={() => clickHandler(position)} enable={isTargetEnabled(position)}>
+            <S.FilterText enable={isTargetEnabled(position)}>{POSITION_MAP[position]}</S.FilterText>
           </S.FilterBackground>
         ))}
       </S.FilterByPosition>

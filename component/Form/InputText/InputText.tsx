@@ -1,40 +1,29 @@
-import { Validator } from '@/utils';
-import { ChangeEvent } from 'react';
+import { DEV_INPUTS, DESING_INPUTS } from '@/constants';
+import { ApplicationInputProp } from '@/types';
 import * as S from './InputText.styled';
 
-type Input = {
-  id: string;
-  title: string;
-  value: string;
-  holderText: string;
-  required: boolean;
-  handleOnChange: (id: string, value: string) => void;
-  maxLength: number;
-};
-
-const InputText = ({ id, title, value, holderText, required, handleOnChange, maxLength }: Input) => {
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const [eventId, eventValue] = [e.target.id, e.target.value];
-    const newValue = Validator.isValidInput(eventId, eventValue);
-    handleOnChange(eventId, newValue);
-  };
-
+const InputText = ({ position, changeHandler }: ApplicationInputProp) => {
+  const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
   return (
-    <S.ListStyle>
-      <S.LabelStyle htmlFor={id}>
-        <S.PStyle>{title}</S.PStyle>
-        {required && <S.RequireStyle />}
-      </S.LabelStyle>
-      <S.InputStyle
-        type="text"
-        id={id}
-        value={value}
-        placeholder={holderText}
-        onChange={onChange}
-        required={required}
-        maxLength={maxLength}
-      />
-    </S.ListStyle>
+    <>
+      {LAYOUT.map(({ id, title, holderText, required, maxLength }) => (
+        <S.ListStyle key={id}>
+          <S.LabelStyle htmlFor={id}>
+            <S.PStyle>{title}</S.PStyle>
+            {required && <S.RequireStyle />}
+          </S.LabelStyle>
+          <S.InputStyle
+            color="blue"
+            type="text"
+            id={id}
+            onChange={(e) => changeHandler(e, id)}
+            placeholder={holderText}
+            required={required}
+            maxLength={maxLength}
+          />
+        </S.ListStyle>
+      ))}
+    </>
   );
 };
 

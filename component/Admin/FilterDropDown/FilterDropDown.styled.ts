@@ -21,7 +21,6 @@ export const DropdownWrapper = styled.div<WidthProp>`
   border: 1px solid #d9d9d9;
   color: #667080;
   cursor: pointer;
-  margin-right: 10px;
 `;
 
 export const DropdownContainer = styled.div`

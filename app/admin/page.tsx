@@ -1,7 +1,7 @@
 'use client';
 
-import ApplyList from '@/component/Admin/ApplyList';
+import Login from '@/component/Admin/Login';
 
-export default function Admin() {
-  return <ApplyList />;
-}
+const Admin = () => <Login />;
+
+export default Admin;

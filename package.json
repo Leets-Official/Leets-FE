@@ -12,6 +12,7 @@
     "@types/react-redux": "^7.1.25",
     "@typescript-eslint/parser": "^6.2.1",
     "antd": "^5.8.2",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "eslint-import-resolver-typescript": "^3.5.5",
     "facepaint": "^1.2.1",
@@ -23,6 +24,7 @@
     "react-redux": "^8.0.5",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.0.7",
+    "sweetalert2": "^11.7.22",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

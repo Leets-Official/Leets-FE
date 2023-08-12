@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { BACKGROUND_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
+import Link from 'next/link';
 
 export const FormContainer = styled.div`
   display: flex;
@@ -32,11 +33,10 @@ export const FieldsetStyle = styled.fieldset`
   border-radius: 10px;
 
   background: white;
-  padding: 0;
 `;
 
-export const Ul = styled.ul`
-  padding: 0;
+export const InputContainer = styled.div`
+  width: 100%;
 `;
 
 export const HeadStyle = styled.div`
@@ -61,6 +61,41 @@ export const WriteStyle = styled.div`
   letter-spacing: 0;
 
   background: white;
+`;
+
+export const DropDownContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  margin-bottom: 25px;
+`;
+
+export const PositionContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 15px;
+  color: gray;
+`;
+
+export const PrivacyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const PrivacyCheckBox = styled.input``;
+
+export const Text = styled.div`
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+`;
+export const LinkConatiner = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
 
 export const ButtonContainer = styled.div`

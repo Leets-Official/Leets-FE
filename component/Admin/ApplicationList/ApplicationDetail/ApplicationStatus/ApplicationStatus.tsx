@@ -1,49 +1,55 @@
 import FilterDropDown from '@/component/Admin/FilterDropDown';
 import {
-  APPLICATIONS_MAP,
+  APPLICATION_STATUS_MAP,
   APPLICATION_STAUTS_LIST,
   DETAIL_APPLICATION_DATA,
   DROPDOWN_MAP,
   DEFAULT_TIME,
-  DEFAULT_SCHEDULE,
 } from '@/constants';
 import { useState } from 'react';
 import { KeyOf } from '@/types';
 import dayjs from 'dayjs';
-import { Formatter } from '@/utils';
+import { Alert, Formatter } from '@/utils';
+import axios from 'axios';
+import * as api from '@/api';
 import * as S from './ApplicationStatus.styled';
 
-const ApplicationStatus = ({
-  applicationStatus,
-  applicationDate,
-  interviewDate,
-}: {
-  applicationStatus: KeyOf<typeof APPLICATIONS_MAP>;
+type ApplicationStatusProps = {
+  id: number;
+  applicationStatus: KeyOf<typeof APPLICATION_STATUS_MAP>;
   applicationDate: string;
   interviewDate: string;
-}) => {
+};
+
+const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDate }: ApplicationStatusProps) => {
   const [applicationCondition, setApplicationCondition] = useState(DETAIL_APPLICATION_DATA);
   const isPass = applicationStatus.includes('PASS');
-  const [schedule, setSchedule] = useState(DEFAULT_SCHEDULE);
+  const [schedule, setSchedule] = useState<string>('');
+
   const onChangeDate = (date: dayjs.Dayjs | null) => {
     const formattedDate = date?.format();
 
     if (formattedDate) {
-      setSchedule({
-        interview: Formatter.convertStringToUTC(formattedDate.toString()),
-      });
+      setSchedule(Formatter.convertStringToUTC(formattedDate.toString()));
     } else {
-      setSchedule(DEFAULT_SCHEDULE);
+      setSchedule('');
     }
   };
 
-  // TODO: PATCH API
+  const changeApplication = async () => {
+    const { result } = await api.patchApplicationDetail({ id, applicationStatus, schedule });
+    if (!axios.isAxiosError(result)) {
+      Alert.success('변경 완료되었습니다.');
+    } else {
+      Alert.error('변경에 실패했습니다');
+    }
+  };
 
   return (
     <S.ApplicationStatusContainer>
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
-        <S.ApplicationStatus isPass={isPass}>{APPLICATIONS_MAP[applicationStatus]}</S.ApplicationStatus>
+        <S.ApplicationStatus isPass={isPass}>{APPLICATION_STATUS_MAP[applicationStatus]}</S.ApplicationStatus>
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown
@@ -62,10 +68,10 @@ const ApplicationStatus = ({
       <S.RangePicker
         showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
         format={DEFAULT_TIME.FULL_TIME_FORMAT}
-        onChange={(range) => onChangeDate(range)}
+        onChange={(date) => onChangeDate(date)}
       />
       <S.ButtonContainer>
-        <S.ChangeButton>변경하기</S.ChangeButton>
+        <S.ChangeButton onClick={changeApplication}>변경하기</S.ChangeButton>
       </S.ButtonContainer>
     </S.ApplicationStatusContainer>
   );

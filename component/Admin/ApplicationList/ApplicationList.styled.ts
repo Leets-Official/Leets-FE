@@ -1,7 +1,7 @@
 import AdminLogo from '@/public/assets/image/Admin/logo.svg';
 import { styled } from 'styled-components';
 
-export const ApplyListContainer = styled.main`
+export const ApplicationListContainer = styled.main`
   width: 100%;
   height: 100%;
 
