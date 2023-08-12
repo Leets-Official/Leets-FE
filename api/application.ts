@@ -1,7 +1,8 @@
 import { http } from '@/api/core';
-import { POSITION_INFO } from '@/constants';
+import { POSITION_MAP } from '@/constants';
 import {
   BaseResponse,
+  GetApplicationRequest,
   GetApplicationResponse,
   PatchApplication,
   PostApplication,
@@ -9,15 +10,12 @@ import {
   IdRequest,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
-  KeyOf,
 } from '@/types';
 
-export const getApplication = ({
+export const getApplicationList = ({
   type,
-}: {
-  type: KeyOf<typeof POSITION_INFO>;
-}): Promise<BaseResponse<GetApplicationResponse[]>> => {
-  if (type === POSITION_INFO.All) {
+}: GetApplicationRequest): Promise<BaseResponse<GetApplicationResponse[]>> => {
+  if (type === POSITION_MAP.All) {
     return http.get({
       url: '/application',
     });
@@ -47,11 +45,13 @@ export const getApplicationDetail = (id: IdRequest): Promise<BaseResponse<GetApp
 export const patchApplicationDetail = ({
   id,
   applicationStatus,
+  schedule,
 }: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
   http.patch({
     url: `/application${id}`,
     data: {
       applicationStatus,
+      schedule,
     },
   });
 
