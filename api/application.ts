@@ -1,4 +1,5 @@
 import { http } from '@/api/core';
+import { POSITION_INFO } from '@/constants';
 import {
   BaseResponse,
   GetApplicationResponse,
@@ -8,12 +9,23 @@ import {
   IdRequest,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
+  KeyOf,
 } from '@/types';
 
-export const getApplication = (): Promise<BaseResponse<GetApplicationResponse[]>> =>
-  http.get({
-    url: '/application',
+export const getApplication = ({
+  type,
+}: {
+  type: KeyOf<typeof POSITION_INFO>;
+}): Promise<BaseResponse<GetApplicationResponse[]>> => {
+  if (type === POSITION_INFO.All) {
+    return http.get({
+      url: '/application',
+    });
+  }
+  return http.get({
+    url: `application?position=${type}`,
   });
+};
 
 export const postApplication = (application: PostApplication): Promise<BaseResponse<PostApplication>> =>
   http.post({
