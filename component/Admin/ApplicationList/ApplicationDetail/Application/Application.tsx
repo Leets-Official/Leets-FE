@@ -9,7 +9,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
     sid,
     major,
     gpa,
-    position,
+    career,
     algorithm,
     portfolio,
     phone,
@@ -48,7 +48,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
             </S.Info>
             <S.Info>
               <S.Key>직무</S.Key>
-              <S.Value>{position}</S.Value>
+              <S.Value>{career}</S.Value>
             </S.Info>
             <S.Info>
               <S.Key>알고리즘</S.Key>
