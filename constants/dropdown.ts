@@ -27,8 +27,14 @@ export const ORDER_MAP = {
   DESC: '내림차순',
 } as const;
 
+export const POSITION_ENGLIST_MAP = {
+  DEV: '개발',
+  DESIGN: '디자인',
+} as const;
+
 export const DROPDOWN_MAP = {
   ...APPLICATION_STATUS_MAP,
   ...INTERVIEW_MAP,
   ...ORDER_MAP,
+  ...POSITION_ENGLIST_MAP,
 } as const;
