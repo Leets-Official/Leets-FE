@@ -3,10 +3,8 @@ export type User = {
   email: string;
 };
 
-export type Applicant = {
+export type Applicant = User & {
   uid: string;
   sid: string;
-  name: string;
   phone: string;
-  email: string;
 };
