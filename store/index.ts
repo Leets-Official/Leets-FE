@@ -3,7 +3,6 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import userReducer from '@/store/userSlice';
-import formReducer from '@/store/formSlice';
 
 const createNoopStorage = () => {
   return {
@@ -26,7 +25,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer, form: formReducer });
+const rootReducer = combineReducers({ user: userReducer });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
