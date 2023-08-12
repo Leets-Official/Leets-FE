@@ -32,11 +32,10 @@ export const FieldsetStyle = styled.fieldset`
   border-radius: 10px;
 
   background: white;
-  padding: 0;
 `;
 
-export const Ul = styled.ul`
-  padding: 0;
+export const InputContainer = styled.div`
+  width: 100%;
 `;
 
 export const HeadStyle = styled.div`
@@ -61,6 +60,25 @@ export const WriteStyle = styled.div`
   letter-spacing: 0;
 
   background: white;
+`;
+
+export const DropDownContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  margin-bottom: 25px;
+`;
+
+export const PositionContainer = styled.div`
+  /* width: 20%; */
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 15px;
+  color: gray;
+  /* border: 1px solid black; */
 `;
 
 export const ButtonContainer = styled.div`

@@ -35,8 +35,11 @@ export const SearchContainer = styled.div`
 
 export const DropDownContainer = styled.div`
   width: 60%;
+
   display: flex;
   justify-content: flex-end;
+
+  gap: 10px;
 `;
 
 export const ImageContainer = styled(RestButtonImage)`

@@ -3,65 +3,41 @@
 import { useState } from 'react';
 import SearchBar from '@/component/Admin/SearchBar';
 import Pagination from '@/component/Admin/Pagination';
-import PositionFilter from '@/component/Admin/PositionFilter';
 import FilterDropDown from '@/component/Admin/FilterDropDown';
 import {
   APPLICATION_STAUTS_LIST,
   INTERVIEW_STATUS_LIST,
-  MOCK_DATA,
   ORDER_LIST,
-  SEARCH_TARGETS,
-  APPPLICATION_LIST,
+  APPPLICATION_FILTER_LIST,
   DROPDOWN_MAP,
   PAGINATION,
+  SORT_TARGET,
+  SORT_METHOD,
 } from '@/constants';
 import { useSearch, usePagination, useQueryCreator } from '@/hooks';
 import { Search } from '@/utils';
-import { KeyOf, SortByType } from '@/types';
+import { KeyOf, SortByType, ApplicationListType } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import * as S from './ListComponent.styled';
 import Status from './Status';
 
-const ListComponent = () => {
+const ListComponent = ({ applications }: { applications: ApplicationListType[] }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [checkedIdsSet, setCheckedIdsSet] = useState(new Set());
   const queryCreator = useQueryCreator();
-  const { searchInput, onChangeHandler, renderList } = useSearch({
-    list: MOCK_DATA,
-  });
-  const [applicationCondition, setApplicationCondition] = useState(APPPLICATION_LIST);
+  const { searchInput, onChangeHandler, renderList } = useSearch({ applications });
+  const [applicationCondition, setApplicationCondition] = useState(APPPLICATION_FILTER_LIST);
   const filterConditions = Search.makeFilterConditionObj({
     filterValueList: [applicationCondition.applicationStatus, applicationCondition.interviewStatus],
   });
-  const [sortBy, setSortBy] = useState<SortByType>({ target: null, method: null });
+  const [sortBy, setSortBy] = useState<SortByType>({ target: null, method: SORT_METHOD.ASC });
   const filteredList = Search.filter(renderList, filterConditions, sortBy);
   const { currentPage, currentItems, handlePageChange } = usePagination({
     items: filteredList,
   });
-  const allCheckboxesChecked = checkedIdsSet.size === currentItems.length && currentItems.length > 0;
-
-  const toggleAllCheckboxes = () => {
-    if (allCheckboxesChecked) {
-      setCheckedIdsSet(() => new Set());
-    } else {
-      const newCheckedIdsSet = new Set(currentItems.map(({ uid }) => uid));
-      setCheckedIdsSet(() => newCheckedIdsSet);
-    }
-  };
-
-  const toggleCheckbox = (id: string) => {
-    const newCheckedIdsSet = new Set(checkedIdsSet);
-    if (newCheckedIdsSet.has(id)) {
-      newCheckedIdsSet.delete(id);
-    } else {
-      newCheckedIdsSet.add(id);
-    }
-    setCheckedIdsSet(() => newCheckedIdsSet);
-  };
 
   const initHandler = () => {
-    setApplicationCondition(APPPLICATION_LIST);
+    setApplicationCondition(APPPLICATION_FILTER_LIST);
   };
 
   if (Object.entries(filterConditions).length && searchParams.get(PAGINATION.QUERY) !== '1') {
@@ -71,7 +47,6 @@ const ListComponent = () => {
 
   return (
     <S.ApplicationContainer>
-      <PositionFilter />
       <S.SearchContainer>
         <SearchBar value={searchInput} onChangeHandler={onChangeHandler} />
         <S.DropDownContainer>
@@ -93,12 +68,12 @@ const ListComponent = () => {
             list={ORDER_LIST}
             selected={applicationCondition.gpa as KeyOf<typeof DROPDOWN_MAP>}
             setSelected={(selected) => setApplicationCondition((prev) => ({ ...prev, gpa: selected as string }))}
-            sortTarget={SEARCH_TARGETS.GPA}
+            sortTarget={SORT_TARGET.GPA}
             setSortBy={setSortBy}
             otherSortInit={() => {
               setApplicationCondition({
                 ...applicationCondition,
-                interviewDate: APPPLICATION_LIST.interviewDate,
+                interviewDate: APPPLICATION_FILTER_LIST.interviewDate,
               });
             }}
           />
@@ -108,12 +83,12 @@ const ListComponent = () => {
             setSelected={(selected) =>
               setApplicationCondition((prev) => ({ ...prev, interviewDate: selected as string }))
             }
-            sortTarget={SEARCH_TARGETS.INTERVIEW_DATE}
+            sortTarget={SORT_TARGET.INTERVIEW_DATE}
             setSortBy={setSortBy}
             otherSortInit={() => {
               setApplicationCondition({
                 ...applicationCondition,
-                gpa: APPPLICATION_LIST.gpa,
+                gpa: APPPLICATION_FILTER_LIST.gpa,
               });
             }}
           />
@@ -126,10 +101,7 @@ const ListComponent = () => {
         </S.InitFilterButton>
       </S.SearchContainer>
       <S.ApplicationColumn>
-        <S.Name>
-          <S.Checkbox type="checkbox" checked={allCheckboxesChecked} onChange={toggleAllCheckboxes} />
-          이름
-        </S.Name>
+        <S.Name>이름</S.Name>
         <S.GPA>학점</S.GPA>
         <S.Grade>학년</S.Grade>
         <S.Position>파트</S.Position>
@@ -139,10 +111,7 @@ const ListComponent = () => {
       </S.ApplicationColumn>
       {currentItems.map(({ uid, name, gpa, grade, career, interviewDate, interviewStatus, applicationStatus }) => (
         <S.Application key={uid} onClick={() => router.push(`/admin/${uid}`)}>
-          <S.Name>
-            <S.Checkbox type="checkbox" checked={checkedIdsSet.has(uid)} onChange={() => toggleCheckbox(uid)} />
-            {name}
-          </S.Name>
+          <S.Name>{name}</S.Name>
           <S.GPA>{gpa}</S.GPA>
           <S.Grade>{grade}</S.Grade>
           <S.Position>{career}</S.Position>

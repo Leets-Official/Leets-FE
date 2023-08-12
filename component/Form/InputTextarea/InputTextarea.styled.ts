@@ -1,3 +1,5 @@
+import { BACKGROUND_COLOR } from '@/constants';
+import { ThemeColor } from '@/types';
 import styled from 'styled-components';
 
 export const ListStyle = styled.li`
@@ -28,6 +30,7 @@ export const LabelStyle = styled.label`
 export const PStyle = styled.p`
   background: white;
   margin-right: 8px;
+  white-space: pre-wrap;
 `;
 
 export const RequireStyle = styled.div`
@@ -38,7 +41,7 @@ export const RequireStyle = styled.div`
   background: #e15241;
 `;
 
-export const TextareaStyle = styled.textarea`
+export const TextareaStyle = styled.textarea<{ color: ThemeColor }>`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -56,4 +59,19 @@ export const TextareaStyle = styled.textarea`
   padding-left: 8px;
   padding-top: 8px;
   resize: none;
+
+  &:focus {
+    outline: none;
+    border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};
+  }
+`;
+
+export const TextLengthContainer = styled.div`
+  font-size: 14px;
+
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
+  color: #777980;
 `;
