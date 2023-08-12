@@ -1,24 +1,20 @@
 import { useState, ChangeEvent, useMemo } from 'react';
-import { SearchList } from '@/types';
-import { SEARCH_TARGETS, PAGINATION } from '@/constants';
+import { SearchList, ApplicationListType } from '@/types';
+import { SEARCH_TARGET, PAGINATION } from '@/constants';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from '@/utils';
 import { useQueryCreator } from './useQueryCreator';
 
-type Applicant = {
-  name: string;
-};
-
-const useSearch = ({ list }: SearchList<Applicant>) => {
+const useSearch = ({ applications }: SearchList<ApplicationListType>) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
   const renderList = useMemo(() => {
     if (!searchInput) {
-      return list;
+      return applications;
     }
-    return list.filter((elem) => Search.isInclude(`${elem[SEARCH_TARGETS.NAME]}`, searchInput));
-  }, [searchInput, list]);
+    return applications.filter((elem) => Search.isInclude(`${elem[SEARCH_TARGET.NAME]}`, searchInput));
+  }, [searchInput, applications]);
   const queryCreator = useQueryCreator();
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
