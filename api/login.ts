@@ -1,7 +1,15 @@
 import { http } from '@/api/core';
-import { LoginRequest, LoginResponse, BaseResponse } from '@/types';
+import { BaseResponse, LoginRequest, AdminLoginRequest, LoginResponse } from '@/types';
 
-export const postLogin = ({ id, password }: LoginRequest): Promise<BaseResponse<LoginResponse>> =>
+export const postSignIn = ({ googleIdToken }: LoginRequest): Promise<BaseResponse<LoginResponse>> =>
+  http.post({
+    url: '/user/login',
+    data: {
+      googleIdToken,
+    },
+  });
+
+export const postAdminLogin = ({ id, password }: AdminLoginRequest): Promise<BaseResponse<LoginResponse>> =>
   http.post({
     url: '/admin/login',
     data: {
