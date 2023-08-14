@@ -24,7 +24,7 @@ const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
 
 const handleError = (error: unknown) => {
   if (axios.isAxiosError(error)) {
-    const { message = null } = error.response?.data.result || {};
+    const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
     Alert.error(message);
     return { result: error };
   }
