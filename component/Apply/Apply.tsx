@@ -2,18 +2,23 @@
 
 import Nav from '@/component/Nav';
 import LoginButton from '@/component/LoginButton';
-import { useAppSelector } from '@/store';
 import Form from '@/component/Form';
+import { useSession } from 'next-auth/react';
+import Loading from '@/component/Common/Loading';
 import * as S from './Apply.styled';
 
-const Apply = () => {
-  const { name, email } = useAppSelector((state) => state.user);
-  const color = 'blue';
+const color = 'blue';
 
+const Apply = () => {
+  const { status, data } = useSession();
+
+  if (status === 'loading') {
+    return <Loading />;
+  }
   return (
     <S.ApplyContainer>
       <Nav color={color} />
-      {name ? <Form color={color} email={email} /> : <LoginButton />}
+      {data?.user ? <Form color={color} email={data.user.email as string} token={data.accessToken} /> : <LoginButton />}
     </S.ApplyContainer>
   );
 };
