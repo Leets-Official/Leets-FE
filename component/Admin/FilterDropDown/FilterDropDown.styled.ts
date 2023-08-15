@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type DropdownIconProp = {
-  isOpen: boolean;
+  $isOpen: boolean;
 };
 
 type WidthProp = {
@@ -32,8 +32,9 @@ export const DropdownContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
-  width: fit-content;
   font-size: 16px;
+
+  width: fit-content;
 
   white-space: pre-wrap;
 `;
@@ -45,7 +46,7 @@ export const ImageContainer = styled.div<DropdownIconProp>`
   transition: transform 0.3s;
   transform: rotate(0deg);
 
-  ${({ isOpen }) => isOpen && 'transform: rotate(180deg);'}
+  ${({ $isOpen }) => $isOpen && 'transform: rotate(180deg);'}
 `;
 
 export const DropdownDiv = styled.div`

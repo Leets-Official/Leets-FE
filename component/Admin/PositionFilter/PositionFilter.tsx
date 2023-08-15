@@ -15,8 +15,8 @@ const PositionFilter = ({ clickHandler, type }: PositionFilterProps) => {
     <S.FilterContainer>
       <S.FilterByPosition>
         {POSITION_TYPES.map((position) => (
-          <S.FilterBackground key={position} onClick={() => clickHandler(position)} enable={isTargetEnabled(position)}>
-            <S.FilterText enable={isTargetEnabled(position)}>{POSITION_MAP[position]}</S.FilterText>
+          <S.FilterBackground $enable={isTargetEnabled(position)} key={position} onClick={() => clickHandler(position)}>
+            <S.FilterText $enable={isTargetEnabled(position)}>{POSITION_MAP[position]}</S.FilterText>
           </S.FilterBackground>
         ))}
       </S.FilterByPosition>
