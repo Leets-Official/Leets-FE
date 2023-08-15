@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
-import { HTTP_METHODS, UNEXPECTED_ERROR } from '@/constants';
-import { Alert } from '@/utils';
+import { ACCESS_TOKEN, HTTP_METHODS, UNEXPECTED_ERROR } from '@/constants';
+import { Alert, LocalStorage } from '@/utils';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -9,15 +9,16 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 const handleRequest = (config: AxiosRequestConfig, token?: string) => {
-  return token
-    ? {
+  const localToken = LocalStorage.getItem(ACCESS_TOKEN);
+  return !token && !localToken
+    ? config
+    : {
         ...config,
         headers: {
           ...config.headers,
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localToken ?? token}`,
         },
-      }
-    : config;
+      };
 };
 
 const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
