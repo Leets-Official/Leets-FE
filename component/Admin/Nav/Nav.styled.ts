@@ -22,5 +22,8 @@ export const Header = styled.header`
 `;
 
 export const AdminLogoContainer = styled(AdminLogo)`
+  width: 33px;
+  height: 20px;
+
   margin-right: 10px;
 `;
