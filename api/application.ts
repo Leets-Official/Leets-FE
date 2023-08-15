@@ -25,11 +25,14 @@ export const getApplicationList = ({
   });
 };
 
-export const postApplication = (application: PostApplication): Promise<BaseResponse<PostApplication>> =>
-  http.post({
-    url: '/application',
-    data: application,
-  });
+export const postApplication = (application: PostApplication, token: string): Promise<BaseResponse<PostApplication>> =>
+  http.post(
+    {
+      url: '/application',
+      data: application,
+    },
+    token
+  );
 
 export const patchApplication = (application: PatchApplication): Promise<BaseResponse<PatchApplication>> =>
   http.patch({

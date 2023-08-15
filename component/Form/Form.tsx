@@ -7,12 +7,12 @@ import { useInputRef } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction } from 'react';
+import FilterDropDown from '@/component/Admin/FilterDropDown';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
-import FilterDropDown from '../Admin/FilterDropDown';
 
-const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
+const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
   const [position, setPosition] = useState<KeyOf<typeof POSITION_ENGLIST_MAP>>('DEV');
@@ -20,7 +20,7 @@ const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { result } = await api.postApplication({ ...inputRef.current, ...applicationText, email, position });
+    const { result } = await api.postApplication({ ...inputRef.current, ...applicationText, email, position }, token);
     if (!axios.isAxiosError(result)) {
       Alert.success('지원 완료되었습니다.');
     }
