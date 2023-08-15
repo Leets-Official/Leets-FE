@@ -1,11 +1,11 @@
 import { http } from '@/api/core';
 import { BaseResponse, LoginRequest, AdminLoginRequest, LoginResponse } from '@/types';
 
-export const postSignIn = ({ googleIdToken }: LoginRequest): Promise<BaseResponse<LoginResponse>> =>
+export const postSignIn = ({ idToken }: LoginRequest): Promise<BaseResponse<LoginResponse>> =>
   http.post({
     url: '/user/login',
     data: {
-      googleIdToken,
+      idToken,
     },
   });
 
