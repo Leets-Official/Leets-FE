@@ -92,3 +92,5 @@ export type ApplicationTextareaProp = {
   text: ApplicationTextarea;
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
 };
+
+export type SubmitStatus = 'NONE' | 'SAVE' | 'SUBMIT';
