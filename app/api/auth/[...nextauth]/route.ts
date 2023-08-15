@@ -20,7 +20,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token.accessToken) {
-        return { ...session, accessToken: token.accessToken };
+        // eslint-disable-next-line no-param-reassign
+        session.accessToken = token.accessToken;
+      }
+      if (token.sid) {
+        // eslint-disable-next-line no-param-reassign
+        session.sid = token.sid;
       }
       return session;
     },
@@ -28,7 +33,10 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         const {
           result: { accessToken },
-        } = await api.postSignIn({ idToken: account.id_token! });
+        } = await api.postUserLogin({ idToken: account.id_token! });
+        const user = await api.getApplicant({ accessToken });
+        // eslint-disable-next-line no-param-reassign
+        token.sid = user.result.sid ?? null;
         // eslint-disable-next-line no-param-reassign
         token.accessToken = accessToken;
       }
