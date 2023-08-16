@@ -100,3 +100,7 @@ export type ApplicationTextareaProp = {
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
   application: ApplicationTextarea;
 };
+
+export type ApplicationPassStatus = {
+  $isPass: boolean;
+};

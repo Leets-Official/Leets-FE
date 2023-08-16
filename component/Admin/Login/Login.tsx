@@ -5,6 +5,7 @@ import { useLogin } from '@/hooks';
 import { ADMIN, LOGIN_LAYOUT } from '@/constants';
 import { useAppSelector } from '@/store';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import * as S from './Login.styled';
 
 const Login = () => {
@@ -12,9 +13,12 @@ const Login = () => {
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
 
-  if (name) {
-    router.push(ADMIN.HOME);
-  }
+  useEffect(() => {
+    if (name) {
+      router.push(ADMIN.HOME);
+    }
+  }, []);
+
   return (
     <S.ApplyListContainer>
       <S.ContentContainer>

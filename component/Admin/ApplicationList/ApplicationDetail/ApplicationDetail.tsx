@@ -19,10 +19,6 @@ const ApplicationDetail = ({ id }: { id: number }) => {
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
 
-  if (!name) {
-    router.push(ADMIN.LOGIN);
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await api.getApplicationDetail({ id: Number(id) });
@@ -31,6 +27,9 @@ const ApplicationDetail = ({ id }: { id: number }) => {
       }
       setIsLoading(false);
     };
+    if (!name) {
+      router.replace(ADMIN.LOGIN);
+    }
     fetchData();
   }, [id, isLoading]);
 

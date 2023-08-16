@@ -20,10 +20,6 @@ const ApplicationList = () => {
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
 
-  if (!name) {
-    router.push(ADMIN.LOGIN);
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await api.getApplicationList({ type });
@@ -32,6 +28,9 @@ const ApplicationList = () => {
       }
       setIsLoading(false);
     };
+    if (!name) {
+      router.replace(ADMIN.LOGIN);
+    }
     fetchData();
   }, [type]);
 

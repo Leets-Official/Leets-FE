@@ -1,5 +1,6 @@
 import { DatePicker } from 'antd';
 import { styled } from 'styled-components';
+import { ApplicationPassStatus } from '@/types';
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
@@ -34,7 +35,7 @@ export const SubHeader = styled.div`
   color: #000;
 `;
 
-export const ApplicationStatus = styled.div<{ $isPass: boolean }>`
+export const ApplicationStatus = styled.div<ApplicationPassStatus>`
   font-size: 14px;
   font-weight: 600;
 
