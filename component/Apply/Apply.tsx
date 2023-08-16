@@ -8,7 +8,7 @@ import Loading from '@/component/Common/Loading';
 import { SESSION_STATUS } from '@/constants';
 import * as S from './Apply.styled';
 
-const color = 'blue';
+const color = 'green';
 
 const Apply = () => {
   const { status, data } = useSession();

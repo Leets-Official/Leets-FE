@@ -11,7 +11,7 @@ import Contact from '@/component/Contact';
 import Timeline from '@/component/Promotions/Timeline';
 import Footer from '@/component/Footer';
 
-const color = 'blue';
+const color = 'green';
 
 const Index = () => {
   const [position, setPosition] = useState({
