@@ -34,7 +34,7 @@ export type Input = {
 
 export type SubmitStatus = ValueOf<typeof SUBMIT_STATUS>;
 
-export type IdRequest = { id: string };
+export type IdRequest = { id: number };
 
 export type ApplicationStatusType = keyof typeof APPLICATION_STATUS_MAP;
 
