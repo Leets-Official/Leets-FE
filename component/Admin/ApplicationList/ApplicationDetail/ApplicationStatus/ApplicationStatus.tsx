@@ -7,7 +7,7 @@ import {
   DEFAULT_TIME,
 } from '@/constants';
 import { useState } from 'react';
-import { KeyOf } from '@/types';
+import { KeyOf, ApplicationStatusType } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import axios from 'axios';
@@ -16,7 +16,7 @@ import * as S from './ApplicationStatus.styled';
 
 type ApplicationStatusProps = {
   id: number;
-  applicationStatus: KeyOf<typeof APPLICATION_STATUS_MAP>;
+  applicationStatus: ApplicationStatusType;
   applicationDate: string;
   interviewDate: string;
 };
@@ -61,7 +61,7 @@ const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDa
         customWidth={60}
       />
       <S.SubHeader>접수 일시</S.SubHeader>
-      <S.DateContainer>{applicationDate}</S.DateContainer>
+      <S.DateContainer>{Formatter.formatDate(applicationDate).longDateTime}</S.DateContainer>
       <S.SubHeader>면접 일시</S.SubHeader>
       <S.DateContainer>{interviewDate}</S.DateContainer>
       <S.SubHeader>면접 일시 변경</S.SubHeader>
