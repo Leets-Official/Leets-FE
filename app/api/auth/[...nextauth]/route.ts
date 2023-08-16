@@ -18,18 +18,10 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async session({ session, token }) {
-      if (token.accessToken) {
-        // eslint-disable-next-line no-param-reassign
-        session.accessToken = token.accessToken;
+    async jwt({ token, account, trigger, session }) {
+      if (trigger === 'update') {
+        return { ...token, submitStatus: session.submitStatus };
       }
-      if (token.submitStatus) {
-        // eslint-disable-next-line no-param-reassign
-        session.submitStatus = token.submitStatus;
-      }
-      return session;
-    },
-    async jwt({ token, account }) {
       if (account) {
         const {
           result: { accessToken },
@@ -43,6 +35,17 @@ export const authOptions: NextAuthOptions = {
         token.accessToken = accessToken;
       }
       return token;
+    },
+    async session({ session, token }) {
+      if (token.accessToken) {
+        // eslint-disable-next-line no-param-reassign
+        session.accessToken = token.accessToken;
+      }
+      if (token.submitStatus) {
+        // eslint-disable-next-line no-param-reassign
+        session.submitStatus = token.submitStatus;
+      }
+      return session;
     },
   },
 };
