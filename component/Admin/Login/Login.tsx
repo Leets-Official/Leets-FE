@@ -1,11 +1,18 @@
 import Nav from '@/component/Admin/Nav';
 import { useLogin } from '@/hooks';
-import { LOGIN_LAYOUT } from '@/constants';
+import { ADMIN, LOGIN_LAYOUT } from '@/constants';
+import { useAppSelector } from '@/store';
+import { useRouter } from 'next/navigation';
 import * as S from './Login.styled';
 
 const Login = () => {
   const { changeHandler, onSubmitHandler } = useLogin();
+  const { name } = useAppSelector((state) => state.admin);
+  const router = useRouter();
 
+  if (name) {
+    router.push(ADMIN.HOME);
+  }
   return (
     <S.ApplyListContainer>
       <S.ContentContainer>
