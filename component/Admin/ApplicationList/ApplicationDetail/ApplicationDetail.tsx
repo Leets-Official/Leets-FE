@@ -6,7 +6,6 @@ import * as api from '@/api';
 import axios from 'axios';
 import { ApplicationDetailType } from '@/types';
 import { APPLICATION_DETAIL_DEFAULT, ADMIN } from '@/constants';
-
 import Loading from '@/component/Common/Loading';
 import { useAppSelector } from '@/store';
 import { useRouter } from 'next/navigation';
