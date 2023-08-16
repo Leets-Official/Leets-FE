@@ -1,9 +1,10 @@
 import { signIn } from 'next-auth/react';
+import { USER } from '@/constants';
 import * as S from './LoginButton.styled';
 
 const LoginButton = () => {
   const handleGoogleLogin = () => {
-    signIn('google', { callbackUrl: '/apply' });
+    signIn('google', { callbackUrl: USER.APPLY });
   };
 
   return (

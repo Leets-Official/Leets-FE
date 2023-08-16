@@ -102,8 +102,29 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
 
+  gap: 20px;
   background: white;
   margin-top: 60px;
+`;
+
+export const SaveButton = styled.button<{ color: ThemeColor }>`
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-size: 16px;
+
+  width: 208px;
+  height: 64px;
+
+  border-radius: 40px;
+  border: none;
+
+  background: #e0e2e7;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ color }) => BACKGROUND_COLOR[color]};
+  }
 `;
 
 export const SubmitButton = styled.button<{ color: ThemeColor }>`
