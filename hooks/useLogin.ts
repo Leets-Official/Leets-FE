@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 import * as api from '@/api';

@@ -29,10 +29,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <html lang="ko">
       <body>
         <StyledProvider>
-          <ScrollToTop />
-          <NextAuthProvider>
-            <RTProvider>{children}</RTProvider>
-          </NextAuthProvider>
+          <RTProvider>
+            <ScrollToTop />
+            <NextAuthProvider>{children}</NextAuthProvider>
+          </RTProvider>
         </StyledProvider>
       </body>
     </html>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { ADMIN } from '@/constants';
 import * as S from './Nav.styled';

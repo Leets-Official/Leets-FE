@@ -1,3 +1,5 @@
+'use client';
+
 import FilterDropDown from '@/component/Admin/FilterDropDown';
 import {
   APPLICATION_STATUS_MAP,
@@ -49,7 +51,7 @@ const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDa
     <S.ApplicationStatusContainer>
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
-        <S.ApplicationStatus isPass={isPass}>{APPLICATION_STATUS_MAP[applicationStatus]}</S.ApplicationStatus>
+        <S.ApplicationStatus $isPass={isPass}>{APPLICATION_STATUS_MAP[applicationStatus]}</S.ApplicationStatus>
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown

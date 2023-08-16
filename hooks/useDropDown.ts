@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, useEffect, RefObject } from 'react';
 
 const useDropdown = (): [boolean, () => void, RefObject<HTMLDivElement>] => {

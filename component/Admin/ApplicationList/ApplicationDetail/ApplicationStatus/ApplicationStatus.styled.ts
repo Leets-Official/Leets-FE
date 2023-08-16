@@ -34,7 +34,7 @@ export const SubHeader = styled.div`
   color: #000;
 `;
 
-export const ApplicationStatus = styled.div<{ isPass: boolean }>`
+export const ApplicationStatus = styled.div<{ $isPass: boolean }>`
   font-size: 14px;
   font-weight: 600;
 
@@ -46,8 +46,8 @@ export const ApplicationStatus = styled.div<{ isPass: boolean }>`
   align-items: center;
 
   border-radius: 8px;
-  background: ${({ isPass }) => (isPass ? '#e9faf7' : '#feecee')};
-  color: ${({ isPass }) => (isPass ? '#1a9882' : '#eb3d4d')};
+  background: ${({ $isPass }) => ($isPass ? '#e9faf7' : '#feecee')};
+  color: ${({ $isPass }) => ($isPass ? '#1a9882' : '#eb3d4d')};
 `;
 
 export const DateContainer = styled.div`

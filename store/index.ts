@@ -1,3 +1,5 @@
+'use client';
+
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
