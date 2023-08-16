@@ -138,13 +138,20 @@ export const Status = styled.div`
   width: 12%;
 `;
 
+export const AapplicationComponentContainer = styled.section`
+  width: 100%;
+  height: 80%;
+
+  background: white;
+`;
+
 export const Application = styled.div`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.07px;
 
   width: 100%;
-  height: 8%;
+  height: 10%;
 
   display: flex;
   justify-content: space-between;
