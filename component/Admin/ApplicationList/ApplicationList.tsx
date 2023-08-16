@@ -6,10 +6,10 @@ import { ApplicationListType, KeyOf } from '@/types';
 import * as api from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/component/Admin/PositionFilter';
-import { ACCESS_TOKEN, POSITION_MAP } from '@/constants';
-import { LocalStorage } from '@/utils';
+import { ADMIN, POSITION_MAP } from '@/constants';
 import { useRouter } from 'next/navigation';
 import Loading from '@/component/Common/Loading';
+import { useAppSelector } from '@/store';
 import * as S from './ApplicationList.styled';
 import ListComponent from './ListComponent';
 
@@ -17,11 +17,11 @@ const ApplicationList = () => {
   const [applications, setApplications] = useState<ApplicationListType[]>([]);
   const [type, setType] = useState<KeyOf<typeof POSITION_MAP>>(POSITION_MAP.All);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const accessToken = LocalStorage.getItem(ACCESS_TOKEN);
+  const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
 
-  if (!accessToken) {
-    router.push('/admin');
+  if (!name) {
+    router.push(ADMIN.LOGIN);
   }
 
   useEffect(() => {
