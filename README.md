@@ -31,8 +31,6 @@
 - [React](https://beta.reactjs.org/)
 - [Emotion](https://emotion.sh/docs/introduction) (CSS-in-JS)
 - [Redux Toolkit](https://redux-toolkit.js.org/) (Managing State)
-- [Firebase](https://firebase.google.com/?hl=ko) (Server)
-- [Cloudflare](https://www.cloudflare.com/ko-kr/) (Deploy)
 
 <br>
 
