@@ -1,26 +1,10 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '@/firebase-config';
-import { login } from '@/store/userSlice';
-import { useAppDispatch } from '@/store';
+import { signIn } from 'next-auth/react';
+import { USER } from '@/constants';
 import * as S from './LoginButton.styled';
 
 const LoginButton = () => {
-  const dispatch = useAppDispatch();
-
   const handleGoogleLogin = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(({ user }) => {
-        dispatch(
-          login({
-            name: user.displayName as string,
-            email: user.email as string,
-          })
-        );
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+    signIn('google', { callbackUrl: USER.APPLY });
   };
 
   return (

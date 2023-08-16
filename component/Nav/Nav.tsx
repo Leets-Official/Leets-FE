@@ -1,26 +1,27 @@
-import { persistor, useAppSelector, useAppDispatch } from '@/store';
-import { logout } from '@/store/userSlice';
+'use client';
+
 import { ThemeColor } from '@/types';
+import { signOut, useSession } from 'next-auth/react';
 import * as S from './Nav.styled';
 
 const Nav = ({ color }: { color: ThemeColor }) => {
-  const { name } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  const { data: session } = useSession();
 
-  const purge = async () => {
-    await persistor.purge();
-    dispatch(logout());
+  const handleLogout = () => {
+    signOut({ callbackUrl: '/' });
   };
 
   return (
     <S.NavContainer>
       <S.Container>
         <S.LinkContainer href="/">Leets</S.LinkContainer>
-        <S.WelcomeContainer name={name}>
-          {name && (
+        <S.WelcomeContainer name={session?.user?.name as string}>
+          {session?.user?.name && (
             <>
-              <S.WelcomeStyle>{`${name}님 `}환영해요!</S.WelcomeStyle>
-              <S.LogoutButton type="button" onClick={purge} name={name} color={color} />
+              <S.WelcomeStyle>{`${session?.user?.name}님 `}환영해요!</S.WelcomeStyle>
+              <S.LogoutButton type="button" onClick={handleLogout} name={session?.user?.name} color={color}>
+                로그아웃
+              </S.LogoutButton>
             </>
           )}
         </S.WelcomeContainer>

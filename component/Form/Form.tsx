@@ -1,34 +1,108 @@
 'use client';
 
-import { APPLICATION_TEXT_DEFAULT, APPLICATION_INPUT_DEFAULT, POSITION_ENGLIST_MAP } from '@/constants';
+import {
+  APPLICATION_TEXT_DEFAULT,
+  APPLICATION_INPUT_DEFAULT,
+  POSITION_ENGLIST_MAP,
+  USER,
+  SUBMIT_STATUS,
+  APPLICATION,
+} from '@/constants';
 import { ApplicationInput, KeyOf, ThemeColor } from '@/types';
 import * as api from '@/api';
 import { useInputRef } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
-import { FormEvent, useState, SetStateAction } from 'react';
+import { FormEvent, useState, SetStateAction, useEffect } from 'react';
+import FilterDropDown from '@/component/Admin/FilterDropDown';
+import { useSession } from 'next-auth/react';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
-import FilterDropDown from '../Admin/FilterDropDown';
 
-const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
+const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
   const [position, setPosition] = useState<KeyOf<typeof POSITION_ENGLIST_MAP>>('DEV');
+  const session = useSession();
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { result } = await api.postApplication({ ...inputRef.current, ...applicationText, email, position });
+    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
+      Alert.error(APPLICATION.EXIST_APPLICATION);
+      return;
+    }
+
+    const { result } = await api.postApplication(
+      { ...inputRef.current, ...applicationText, email, position, submitStatus: SUBMIT_STATUS.SUBMIT },
+      token
+    );
     if (!axios.isAxiosError(result)) {
-      Alert.success('지원 완료되었습니다.');
+      Alert.success(APPLICATION.COMPLETE_SUBMIT);
+      await session.update({ submitStatus: SUBMIT_STATUS.SUBMIT });
+    }
+  };
+  const saveHandler = async (e: FormEvent) => {
+    e.preventDefault();
+
+    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
+      Alert.error(APPLICATION.EXIST_APPLICATION);
+      return;
+    }
+
+    const { result } = await api.patchApplication(
+      { ...inputRef.current, ...applicationText, position, submitStatus: SUBMIT_STATUS.SAVE },
+      token
+    );
+    if (!axios.isAxiosError(result)) {
+      Alert.success(APPLICATION.COMPLETE_SUBMIT);
+      await session.update({ submitStatus: SUBMIT_STATUS.SAVE });
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { result } = await api.getUserApplication(token);
+      if (!axios.isAxiosError(result)) {
+        const {
+          gpa,
+          major,
+          algorithm,
+          project,
+          career,
+          portfolio,
+          interviewDay,
+          interviewTime,
+          enhancement,
+          level,
+          pros,
+          goal,
+          completion,
+          user,
+        } = result;
+        inputRef.current = {
+          gpa,
+          major,
+          algorithm,
+          project,
+          career,
+          portfolio,
+          interviewDay,
+          interviewTime,
+          ...user,
+        };
+        setApplicationText({ enhancement, level, pros, goal, completion });
+      }
+    };
+    if (session.data?.submitStatus !== SUBMIT_STATUS.NONE) {
+      fetchData();
+    }
+  }, [session.data?.submitStatus]);
+
   return (
     <S.FormContainer>
-      <S.FormStyle onSubmit={submitHandler}>
+      <S.FormStyle>
         <S.FieldsetStyle>
           <S.HeadStyle>
             Join us!
@@ -44,24 +118,32 @@ const Form = ({ color, email }: { color: ThemeColor; email: string }) => {
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} changeHandler={changeHandler} />
-            <InputTextarea position={position} text={applicationText} setText={setApplicationText} />
+            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} />
+            <InputTextarea
+              position={position}
+              text={applicationText}
+              setText={setApplicationText}
+              application={applicationText}
+            />
             <S.PrivacyContainer>
               <S.PrivacyCheckBox type="checkbox" required />
               <S.Text>
-                <S.LinkConatiner href="/certificate" target="_blank">
+                <S.LinkConatiner href={USER.CERTIFICATE} target="_blank">
                   <u>개인정보 처리 방침</u>
                 </S.LinkConatiner>
                 에 동의합니다.
               </S.Text>
             </S.PrivacyContainer>
           </S.InputContainer>
+          <S.NoticeContainer>제출 시 변경하거나 수정할 수 없습니다.</S.NoticeContainer>
           <S.ButtonContainer>
-            <S.SubmitButton type="submit" color={color}>
+            <S.SaveButton type="button" color={color} onClick={saveHandler}>
+              임시저장
+            </S.SaveButton>
+            <S.SubmitButton type="button" color={color} onClick={submitHandler}>
               제출하기
             </S.SubmitButton>
           </S.ButtonContainer>
-          <S.NoticeContainer>여러 번 제출 시 최종 제출 자료만 인정됩니다.</S.NoticeContainer>
         </S.FieldsetStyle>
       </S.FormStyle>
     </S.FormContainer>

@@ -1,3 +1,5 @@
+'use client';
+
 import { KeyOf, ValueOf } from '@/types';
 import { useRef, ChangeEvent, MutableRefObject } from 'react';
 

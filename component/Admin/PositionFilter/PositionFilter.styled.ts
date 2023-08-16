@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 type EnableMenu = {
-  enable?: Boolean;
+  $enable?: Boolean;
 };
 
 export const FilterContainer = styled.section`
@@ -41,12 +41,12 @@ export const FilterBackground = styled.div<EnableMenu>`
   cursor: pointer;
 
   border-radius: 6px;
-  background: ${({ enable }) => (enable ? '#f5f4f5' : 'white')};
+  background: ${({ $enable }) => ($enable ? '#f5f4f5' : 'white')};
 `;
 
 export const FilterText = styled.div<EnableMenu>`
   font-size: 14px;
-  font-weight: ${({ enable }) => (enable ? 600 : 400)};
+  font-weight: ${({ $enable }) => ($enable ? 600 : 400)};
 
-  color: ${({ enable }) => (enable ? '#4a93ff' : '#667085')};
+  color: ${({ $enable }) => ($enable ? '#4a93ff' : '#667085')};
 `;

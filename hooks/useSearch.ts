@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, ChangeEvent, useMemo } from 'react';
 import { SearchList, ApplicationListType } from '@/types';
 import { SEARCH_TARGET, PAGINATION } from '@/constants';

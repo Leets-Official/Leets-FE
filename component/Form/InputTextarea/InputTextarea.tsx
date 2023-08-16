@@ -2,7 +2,7 @@ import { DEV_TEXTAREAS, DESIGN_TEXTAREAS } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import * as S from './InputTextarea.styled';
 
-const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
+const InputTextarea = ({ position, text, setText, application }: ApplicationTextareaProp) => {
   const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
   return (
     <>
@@ -15,7 +15,7 @@ const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => 
           <S.TextareaStyle
             color="blue"
             id={id}
-            value={text[id]}
+            value={application[id] || text[id]}
             placeholder={holderText}
             onChange={(e) => setText({ ...text, [id]: e.target.value })}
             required={required}

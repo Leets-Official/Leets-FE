@@ -1,4 +1,4 @@
-export const APPPLICATION_FILTER_LIST = {
+export const APPLICATION_FILTER_LIST = {
   gpa: '학점',
   interviewDate: '면접 일시',
   applicationStatus: '합격 여부',
@@ -36,11 +36,16 @@ export const APPLICATION_INPUT_DEFAULT = {
 export const APPLICATION_DETAIL_DEFAULT = {
   uid: '',
   id: 0,
-  updatedAt: '',
-  createdAt: '',
   interviewDate: '',
+  updatedAt: '',
+  user: {
+    uid: '',
+    sid: '',
+    name: '',
+    phone: '',
+    email: '',
+  },
   applicationStatus: 'PENDING',
-
   ...APPLICATION_INPUT_DEFAULT,
   ...APPLICATION_TEXT_DEFAULT,
 } as const;

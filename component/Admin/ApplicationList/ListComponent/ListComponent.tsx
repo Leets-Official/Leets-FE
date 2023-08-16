@@ -8,7 +8,7 @@ import {
   APPLICATION_STAUTS_LIST,
   INTERVIEW_STATUS_LIST,
   ORDER_LIST,
-  APPPLICATION_FILTER_LIST,
+  APPLICATION_FILTER_LIST,
   DROPDOWN_MAP,
   PAGINATION,
   SORT_TARGET,
@@ -26,7 +26,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
   const router = useRouter();
   const queryCreator = useQueryCreator();
   const { searchInput, onChangeHandler, renderList } = useSearch({ applications });
-  const [applicationCondition, setApplicationCondition] = useState(APPPLICATION_FILTER_LIST);
+  const [applicationCondition, setApplicationCondition] = useState(APPLICATION_FILTER_LIST);
   const filterConditions = Search.makeFilterConditionObj({
     filterValueList: [applicationCondition.applicationStatus, applicationCondition.interviewStatus],
   });
@@ -37,7 +37,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
   });
 
   const initHandler = () => {
-    setApplicationCondition(APPPLICATION_FILTER_LIST);
+    setApplicationCondition(APPLICATION_FILTER_LIST);
   };
 
   if (Object.entries(filterConditions).length && searchParams.get(PAGINATION.QUERY) !== '1') {
@@ -73,7 +73,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             otherSortInit={() => {
               setApplicationCondition({
                 ...applicationCondition,
-                interviewDate: APPPLICATION_FILTER_LIST.interviewDate,
+                interviewDate: APPLICATION_FILTER_LIST.interviewDate,
               });
             }}
           />
@@ -88,7 +88,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             otherSortInit={() => {
               setApplicationCondition({
                 ...applicationCondition,
-                gpa: APPPLICATION_FILTER_LIST.gpa,
+                gpa: APPLICATION_FILTER_LIST.gpa,
               });
             }}
           />
@@ -109,21 +109,23 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
         <S.InterviewStatus>면접 응시 여부</S.InterviewStatus>
         <S.Status>합격 여부</S.Status>
       </S.ApplicationColumn>
-      {currentItems.map(({ uid, name, gpa, grade, career, interviewDate, interviewStatus, applicationStatus }) => (
-        <S.Application key={uid} onClick={() => router.push(`/admin/${uid}`)}>
-          <S.Name>{name}</S.Name>
-          <S.GPA>{gpa}</S.GPA>
-          <S.Grade>{grade}</S.Grade>
-          <S.Position>{career}</S.Position>
-          <S.InterviewDate>{interviewDate}</S.InterviewDate>
-          <S.InterviewStatus>
-            {interviewStatus === 'CHECK' ? <S.CheckInterview /> : <S.UnCheckInterview />}
-          </S.InterviewStatus>
-          <S.Status>
-            <Status status={applicationStatus} />
-          </S.Status>
-        </S.Application>
-      ))}
+      <S.AapplicationComponentContainer>
+        {currentItems.map(({ id, name, gpa, grade, career, interviewDate, interviewStatus, applicationStatus }) => (
+          <S.Application key={id} onClick={() => router.push(`/admin/application/${id}`)}>
+            <S.Name>{name}</S.Name>
+            <S.GPA>{gpa}</S.GPA>
+            <S.Grade>{grade}</S.Grade>
+            <S.Position>{career}</S.Position>
+            <S.InterviewDate>{interviewDate || '-'}</S.InterviewDate>
+            <S.InterviewStatus>
+              {interviewStatus === 'CHECK' ? <S.CheckInterview /> : <S.UnCheckInterview />}
+            </S.InterviewStatus>
+            <S.Status>
+              <Status status={applicationStatus} />
+            </S.Status>
+          </S.Application>
+        ))}
+      </S.AapplicationComponentContainer>
       <S.PaginationContainer>
         <Pagination
           currentPage={currentPage}

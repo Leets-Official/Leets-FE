@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLIST_MAP } from '@/constants';
+import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLIST_MAP, SUBMIT_STATUS } from '@/constants';
 import { Applicant } from './User';
-import { KeyOf } from '../Helper';
+import { KeyOf, ValueOf } from '../Helper';
 
 export type ApplicationInput = {
   name: string;
@@ -32,49 +32,55 @@ export type Input = {
   value: string;
 };
 
-export type IdRequest = { id: string };
+export type SubmitStatus = ValueOf<typeof SUBMIT_STATUS>;
 
-export type ApplicationStatus = keyof typeof APPLICATION_STATUS_MAP;
+export type IdRequest = { id: number };
+
+export type ApplicationStatusType = keyof typeof APPLICATION_STATUS_MAP;
 
 export type GetApplicationRequest = {
   type: KeyOf<typeof POSITION_MAP>;
 };
 
 export type GetApplicationResponse = {
+  id: number;
   name: string;
-  gpa: 0;
-  grade: 0;
+  gpa: number;
+  grade: number;
   position: string;
   interview: string;
   hasInterview: string;
-  applicationStatus: ApplicationStatus;
+  applicationStatus: ApplicationStatusType;
 };
 
 export type ApplicationListType = GetApplicationResponse;
 
-export type PatchApplication = Application;
-
 export type PositionType = keyof typeof POSITION_ENGLIST_MAP;
 
-export type PostApplication = Application & {
-  email?: string;
+export type PatchApplication = Application & {
   position: PositionType;
+  submitStatus: SubmitStatus;
 };
 
-export type GetApplicationDetaiResponse = Applicant &
-  Application & {
-    id: number;
-    updatedAt: string;
-    createdAt: string;
-    interviewDate: string;
-    applicationStatus: ApplicationStatus;
+export type PostApplication = Application &
+  PatchApplication & {
+    email?: string;
+    submitStatus: SubmitStatus;
   };
+
+export type GetApplicationDetaiResponse = Application & {
+  user: Applicant;
+  id: number;
+  updatedAt: string;
+  interviewDate: string;
+  applicationStatus: ApplicationStatusType;
+};
 
 export type ApplicationDetailType = GetApplicationDetaiResponse;
 
 export type PatchApplicationDetailRequest = {
   id: number;
-  applicationStatus: ApplicationStatus;
+  applicationStatus: ApplicationStatusType;
   schedule: string;
 };
 
@@ -85,10 +91,16 @@ export type GetUserApplicationResponse = GetApplicationDetaiResponse;
 export type ApplicationInputProp = {
   position: PositionType;
   changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: any) => void;
+  application: ApplicationInput;
 };
 
 export type ApplicationTextareaProp = {
   position: PositionType;
   text: ApplicationTextarea;
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
+  application: ApplicationTextarea;
+};
+
+export type ApplicationPassStatus = {
+  $isPass: boolean;
 };

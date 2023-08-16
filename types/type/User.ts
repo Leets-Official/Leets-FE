@@ -1,9 +1,10 @@
-export type User = {
+export type Admin = {
   name: string;
-  email: string;
 };
 
-export type Applicant = User & {
+export type Applicant = {
+  name: string;
+  email: string;
   uid: string;
   sid: string;
   phone: string;

@@ -46,24 +46,26 @@ export default function FilterDropDown({
   const width = customWidth ?? (newSelected.length > 2 ? 20 : 14);
 
   return (
-    <S.DropdownWrapper ref={dropdownRef} width={width}>
-      <S.DropdownContainer onClick={toggleDropdown}>
-        <S.TextContainer>{newSelected}</S.TextContainer>
-        <S.ImageContainer isOpen={isOpen}>
-          <DropDownArrow />
-        </S.ImageContainer>
-      </S.DropdownContainer>
-      {isOpen && (
-        <S.DropdownDiv>
-          <S.Ul>
-            {list.map((type) => (
-              <S.List key={type} onClick={() => clickHandler(type)}>
-                {DROPDOWN_MAP[type as KeyOf<typeof DROPDOWN_MAP>] || type}
-              </S.List>
-            ))}
-          </S.Ul>
-        </S.DropdownDiv>
-      )}
-    </S.DropdownWrapper>
+    <>
+      <S.DropdownWrapper ref={dropdownRef} width={width}>
+        <S.DropdownContainer onClick={toggleDropdown}>
+          <S.TextContainer>{newSelected}</S.TextContainer>
+          <S.ImageContainer $isOpen={isOpen}>
+            <DropDownArrow />
+          </S.ImageContainer>
+        </S.DropdownContainer>
+        {isOpen && (
+          <S.DropdownDiv>
+            <S.Ul>
+              {list.map((type) => (
+                <S.List key={type} onClick={() => clickHandler(type)}>
+                  {DROPDOWN_MAP[type as KeyOf<typeof DROPDOWN_MAP>] || type}
+                </S.List>
+              ))}
+            </S.Ul>
+          </S.DropdownDiv>
+        )}
+      </S.DropdownWrapper>
+    </>
   );
 }

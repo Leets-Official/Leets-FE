@@ -36,10 +36,6 @@ export const Header = styled.header`
   margin-top: 15px;
 `;
 
-export const AdminLogoContainer = styled(AdminLogo)`
-  margin-right: 10px;
-`;
-
 export const Title = styled.section`
   font-size: 24px;
   font-style: normal;

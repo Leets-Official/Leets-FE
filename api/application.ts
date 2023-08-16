@@ -21,25 +21,34 @@ export const getApplicationList = ({
     });
   }
   return http.get({
-    url: `application?position=${type}`,
+    url: `/application?position=${type.toLowerCase()}`,
   });
 };
 
-export const postApplication = (application: PostApplication): Promise<BaseResponse<PostApplication>> =>
-  http.post({
-    url: '/application',
-    data: application,
-  });
+export const postApplication = (application: PostApplication, token: string): Promise<BaseResponse<PostApplication>> =>
+  http.post(
+    {
+      url: '/application',
+      data: application,
+    },
+    token
+  );
 
-export const patchApplication = (application: PatchApplication): Promise<BaseResponse<PatchApplication>> =>
-  http.patch({
-    url: `/application`,
-    data: application,
-  });
+export const patchApplication = (
+  application: PatchApplication,
+  token: string
+): Promise<BaseResponse<PatchApplication>> =>
+  http.patch(
+    {
+      url: `/application`,
+      data: application,
+    },
+    token
+  );
 
-export const getApplicationDetail = (id: IdRequest): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
+export const getApplicationDetail = ({ id }: IdRequest): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
   http.get({
-    url: `/application${id}`,
+    url: `/application/${id}`,
   });
 
 export const patchApplicationDetail = ({
@@ -48,14 +57,17 @@ export const patchApplicationDetail = ({
   schedule,
 }: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
   http.patch({
-    url: `/application${id}`,
+    url: `/application/${id}`,
     data: {
       applicationStatus,
       schedule,
     },
   });
 
-export const getUserApplication = (): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get({
-    url: '/application/me',
-  });
+export const getUserApplication = (token: string): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
+  http.get(
+    {
+      url: '/application/me',
+    },
+    token
+  );

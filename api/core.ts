@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import { ACCESS_TOKEN, HTTP_METHODS, UNEXPECTED_ERROR } from '@/constants';
-import { LocalStorage, Alert } from '@/utils';
+import { Alert, LocalStorage } from '@/utils';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,26 +8,24 @@ const axiosInstance: AxiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-const handleRequest = (config: AxiosRequestConfig) => {
-  const TOKEN = LocalStorage.getItem(ACCESS_TOKEN);
-  return TOKEN
-    ? {
+const handleRequest = (config: AxiosRequestConfig, token?: string) => {
+  const localToken = LocalStorage.getItem(ACCESS_TOKEN);
+  return !token && !localToken
+    ? config
+    : {
         ...config,
         headers: {
           ...config.headers,
-          Authorization: `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${localToken ?? token}`,
         },
-      }
-    : config;
+      };
 };
 
-const handleResponse = <T>(response: AxiosResponse<T>) => {
-  return response.data;
-};
+const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
 
 const handleError = (error: unknown) => {
   if (axios.isAxiosError(error)) {
-    const { message = null } = error.response?.data.result || {};
+    const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
     Alert.error(message);
     return { result: error };
   }
@@ -37,8 +35,8 @@ const handleError = (error: unknown) => {
 
 const createApiMethod =
   (_axiosInstance: AxiosInstance, methodType: Method) =>
-  (config: AxiosRequestConfig): Promise<any> =>
-    _axiosInstance({ ...handleRequest(config), method: methodType })
+  (config: AxiosRequestConfig, token?: string): Promise<any> =>
+    _axiosInstance({ ...handleRequest(config, token), method: methodType })
       .then(handleResponse)
       .catch(handleError);
 

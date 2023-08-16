@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
-    "@firebase/firestore": "^3.8.3",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,8 +15,8 @@
     "dayjs": "^1.11.9",
     "eslint-import-resolver-typescript": "^3.5.5",
     "facepaint": "^1.2.1",
-    "firebase": "^9.17.1",
     "next": "^13.4.12",
+    "next-auth": "^4.23.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",

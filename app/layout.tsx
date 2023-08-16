@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/component/Common/ScrollTop';
+import { NextAuthProvider } from './lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s · Leets' },
@@ -27,10 +28,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
       <body>
-        <ScrollToTop />
-        <RTProvider>
-          <StyledProvider>{children}</StyledProvider>
-        </RTProvider>
+        <StyledProvider>
+          <RTProvider>
+            <ScrollToTop />
+            <NextAuthProvider>{children}</NextAuthProvider>
+          </RTProvider>
+        </StyledProvider>
       </body>
     </html>
   );

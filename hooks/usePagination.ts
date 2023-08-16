@@ -1,16 +1,19 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { PAGINATION } from '@/constants';
+import { ApplicationStatusType } from '@/types';
 
 type ApplicationList = {
-  uid: string;
+  id: number;
   name: string;
   gpa: string;
   grade: string;
   career: string;
   interviewDate: string;
   interviewStatus: string;
-  applicationStatus: string;
+  applicationStatus: ApplicationStatusType;
 };
 
 type PaginationResult = {
