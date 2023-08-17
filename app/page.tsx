@@ -10,10 +10,13 @@ import Pointer from '@/component/Common/Pointer';
 import Contact from '@/component/Contact';
 import Timeline from '@/component/Promotions/Timeline';
 import Footer from '@/component/Footer';
+import MobileContainer from '@/component/Mobile/MobileContanier';
+import { useDeviceChecker } from '@/hooks';
 
 const color = 'blue';
 
 const Index = () => {
+  const isDesktop = useDeviceChecker();
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -32,6 +35,9 @@ const Index = () => {
     updatePosition(e.clientX, e.clientY);
   };
 
+  if (!isDesktop) {
+    return <MobileContainer color={color} />;
+  }
   return (
     <PointerWrapper onMouseMove={handleMouseMove}>
       <Header />

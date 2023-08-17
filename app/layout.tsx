@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from 'react';
+import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/component/Common/ScrollTop';
