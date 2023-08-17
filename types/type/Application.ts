@@ -5,7 +5,7 @@ import { KeyOf, ValueOf } from '../Helper';
 
 export type ApplicationInput = {
   name: string;
-  sid: string;
+  grade: number;
   gpa: string;
   major: string;
   algorithm: string;
@@ -48,8 +48,9 @@ export type GetApplicationResponse = {
   gpa: number;
   grade: number;
   position: string;
-  interview: string;
-  hasInterview: string;
+  career: string;
+  fixedInterviewDate: string;
+  hasInterview: boolean;
   applicationStatus: ApplicationStatusType;
 };
 
@@ -71,6 +72,7 @@ export type PostApplication = Application &
 export type GetApplicationDetaiResponse = Application & {
   user: Applicant;
   id: number;
+  grade: number;
   updatedAt: string;
   interviewDate: string;
   applicationStatus: ApplicationStatusType;

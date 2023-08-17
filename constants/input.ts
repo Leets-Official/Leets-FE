@@ -1,6 +1,6 @@
 export const MAX_LENGTH = {
   NAME: 4,
-  SID: 2,
+  GRADE: 1,
   MAJOR: 10,
   GPA: 4,
   CAREER: 10,
@@ -21,11 +21,11 @@ export const MAX_LENGTH = {
 export const DEV_INPUTS = [
   { id: 'name', title: '이름', holderText: '이름을 입력하세요.', required: true, maxLength: MAX_LENGTH.NAME },
   {
-    id: 'sid',
-    title: '학번',
-    holderText: '학번을 입력하세요. (ex 19, 20, 21)',
+    id: 'grade',
+    title: '학년',
+    holderText: '학년을 입력하세요. (ex 1, 2, 3, 4)',
     required: true,
-    maxLength: MAX_LENGTH.SID,
+    maxLength: MAX_LENGTH.GRADE,
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
@@ -89,11 +89,11 @@ export const DEV_INPUTS = [
 export const DESING_INPUTS = [
   { id: 'name', title: '이름', holderText: '이름을 입력하세요.', required: true, maxLength: MAX_LENGTH.NAME },
   {
-    id: 'sid',
-    title: '학번',
-    holderText: '학번을 입력하세요. (ex 19, 20, 21)',
+    id: 'grade',
+    title: '학년',
+    holderText: '학년을 입력하세요. (ex 1, 2, 3, 4)',
     required: true,
-    maxLength: MAX_LENGTH.SID,
+    maxLength: MAX_LENGTH.GRADE,
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {

@@ -6,7 +6,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
   const {
     id,
     name,
-    sid,
+    grade,
     major,
     gpa,
     career,
@@ -35,8 +35,8 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
               <S.Value>{name}</S.Value>
             </S.Info>
             <S.Info>
-              <S.Key>학번</S.Key>
-              <S.Value>{sid}</S.Value>
+              <S.Key>학년</S.Key>
+              <S.Value>{grade}</S.Value>
             </S.Info>
             <S.Info>
               <S.Key>전공</S.Key>

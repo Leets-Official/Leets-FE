@@ -110,7 +110,7 @@ export const InterviewStatus = styled.div`
   width: 12%;
 `;
 
-export const CheckInterview = styled.div`
+export const CheckInterview = styled.div<{ hasInterview: boolean }>`
   width: 25px;
   height: 25px;
 
@@ -119,19 +119,7 @@ export const CheckInterview = styled.div`
   align-items: center;
 
   border-radius: 30px;
-  background: #4a93ff;
-`;
-
-export const UnCheckInterview = styled.div`
-  width: 25px;
-  height: 25px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 30px;
-  background: #f3758b;
+  background: ${({ hasInterview }) => (hasInterview ? '#4a93ff' : '#f3758b')};
 `;
 
 export const Status = styled.div`

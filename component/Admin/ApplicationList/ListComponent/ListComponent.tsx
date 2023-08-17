@@ -28,7 +28,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
   const { searchInput, onChangeHandler, renderList } = useSearch({ applications });
   const [applicationCondition, setApplicationCondition] = useState(APPLICATION_FILTER_LIST);
   const filterConditions = Search.makeFilterConditionObj({
-    filterValueList: [applicationCondition.applicationStatus, applicationCondition.interviewStatus],
+    filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],
   });
   const [sortBy, setSortBy] = useState<SortByType>({ target: null, method: SORT_METHOD.ASC });
   const filteredList = Search.filter(renderList, filterConditions, sortBy);
@@ -59,9 +59,9 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
           />
           <FilterDropDown
             list={INTERVIEW_STATUS_LIST}
-            selected={applicationCondition.interviewStatus as KeyOf<typeof DROPDOWN_MAP>}
+            selected={applicationCondition.hasInterview as KeyOf<typeof DROPDOWN_MAP>}
             setSelected={(selected) =>
-              setApplicationCondition((prev) => ({ ...prev, interviewStatus: selected as string }))
+              setApplicationCondition((prev) => ({ ...prev, hasInterview: selected as string }))
             }
           />
           <FilterDropDown
@@ -73,15 +73,15 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             otherSortInit={() => {
               setApplicationCondition({
                 ...applicationCondition,
-                interviewDate: APPLICATION_FILTER_LIST.interviewDate,
+                fixedInterviewDate: APPLICATION_FILTER_LIST.fixedInterviewDate,
               });
             }}
           />
           <FilterDropDown
             list={ORDER_LIST}
-            selected={applicationCondition.interviewDate as KeyOf<typeof DROPDOWN_MAP>}
+            selected={applicationCondition.fixedInterviewDate as KeyOf<typeof DROPDOWN_MAP>}
             setSelected={(selected) =>
-              setApplicationCondition((prev) => ({ ...prev, interviewDate: selected as string }))
+              setApplicationCondition((prev) => ({ ...prev, fixedInterviewDate: selected as string }))
             }
             sortTarget={SORT_TARGET.INTERVIEW_DATE}
             setSortBy={setSortBy}
@@ -110,15 +110,15 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
         <S.Status>합격 여부</S.Status>
       </S.ApplicationColumn>
       <S.AapplicationComponentContainer>
-        {currentItems.map(({ id, name, gpa, grade, career, interviewDate, interviewStatus, applicationStatus }) => (
+        {currentItems.map(({ id, name, gpa, grade, career, fixedInterviewDate, hasInterview, applicationStatus }) => (
           <S.Application key={id} onClick={() => router.push(`/admin/application/${id}`)}>
             <S.Name>{name}</S.Name>
             <S.GPA>{gpa}</S.GPA>
             <S.Grade>{grade}</S.Grade>
             <S.Position>{career}</S.Position>
-            <S.InterviewDate>{interviewDate || '-'}</S.InterviewDate>
+            <S.InterviewDate>{fixedInterviewDate || '-'}</S.InterviewDate>
             <S.InterviewStatus>
-              {interviewStatus === 'CHECK' ? <S.CheckInterview /> : <S.UnCheckInterview />}
+              <S.CheckInterview hasInterview={hasInterview} />
             </S.InterviewStatus>
             <S.Status>
               <Status status={applicationStatus} />

@@ -84,8 +84,10 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
           goal,
           completion,
           user,
+          grade,
         } = result;
         inputRef.current = {
+          grade,
           gpa,
           major,
           algorithm,

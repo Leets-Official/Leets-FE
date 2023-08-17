@@ -1,8 +1,8 @@
 export const APPLICATION_FILTER_LIST = {
   gpa: '학점',
-  interviewDate: '면접 일시',
+  fixedInterviewDate: '면접 일시',
   applicationStatus: '합격 여부',
-  interviewStatus: '면접 응시 여부',
+  hasInterview: '면접 응시 여부',
 };
 
 export const DETAIL_APPLICATION_DATA = {
@@ -19,7 +19,7 @@ export const APPLICATION_TEXT_DEFAULT = {
 };
 
 export const APPLICATION_INPUT_DEFAULT = {
-  sid: '',
+  grade: 0,
   name: '',
   email: '',
   phone: '',
@@ -40,7 +40,6 @@ export const APPLICATION_DETAIL_DEFAULT = {
   updatedAt: '',
   user: {
     uid: '',
-    sid: '',
     name: '',
     phone: '',
     email: '',

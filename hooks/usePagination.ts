@@ -3,26 +3,15 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { PAGINATION } from '@/constants';
-import { ApplicationStatusType } from '@/types';
-
-type ApplicationList = {
-  id: number;
-  name: string;
-  gpa: string;
-  grade: string;
-  career: string;
-  interviewDate: string;
-  interviewStatus: string;
-  applicationStatus: ApplicationStatusType;
-};
+import { ApplicationListType } from '@/types';
 
 type PaginationResult = {
   currentPage: number;
-  currentItems: ApplicationList[];
+  currentItems: Omit<ApplicationListType, 'position'>[];
   handlePageChange: (pageNumber: number) => void;
 };
 
-const usePagination = ({ items }: { items: ApplicationList[] }): PaginationResult => {
+const usePagination = ({ items }: { items: ApplicationListType[] }): PaginationResult => {
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get(PAGINATION.QUERY);
   const [currentPage, setCurrentPage] = useState<number>(1);
