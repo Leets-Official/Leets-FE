@@ -90,7 +90,7 @@ export type GetUserApplicationResponse = GetApplicationDetaiResponse;
 
 export type ApplicationInputProp = {
   position: PositionType;
-  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: any) => void;
+  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: string) => void;
   application: ApplicationInput;
 };
 
