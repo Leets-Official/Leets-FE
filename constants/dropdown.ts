@@ -1,12 +1,10 @@
-export const DEFAULT_VALUE = {
+export const FILTER_DEFAULT_VALUE = {
   APPLICATION_STATUS: '합격 여부',
   INTERVIEW_STATUS: '면접 응시 여부',
 } as const;
 
 export const ORDER_LIST = ['ASC', 'DESC'] as const;
-
 export const APPLICATION_STAUTS_LIST = ['PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'] as const;
-
 export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK'] as const;
 
 export const APPLICATION_STATUS_MAP = {

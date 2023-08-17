@@ -11,3 +11,4 @@ export * from './net';
 export * from './message';
 export * from './login';
 export * from './common';
+export * from './promotion';
