@@ -1,27 +1,24 @@
 import { mobileMQ } from '@/constants';
-import { css } from '@emotion/react';
+import styled from 'styled-components';
 
-export const headContainer = css(
-  mobileMQ({
+export const HeadContainer = styled.header`
+  ${mobileMQ({
+    width: '100%',
+    height: [100, 420, 380, 455, 510],
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
 
-    width: '100%',
-    height: [100, 420, 380, 455, 510],
-
     marginBottom: [50, 100, 50, 150],
-  })
-);
+  })}
+`;
 
-export const titleStyle = css`
+export const TitleStyle = styled.div`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 10vw;
-
-  width: content;
-  height: content;
+  letter-spacing: -0.03em;
 
   color: white;
-  letter-spacing: -0.03em;
 `;

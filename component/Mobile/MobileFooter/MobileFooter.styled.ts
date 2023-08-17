@@ -1,28 +1,28 @@
+import styled from 'styled-components';
 import { mobileMQ } from '@/constants';
-import { css } from '@emotion/react';
 
-export const sectionContainer = css`
-  display: flex;
-  justify-content: center;
-
+export const FooterContainer = styled.footer`
   width: 100%;
   height: 100%;
 
-  margin-bottom: 72px;
+  display: flex;
+  justify-content: center;
+
+  padding-bottom: 72px;
 `;
 
-export const footerContainer = css`
+export const ContentContainer = styled.div`
   margin-left: 16px;
   margin-right: 16px;
 `;
 
-export const textStyle = css(
-  mobileMQ({
+export const TextStyle = styled.p`
+  ${mobileMQ({
     fontFamily: 'Pretendard',
     fontWeight: '500',
     fontSize: [13, 13, 14, 14, 16],
     lineHeight: '100%',
 
     color: '#666666',
-  })
-);
+  })}
+`;

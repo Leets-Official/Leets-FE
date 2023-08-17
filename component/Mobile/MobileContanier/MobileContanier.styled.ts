@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
+import { styled } from 'styled-components';
 
-export default css`
+export const MobileMainContainer = styled.main`
   width: 100%;
   height: auto;
 `;
