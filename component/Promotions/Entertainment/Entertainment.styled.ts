@@ -20,8 +20,8 @@ export const GridContainer = styled.div`
   })}
 `;
 
-export const Balloon = styled.div<{ index: number }>`
-  ${({ index }) =>
+export const Balloon = styled.div<{ $index: number }>`
+  ${({ $index }) =>
     MQ({
       width: '100%',
       height: [86.5, 86.6, 124.6, 152.0],
@@ -33,8 +33,8 @@ export const Balloon = styled.div<{ index: number }>`
       '&:after': {
         content: '""',
         position: 'absolute',
-        marginLeft: index % 2 ? '-45%' : '15.8%',
-        transform: `rotate(${index % 2 ? '-22deg' : '22deg'})`,
+        marginLeft: $index % 2 ? '-45%' : '15.8%',
+        transform: `rotate(${$index % 2 ? '-22deg' : '22deg'})`,
         bottom: [-4.9, -4.9, -7.1, -8.6],
 
         width: '0px',

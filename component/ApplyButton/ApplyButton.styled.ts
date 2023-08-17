@@ -5,13 +5,13 @@ import { ThemeColor } from '@/types';
 
 export const Container = styled.div`
   ${MQ({
+    width: '100%',
+    height: [193.4, 193.6, 278.6, 340.0],
+
     display: 'flex',
     justifyContent: 'center',
 
     background: 'black',
-
-    width: '100%',
-    height: [193.4, 193.6, 278.6, 340.0],
     marginTop: [18.2, 18.2, 26.2, 32.0],
   })}
 `;
@@ -37,7 +37,7 @@ export const ApplyButton = styled(Link)`
     '&:hover': {
       color: ({ color }: { color: ThemeColor }) => (color === 'blue' ? 'black' : 'white'),
     },
+    cursor: 'pointer',
+    textDecoration: 'none',
   })}
-  cursor: pointer;
-  text-decoration: none;
 `;

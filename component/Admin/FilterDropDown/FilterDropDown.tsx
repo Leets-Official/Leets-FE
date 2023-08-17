@@ -16,7 +16,7 @@ type FilterDropdownProps = {
   customWidth?: number;
 };
 
-export default function FilterDropDown({
+const FilterDropDown = ({
   list,
   selected,
   setSelected,
@@ -25,7 +25,7 @@ export default function FilterDropDown({
   otherSortInit,
   setToggle,
   customWidth,
-}: FilterDropdownProps) {
+}: FilterDropdownProps) => {
   const [isOpen, toggleDropdown, dropdownRef] = useDropdown();
 
   const clickHandler = (type: string) => {
@@ -68,4 +68,5 @@ export default function FilterDropDown({
       </S.DropdownWrapper>
     </>
   );
-}
+};
+export default FilterDropDown;

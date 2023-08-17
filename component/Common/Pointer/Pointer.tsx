@@ -1,7 +1,14 @@
 import { useDeviceChecker } from '@/hooks';
 import './Pointer.css';
+import { ThemeColor } from '@/types';
 
-const Pointer = ({ position, size, color }: any) => {
+type PointerProp = {
+  position: { x: number; y: number };
+  size: number;
+  color: ThemeColor;
+};
+
+const Pointer = ({ position, size, color }: PointerProp) => {
   const isDesktop = useDeviceChecker();
 
   if (!isDesktop) {
