@@ -15,14 +15,14 @@ import ListComponent from './ListComponent';
 
 const ApplicationList = () => {
   const [applications, setApplications] = useState<ApplicationListType[]>([]);
-  const [type, setType] = useState<KeyOf<typeof POSITION_MAP>>(POSITION_MAP.All);
+  const [position, setPosition] = useState<KeyOf<typeof POSITION_MAP>>(POSITION_MAP.All);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await api.getApplicationList({ type });
+      const { result } = await api.getApplicationList({ position });
       if (!axios.isAxiosError(result)) {
         setApplications(result);
       }
@@ -32,7 +32,7 @@ const ApplicationList = () => {
       router.replace(ADMIN.LOGIN);
     }
     fetchData();
-  }, [type]);
+  }, [position]);
 
   if (isLoading) {
     return <Loading />;
@@ -41,7 +41,7 @@ const ApplicationList = () => {
     <S.ApplicationListContainer>
       <S.ContentContainer>
         <Nav />
-        <PositionFilter clickHandler={setType} type={type} />
+        <PositionFilter clickHandler={setPosition} type={position} />
         <S.Title>지원서 내역</S.Title>
         <ListComponent applications={applications} />
       </S.ContentContainer>
