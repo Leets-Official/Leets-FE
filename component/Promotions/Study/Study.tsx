@@ -1,25 +1,22 @@
+import { NUMBER } from '@/constants';
 import * as S from './Study.styled';
 
-const Study = ({ benefits }: { benefits: any[] }) => {
-  const DIVIDER = 3;
-  const ONE_INDEX = 1;
-  const ZERO = 0;
-
+const Study = ({ benefits }: { benefits: string[] }) => {
   return (
     <S.ContentContainer>
       <S.GridContainer>
-        {benefits.slice(ZERO, DIVIDER).map((benefit, index) => (
+        {benefits.slice(NUMBER.ZERO, NUMBER.DIVIDER).map((benefit, index) => (
           <S.BenefitContainer key={benefit}>
-            <S.NumberStyle>{`${ZERO}${index + ONE_INDEX}`}</S.NumberStyle>
+            <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.ONE_INDEX}`}</S.NumberStyle>
             <S.TextStyle>{benefit}</S.TextStyle>
           </S.BenefitContainer>
         ))}
       </S.GridContainer>
       <S.FlexContainer>
-        {benefits.slice(DIVIDER).map((benefit, index) => (
+        {benefits.slice(NUMBER.DIVIDER).map((benefit, index) => (
           <S.FlexBlockStyle key={benefit}>
             <S.BenefitContainer>
-              <S.NumberStyle>{`${ZERO}${index + DIVIDER + ONE_INDEX}`}</S.NumberStyle>
+              <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.DIVIDER + NUMBER.ONE_INDEX}`}</S.NumberStyle>
               <S.TextStyle>{benefit}</S.TextStyle>
             </S.BenefitContainer>
           </S.FlexBlockStyle>

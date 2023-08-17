@@ -1,12 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import { sectionContainer, footerContainer, textStyle } from './MobileFooter.styled';
+import * as S from './MobileFooter.styled';
 
-export default function MobileFooter() {
-  return (
-    <footer css={sectionContainer}>
-      <div css={footerContainer}>
-        <div css={textStyle}>Copyright 2023. Collection50 all right reserved.</div>
-      </div>
-    </footer>
-  );
-}
+const MobileFooter = () => (
+  <S.FooterContainer>
+    <S.ContentContainer>
+      <S.TextStyle>Copyright 2023. Collection50 all right reserved.</S.TextStyle>
+    </S.ContentContainer>
+  </S.FooterContainer>
+);
+
+export default MobileFooter;

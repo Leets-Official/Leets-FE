@@ -1,12 +1,12 @@
-export const DEFAULT_VALUE = {
+import { POSITION_ENGLISH_MAP } from './search';
+
+export const FILTER_DEFAULT_VALUE = {
   APPLICATION_STATUS: '합격 여부',
   INTERVIEW_STATUS: '면접 응시 여부',
 } as const;
 
 export const ORDER_LIST = ['ASC', 'DESC'] as const;
-
 export const APPLICATION_STAUTS_LIST = ['PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'] as const;
-
 export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK'] as const;
 
 export const APPLICATION_STATUS_MAP = {
@@ -27,14 +27,9 @@ export const ORDER_MAP = {
   DESC: '내림차순',
 } as const;
 
-export const POSITION_ENGLIST_MAP = {
-  DEV: '개발',
-  DESIGN: '디자인',
-} as const;
-
 export const DROPDOWN_MAP = {
   ...APPLICATION_STATUS_MAP,
   ...INTERVIEW_MAP,
   ...ORDER_MAP,
-  ...POSITION_ENGLIST_MAP,
+  ...POSITION_ENGLISH_MAP,
 } as const;

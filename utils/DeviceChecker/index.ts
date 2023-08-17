@@ -1,5 +1,3 @@
-'use client';
-
 export class DeviceChecker {
   static isTablet() {
     const { userAgent, maxTouchPoints } = navigator;

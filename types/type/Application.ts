@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLIST_MAP, SUBMIT_STATUS } from '@/constants';
+import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLISH_MAP, SUBMIT_STATUS } from '@/constants';
 import { Applicant } from './User';
 import { KeyOf, ValueOf } from '../Helper';
 
@@ -39,7 +39,7 @@ export type IdRequest = { id: number };
 export type ApplicationStatusType = keyof typeof APPLICATION_STATUS_MAP;
 
 export type GetApplicationRequest = {
-  type: KeyOf<typeof POSITION_MAP>;
+  position: KeyOf<typeof POSITION_MAP>;
 };
 
 export type GetApplicationResponse = {
@@ -55,7 +55,7 @@ export type GetApplicationResponse = {
 
 export type ApplicationListType = GetApplicationResponse;
 
-export type PositionType = keyof typeof POSITION_ENGLIST_MAP;
+export type PositionType = keyof typeof POSITION_ENGLISH_MAP;
 
 export type PatchApplication = Application & {
   position: PositionType;
@@ -90,7 +90,7 @@ export type GetUserApplicationResponse = GetApplicationDetaiResponse;
 
 export type ApplicationInputProp = {
   position: PositionType;
-  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: any) => void;
+  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: keyof ApplicationInput) => void;
   application: ApplicationInput;
 };
 
@@ -103,4 +103,15 @@ export type ApplicationTextareaProp = {
 
 export type ApplicationPassStatus = {
   $isPass: boolean;
+};
+
+export type ApplicationData = ApplicationInput & {
+  enhancement: string;
+  level: string;
+  pros: string;
+  goal: string;
+  completion: string;
+  email: string;
+  position: PositionType;
+  submitStatus: SubmitStatus;
 };

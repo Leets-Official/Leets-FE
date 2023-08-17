@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
+import styled from 'styled-components';
 
-export const sectionContaier = css`
+export const SectionContainer = styled.section`
   width: 100%;
 
   margin-top: 120px;
 `;
 
-export const contentContainer = css`
+export const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
 
@@ -14,7 +14,7 @@ export const contentContainer = css`
   padding-right: 16px;
 `;
 
-export const subjectStyle = css`
+export const SubjectStyle = styled.h1`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;
@@ -23,7 +23,7 @@ export const subjectStyle = css`
   color: #ffffff;
 `;
 
-export const bottomContainer = css`
+export const BottomContainer = styled.div`
   width: 100%;
   height: 100%;
 
@@ -33,30 +33,30 @@ export const bottomContainer = css`
   padding-left: 16px;
 `;
 
-export const dateStyle = css`
+export const DateStyle = styled.div`
   margin-top: 44px;
   margin-left: 20px;
 `;
 
-export const infoStyle = css`
+export const InfoStyle = styled.div`
   font-family: 'Pretendard';
-  font-style: normal;
 
   margin-bottom: 76px;
 `;
 
-export const keyStyle = css`
+export const KeyStyle = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
 
   color: #cccccc;
-  margin-botom: 4px;
+  margin-bottom: 4px;
 `;
-export const valueStyle = css`
+
+export const ValueStyle = styled.div`
   font-weight: 700;
   font-size: 20px;
-  line-height: 24px;
 
+  line-height: 24px;
   color: #cccccc;
 `;

@@ -1,35 +1,26 @@
-/** @jsxImportSource @emotion/react */
 import { CONTACT_LAYOUT } from '@/constants';
-import {
-  sectionContainer,
-  headContainer,
-  flexContainer,
-  infoContainer,
-  titleStyle,
-  infoStyle,
-  linkStyle,
-} from './MobileContact.styled';
+import * as S from './MobileContact.styled';
 
-export default function MobileContact() {
-  return (
-    <section css={sectionContainer}>
-      <div css={headContainer}>Contact</div>
-      <div css={flexContainer}>
-        {CONTACT_LAYOUT.map(({ title, value, hasLink }) => (
-          <div key={title} css={infoContainer}>
-            <div css={titleStyle}>{title}</div>
-            <div css={infoStyle}>
-              {hasLink ? (
-                <a href={value} target={value} css={linkStyle}>
-                  {value}
-                </a>
-              ) : (
-                value
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+const MobileContact = () => (
+  <S.SectionContainer>
+    <S.HeadContainer>Contact</S.HeadContainer>
+    <S.FlexContainer>
+      {CONTACT_LAYOUT.map(({ title, value, hasLink }) => (
+        <S.InfoContainer key={title}>
+          <S.TitleStyle>{title}</S.TitleStyle>
+          <S.InfoStyle>
+            {hasLink ? (
+              <S.LinkStyle href={value} target="_blank">
+                {value}
+              </S.LinkStyle>
+            ) : (
+              value
+            )}
+          </S.InfoStyle>
+        </S.InfoContainer>
+      ))}
+    </S.FlexContainer>
+  </S.SectionContainer>
+);
+
+export default MobileContact;

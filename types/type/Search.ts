@@ -21,12 +21,6 @@ export type SortByType = {
   method: ValueOf<typeof SORT_METHOD>;
 };
 
-export type FilterConditionMaker = {
-  keys: string[];
-  filterValueList: string[];
-  defaultValueList: string[];
-};
-
 export type ApplicationFilterType = {
   gpa?: string;
   interviewDate?: string;

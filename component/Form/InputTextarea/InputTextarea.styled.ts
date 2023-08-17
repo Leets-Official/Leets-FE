@@ -56,8 +56,7 @@ export const TextareaStyle = styled.textarea<{ color: ThemeColor }>`
   border: 1px solid #e6e6e6;
   border-radius: 8px;
   background: white;
-  padding-left: 8px;
-  padding-top: 8px;
+  padding: 8px;
   resize: none;
 
   &:focus {

@@ -1,4 +1,4 @@
-import { PROMOTION_LAYOUT } from '@/constants';
+import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
 import { ThemeColor } from '@/types';
 import Project from './Project';
 import Study from './Study';
@@ -19,9 +19,9 @@ const Promotions = ({ color }: { color: ThemeColor }) => (
               <S.Image src={imageSrc} alt={title} height={height} />
             </S.TopContainer>
             <S.BottomContainer>
-              {title === 'Project' && <Project benefits={benefits} imageSrc={projectImageSrc} />}
-              {title === 'Study & Networking' && <Study benefits={benefits} />}
-              {title === 'Entertainment' && <Entertainment benefits={benefits} />}
+              {title === PROMOTION_TYPE.PROJECT && <Project benefits={benefits} imageSrc={projectImageSrc} />}
+              {title === PROMOTION_TYPE.STUDY && <Study benefits={benefits} />}
+              {title === PROMOTION_TYPE.ENTERTAINMENT && <Entertainment benefits={benefits} />}
             </S.BottomContainer>
           </S.Content>
         </S.Section>

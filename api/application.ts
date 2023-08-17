@@ -13,15 +13,20 @@ import {
 } from '@/types';
 
 export const getApplicationList = ({
-  type,
+  position,
 }: GetApplicationRequest): Promise<BaseResponse<GetApplicationResponse[]>> => {
-  if (type === POSITION_MAP.All) {
+  if (position === POSITION_MAP.All) {
     return http.get({
       url: '/application',
     });
   }
+  if (position === 'SAVE') {
+    return http.get({
+      url: `/application?status=${position.toLowerCase()}`,
+    });
+  }
   return http.get({
-    url: `/application?position=${type.toLowerCase()}`,
+    url: `/application?position=${position.toLowerCase()}`,
   });
 };
 

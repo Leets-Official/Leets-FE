@@ -1,7 +1,16 @@
-import { isDesktop } from 'react-device-detect';
+import { useDeviceChecker } from '@/hooks';
 import './Pointer.css';
+import { ThemeColor } from '@/types';
 
-export default function Pointer({ position, size, color }: any) {
+type PointerProp = {
+  position: { x: number; y: number };
+  size: number;
+  color: ThemeColor;
+};
+
+const Pointer = ({ position, size, color }: PointerProp) => {
+  const isDesktop = useDeviceChecker();
+
   if (!isDesktop) {
     return null;
   }
@@ -17,4 +26,6 @@ export default function Pointer({ position, size, color }: any) {
       }}
     />
   );
-}
+};
+
+export default Pointer;

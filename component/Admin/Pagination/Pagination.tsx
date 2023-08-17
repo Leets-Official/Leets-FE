@@ -6,7 +6,7 @@ import * as S from './Pagination.styled';
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: any;
+  onPageChange: (pageNumber: number) => void;
 };
 
 const getPageNumbers = (currentPage: number, totalPages: number) => {
@@ -19,7 +19,7 @@ const getPageNumbers = (currentPage: number, totalPages: number) => {
   return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 };
 
-export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   const router = useRouter();
   const pageNumbers = getPageNumbers(currentPage, totalPages);
   const queryCreator = useQueryCreator();
@@ -28,7 +28,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       const query = queryCreator(PAGINATION.QUERY, String(pageNumber));
       router.push(query);
-      onPageChange(() => pageNumber);
+      onPageChange(pageNumber);
     }
   };
   const handleFirstPage = () => {
@@ -69,4 +69,6 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       </S.ButtonBox>
     </S.Navigation>
   );
-}
+};
+
+export default Pagination;

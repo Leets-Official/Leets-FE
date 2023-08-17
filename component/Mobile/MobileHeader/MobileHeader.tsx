@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
-import { headContainer, titleStyle } from './MobileHeader.styled';
+import * as S from './MobileHeader.styled';
 
-export default function Header() {
-  return (
-    <header css={headContainer}>
-      <div css={titleStyle}>Leets</div>
-    </header>
-  );
-}
+const Header = () => (
+  <S.HeadContainer>
+    <S.TitleStyle>Leets</S.TitleStyle>
+  </S.HeadContainer>
+);
+
+export default Header;

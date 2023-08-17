@@ -1,5 +1,3 @@
-import { POSITION_ENGLIST_MAP } from './dropdown';
-
 export const SEARCH_TARGET = {
   NAME: 'name',
   APPLICATION_STATUS: 'applicationStatus',
@@ -21,9 +19,19 @@ export const PAGINATION = {
   DEFAULT_PAGE: '1',
 } as const;
 
+export const APPLY_POSITION = {
+  DEV: '개발',
+  DESIGN: '디자인',
+};
+
+export const POSITION_ENGLISH_MAP = {
+  ...APPLY_POSITION,
+  SAVE: '임시 저장',
+} as const;
+
 export const POSITION_MAP = {
   All: 'All',
-  ...POSITION_ENGLIST_MAP,
+  ...POSITION_ENGLISH_MAP,
 } as const;
 
 export const POSITION_TYPES = Object.keys(POSITION_MAP) as (keyof typeof POSITION_MAP)[];

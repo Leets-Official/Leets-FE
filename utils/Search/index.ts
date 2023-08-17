@@ -1,20 +1,17 @@
-import { SORT_METHOD, SEARCH_TARGET, DEFAULT_VALUE } from '@/constants';
-import { KeyOf, SortByType, ApplicationFilterType } from '@/types';
+import { SORT_METHOD, SEARCH_TARGET, FILTER_DEFAULT_VALUE } from '@/constants';
+import { KeyOf, SortByType, ApplicationFilterType, ApplicationListType } from '@/types';
 
 const { APPLICATION_STATUS, INTERVIEW_STATUS } = SEARCH_TARGET;
-
-export type FilterConditionMaker = {
-  defaultValueList: string[];
-};
 
 export class Search {
   static isInclude(content: string, input: string) {
     return content.includes(input) || input.includes(content);
   }
 
-  static filter(list: any[], conditions: ApplicationFilterType, sortBy: SortByType) {
+  static filter(list: ApplicationListType[], conditions: ApplicationFilterType, sortBy: SortByType) {
     const newList = Object.entries(conditions).reduce(
-      (beforeList, [key, value]) => beforeList.filter((elem) => String(elem[key]) === value),
+      (beforeList, [key, value]) =>
+        beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationListType>]) === value),
       list
     );
     if (sortBy.target) {
@@ -25,7 +22,7 @@ export class Search {
 
   static makeFilterConditionObj({ filterValueList }: { filterValueList: string[] }) {
     const keys = [APPLICATION_STATUS, INTERVIEW_STATUS] as string[];
-    const DEFAULT_VALUES = [DEFAULT_VALUE.APPLICATION_STATUS, DEFAULT_VALUE.INTERVIEW_STATUS];
+    const DEFAULT_VALUES = [FILTER_DEFAULT_VALUE.APPLICATION_STATUS, FILTER_DEFAULT_VALUE.INTERVIEW_STATUS];
 
     return filterValueList.reduce((obj, filterValue, index) => {
       if (filterValue !== DEFAULT_VALUES[index]) {

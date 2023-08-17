@@ -1,12 +1,12 @@
-import { css } from '@emotion/react';
+import styled from 'styled-components';
 
-export const sectionContainer = css`
+export const SectionContainer = styled.section`
   width: 100%;
 
   margin-top: 80px;
 `;
 
-export const contentContainer = css`
+export const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
 
@@ -14,11 +14,11 @@ export const contentContainer = css`
   padding-right: 16px;
 `;
 
-export const topContainer = css`
+export const TopContainer = styled.div`
   padding-bottom: 64px;
 `;
 
-export const subjectStyle = css`
+export const SubjectStyle = styled.h1`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;
@@ -27,7 +27,7 @@ export const subjectStyle = css`
   color: #ffffff;
 `;
 
-export const imgContianer = css`
+export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,12 +35,12 @@ export const imgContianer = css`
   margin-top: 80px;
 `;
 
-export const imgStyle = (height: number) => css`
+export const ImgStyle = styled.img`
   width: 240px;
-  height: ${height}px;
+  height: ${({ height }) => height}px;
 `;
 
-export const bottomContainer = css`
+export const BottomContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
