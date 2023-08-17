@@ -3,12 +3,12 @@
 import {
   APPLICATION_TEXT_DEFAULT,
   APPLICATION_INPUT_DEFAULT,
-  POSITION_ENGLIST_MAP,
   USER,
   SUBMIT_STATUS,
   APPLICATION,
+  APPLY_POSITION,
 } from '@/constants';
-import { ApplicationInput, KeyOf, ThemeColor } from '@/types';
+import { ApplicationInput, KeyOf, ThemeColor, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
 import { useInputRef } from '@/hooks';
 import axios from 'axios';
@@ -16,21 +16,21 @@ import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/component/Admin/FilterDropDown';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
 
-type SubmitType = 'SAVE' | 'SUBMIT';
-
 const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
-  const [position, setPosition] = useState<KeyOf<typeof POSITION_ENGLIST_MAP>>('DEV');
-  const [submitType, setSubmitType] = useState<SubmitType>('SAVE');
+  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
+  const [submitType, setSubmitType] = useState<SubmitStatus>('SAVE');
   const session = useSession();
   const submitStatus = session.data?.submitStatus;
+  const router = useRouter();
 
-  const clickHandler = (type: SubmitType) => {
+  const clickHandler = (type: SubmitStatus) => {
     setSubmitType(type);
   };
 
@@ -39,28 +39,29 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
 
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
+      router.refresh();
       return;
     }
-    if (submitStatus === SUBMIT_STATUS.NONE) {
-      const { result } = await api.postApplication(
-        { ...inputRef.current, ...applicationText, email, position, submitStatus: submitType },
-        token
-      );
-      if (!axios.isAxiosError(result)) {
-        Alert.success(APPLICATION.COMPLETE_SUBMIT);
-        await session.update({ submitStatus: submitType });
-      }
-      return;
-    }
-    if (submitStatus === SUBMIT_STATUS.SAVE) {
-      const { result } = await api.patchApplication(
-        { ...inputRef.current, ...applicationText, position, submitStatus: submitType },
-        token
-      );
-      if (!axios.isAxiosError(result)) {
-        Alert.success(APPLICATION.COMPLETE_SUBMIT);
-        await session.update({ submitStatus: submitType });
-      }
+
+    const applicationData: ApplicationData = {
+      ...inputRef.current,
+      ...applicationText,
+      email,
+      position,
+      submitStatus: submitType,
+    };
+
+    const { result } =
+      submitStatus === SUBMIT_STATUS.NONE
+        ? await api.postApplication(applicationData, token)
+        : await api.patchApplication(applicationData, token);
+
+    if (!axios.isAxiosError(result)) {
+      const successMessage =
+        submitType === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
+      await session.update({ submitStatus: submitType });
+      Alert.success(successMessage);
+      router.refresh();
     }
   };
 
@@ -115,9 +116,9 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
             <S.DropDownContainer>
               <S.PositionContainer>지원 직무 :</S.PositionContainer>
               <FilterDropDown
-                list={Object.keys(POSITION_ENGLIST_MAP)}
-                selected={position as KeyOf<typeof POSITION_ENGLIST_MAP>}
-                setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof POSITION_ENGLIST_MAP>>)}
+                list={Object.keys(APPLY_POSITION).filter((positionType) => positionType !== 'SAVE')}
+                selected={position as KeyOf<typeof APPLY_POSITION>}
+                setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
                 customWidth={15}
               />
             </S.DropDownContainer>
