@@ -20,44 +20,47 @@ import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
 
+type SubmitType = 'SAVE' | 'SUBMIT';
+
 const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
   const [position, setPosition] = useState<KeyOf<typeof POSITION_ENGLIST_MAP>>('DEV');
+  const [submitType, setSubmitType] = useState<SubmitType>('SAVE');
   const session = useSession();
+  const submitStatus = session.data?.submitStatus;
+
+  const clickHandler = (type: SubmitType) => {
+    setSubmitType(type);
+  };
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
       return;
     }
-
-    const { result } = await api.postApplication(
-      { ...inputRef.current, ...applicationText, email, position, submitStatus: SUBMIT_STATUS.SUBMIT },
-      token
-    );
-    if (!axios.isAxiosError(result)) {
-      Alert.success(APPLICATION.COMPLETE_SUBMIT);
-      await session.update({ submitStatus: SUBMIT_STATUS.SUBMIT });
-    }
-  };
-  const saveHandler = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
-      Alert.error(APPLICATION.EXIST_APPLICATION);
+    if (submitStatus === SUBMIT_STATUS.NONE) {
+      const { result } = await api.postApplication(
+        { ...inputRef.current, ...applicationText, email, position, submitStatus: submitType },
+        token
+      );
+      if (!axios.isAxiosError(result)) {
+        Alert.success(APPLICATION.COMPLETE_SUBMIT);
+        await session.update({ submitStatus: submitType });
+      }
       return;
     }
-
-    const { result } = await api.patchApplication(
-      { ...inputRef.current, ...applicationText, position, submitStatus: SUBMIT_STATUS.SAVE },
-      token
-    );
-    if (!axios.isAxiosError(result)) {
-      Alert.success(APPLICATION.COMPLETE_SUBMIT);
-      await session.update({ submitStatus: SUBMIT_STATUS.SAVE });
+    if (submitStatus === SUBMIT_STATUS.SAVE) {
+      const { result } = await api.patchApplication(
+        { ...inputRef.current, ...applicationText, position, submitStatus: submitType },
+        token
+      );
+      if (!axios.isAxiosError(result)) {
+        Alert.success(APPLICATION.COMPLETE_SUBMIT);
+        await session.update({ submitStatus: submitType });
+      }
     }
   };
 
@@ -102,7 +105,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
 
   return (
     <S.FormContainer>
-      <S.FormStyle>
+      <S.FormStyle onSubmit={submitHandler}>
         <S.FieldsetStyle>
           <S.HeadStyle>
             Join us!
@@ -112,7 +115,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
             <S.DropDownContainer>
               <S.PositionContainer>지원 직무 :</S.PositionContainer>
               <FilterDropDown
-                list={Object.values(POSITION_ENGLIST_MAP)}
+                list={Object.keys(POSITION_ENGLIST_MAP)}
                 selected={position as KeyOf<typeof POSITION_ENGLIST_MAP>}
                 setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof POSITION_ENGLIST_MAP>>)}
                 customWidth={15}
@@ -137,10 +140,10 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
           </S.InputContainer>
           <S.NoticeContainer>제출 시 변경하거나 수정할 수 없습니다.</S.NoticeContainer>
           <S.ButtonContainer>
-            <S.SaveButton type="button" color={color} onClick={saveHandler}>
+            <S.SaveButton type="submit" color={color} onClick={() => clickHandler('SAVE')}>
               임시저장
             </S.SaveButton>
-            <S.SubmitButton type="button" color={color} onClick={submitHandler}>
+            <S.SubmitButton type="submit" color={color} onClick={() => clickHandler('SUBMIT')}>
               제출하기
             </S.SubmitButton>
           </S.ButtonContainer>

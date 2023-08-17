@@ -59,6 +59,6 @@ export const InputStyle = styled.input<{ color: ThemeColor }>`
 
   &:focus {
     outline: none;
-    border: ${({ color }) => `2px solid ${BACKGROUND_COLOR[color]}`};
+    border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};
   }
 `;
