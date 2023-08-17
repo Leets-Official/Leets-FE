@@ -7,6 +7,7 @@ import {
   DETAIL_APPLICATION_DATA,
   DROPDOWN_MAP,
   DEFAULT_TIME,
+  CHANGE_APPLICATION_STATUS,
 } from '@/constants';
 import { useState } from 'react';
 import { KeyOf, ApplicationStatusType } from '@/types';
@@ -41,9 +42,9 @@ const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDa
   const changeApplication = async () => {
     const { result } = await api.patchApplicationDetail({ id, applicationStatus, schedule });
     if (!axios.isAxiosError(result)) {
-      Alert.success('변경 완료되었습니다.');
+      Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
     } else {
-      Alert.error('변경에 실패했습니다');
+      Alert.error(CHANGE_APPLICATION_STATUS.FAIL);
     }
   };
 
