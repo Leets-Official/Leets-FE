@@ -47,5 +47,5 @@ export const LinkStyle = styled(Link)`
   letter-spacing: -0.01em;
   color: #e6e6e6;
   cursor: pointer;
-  text-decoration-line: none;
+  text-decoration: none;
 `;

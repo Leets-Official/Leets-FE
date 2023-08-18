@@ -89,5 +89,5 @@ export const InfoStyle = styled.div`
 export const LinkStyle = styled(Link)`
   color: #e6e6e6;
   cursor: pointer;
-  text-decoration-line: none;
+  text-decoration: none;
 `;
