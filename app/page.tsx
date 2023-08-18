@@ -12,10 +12,10 @@ import Timeline from '@/component/Promotions/Timeline';
 import Footer from '@/component/Footer';
 import MobileContainer from '@/component/Mobile/MobileContanier';
 import { useDeviceChecker } from '@/hooks';
-
-const color = 'green';
+import { MAIN_COLOR } from '@/constants';
 
 const Index = () => {
+  const color = MAIN_COLOR;
   const isDesktop = useDeviceChecker();
   const [position, setPosition] = useState({
     x: 0,
