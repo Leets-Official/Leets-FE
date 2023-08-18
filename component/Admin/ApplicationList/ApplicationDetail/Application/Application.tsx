@@ -20,8 +20,10 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
     goal,
     completion,
     updatedAt,
-    interviewDate,
+    fixedInterviewDate,
     applicationStatus,
+    interviewDay,
+    interviewTime,
   } = application;
 
   return (
@@ -47,16 +49,24 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
               <S.Value>{gpa}</S.Value>
             </S.Info>
             <S.Info>
-              <S.Key>직무</S.Key>
+              <S.Key>희망 직무</S.Key>
               <S.Value>{career}</S.Value>
-            </S.Info>
-            <S.Info>
-              <S.Key>알고리즘</S.Key>
-              <S.LongValue>{algorithm}</S.LongValue>
             </S.Info>
             <S.Info>
               <S.Key>전화번호</S.Key>
               <S.Value>{phone}</S.Value>
+            </S.Info>
+            <S.Info>
+              <S.Key>희망 면접 날짜</S.Key>
+              <S.Value>{interviewDay}</S.Value>
+            </S.Info>
+            <S.Info>
+              <S.Key>희망 면접 시간</S.Key>
+              <S.Value>{interviewTime}</S.Value>
+            </S.Info>
+            <S.Info>
+              <S.Key>알고리즘</S.Key>
+              <S.LongValue>{algorithm}</S.LongValue>
             </S.Info>
             <S.Info>
               <S.Key>프로젝트 경험</S.Key>
@@ -99,8 +109,8 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
       <ApplicationStatus
         id={id}
         applicationStatus={applicationStatus}
-        applicationDate={updatedAt}
-        interviewDate={interviewDate}
+        updatedAt={updatedAt}
+        fixedInterviewDate={fixedInterviewDate}
       />
     </S.ApplicationContainer>
   );

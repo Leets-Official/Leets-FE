@@ -1,7 +1,7 @@
 import BackgroundImage from '@/component/BackgroundImage';
 import { ThemeColor } from '@/types';
 import * as S from './MobileContanier.styled';
-import MobileButton from '../MobileButton';
+import MobileButton from '../MobileApplyButton';
 import MobilePromotions from '../MobilePromotions';
 import MobileHeader from '../MobileHeader';
 import MobileContact from '../MobileContact';

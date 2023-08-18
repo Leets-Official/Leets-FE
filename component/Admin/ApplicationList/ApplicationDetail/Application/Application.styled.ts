@@ -17,7 +17,7 @@ export const ApplicationTextContainer = styled.section`
 
 export const PersonalInformationContainer = styled.div`
   width: 100%;
-  height: 388px;
+  height: 442px;
 
   padding: 24px;
   border-radius: 12px;
@@ -65,7 +65,7 @@ export const Value = styled.div`
 `;
 
 export const LongValue = styled.div`
-  width: 100%;
+  width: 90%;
   height: 40px;
 
   display: flex;

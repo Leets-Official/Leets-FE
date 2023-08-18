@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { BUTTON_COLOR, TEXT_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
+import Link from 'next/link';
 
 export const ButtonContainer = styled.div`
   width: 100%;
@@ -8,11 +9,10 @@ export const ButtonContainer = styled.div`
 
   padding-left: 16px;
   padding-right: 16px;
-
   margin-bottom: 100px;
 `;
 
-export const ButtonStyle = styled.button<{ color: ThemeColor }>`
+export const ApplyButton = styled(Link)<{ color: ThemeColor }>`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;
@@ -30,4 +30,6 @@ export const ButtonStyle = styled.button<{ color: ThemeColor }>`
 
   border: none;
   border-radius: 24px;
+  cursor: pointer;
+  text-decoration: none;
 `;
