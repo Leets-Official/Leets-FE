@@ -40,7 +40,11 @@ const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDa
   };
 
   const changeApplication = async () => {
-    const { result } = await api.patchApplicationDetail({ id, applicationStatus, schedule });
+    const { result } = await api.patchApplicationDetail({
+      id,
+      applicationStatus: applicationCondition.applicationStatus as ApplicationStatusType,
+      schedule,
+    });
     if (!axios.isAxiosError(result)) {
       Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
     } else {
