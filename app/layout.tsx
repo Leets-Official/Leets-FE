@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
-import ScrollToTop from '@/component/Common/ScrollTop';
+import ScrollToTop from '@/components/Common/ScrollTop';
 import { NextAuthProvider } from './lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {

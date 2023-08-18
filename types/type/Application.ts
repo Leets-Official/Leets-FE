@@ -74,7 +74,7 @@ export type GetApplicationDetaiResponse = Application & {
   id: number;
   grade: number;
   updatedAt: string;
-  interviewDate: string;
+  fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
 };
 
@@ -83,7 +83,7 @@ export type ApplicationDetailType = GetApplicationDetaiResponse;
 export type PatchApplicationDetailRequest = {
   id: number;
   applicationStatus: ApplicationStatusType;
-  schedule: string;
+  fixedInterviewDate: string;
 };
 
 export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;

@@ -1,4 +1,4 @@
-import ApplicationList from '@/component/Admin/ApplicationList';
+import ApplicationList from '@/components/Admin/ApplicationList';
 
 const Application = () => <ApplicationList />;
 

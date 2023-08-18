@@ -59,13 +59,13 @@ export const getApplicationDetail = ({ id }: IdRequest): Promise<BaseResponse<Ge
 export const patchApplicationDetail = ({
   id,
   applicationStatus,
-  schedule,
+  fixedInterviewDate,
 }: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
   http.patch({
     url: `/application/${id}`,
     data: {
       applicationStatus,
-      schedule,
+      fixedInterviewDate,
     },
   });
 

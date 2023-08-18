@@ -4,6 +4,7 @@ export const APPLICATION = {
   COMPLETE_SAVE: '저장 완료되었습니다.',
   COMPLETE_SUBMIT: '지원 완료되었습니다.',
   EXIST_APPLICATION: '이미 지원서가 접수되었습니다.',
+  NOT_RECRUIT_PERIOD: '지원 기간이 아닙니다.',
 } as const;
 
 export const CHANGE_APPLICATION_STATUS = {

@@ -5,11 +5,6 @@ export const APPLICATION_FILTER_LIST = {
   hasInterview: '면접 응시 여부',
 };
 
-export const DETAIL_APPLICATION_DATA = {
-  interviewDate: '면접 일시',
-  applicationStatus: '합격 여부',
-};
-
 export const APPLICATION_TEXT_DEFAULT = {
   enhancement: '',
   level: '',
@@ -36,7 +31,7 @@ export const APPLICATION_INPUT_DEFAULT = {
 export const APPLICATION_DETAIL_DEFAULT = {
   uid: '',
   id: 0,
-  interviewDate: '',
+  fixedInterviewDate: '',
   updatedAt: '',
   user: {
     uid: '',
