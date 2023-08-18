@@ -13,12 +13,10 @@ const Timeline = ({ color }: { color: ThemeColor }) => (
         <TimelineImage color={color} />
         <S.InfoStyle>
           {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
-            <div key={key}>
-              <S.DateStyle>
-                <S.KeyStyle>{key}</S.KeyStyle>
-                <S.ValueStyle>{value}</S.ValueStyle>
-              </S.DateStyle>
-            </div>
+            <S.DateStyle key={key}>
+              <S.KeyStyle>{key}</S.KeyStyle>
+              <S.ValueStyle>{value}</S.ValueStyle>
+            </S.DateStyle>
           ))}
         </S.InfoStyle>
       </S.BottomContainer>
