@@ -85,6 +85,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
           completion,
           user,
           grade,
+          name,
         } = result;
         inputRef.current = {
           grade,
@@ -97,6 +98,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
           interviewDay,
           interviewTime,
           ...user,
+          name,
         };
         setApplicationText({ enhancement, level, pros, goal, completion });
       }
