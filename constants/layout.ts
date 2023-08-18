@@ -1,7 +1,7 @@
 export const CONTACT_LAYOUT = [
   { title: 'Leader', value: '김성민', hasLink: false },
   { title: 'Github', value: 'https://github.com/Collection50', hasLink: true },
-  { title: 'Phone', value: '010 - 1234 - 5678', hasLink: false },
+  { title: 'Mail', value: 'leetsland@gmail.com', hasLink: false },
   { title: 'Open Kakao', value: 'https://open.kakao.com/o/sObD2U5e', hasLink: true },
 ] as const;
 
@@ -64,12 +64,14 @@ export const PROMOTION_LAYOUT = [
 ];
 
 export const TIMELINE_LAYOUT = {
-  지원기간: '23.03.02 ~ 23.03.10',
-  '면접 대상자 발표': '23.03.12',
-  면접: '23.03.13 ~ 23.03.14',
-  '최종 합격자 발표': '23.03.16',
-  '정규 활동 시작': '23.03.20',
+  지원기간: '23.08.21 ~ 23.08.31',
+  '면접 대상자 발표': '23.09.04',
+  면접: '23.09.05 ~ 23.09.08',
+  '최종 합격자 발표': '23.09.11',
+  '정규 활동 시작': '23.09.14',
 } as const;
+
+export const APPLY_DATE = { START: new Date('2023-08-21T12:00:00+09:00'), END: new Date('2023-08-31T23:59:59+09:00') };
 
 export const LOGIN_LAYOUT = [
   { key: 'id', placeholder: '아이디' },
