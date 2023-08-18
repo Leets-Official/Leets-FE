@@ -51,6 +51,12 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
       submitStatus: submitType,
     };
 
+    if (submitType === SUBMIT_STATUS.SUBMIT) {
+      if (!confirm(APPLICATION.CONFIRM_SUBMIT)) {
+        return;
+      }
+    }
+
     const { result } =
       submitStatus === SUBMIT_STATUS.NONE
         ? await api.postApplication(applicationData, token)
@@ -126,7 +132,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} />
+            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} color={color} />
             <InputTextarea
               position={position}
               text={applicationText}

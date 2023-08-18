@@ -2,7 +2,7 @@ import { DEV_INPUTS, DESING_INPUTS } from '@/constants';
 import { ApplicationInputProp } from '@/types';
 import * as S from './InputText.styled';
 
-const InputText = ({ position, changeHandler, application }: ApplicationInputProp) => {
+const InputText = ({ position, changeHandler, application, color }: ApplicationInputProp) => {
   const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
   return (
     <>
@@ -13,7 +13,7 @@ const InputText = ({ position, changeHandler, application }: ApplicationInputPro
             {required && <S.RequireStyle />}
           </S.LabelStyle>
           <S.InputStyle
-            color="blue"
+            color={color}
             type="text"
             id={id}
             defaultValue={application[id] || ''}
