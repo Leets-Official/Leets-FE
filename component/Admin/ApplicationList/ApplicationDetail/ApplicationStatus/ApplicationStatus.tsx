@@ -4,7 +4,6 @@ import FilterDropDown from '@/component/Admin/FilterDropDown';
 import {
   APPLICATION_STATUS_MAP,
   APPLICATION_STAUTS_LIST,
-  DETAIL_APPLICATION_DATA,
   DROPDOWN_MAP,
   DEFAULT_TIME,
   CHANGE_APPLICATION_STATUS,
@@ -15,38 +14,41 @@ import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import axios from 'axios';
 import * as api from '@/api';
+import { useRouter } from 'next/navigation';
 import * as S from './ApplicationStatus.styled';
 
 type ApplicationStatusProps = {
   id: number;
   applicationStatus: ApplicationStatusType;
-  applicationDate: string;
-  interviewDate: string;
+  updatedAt: string;
+  fixedInterviewDate: string;
 };
 
-const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDate }: ApplicationStatusProps) => {
-  const [applicationCondition, setApplicationCondition] = useState(DETAIL_APPLICATION_DATA);
+const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDate }: ApplicationStatusProps) => {
+  const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus || 'PENDING');
   const isPass = applicationStatus.includes('PASS');
-  const [schedule, setSchedule] = useState<string>('');
+  const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
+  const router = useRouter();
 
   const onChangeDate = (date: dayjs.Dayjs | null) => {
     const formattedDate = date?.format();
 
     if (formattedDate) {
-      setSchedule(Formatter.convertStringToUTC(formattedDate.toString()));
+      setFixedInterviewDate(Formatter.convertStringToUTC(formattedDate.toString()));
     } else {
-      setSchedule('');
+      setFixedInterviewDate('');
     }
   };
 
   const changeApplication = async () => {
     const { result } = await api.patchApplicationDetail({
       id,
-      applicationStatus: applicationCondition.applicationStatus as ApplicationStatusType,
-      schedule,
+      applicationStatus: selectedApplicationStatus as ApplicationStatusType,
+      fixedInterviewDate: newInterviewDate,
     });
     if (!axios.isAxiosError(result)) {
       Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
+      router.refresh();
     } else {
       Alert.error(CHANGE_APPLICATION_STATUS.FAIL);
     }
@@ -61,22 +63,29 @@ const ApplicationStatus = ({ id, applicationStatus, applicationDate, interviewDa
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown
         list={APPLICATION_STAUTS_LIST}
-        selected={applicationCondition.applicationStatus as KeyOf<typeof DROPDOWN_MAP>}
-        setSelected={(selected) =>
-          setApplicationCondition((prev) => ({ ...prev, applicationStatus: selected as string }))
-        }
+        selected={selectedApplicationStatus as KeyOf<typeof DROPDOWN_MAP>}
+        setSelected={(selected) => setSelectedApplicationCondition(selected)}
         customWidth={60}
       />
       <S.SubHeader>접수 일시</S.SubHeader>
-      <S.DateContainer>{Formatter.formatDate(applicationDate).longDateTime}</S.DateContainer>
+      <S.DateContainer>{Formatter.normalizeDate(updatedAt)}</S.DateContainer>
       <S.SubHeader>면접 일시</S.SubHeader>
-      <S.DateContainer>{interviewDate}</S.DateContainer>
+      <S.DateContainer>{Formatter.normalizeDate(fixedInterviewDate)}</S.DateContainer>
       <S.SubHeader>면접 일시 변경</S.SubHeader>
-      <S.RangePicker
-        showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
-        format={DEFAULT_TIME.FULL_TIME_FORMAT}
-        onChange={(date) => onChangeDate(date)}
-      />
+      {fixedInterviewDate ? (
+        <S.RangePicker
+          showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
+          defaultValue={dayjs(newInterviewDate)}
+          format={DEFAULT_TIME.FULL_TIME_FORMAT}
+          onChange={(date) => onChangeDate(date)}
+        />
+      ) : (
+        <S.RangePicker
+          showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
+          format={DEFAULT_TIME.FULL_TIME_FORMAT}
+          onChange={(date) => onChangeDate(date)}
+        />
+      )}
       <S.ButtonContainer>
         <S.ChangeButton onClick={changeApplication}>변경하기</S.ChangeButton>
       </S.ButtonContainer>

@@ -110,7 +110,7 @@ export const InterviewStatus = styled.div`
   width: 12%;
 `;
 
-export const CheckInterview = styled.div<{ hasInterview: boolean }>`
+export const CheckInterview = styled.div<{ $hasInterview: boolean }>`
   width: 25px;
   height: 25px;
 
@@ -119,7 +119,7 @@ export const CheckInterview = styled.div<{ hasInterview: boolean }>`
   align-items: center;
 
   border-radius: 30px;
-  background: ${({ hasInterview }) => (hasInterview ? '#4a93ff' : '#f3758b')};
+  background: ${({ $hasInterview }) => ($hasInterview ? '#4a93ff' : '#f3758b')};
 `;
 
 export const Status = styled.div`

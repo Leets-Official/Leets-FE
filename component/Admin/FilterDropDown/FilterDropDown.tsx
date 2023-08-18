@@ -8,7 +8,7 @@ import * as S from './FilterDropDown.styled';
 type FilterDropdownProps = {
   list: readonly string[];
   selected: KeyOf<typeof DROPDOWN_MAP>;
-  setSelected: Dispatch<SetStateAction<string>>;
+  setSelected: Dispatch<SetStateAction<any>>;
   sortTarget?: string;
   setSortBy?: Dispatch<SetStateAction<SortByType>>;
   otherSortInit?: () => void;

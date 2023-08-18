@@ -15,7 +15,7 @@ import {
   SORT_METHOD,
 } from '@/constants';
 import { useSearch, usePagination, useQueryCreator } from '@/hooks';
-import { Search } from '@/utils';
+import { Formatter, Search } from '@/utils';
 import { KeyOf, SortByType, ApplicationListType } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import * as S from './ListComponent.styled';
@@ -116,9 +116,9 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             <S.GPA>{gpa}</S.GPA>
             <S.Grade>{grade}</S.Grade>
             <S.Position>{career}</S.Position>
-            <S.InterviewDate>{fixedInterviewDate || '-'}</S.InterviewDate>
+            <S.InterviewDate>{Formatter.normalizeDate(fixedInterviewDate)}</S.InterviewDate>
             <S.InterviewStatus>
-              <S.CheckInterview hasInterview={hasInterview} />
+              <S.CheckInterview $hasInterview={hasInterview} />
             </S.InterviewStatus>
             <S.Status>
               <Status status={applicationStatus} />
