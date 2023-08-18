@@ -5,16 +5,28 @@ import LoginButton from '@/component/LoginButton';
 import Form from '@/component/Form';
 import { useSession } from 'next-auth/react';
 import Loading from '@/component/Common/Loading';
-import { SESSION_STATUS } from '@/constants';
+import { MAIN_COLOR, SESSION_STATUS, USER, APPLY_PERIOD, APPLICATION } from '@/constants';
+import { useEffect } from 'react';
+import { Schedule } from '@/utils/Schedule';
+import { useRouter } from 'next/navigation';
+import { Alert } from '@/utils';
 import * as S from './Apply.styled';
-
-const color = 'green';
 
 const Apply = () => {
   const { status, data } = useSession();
+  const router = useRouter();
+  const color = MAIN_COLOR;
+
+  useEffect(() => {
+    const currentPeriod = Schedule.getCurrentPeriod(new Date());
+    if (currentPeriod === APPLY_PERIOD.CLOSE) {
+      Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
+      router.push(USER.HOME);
+    }
+  });
 
   if (status === SESSION_STATUS.LOADING) {
-    return <Loading />;
+    return <Loading color={color} />;
   }
   return (
     <S.ApplyContainer>
