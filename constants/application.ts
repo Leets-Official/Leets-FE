@@ -14,7 +14,7 @@ export const APPLICATION_TEXT_DEFAULT = {
 };
 
 export const APPLICATION_INPUT_DEFAULT = {
-  grade: 0,
+  grade: '',
   name: '',
   email: '',
   phone: '',

@@ -7,3 +7,5 @@ export const APPLY_PERIOD = {
   RECRUIT: 'RECRUIT',
   CLOSE: 'CLOSE',
 } as const;
+
+export const APPLY_DATE = { START: new Date('2023-08-18T12:00:00+09:00'), END: new Date('2023-08-31T23:59:59+09:00') };
