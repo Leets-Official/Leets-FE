@@ -1,9 +1,11 @@
-import AdminLogo from '@/public/assets/image/Admin/logo.svg';
+import AdminLogo from '@/public/assets/image/Logo/Blue.svg';
 import { styled } from 'styled-components';
 
 export const ApplyListContainer = styled.main`
   width: 100%;
   height: 100%;
+
+  position: absolute;
 
   display: flex;
   justify-content: center;
@@ -19,22 +21,27 @@ export const ContentContainer = styled.section`
   height: auto;
 `;
 
-export const HeaderContainer = styled.div`
+export const NavContainer = styled.section`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 15px;
+`;
+
+export const LogoutContainer = styled.div`
+  width: 60px;
+
   display: flex;
   align-items: center;
 `;
 
-export const Header = styled.header`
-  font-size: 24px;
-  font-weight: 600;
+export const LogoutButton = styled.button`
+  all: unset;
 
-  width: 100%;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-
-  margin-top: 15px;
+  color: #4a93ff;
+  cursor: pointer;
 `;
 
 export const AdminLogoContainer = styled(AdminLogo)`
