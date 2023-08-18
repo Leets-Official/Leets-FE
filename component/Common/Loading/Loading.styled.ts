@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import LogoImage from '@/public/assets/image/Admin/logo.svg';
 
 export const LoadingContainer = styled.div`
   width: 100%;
@@ -13,7 +12,7 @@ export const LoadingContainer = styled.div`
   color: black;
 `;
 
-export const Logo = styled(LogoImage)`
+export const LogoContainer = styled.div`
   width: 33%;
   height: 20%;
 `;
