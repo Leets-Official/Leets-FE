@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import AdminLogo from '@/public/assets/image/Admin/logo.svg';
+import AdminLogo from '@/public/assets/image/Logo/Blue.svg';
 
 export const HeaderContainer = styled.div`
   width: fit-content;
@@ -17,8 +17,6 @@ export const Header = styled.header`
 
   display: flex;
   align-items: center;
-
-  margin-top: 15px;
 `;
 
 export const AdminLogoContainer = styled(AdminLogo)`
