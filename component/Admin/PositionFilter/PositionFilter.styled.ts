@@ -15,7 +15,7 @@ export const FilterContainer = styled.section`
 `;
 
 export const FilterByPosition = styled.div`
-  width: 240px;
+  width: 260px;
   height: 40px;
 
   display: flex;
