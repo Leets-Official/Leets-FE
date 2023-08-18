@@ -6,10 +6,11 @@ import { ApplicationListType, KeyOf } from '@/types';
 import * as api from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/component/Admin/PositionFilter';
-import { ADMIN, POSITION_MAP } from '@/constants';
+import { ADMIN, POSITION_MAP, MAIN_COLOR } from '@/constants';
 import { useRouter } from 'next/navigation';
 import Loading from '@/component/Common/Loading';
-import { useAppSelector } from '@/store';
+import { useAppSelector, useAppDispatch } from '@/store';
+import { logout } from '@/store/adminSlice';
 import * as S from './ApplicationList.styled';
 import ListComponent from './ListComponent';
 
@@ -19,6 +20,8 @@ const ApplicationList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const color = MAIN_COLOR;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,13 +37,23 @@ const ApplicationList = () => {
     fetchData();
   }, [position]);
 
+  const logoutHandler = () => {
+    dispatch(logout());
+    router.push(ADMIN.LOGIN);
+  };
+
   if (isLoading) {
-    return <Loading />;
+    return <Loading color={color} />;
   }
   return (
     <S.ApplicationListContainer>
       <S.ContentContainer>
-        <Nav />
+        <S.NavContainer>
+          <Nav />
+          <S.LogoutContainer>
+            <S.LogoutButton onClick={logoutHandler}>로그아웃</S.LogoutButton>
+          </S.LogoutContainer>
+        </S.NavContainer>
         <PositionFilter clickHandler={setPosition} type={position} />
         <S.Title>지원서 내역</S.Title>
         <ListComponent applications={applications} />

@@ -1,4 +1,3 @@
-import AdminLogo from '@/public/assets/image/Admin/logo.svg';
 import { styled } from 'styled-components';
 
 export const ApplicationListContainer = styled.main`
@@ -18,22 +17,27 @@ export const ContentContainer = styled.section`
   height: 100%;
 `;
 
-export const HeaderContainer = styled.div`
+export const NavContainer = styled.section`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 15px;
+`;
+
+export const LogoutContainer = styled.div`
+  width: 60px;
+
   display: flex;
   align-items: center;
 `;
 
-export const Header = styled.header`
-  font-size: 24px;
-  font-weight: 600;
+export const LogoutButton = styled.button`
+  all: unset;
 
-  width: 100%;
-  height: 32px;
-
-  display: flex;
-  align-items: center;
-
-  margin-top: 15px;
+  color: #4a93ff;
+  cursor: pointer;
 `;
 
 export const Title = styled.section`
@@ -48,6 +52,7 @@ export const Title = styled.section`
   align-items: center;
 
   margin-top: 15px;
+  margin-bottom: 15px;
 `;
 
 export const SearchBar = styled.section`
