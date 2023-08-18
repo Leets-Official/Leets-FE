@@ -1,6 +1,5 @@
-import { APPLY_DATE } from '@/constants';
-
-type RecruitPeriod = 'CLOSE' | 'RECRUITING';
+import { APPLY_DATE, APPLY_PERIOD } from '@/constants';
+import { KeyOf } from '@/types';
 
 export class Schedule {
   static getKSTDate(date: Date) {
@@ -9,13 +8,13 @@ export class Schedule {
     return new Date(utcUnixTime + diffKSTFromUTC);
   }
 
-  static getCurrentPeriod(date: Date): RecruitPeriod {
+  static getCurrentPeriod(date: Date): KeyOf<typeof APPLY_PERIOD> {
     const kstDate = this.getKSTDate(date);
     const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
 
     if (APPLY_DATE.START <= currentDate && currentDate <= APPLY_DATE.END) {
-      return 'RECRUITING';
+      return APPLY_PERIOD.RECRUIT;
     }
-    return 'CLOSE';
+    return APPLY_PERIOD.CLOSE;
   }
 }
