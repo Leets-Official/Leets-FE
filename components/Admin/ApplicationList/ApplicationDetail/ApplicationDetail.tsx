@@ -1,12 +1,12 @@
 'use client';
 
-import Nav from '@/component/Admin/Nav';
+import Nav from '@/components/Admin/Nav';
 import { useEffect, useState } from 'react';
 import * as api from '@/api';
 import axios from 'axios';
 import { ApplicationDetailType } from '@/types';
 import { APPLICATION_DETAIL_DEFAULT, ADMIN, MAIN_COLOR } from '@/constants';
-import Loading from '@/component/Common/Loading';
+import Loading from '@/components/Common/Loading';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { useRouter } from 'next/navigation';
 import { logout } from '@/store/adminSlice';

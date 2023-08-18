@@ -14,7 +14,7 @@ import { useInputRef } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
-import FilterDropDown from '@/component/Admin/FilterDropDown';
+import FilterDropDown from '@/components/Admin/FilterDropDown';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import InputText from './InputText';

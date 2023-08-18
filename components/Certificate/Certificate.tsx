@@ -1,6 +1,6 @@
 'use client';
 
-import Nav from '@/component/Nav';
+import Nav from '@/components/Nav';
 import * as S from './Certificate.styled';
 
 const Certificate = () => {

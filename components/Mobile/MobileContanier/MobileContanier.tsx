@@ -1,4 +1,4 @@
-import BackgroundImage from '@/component/BackgroundImage';
+import BackgroundImage from '@/components/BackgroundImage';
 import { ThemeColor } from '@/types';
 import * as S from './MobileContanier.styled';
 import MobileButton from '../MobileApplyButton';

@@ -1,4 +1,4 @@
-import Apply from '@/component/Apply';
+import Apply from '@/components/Apply';
 
 const ApplyPage = () => <Apply />;
 

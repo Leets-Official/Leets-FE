@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import SearchBar from '@/component/Admin/SearchBar';
-import Pagination from '@/component/Admin/Pagination';
-import FilterDropDown from '@/component/Admin/FilterDropDown';
+import SearchBar from '@/components/Admin/SearchBar';
+import Pagination from '@/components/Admin/Pagination';
+import FilterDropDown from '@/components/Admin/FilterDropDown';
 import {
   APPLICATION_STAUTS_LIST,
   INTERVIEW_STATUS_LIST,

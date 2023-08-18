@@ -1,4 +1,4 @@
-import Login from '@/component/Admin/Login';
+import Login from '@/components/Admin/Login';
 
 const Admin = () => <Login />;
 

@@ -1,10 +1,10 @@
 'use client';
 
-import Nav from '@/component/Nav';
-import LoginButton from '@/component/LoginButton';
-import Form from '@/component/Form';
+import Nav from '@/components/Nav';
+import LoginButton from '@/components/LoginButton';
+import Form from '@/components/Form';
 import { useSession } from 'next-auth/react';
-import Loading from '@/component/Common/Loading';
+import Loading from '@/components/Common/Loading';
 import { MAIN_COLOR, SESSION_STATUS, USER, APPLY_PERIOD, APPLICATION } from '@/constants';
 import { useEffect } from 'react';
 import { Schedule } from '@/utils/Schedule';

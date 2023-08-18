@@ -2,15 +2,15 @@
 
 import { useState, MouseEvent } from 'react';
 import { PointerWrapper } from '@/styles/global-style';
-import BackgroundImage from '@/component/BackgroundImage/';
-import Promotions from '@/component/Promotions';
-import Header from '@/component/Header';
-import ApplyButton from '@/component/ApplyButton';
-import Pointer from '@/component/Common/Pointer';
-import Contact from '@/component/Contact';
-import Timeline from '@/component/Promotions/Timeline';
-import Footer from '@/component/Footer';
-import MobileContainer from '@/component/Mobile/MobileContanier';
+import BackgroundImage from '@/components/BackgroundImage';
+import Promotions from '@/components/Promotions';
+import Header from '@/components/Header';
+import ApplyButton from '@/components/ApplyButton';
+import Pointer from '@/components/Common/Pointer';
+import Contact from '@/components/Contact';
+import Timeline from '@/components/Promotions/Timeline';
+import Footer from '@/components/Footer';
+import MobileContainer from '@/components/Mobile/MobileContanier';
 import { useDeviceChecker } from '@/hooks';
 import { MAIN_COLOR } from '@/constants';
 

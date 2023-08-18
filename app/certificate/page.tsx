@@ -1,4 +1,4 @@
-import Certificate from '@/component/Certificate';
+import Certificate from '@/components/Certificate';
 
 const ApplyPage = () => <Certificate />;
 

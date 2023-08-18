@@ -1,14 +1,14 @@
 'use client';
 
-import Nav from '@/component/Admin/Nav';
+import Nav from '@/components/Admin/Nav';
 import { useState, useEffect } from 'react';
 import { ApplicationListType, KeyOf } from '@/types';
 import * as api from '@/api';
 import axios from 'axios';
-import PositionFilter from '@/component/Admin/PositionFilter';
+import PositionFilter from '@/components/Admin/PositionFilter';
 import { ADMIN, POSITION_MAP, MAIN_COLOR } from '@/constants';
 import { useRouter } from 'next/navigation';
-import Loading from '@/component/Common/Loading';
+import Loading from '@/components/Common/Loading';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { logout } from '@/store/adminSlice';
 import * as S from './ApplicationList.styled';

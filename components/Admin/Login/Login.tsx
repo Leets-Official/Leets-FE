@@ -1,6 +1,6 @@
 'use client';
 
-import Nav from '@/component/Admin/Nav';
+import Nav from '@/components/Admin/Nav';
 import { useLogin } from '@/hooks';
 import { ADMIN, LOGIN_LAYOUT } from '@/constants';
 import { useAppSelector } from '@/store';
