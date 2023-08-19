@@ -11,6 +11,7 @@ import { Schedule } from '@/utils/Schedule';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
+
 import * as S from './Apply.styled';
 
 const Apply = () => {
@@ -25,14 +26,14 @@ const Apply = () => {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       router.push(USER.HOME);
     }
+    if (!isDesktop) {
+      Alert.error(APPLICATION.ASK_USE_DESKTOP);
+      router.push(USER.HOME);
+    }
   });
 
   if (status === SESSION_STATUS.LOADING) {
     return <Loading color={color} />;
-  }
-  if (!isDesktop) {
-    Alert.error(APPLICATION.ASK_USE_DESKTOP);
-    router.push(USER.HOME);
   }
   return (
     <S.ApplyContainer>

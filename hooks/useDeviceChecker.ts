@@ -4,12 +4,10 @@ import { DeviceChecker } from '@/utils';
 import { useEffect, useState } from 'react';
 
 const useDeviceChecker = () => {
-  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const [isDesktop, setIsDesktop] = useState<boolean>(true);
 
   useEffect(() => {
-    if (DeviceChecker.isDesktop()) {
-      setIsDesktop(true);
-    } else {
+    if (!DeviceChecker.isDesktop()) {
       setIsDesktop(false);
     }
   }, []);

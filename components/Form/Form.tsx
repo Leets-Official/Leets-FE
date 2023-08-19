@@ -20,12 +20,13 @@ import { useRouter } from 'next/navigation';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
+// FIXME: import 순서 지정
 
 const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
-  const [submitType, setSubmitType] = useState<SubmitStatus>('SAVE');
+  const [submitType, setSubmitType] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
   const submitStatus = session.data?.submitStatus;
   const router = useRouter();
@@ -131,7 +132,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
             <S.DropDownContainer>
               <S.PositionContainer>지원 직무 :</S.PositionContainer>
               <FilterDropDown
-                list={Object.keys(APPLY_POSITION).filter((positionType) => positionType !== 'SAVE')}
+                list={Object.keys(APPLY_POSITION).filter((positionType) => positionType !== SUBMIT_STATUS.SAVE)}
                 selected={position as KeyOf<typeof APPLY_POSITION>}
                 setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
                 customWidth={15}
@@ -156,10 +157,10 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
           </S.InputContainer>
           <S.NoticeContainer>제출 시 변경하거나 수정할 수 없습니다.</S.NoticeContainer>
           <S.ButtonContainer>
-            <S.SaveButton type="submit" color={color} onClick={() => clickHandler('SAVE')}>
+            <S.SaveButton type="submit" color={color} onClick={() => clickHandler(SUBMIT_STATUS.SAVE)}>
               임시저장
             </S.SaveButton>
-            <S.SubmitButton type="submit" color={color} onClick={() => clickHandler('SUBMIT')}>
+            <S.SubmitButton type="submit" color={color} onClick={() => clickHandler(SUBMIT_STATUS.SUBMIT)}>
               제출하기
             </S.SubmitButton>
           </S.ButtonContainer>

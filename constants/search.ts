@@ -22,7 +22,7 @@ export const PAGINATION = {
 export const APPLY_POSITION = {
   DEV: '개발',
   DESIGN: '디자인',
-};
+} as const;
 
 export const POSITION_ENGLISH_MAP = {
   ...APPLY_POSITION,
