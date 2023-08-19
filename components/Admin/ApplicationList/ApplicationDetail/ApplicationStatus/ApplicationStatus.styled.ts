@@ -4,7 +4,7 @@ import { ApplicationStatusType } from '@/types';
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
-  height: 412px;
+  height: 480px;
 
   display: flex;
   flex-direction: column;

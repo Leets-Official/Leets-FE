@@ -7,6 +7,7 @@ import {
   DROPDOWN_MAP,
   DEFAULT_TIME,
   CHANGE_APPLICATION_STATUS,
+  APPLICATION,
 } from '@/constants';
 import { useState } from 'react';
 import { KeyOf, ApplicationStatusType } from '@/types';
@@ -21,10 +22,17 @@ type ApplicationStatusProps = {
   id: number;
   applicationStatus: ApplicationStatusType;
   updatedAt: string;
+  appliedAt: string;
   fixedInterviewDate: string;
 };
 
-const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDate }: ApplicationStatusProps) => {
+const ApplicationStatus = ({
+  id,
+  applicationStatus,
+  updatedAt,
+  appliedAt,
+  fixedInterviewDate,
+}: ApplicationStatusProps) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus || 'PENDING');
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
@@ -40,6 +48,10 @@ const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDat
   };
 
   const changeApplication = async () => {
+    if (!appliedAt) {
+      Alert.error(APPLICATION.REJECT_CHANGE_APPLICATION_STATUS);
+      return;
+    }
     const { result } = await api.patchApplicationDetail({
       id,
       applicationStatus: selectedApplicationStatus as ApplicationStatusType,
@@ -68,8 +80,10 @@ const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDat
         setSelected={(selected) => setSelectedApplicationCondition(selected)}
         customWidth={60}
       />
-      <S.SubHeader>접수 일시</S.SubHeader>
+      <S.SubHeader>저장 일시</S.SubHeader>
       <S.DateContainer>{Formatter.normalizeDate(updatedAt)}</S.DateContainer>
+      <S.SubHeader>접수 일시</S.SubHeader>
+      <S.DateContainer>{Formatter.normalizeDate(appliedAt)}</S.DateContainer>
       <S.SubHeader>면접 일시</S.SubHeader>
       <S.DateContainer>{Formatter.normalizeDate(fixedInterviewDate)}</S.DateContainer>
       <S.SubHeader>면접 일시 변경</S.SubHeader>

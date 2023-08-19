@@ -8,6 +8,7 @@ export const APPLICATION = {
   CONFIRM_SUBMIT: '제출하시겠습니까? 수정할 수 없습니다.',
   CONFIRM_MOVE: '이동하실건가요? 데이터는 저장되지 않습니다.',
   ASK_USE_DESKTOP: '데스크탑 환경에서 지원하실 수 있습니다.',
+  REJECT_CHANGE_APPLICATION_STATUS: '제출하지 않은 지원자의 값은\n변경할 수 없습니다.',
 } as const;
 
 export const CHANGE_APPLICATION_STATUS = {

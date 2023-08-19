@@ -11,7 +11,6 @@ import { Schedule } from '@/utils/Schedule';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
-
 import * as S from './Apply.styled';
 
 const Apply = () => {

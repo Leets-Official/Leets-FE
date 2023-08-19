@@ -20,6 +20,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
     goal,
     completion,
     updatedAt,
+    appliedAt,
     fixedInterviewDate,
     applicationStatus,
     interviewDay,
@@ -110,6 +111,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
         id={id}
         applicationStatus={applicationStatus}
         updatedAt={updatedAt}
+        appliedAt={appliedAt}
         fixedInterviewDate={fixedInterviewDate}
       />
     </S.ApplicationContainer>

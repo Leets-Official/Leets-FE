@@ -33,6 +33,7 @@ export const APPLICATION_DETAIL_DEFAULT = {
   id: 0,
   fixedInterviewDate: '',
   updatedAt: '',
+  appliedAt: '',
   user: {
     uid: '',
     name: '',

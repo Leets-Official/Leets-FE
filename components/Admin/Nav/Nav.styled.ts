@@ -6,6 +6,8 @@ export const HeaderContainer = styled.div`
 
   display: flex;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 export const Header = styled.header`

@@ -75,6 +75,7 @@ export type GetApplicationDetaiResponse = Application & {
   id: number;
   grade: string;
   updatedAt: string;
+  appliedAt: string;
   fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
 };
