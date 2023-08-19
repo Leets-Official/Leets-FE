@@ -1,7 +1,8 @@
 import { mobileMQ } from '@/constants';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const HeadContainer = styled.header`
+export const HeadContainer = styled(motion.header)`
   ${mobileMQ({
     width: '100%',
     height: [100, 420, 380, 455, 510],

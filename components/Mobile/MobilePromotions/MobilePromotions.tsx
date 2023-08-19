@@ -14,7 +14,9 @@ const MobilePromotions = ({ color }: { color: ThemeColor }) => (
         <S.SectionContainer key={title}>
           <S.ContentContainer>
             <S.TopContainer>
-              <S.SubjectStyle>{title}</S.SubjectStyle>
+              <S.SubjectStyle initial={{ x: -100 }} whileInView={{ x: 0 }} transition={{ duration: 0.5 }}>
+                {title}
+              </S.SubjectStyle>
               <S.ImgContainer>
                 <S.ImgStyle src={imageSrc} alt={title} height={height} />
               </S.ImgContainer>

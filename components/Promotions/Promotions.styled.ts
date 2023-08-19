@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MQ } from '@/constants';
+import { motion } from 'framer-motion';
 
 export const Section = styled.section`
   ${MQ({
@@ -34,7 +35,8 @@ export const TopContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const Subject = styled.div`
+
+export const Subject = styled(motion.div)`
   ${MQ({
     fontWeight: '500',
     fontSize: [54.7, 54.7, 78.7, 96],
