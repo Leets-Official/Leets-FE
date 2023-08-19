@@ -4,22 +4,23 @@ import { ThemeColor } from '@/types';
 import Link from 'next/link';
 
 export const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  position: absolute;
 
   width: 100%;
-  height: 100%;
+
+  display: flex;
+  justify-content: center;
 
   background: white;
 `;
 
 export const FormStyle = styled.form`
+  width: 45%;
+  height: auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 45%;
-  height: auto;
 
   background: white;
   padding-bottom: 260px;
@@ -31,7 +32,6 @@ export const FieldsetStyle = styled.fieldset`
 
   border: none;
   border-radius: 10px;
-
   background: white;
 `;
 

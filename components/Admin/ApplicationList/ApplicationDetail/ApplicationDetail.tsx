@@ -10,11 +10,12 @@ import Loading from '@/components/Common/Loading';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { useRouter } from 'next/navigation';
 import { logout } from '@/store/adminSlice';
+import { useIsLoading } from '@/hooks/useIsLoading';
 import * as S from './ApplicationDetail.styled';
 import Application from './Application';
 
 const ApplicationDetail = ({ id }: { id: number }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isLoading = useIsLoading();
   const [application, setApplication] = useState<ApplicationDetailType>(APPLICATION_DETAIL_DEFAULT);
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
@@ -27,7 +28,6 @@ const ApplicationDetail = ({ id }: { id: number }) => {
       if (!axios.isAxiosError(result)) {
         setApplication(result);
       }
-      setIsLoading(false);
     };
     if (!name) {
       router.replace(ADMIN.LOGIN);

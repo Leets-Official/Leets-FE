@@ -121,7 +121,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
               <S.CheckInterview $hasInterview={hasInterview} />
             </S.InterviewStatus>
             <S.Status>
-              <Status status={applicationStatus} />
+              <Status applicationStatus={applicationStatus} />
             </S.Status>
           </S.Application>
         ))}

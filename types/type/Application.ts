@@ -2,10 +2,11 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLISH_MAP, SUBMIT_STATUS } from '@/constants';
 import { Applicant } from './User';
 import { KeyOf, ValueOf } from '../Helper';
+import { ThemeColor } from './Common';
 
 export type ApplicationInput = {
   name: string;
-  grade: number;
+  grade: string;
   gpa: string;
   major: string;
   algorithm: string;
@@ -45,8 +46,8 @@ export type GetApplicationRequest = {
 export type GetApplicationResponse = {
   id: number;
   name: string;
-  gpa: number;
-  grade: number;
+  gpa: string;
+  grade: string;
   position: string;
   career: string;
   fixedInterviewDate: string;
@@ -72,7 +73,7 @@ export type PostApplication = Application &
 export type GetApplicationDetaiResponse = Application & {
   user: Applicant;
   id: number;
-  grade: number;
+  grade: string;
   updatedAt: string;
   fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
@@ -94,6 +95,7 @@ export type ApplicationInputProp = {
   position: PositionType;
   changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: keyof ApplicationInput) => void;
   application: ApplicationInput;
+  color: ThemeColor;
 };
 
 export type ApplicationTextareaProp = {
@@ -101,10 +103,6 @@ export type ApplicationTextareaProp = {
   text: ApplicationTextarea;
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
   application: ApplicationTextarea;
-};
-
-export type ApplicationPassStatus = {
-  $isPass: boolean;
 };
 
 export type ApplicationData = ApplicationInput & {

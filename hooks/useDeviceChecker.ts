@@ -13,7 +13,6 @@ const useDeviceChecker = () => {
       setIsDesktop(false);
     }
   }, []);
-
   return isDesktop;
 };
 

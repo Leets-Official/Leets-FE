@@ -10,7 +10,7 @@ import {
 } from '@/constants';
 import { ApplicationInput, KeyOf, ThemeColor, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
-import { useInputRef } from '@/hooks';
+import { useBeforeUnload, useInputRef } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
@@ -29,9 +29,11 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
   const session = useSession();
   const submitStatus = session.data?.submitStatus;
   const router = useRouter();
+  const submitClickHandler = useBeforeUnload();
 
   const clickHandler = (type: SubmitStatus) => {
     setSubmitType(type);
+    submitClickHandler();
   };
 
   const submitHandler = async (e: FormEvent) => {
@@ -50,6 +52,12 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
       position,
       submitStatus: submitType,
     };
+
+    if (submitType === SUBMIT_STATUS.SUBMIT) {
+      if (!confirm(APPLICATION.CONFIRM_SUBMIT)) {
+        return;
+      }
+    }
 
     const { result } =
       submitStatus === SUBMIT_STATUS.NONE
@@ -106,6 +114,9 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
     if (session.data?.submitStatus !== SUBMIT_STATUS.NONE) {
       fetchData();
     }
+    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
+      submitClickHandler();
+    }
   }, [session.data?.submitStatus]);
 
   return (
@@ -126,7 +137,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} />
+            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} color={color} />
             <InputTextarea
               position={position}
               text={applicationText}

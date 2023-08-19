@@ -5,3 +5,5 @@ export type BaseResponse<T> = {
   result: T;
   message: string;
 };
+
+export type BackgroundColor = 'black' | 'white';

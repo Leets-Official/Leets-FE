@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
+import { BackgroundColor } from '@/types';
 
-export const LoadingContainer = styled.div`
+export const LoadingContainer = styled.div<{ $backgroundColor: BackgroundColor }>`
   width: 100%;
   height: 100%;
 
@@ -8,11 +9,11 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: white;
+  background: ${({ $backgroundColor }) => $backgroundColor};
   color: black;
 `;
 
 export const LogoContainer = styled.div`
-  width: 33%;
-  height: 20%;
+  width: 12%;
+  height: 8%;
 `;

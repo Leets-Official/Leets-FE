@@ -71,8 +71,6 @@ export const TIMELINE_LAYOUT = {
   '정규 활동 시작': '23.09.14',
 } as const;
 
-export const APPLY_DATE = { START: new Date('2023-08-21T12:00:00+09:00'), END: new Date('2023-08-31T23:59:59+09:00') };
-
 export const LOGIN_LAYOUT = [
   { key: 'id', placeholder: '아이디' },
   { key: 'password', placeholder: '비밀번호' },

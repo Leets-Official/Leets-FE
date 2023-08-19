@@ -26,7 +26,6 @@ type ApplicationStatusProps = {
 
 const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDate }: ApplicationStatusProps) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus || 'PENDING');
-  const isPass = applicationStatus.includes('PASS');
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
 
@@ -58,7 +57,9 @@ const ApplicationStatus = ({ id, applicationStatus, updatedAt, fixedInterviewDat
     <S.ApplicationStatusContainer>
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
-        <S.ApplicationStatus $isPass={isPass}>{APPLICATION_STATUS_MAP[applicationStatus]}</S.ApplicationStatus>
+        <S.ApplicationStatus applicationStatus={applicationStatus}>
+          {APPLICATION_STATUS_MAP[applicationStatus]}
+        </S.ApplicationStatus>
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown

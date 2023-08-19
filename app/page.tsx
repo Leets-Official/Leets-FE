@@ -13,10 +13,13 @@ import Footer from '@/components/Footer';
 import MobileContainer from '@/components/Mobile/MobileContanier';
 import { useDeviceChecker } from '@/hooks';
 import { MAIN_COLOR } from '@/constants';
+import Loading from '@/components/Common/Loading';
+import { useIsLoading } from '@/hooks/useIsLoading';
 
 const Index = () => {
   const color = MAIN_COLOR;
   const isDesktop = useDeviceChecker();
+  const isLoading = useIsLoading();
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -35,6 +38,9 @@ const Index = () => {
     updatePosition(e.clientX, e.clientY);
   };
 
+  if (isLoading) {
+    return <Loading color={color} backgroundColor="black" />;
+  }
   if (!isDesktop) {
     return <MobileContainer color={color} />;
   }

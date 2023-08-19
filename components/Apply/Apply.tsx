@@ -10,12 +10,14 @@ import { useEffect } from 'react';
 import { Schedule } from '@/utils/Schedule';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@/utils';
+import { useDeviceChecker } from '@/hooks';
 import * as S from './Apply.styled';
 
 const Apply = () => {
   const { status, data } = useSession();
   const router = useRouter();
   const color = MAIN_COLOR;
+  const isDesktop = useDeviceChecker();
 
   useEffect(() => {
     const currentPeriod = Schedule.getCurrentPeriod(new Date());
@@ -27,6 +29,10 @@ const Apply = () => {
 
   if (status === SESSION_STATUS.LOADING) {
     return <Loading color={color} />;
+  }
+  if (!isDesktop) {
+    Alert.error(APPLICATION.ASK_USE_DESKTOP);
+    router.push(USER.HOME);
   }
   return (
     <S.ApplyContainer>
