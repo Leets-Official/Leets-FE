@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
@@ -18,7 +19,7 @@ export const TopContainer = styled.div`
   padding-bottom: 64px;
 `;
 
-export const SubjectStyle = styled.h1`
+export const SubjectStyle = styled(motion.div)`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { MQ } from '@/constants';
+import { motion } from 'framer-motion';
 
-export const HeadContainer = styled.header`
+export const HeadContainer = styled(motion.header)`
   ${MQ({
     width: '100%',
     height: [500, 550, 450, 400],
