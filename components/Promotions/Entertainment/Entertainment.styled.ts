@@ -46,21 +46,16 @@ export const Balloon = styled.div<{ $index: number }>`
           '47.2px solid transparent',
           '57.6px solid transparent',
         ],
-
         borderLeft: [
           '20px solid transparent',
           '32.8px solid transparent',
           '47.2px solid transparent',
           '57.6px solid transparent',
         ],
-
         borderBottom: ['40px solid #0f0f0f', '57px solid #0f0f0f', '81.9px solid #0f0f0f', '100px solid #0f0f0f'],
       },
-
-      ':nth-of-type(2)': {
-        alignSelf: 'end',
-      },
     })}
+  ${({ $index }) => $index === 1 && 'align-self: end;'}
 `;
 
 export const TextStyle = styled.div`
