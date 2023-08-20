@@ -7,6 +7,7 @@ import {
   SUBMIT_STATUS,
   APPLICATION,
   APPLY_POSITION,
+  APPLY_PERIOD,
 } from '@/constants';
 import { ApplicationInput, KeyOf, ThemeColor, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
@@ -17,6 +18,7 @@ import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { Schedule } from '@/utils/Schedule';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
@@ -42,6 +44,11 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
 
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
+      router.refresh();
+      return;
+    }
+    if (Schedule.getCurrentPeriod(new Date()) === APPLY_PERIOD.CLOSE) {
+      Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       router.refresh();
       return;
     }
