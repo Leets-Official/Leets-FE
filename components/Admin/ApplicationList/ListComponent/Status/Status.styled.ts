@@ -12,7 +12,7 @@ export const StatusContainer = styled.div<{ $applicationStatus: ApplicationStatu
 
   border-radius: 8px;
   background: ${({ $applicationStatus }) =>
-    $applicationStatus === 'PENDING' ? '#e9e8e8' : $applicationStatus.includes('PASS') ? '#e9faf7' : '#989898'};
+    $applicationStatus === 'PENDING' ? '#e9e8e8' : $applicationStatus.includes('PASS') ? '#e9faf7' : '#feecee'};
   color: ${({ $applicationStatus }) =>
     $applicationStatus === 'PENDING' ? '#989898' : $applicationStatus.includes('PASS') ? '#1a9882' : '#eb3d4d'};
 `;
