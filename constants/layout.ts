@@ -1,6 +1,6 @@
 export const CONTACT_LAYOUT = [
   { title: 'Leader', value: '김성민', hasLink: false },
-  { title: 'Github', value: 'https://github.com/Collection50', hasLink: true },
+  { title: 'Github', value: 'https://github.com/Leets-Official', hasLink: true },
   { title: 'Mail', value: 'leetsland@gmail.com', hasLink: false },
   { title: 'Open Kakao', value: 'https://open.kakao.com/o/sObD2U5e', hasLink: true },
 ] as const;
@@ -14,7 +14,7 @@ const PROJECT_TEXT = {
     '여러 사람들과 함께 프로젝트를 진행하며\n소프트 스킬을 개발하고, 효과적으로\n협업하는 방법을 배워요.',
     '프로젝트 결과물은 기업, 대학원, 공모전\n등에 지원하거나 참여할 때 자신의 기술을\n보여주는 물리적 근거로 사용해요.',
   ],
-};
+} as const;
 
 const STUDY_TEXT = {
   title: `Study & Networking`,
@@ -26,13 +26,13 @@ const STUDY_TEXT = {
     '사람들과의 네트워크는 미래의 협업과\n취업에서 유리하게 작용해요.',
     '서로의 성장을 응원하는 분위기에서\n더 넓고 더 깊게 공부해요.',
   ],
-};
+} as const;
 
 const ENTERTIANMENT_TEXT = {
   title: 'Entertainment',
   height: 434,
   benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLEETS DAY!', 'LEET’S GO PICNIC'],
-};
+} as const;
 
 export const MOBILE_PROMOTION_LAYOUT = [
   {
@@ -61,7 +61,7 @@ export const PROMOTION_LAYOUT = [
     ...ENTERTIANMENT_TEXT,
     height: 434,
   },
-];
+] as const;
 
 export const TIMELINE_LAYOUT = {
   지원기간: '23.08.21 ~ 23.08.31',

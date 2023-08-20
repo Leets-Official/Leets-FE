@@ -9,7 +9,7 @@ import {
   CHANGE_APPLICATION_STATUS,
   APPLICATION,
 } from '@/constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyOf, ApplicationStatusType } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
@@ -33,7 +33,7 @@ const ApplicationStatus = ({
   appliedAt,
   fixedInterviewDate,
 }: ApplicationStatusProps) => {
-  const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus || 'PENDING');
+  const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus);
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
 
@@ -65,11 +65,15 @@ const ApplicationStatus = ({
     }
   };
 
+  useEffect(() => {
+    setSelectedApplicationCondition(applicationStatus);
+  }, [applicationStatus]);
+
   return (
     <S.ApplicationStatusContainer>
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
-        <S.ApplicationStatus applicationStatus={applicationStatus}>
+        <S.ApplicationStatus $applicationStatus={applicationStatus}>
           {APPLICATION_STATUS_MAP[applicationStatus]}
         </S.ApplicationStatus>
       </S.TitleContainer>

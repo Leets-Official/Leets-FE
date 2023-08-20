@@ -35,7 +35,7 @@ export const SubHeader = styled.div`
   color: #000;
 `;
 
-export const ApplicationStatus = styled.div<{ applicationStatus: ApplicationStatusType }>`
+export const ApplicationStatus = styled.div<{ $applicationStatus: ApplicationStatusType }>`
   font-size: 14px;
   font-weight: 600;
 
@@ -47,10 +47,10 @@ export const ApplicationStatus = styled.div<{ applicationStatus: ApplicationStat
   align-items: center;
 
   border-radius: 8px;
-  background: ${({ applicationStatus }) =>
-    applicationStatus === 'PENDING' ? '#e9e8e8' : applicationStatus.includes('PASS') ? '#e9faf7' : '#989898'};
-  color: ${({ applicationStatus }) =>
-    applicationStatus === 'PENDING' ? '#989898' : applicationStatus.includes('PASS') ? '#1a9882' : '#eb3d4d'};
+  background: ${({ $applicationStatus }) =>
+    $applicationStatus === 'PENDING' ? '#e9e8e8' : $applicationStatus.includes('PASS') ? '#e9faf7' : '#989898'};
+  color: ${({ $applicationStatus }) =>
+    $applicationStatus === 'PENDING' ? '#989898' : $applicationStatus.includes('PASS') ? '#1a9882' : '#eb3d4d'};
 `;
 
 export const DateContainer = styled.div`

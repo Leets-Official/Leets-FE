@@ -1,19 +1,17 @@
 'use client';
 
 import Nav from '@/components/Nav';
+import { MAIN_COLOR } from '@/constants';
 import * as S from './Certificate.styled';
 
 const Certificate = () => {
-  const color = 'blue';
+  const color = MAIN_COLOR;
 
   return (
     <S.CertificateContainer>
       <Nav color={color} />
       <S.ContentContainer>
-        <S.HeadStyle>
-          Certificate
-          {/* <S.WriteStyle>개인정보 동의</S.WriteStyle> */}
-        </S.HeadStyle>
+        <S.HeadStyle>Certificate</S.HeadStyle>
         <S.PrivacyContainer>
           <S.MainTitle>개인정보 처리방침</S.MainTitle>
           <S.Text>

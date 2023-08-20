@@ -19,14 +19,14 @@ export const ContentContainer = styled.section`
 export const HeadStyle = styled.div`
   font-family: 'DM Sans';
   font-weight: 500;
-  font-size: 8.8vw;
-  text-align: center;
+  font-size: 6vw;
+  letter-spacing: -0.03em;
 
   width: content;
   height: auto;
 
+  margin-bottom: 30px;
   background: white;
-  letter-spacing: -0.03em;
 `;
 
 export const WriteStyle = styled.div`
@@ -49,7 +49,6 @@ export const PrivacyContainer = styled.article`
   border-radius: 20px;
   border: 1px solid #e6e6e6;
   padding: 20px;
-
   overflow-y: scroll;
 `;
 

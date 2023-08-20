@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
+import Notice from './Notice';
 
 const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
@@ -154,7 +155,7 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
               </S.Text>
             </S.PrivacyContainer>
           </S.InputContainer>
-          <S.NoticeContainer>제출 시 변경하거나 수정할 수 없습니다.</S.NoticeContainer>
+          <Notice color={color} />
           <S.ButtonContainer>
             <S.SaveButton type="submit" color={color} onClick={() => clickHandler(SUBMIT_STATUS.SAVE)}>
               임시저장

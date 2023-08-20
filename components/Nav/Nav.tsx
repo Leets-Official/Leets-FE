@@ -2,19 +2,20 @@
 
 import { ThemeColor } from '@/types';
 import { signOut, useSession } from 'next-auth/react';
+import { USER } from '@/constants';
 import * as S from './Nav.styled';
 
 const Nav = ({ color }: { color: ThemeColor }) => {
   const { data: session } = useSession();
 
   const handleLogout = () => {
-    signOut({ callbackUrl: '/' });
+    signOut({ callbackUrl: USER.HOME });
   };
 
   return (
     <S.NavContainer>
       <S.Container>
-        <S.LinkContainer href="/">Leets</S.LinkContainer>
+        <S.LinkContainer href={USER.HOME}>Leets</S.LinkContainer>
         <S.WelcomeContainer name={session?.user?.name as string}>
           {session?.user?.name && (
             <>

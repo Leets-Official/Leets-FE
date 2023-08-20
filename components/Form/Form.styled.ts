@@ -146,17 +146,3 @@ export const SubmitButton = styled.button<{ color: ThemeColor }>`
     background: ${({ color }) => BACKGROUND_COLOR[color]};
   }
 `;
-
-export const NoticeContainer = styled.div`
-  font-family: 'Pretendard';
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-
-  display: flex;
-  justify-content: center;
-
-  background: white;
-  color: #666666;
-  margin-top: 40px;
-`;
