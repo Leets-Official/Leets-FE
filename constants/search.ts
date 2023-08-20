@@ -11,7 +11,7 @@ export const SORT_METHOD = {
 
 export const SORT_TARGET = {
   GPA: 'gpa',
-  INTERVIEW_DATE: 'interviewDate',
+  INTERVIEW_DATE: 'fixedInterviewDate',
 } as const;
 
 export const PAGINATION = {

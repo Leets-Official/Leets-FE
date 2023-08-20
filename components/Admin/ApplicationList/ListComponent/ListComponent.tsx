@@ -45,9 +45,6 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
     router.push(query);
   }
 
-  // console.log(applications);
-  // console.log('applicationCondition', applicationCondition);
-
   return (
     <S.ApplicationContainer>
       <S.SearchContainer>
