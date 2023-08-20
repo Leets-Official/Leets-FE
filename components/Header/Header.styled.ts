@@ -18,7 +18,7 @@ export const HeadContainer = styled(motion.header)`
 
 export const TitleStyle = styled.h1`
   font-family: 'DM Sans';
-  font-weight: 500;
+  font-weight: 400;
   font-size: 10vw;
   letter-spacing: -0.03em;
 
