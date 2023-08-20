@@ -1,9 +1,11 @@
-import { DEV_INPUTS, DESING_INPUTS } from '@/constants';
+import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR, POSITION_ENGLISH_MAP } from '@/constants';
 import { ApplicationInputProp } from '@/types';
 import * as S from './InputText.styled';
 
-const InputText = ({ position, changeHandler, application, color }: ApplicationInputProp) => {
-  const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
+const InputText = ({ position, changeHandler, application }: ApplicationInputProp) => {
+  const LAYOUT = position === POSITION_ENGLISH_MAP.DEV_ENG ? DEV_INPUTS : DESING_INPUTS;
+  const color = MAIN_COLOR;
+
   return (
     <>
       {LAYOUT.map(({ id, title, holderText, required, maxLength }) => (

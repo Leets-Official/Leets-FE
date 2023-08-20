@@ -29,16 +29,6 @@ export const HeadStyle = styled.div`
   background: white;
 `;
 
-export const WriteStyle = styled.div`
-  font-family: 'Pretendard';
-  font-weight: 600;
-  font-size: 24px;
-  text-align: center;
-  letter-spacing: 0;
-
-  background: white;
-`;
-
 export const PrivacyContainer = styled.article`
   font-family: DM Sans;
   line-height: 2;

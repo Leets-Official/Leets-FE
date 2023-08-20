@@ -40,4 +40,5 @@ export const ApplyButton = styled(Link)`
     cursor: 'pointer',
     textDecoration: 'none',
   })}
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 `;

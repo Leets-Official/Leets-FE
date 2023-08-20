@@ -37,7 +37,7 @@ const Apply = () => {
   return (
     <S.ApplyContainer>
       <Nav color={color} />
-      {data?.user ? <Form color={color} email={data.user.email as string} token={data.accessToken} /> : <LoginButton />}
+      {data?.user ? <Form /> : <LoginButton />}
     </S.ApplyContainer>
   );
 };

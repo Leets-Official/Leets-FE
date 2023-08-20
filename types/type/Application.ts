@@ -96,7 +96,6 @@ export type ApplicationInputProp = {
   position: PositionType;
   changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: keyof ApplicationInput) => void;
   application: ApplicationInput;
-  color: ThemeColor;
 };
 
 export type ApplicationTextareaProp = {

@@ -15,12 +15,21 @@ export const NoticeContainer = styled.div`
   margin-top: 60px;
 `;
 
+export const ImageContainer = styled.div<{ $isToggle: boolean }>`
+  width: 24px;
+  height: 24px;
+
+  transition: transform 0.3s;
+  transform: rotate(0deg);
+  ${({ $isToggle }) => $isToggle && 'transform: rotate(180deg);'}
+`;
+
 export const NoticeTitle = styled.div`
   width: 100%;
 
   display: flex;
   align-items: center;
-  text-align: left;
+  justify-content: space-between;
 
   color: black;
   cursor: pointer;
