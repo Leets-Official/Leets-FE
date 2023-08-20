@@ -35,7 +35,6 @@ export const TopContainer = styled.div`
   justify-content: space-between;
 `;
 
-
 export const Subject = styled(motion.div)`
   ${MQ({
     fontWeight: '500',
