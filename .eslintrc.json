@@ -36,8 +36,7 @@
     "import/prefer-default-export": "off",
     "no-unused-vars": "off",
     "react/require-default-props": "off",
-    "no-nested-ternary": "off",
-    "no-restricted-globals": "off"
+    "no-nested-ternary": "off"
   },
   "settings": {
     "import/parsers": {
