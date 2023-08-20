@@ -17,7 +17,7 @@ export const ApplicationTextContainer = styled.section`
 
 export const PersonalInformationContainer = styled.div`
   width: 100%;
-  height: 442px;
+  height: 520px;
 
   padding: 24px;
   border-radius: 12px;
@@ -35,7 +35,6 @@ export const SubTitle = styled.div`
 
 export const PersonalInformation = styled.div`
   display: grid;
-
   grid-template-columns: 1fr 1fr;
   row-gap: 14px;
 `;
@@ -45,7 +44,7 @@ export const Info = styled.div`
 `;
 
 export const Key = styled.div`
-  font-weight: 700;
+  font-weight: 600;
 
   color: #000000;
   margin-bottom: 4px;

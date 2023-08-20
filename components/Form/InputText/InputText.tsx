@@ -1,4 +1,4 @@
-import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR, POSITION_ENGLISH_MAP } from '@/constants';
+import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR } from '@/constants';
 import { ApplicationInputProp } from '@/types';
 import * as S from './InputText.styled';
 

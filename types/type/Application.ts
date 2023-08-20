@@ -1,8 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { POSITION_MAP, APPLICATION_STATUS_MAP, POSITION_ENGLISH_MAP, SUBMIT_STATUS } from '@/constants';
+import { APPLICATION_STATUS_MAP, SUBMIT_STATUS, POSITION_FILTER_MAP, APPLY_POSITION } from '@/constants';
 import { Applicant } from './User';
 import { KeyOf, ValueOf } from '../Helper';
-import { ThemeColor } from './Common';
 
 export type ApplicationInput = {
   name: string;
@@ -40,7 +39,7 @@ export type IdRequest = { id: number };
 export type ApplicationStatusType = keyof typeof APPLICATION_STATUS_MAP;
 
 export type GetApplicationRequest = {
-  position: KeyOf<typeof POSITION_MAP>;
+  position: KeyOf<typeof POSITION_FILTER_MAP>;
 };
 
 export type InterviewStatusType = 'CHECK' | 'UNCHECK';
@@ -59,7 +58,7 @@ export type GetApplicationResponse = {
 
 export type ApplicationListType = GetApplicationResponse;
 
-export type PositionType = keyof typeof POSITION_ENGLISH_MAP;
+export type PositionType = keyof typeof APPLY_POSITION;
 
 export type PatchApplication = Application & {
   position: PositionType;
@@ -80,6 +79,7 @@ export type GetApplicationDetaiResponse = Application & {
   appliedAt: string;
   fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
+  position: PositionType;
 };
 
 export type ApplicationDetailType = GetApplicationDetaiResponse;

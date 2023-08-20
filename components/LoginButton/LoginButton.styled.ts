@@ -54,7 +54,7 @@ export const ImageStyle = styled.img`
 export const TextStyle = styled.div`
   ${MQ({
     fontFamily: 'Pretendard',
-    fontWeight: '700',
+    fontWeight: '400',
     fontSize: [13, 18, 18, 20.0],
     lineHeight: '24px',
     background: 'white',

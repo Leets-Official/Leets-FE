@@ -15,7 +15,7 @@ const Timeline = ({ color }: { color: ThemeColor }) => (
         <TimelineImage color={color} />
         <S.InfoStyle>
           {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
-            <S.DateStyle key={key} initial={{ y: 100 }} whileInView={{ y: 0 }} transition={{ duration: 0.8 }}>
+            <S.DateStyle key={key} initial={{ y: 100 }} whileInView={{ y: 0 }} transition={{ duration: 0.5 }}>
               <S.KeyStyle>{key}</S.KeyStyle>
               <S.ValueStyle>{value}</S.ValueStyle>
             </S.DateStyle>

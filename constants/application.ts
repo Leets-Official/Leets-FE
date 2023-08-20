@@ -40,6 +40,7 @@ export const APPLICATION_DETAIL_DEFAULT = {
     phone: '',
     email: '',
   },
+  position: 'DEV',
   applicationStatus: 'PENDING',
   ...APPLICATION_INPUT_DEFAULT,
   ...APPLICATION_TEXT_DEFAULT,

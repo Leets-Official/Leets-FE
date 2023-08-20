@@ -9,7 +9,6 @@ import {
   APPLY_POSITION,
   APPLY_PERIOD,
   MAIN_COLOR,
-  POSITION_ENGLISH_MAP,
 } from '@/constants';
 import { ApplicationInput, KeyOf, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
@@ -92,6 +91,7 @@ const Form = () => {
           ...result,
         };
         setApplicationText({ enhancement, level, pros, goal, completion });
+        setPosition(result.position);
       }
     };
     if (session.data?.submitStatus !== SUBMIT_STATUS.NONE) {

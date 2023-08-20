@@ -1,4 +1,4 @@
-import { DEV_TEXTAREAS, DESIGN_TEXTAREAS, MAIN_COLOR, POSITION_ENGLISH_MAP } from '@/constants';
+import { DEV_TEXTAREAS, DESIGN_TEXTAREAS, MAIN_COLOR } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';
 import * as S from './InputTextarea.styled';

@@ -52,6 +52,10 @@ const ApplicationStatus = ({
       Alert.error(APPLICATION.REJECT_CHANGE_APPLICATION_STATUS);
       return;
     }
+    if (selectedApplicationStatus === 'PASS_PAPER' && !newInterviewDate) {
+      Alert.error(APPLICATION.ASK_INPUT_DATE);
+      return;
+    }
     const { result } = await api.patchApplicationDetail({
       id,
       applicationStatus: selectedApplicationStatus as ApplicationStatusType,

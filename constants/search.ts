@@ -24,14 +24,10 @@ export const APPLY_POSITION = {
   DESIGN: '디자인',
 } as const;
 
-export const POSITION_ENGLISH_MAP = {
-  ...APPLY_POSITION,
-  SAVE: '임시 저장',
-} as const;
-
-export const POSITION_MAP = {
+export const POSITION_FILTER_MAP = {
   All: 'All',
-  ...POSITION_ENGLISH_MAP,
+  SAVE: '임시저장',
+  ...APPLY_POSITION,
 } as const;
 
-export const POSITION_TYPES = Object.keys(POSITION_MAP) as (keyof typeof POSITION_MAP)[];
+export const POSITION_TYPES = Object.keys(POSITION_FILTER_MAP) as (keyof typeof POSITION_FILTER_MAP)[];

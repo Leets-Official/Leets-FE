@@ -1,4 +1,4 @@
-import { POSITION_ENGLISH_MAP } from './search';
+import { APPLY_POSITION } from './search';
 
 export const FILTER_DEFAULT_VALUE = {
   APPLICATION_STATUS: '합격 여부',
@@ -31,5 +31,5 @@ export const DROPDOWN_MAP = {
   ...APPLICATION_STATUS_MAP,
   ...INTERVIEW_MAP,
   ...ORDER_MAP,
-  ...POSITION_ENGLISH_MAP,
+  ...APPLY_POSITION,
 } as const;

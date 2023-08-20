@@ -1,11 +1,11 @@
-import { POSITION_TYPES, POSITION_MAP } from '@/constants';
+import { POSITION_TYPES, POSITION_FILTER_MAP } from '@/constants';
 import { Dispatch, SetStateAction } from 'react';
 import { KeyOf } from '@/types';
 import * as S from './PositionFilter.styled';
 
 type PositionFilterProps = {
-  clickHandler: Dispatch<SetStateAction<KeyOf<typeof POSITION_MAP>>>;
-  type: KeyOf<typeof POSITION_MAP>;
+  clickHandler: Dispatch<SetStateAction<KeyOf<typeof POSITION_FILTER_MAP>>>;
+  type: KeyOf<typeof POSITION_FILTER_MAP>;
 };
 
 const PositionFilter = ({ clickHandler, type }: PositionFilterProps) => {
@@ -16,7 +16,7 @@ const PositionFilter = ({ clickHandler, type }: PositionFilterProps) => {
       <S.FilterByPosition>
         {POSITION_TYPES.map((position) => (
           <S.FilterBackground $enable={isTargetEnabled(position)} key={position} onClick={() => clickHandler(position)}>
-            <S.FilterText $enable={isTargetEnabled(position)}>{POSITION_MAP[position]}</S.FilterText>
+            <S.FilterText $enable={isTargetEnabled(position)}>{POSITION_FILTER_MAP[position]}</S.FilterText>
           </S.FilterBackground>
         ))}
       </S.FilterByPosition>

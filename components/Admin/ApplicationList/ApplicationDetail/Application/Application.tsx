@@ -1,4 +1,5 @@
 import { ApplicationDetailType } from '@/types';
+import { APPLY_POSITION } from '@/constants';
 import ApplicationStatus from '../ApplicationStatus';
 import * as S from './Application.styled';
 
@@ -25,6 +26,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
     applicationStatus,
     interviewDay,
     interviewTime,
+    position,
   } = application;
 
   return (
@@ -64,6 +66,10 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
             <S.Info>
               <S.Key>희망 면접 시간</S.Key>
               <S.Value>{interviewTime}</S.Value>
+            </S.Info>
+            <S.Info>
+              <S.Key>지원 직무</S.Key>
+              <S.Value>{APPLY_POSITION[position]}</S.Value>
             </S.Info>
             <S.Info>
               <S.Key>알고리즘</S.Key>

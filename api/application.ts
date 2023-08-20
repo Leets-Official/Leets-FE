@@ -1,5 +1,5 @@
 import { http } from '@/api/core';
-import { POSITION_MAP } from '@/constants';
+import { POSITION_FILTER_MAP } from '@/constants';
 import {
   BaseResponse,
   GetApplicationRequest,
@@ -15,7 +15,7 @@ import {
 export const getApplicationList = ({
   position,
 }: GetApplicationRequest): Promise<BaseResponse<GetApplicationResponse[]>> => {
-  if (position === POSITION_MAP.All) {
+  if (position === POSITION_FILTER_MAP.All) {
     return http.get({
       url: '/application',
     });

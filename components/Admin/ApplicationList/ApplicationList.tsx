@@ -6,7 +6,7 @@ import { ApplicationListType, KeyOf } from '@/types';
 import * as api from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
-import { ADMIN, POSITION_MAP, MAIN_COLOR } from '@/constants';
+import { ADMIN, MAIN_COLOR, POSITION_FILTER_MAP } from '@/constants';
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Common/Loading';
 import { useAppSelector, useAppDispatch } from '@/store';
@@ -17,7 +17,7 @@ import ListComponent from './ListComponent';
 
 const ApplicationList = () => {
   const [applications, setApplications] = useState<ApplicationListType[]>([]);
-  const [position, setPosition] = useState<KeyOf<typeof POSITION_MAP>>(POSITION_MAP.All);
+  const [position, setPosition] = useState<KeyOf<typeof POSITION_FILTER_MAP>>(POSITION_FILTER_MAP.All);
   const isLoading = useIsLoading();
   const { name } = useAppSelector((state) => state.admin);
   const router = useRouter();
