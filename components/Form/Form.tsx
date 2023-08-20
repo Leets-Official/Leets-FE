@@ -75,7 +75,7 @@ const Form = () => {
     if (!axios.isAxiosError(result)) {
       const successMessage =
         currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
-      await session.update({ beforeSubmitStatus: currentSubmitStatus });
+      await session.update({ submitStatus: currentSubmitStatus });
       Alert.success(successMessage);
       router.refresh();
     }

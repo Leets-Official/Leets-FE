@@ -18,7 +18,7 @@ import { useIsLoading } from '@/hooks/useIsLoading';
 
 const Index = () => {
   const color = MAIN_COLOR;
-  const isDesktop = useDeviceChecker();
+  const { isMobile } = useDeviceChecker();
   const isLoading = useIsLoading();
   const [position, setPosition] = useState({
     x: 0,
@@ -41,7 +41,7 @@ const Index = () => {
   if (isLoading) {
     return <Loading color={color} backgroundColor="black" />;
   }
-  if (!isDesktop) {
+  if (isMobile) {
     return <MobileContainer color={color} />;
   }
   return (

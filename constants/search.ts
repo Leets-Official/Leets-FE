@@ -26,8 +26,8 @@ export const APPLY_POSITION = {
 
 export const POSITION_FILTER_MAP = {
   All: 'All',
-  SAVE: '임시저장',
   ...APPLY_POSITION,
+  SAVE: '임시저장',
 } as const;
 
 export const POSITION_TYPES = Object.keys(POSITION_FILTER_MAP) as (keyof typeof POSITION_FILTER_MAP)[];

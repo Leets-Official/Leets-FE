@@ -21,7 +21,6 @@ export const Container = styled.div`
 
 export const LinkContainer = styled(Link)`
   font-family: 'DM Sans';
-  font-weight: 400px;
   font-size: 26px;
 
   background: white;

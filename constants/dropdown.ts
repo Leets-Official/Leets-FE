@@ -6,7 +6,7 @@ export const FILTER_DEFAULT_VALUE = {
 } as const;
 
 export const ORDER_LIST = ['ASC', 'DESC'] as const;
-export const APPLICATION_STAUTS_LIST = ['PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'] as const;
+export const APPLICATION_STAUTS_LIST = ['PENDING', 'PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'] as const;
 export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK'] as const;
 
 export const APPLICATION_STATUS_MAP = {
@@ -17,7 +17,7 @@ export const APPLICATION_STATUS_MAP = {
   PENDING: '보류중',
 } as const;
 
-export const INTERVIEW_MAP = {
+export const INTERVIEW_STATUS_MAP = {
   CHECK: '면접 응시',
   UNCHECK: '면접 미응시',
 } as const;
@@ -29,7 +29,7 @@ export const ORDER_MAP = {
 
 export const DROPDOWN_MAP = {
   ...APPLICATION_STATUS_MAP,
-  ...INTERVIEW_MAP,
+  ...INTERVIEW_STATUS_MAP,
   ...ORDER_MAP,
   ...APPLY_POSITION,
 } as const;

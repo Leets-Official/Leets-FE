@@ -9,7 +9,7 @@ type PointerProp = {
 };
 
 const Pointer = ({ position, size, color }: PointerProp) => {
-  const isDesktop = useDeviceChecker();
+  const { isDesktop } = useDeviceChecker();
 
   if (!isDesktop) {
     return null;

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
@@ -14,7 +15,7 @@ export const ContentContainer = styled.div`
   padding-right: 16px;
 `;
 
-export const SubjectStyle = styled.h1`
+export const Subject = styled(motion.div)`
   font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;
@@ -33,12 +34,12 @@ export const BottomContainer = styled.div`
   padding-left: 16px;
 `;
 
-export const DateStyle = styled.div`
+export const InfoStyle = styled.div`
   margin-top: 44px;
   margin-left: 20px;
 `;
 
-export const InfoStyle = styled.div`
+export const DateStyle = styled(motion.div)`
   font-family: 'Pretendard';
 
   margin-bottom: 76px;

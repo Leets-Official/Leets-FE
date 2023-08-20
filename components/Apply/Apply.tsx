@@ -17,7 +17,7 @@ const Apply = () => {
   const { status, data } = useSession();
   const router = useRouter();
   const color = MAIN_COLOR;
-  const isDesktop = useDeviceChecker();
+  const { isDesktop } = useDeviceChecker();
 
   useEffect(() => {
     const currentPeriod = Schedule.getCurrentPeriod(new Date());
