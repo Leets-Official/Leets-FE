@@ -24,6 +24,11 @@ const ApplicationList = () => {
   const dispatch = useAppDispatch();
   const color = MAIN_COLOR;
 
+  const logoutHandler = () => {
+    dispatch(logout());
+    router.push(ADMIN.LOGIN);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await api.getApplicationList({ position });
@@ -36,11 +41,6 @@ const ApplicationList = () => {
     }
     fetchData();
   }, [position]);
-
-  const logoutHandler = () => {
-    dispatch(logout());
-    router.push(ADMIN.LOGIN);
-  };
 
   if (isLoading) {
     return <Loading color={color} />;

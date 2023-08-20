@@ -29,7 +29,7 @@ import Notice from './Notice';
 const Form = () => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
-  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(POSITION_ENGLISH_MAP.DEV_ENG);
+  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
   const token = session.data?.accessToken;

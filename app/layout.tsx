@@ -12,11 +12,7 @@ export const metadata: Metadata = {
     title: 'Leets',
     description: 'Who Cares?',
     url: 'https://leets.land',
-    images: [
-      {
-        url: '/assets/image/OG.png',
-      },
-    ],
+    images: ['/assets/image/OG.png'],
     locale: 'ko-KR',
     type: 'website',
   },

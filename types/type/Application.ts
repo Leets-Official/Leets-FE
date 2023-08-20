@@ -43,6 +43,8 @@ export type GetApplicationRequest = {
   position: KeyOf<typeof POSITION_MAP>;
 };
 
+export type InterviewStatusType = 'CHECK' | 'UNCHECK';
+
 export type GetApplicationResponse = {
   id: number;
   name: string;
@@ -51,7 +53,7 @@ export type GetApplicationResponse = {
   position: string;
   career: string;
   fixedInterviewDate: string;
-  hasInterview: boolean;
+  hasInterview: InterviewStatusType;
   applicationStatus: ApplicationStatusType;
 };
 

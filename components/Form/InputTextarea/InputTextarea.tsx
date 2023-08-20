@@ -4,7 +4,7 @@ import { FormEvent } from 'react';
 import * as S from './InputTextarea.styled';
 
 const InputTextarea = ({ position, text, setText, application }: ApplicationTextareaProp) => {
-  const LAYOUT = position === POSITION_ENGLISH_MAP.DEV_ENG ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
+  const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
   const color = MAIN_COLOR;
 
   const handleOnInput = (e: FormEvent<HTMLTextAreaElement>, maxLength: number) => {

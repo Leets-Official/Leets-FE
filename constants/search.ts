@@ -1,7 +1,7 @@
 export const SEARCH_TARGET = {
   NAME: 'name',
   APPLICATION_STATUS: 'applicationStatus',
-  INTERVIEW_STATUS: 'interviewStatus',
+  INTERVIEW_STATUS: 'hasInterview',
 } as const;
 
 export const SORT_METHOD = {
@@ -27,7 +27,6 @@ export const APPLY_POSITION = {
 export const POSITION_ENGLISH_MAP = {
   ...APPLY_POSITION,
   SAVE: '임시 저장',
-  DEV_ENG: 'DEV',
 } as const;
 
 export const POSITION_MAP = {

@@ -14,7 +14,7 @@ export const ButtonContainer = styled.div`
 
 export const ApplyButton = styled(Link)<{ color: ThemeColor }>`
   font-family: 'Pretendard';
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   line-height: 100%;
 

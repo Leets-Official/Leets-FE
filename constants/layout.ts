@@ -31,7 +31,7 @@ const STUDY_TEXT = {
 const ENTERTIANMENT_TEXT = {
   title: 'Entertainment',
   height: 434,
-  benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLEETS DAY!', 'LEET’S GO PICNIC'],
+  benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLEETS DAY!', 'LEET’S PLAY!'],
 };
 
 export const MOBILE_PROMOTION_LAYOUT = [
