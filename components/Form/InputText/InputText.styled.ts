@@ -57,7 +57,6 @@ export const InputStyle = styled.input<{ color: ThemeColor }>`
   &::placeholder {
     color: #adb1bd;
   }
-
   &:focus {
     outline: none;
     border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};

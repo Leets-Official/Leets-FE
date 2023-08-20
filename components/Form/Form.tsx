@@ -8,8 +8,10 @@ import {
   APPLICATION,
   APPLY_POSITION,
   APPLY_PERIOD,
+  MAIN_COLOR,
+  POSITION_ENGLISH_MAP,
 } from '@/constants';
-import { ApplicationInput, KeyOf, ThemeColor, ApplicationData, SubmitStatus } from '@/types';
+import { ApplicationInput, KeyOf, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
 import { useBeforeUnload, useInputRef } from '@/hooks';
 import axios from 'axios';
@@ -24,32 +26,37 @@ import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
 import Notice from './Notice';
 
-const Form = ({ color, email, token }: { color: ThemeColor; email: string; token: string }) => {
+const Form = () => {
   const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
-  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
-  const [submitType, setSubmitType] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
+  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(POSITION_ENGLISH_MAP.DEV_ENG);
+  const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
-  const submitStatus = session.data?.submitStatus;
+  const token = session.data?.accessToken;
+  const email = session.data?.user?.email!;
+  const beforeSubmitStatus = session.data?.submitStatus;
   const router = useRouter();
   const submitClickHandler = useBeforeUnload();
+  const color = MAIN_COLOR;
 
   const clickHandler = (type: SubmitStatus) => {
-    setSubmitType(type);
+    setCurrentSubmitStatus(type);
     submitClickHandler();
   };
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+    if (beforeSubmitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
       router.refresh();
       return;
     }
     if (Schedule.getCurrentPeriod(new Date()) === APPLY_PERIOD.CLOSE) {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
-      router.refresh();
+      return;
+    }
+    if (currentSubmitStatus === SUBMIT_STATUS.SUBMIT && !window.confirm(APPLICATION.CONFIRM_SUBMIT)) {
       return;
     }
 
@@ -58,24 +65,18 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
       ...applicationText,
       email,
       position,
-      submitStatus: submitType,
+      submitStatus: currentSubmitStatus,
     };
 
-    if (submitType === SUBMIT_STATUS.SUBMIT) {
-      if (!confirm(APPLICATION.CONFIRM_SUBMIT)) {
-        return;
-      }
-    }
-
     const { result } =
-      submitStatus === SUBMIT_STATUS.NONE
+      beforeSubmitStatus === SUBMIT_STATUS.NONE
         ? await api.postApplication(applicationData, token)
         : await api.patchApplication(applicationData, token);
 
     if (!axios.isAxiosError(result)) {
       const successMessage =
-        submitType === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
-      await session.update({ submitStatus: submitType });
+        currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
+      await session.update({ beforeSubmitStatus: currentSubmitStatus });
       Alert.success(successMessage);
       router.refresh();
     }
@@ -85,36 +86,10 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
     const fetchData = async () => {
       const { result } = await api.getUserApplication(token);
       if (!axios.isAxiosError(result)) {
-        const {
-          gpa,
-          major,
-          algorithm,
-          project,
-          career,
-          portfolio,
-          interviewDay,
-          interviewTime,
-          enhancement,
-          level,
-          pros,
-          goal,
-          completion,
-          user,
-          grade,
-          name,
-        } = result;
+        const { enhancement, level, pros, goal, completion, user } = result;
         inputRef.current = {
-          grade,
-          gpa,
-          major,
-          algorithm,
-          project,
-          career,
-          portfolio,
-          interviewDay,
-          interviewTime,
           ...user,
-          name,
+          ...result,
         };
         setApplicationText({ enhancement, level, pros, goal, completion });
       }
@@ -139,13 +114,13 @@ const Form = ({ color, email, token }: { color: ThemeColor; email: string; token
             <S.DropDownContainer>
               <S.PositionContainer>지원 직무 :</S.PositionContainer>
               <FilterDropDown
-                list={Object.keys(APPLY_POSITION).filter((positionType) => positionType !== SUBMIT_STATUS.SAVE)}
+                list={Object.keys(APPLY_POSITION)}
                 selected={position as KeyOf<typeof APPLY_POSITION>}
                 setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} color={color} />
+            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} />
             <InputTextarea
               position={position}
               text={applicationText}

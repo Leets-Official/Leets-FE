@@ -50,15 +50,15 @@ export const TextareaStyle = styled.textarea<{ color: ThemeColor }>`
   width: 100%;
   height: 168px;
 
-  &::placeholder {
-    color: #adb1bd;
-  }
   border: 1px solid #e6e6e6;
   border-radius: 8px;
   background: white;
   padding: 8px;
   resize: none;
 
+  &::placeholder {
+    color: #adb1bd;
+  }
   &:focus {
     outline: none;
     border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};

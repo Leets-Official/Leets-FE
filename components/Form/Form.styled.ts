@@ -117,10 +117,10 @@ export const SaveButton = styled.button<{ color: ThemeColor }>`
 
   border-radius: 40px;
   border: none;
-
   background: #e0e2e7;
   color: white;
   cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
     background: ${({ color }) => BACKGROUND_COLOR[color]};
@@ -137,10 +137,10 @@ export const SubmitButton = styled.button<{ color: ThemeColor }>`
 
   border-radius: 40px;
   border: none;
-
   background: #1a1a1a;
   color: white;
   cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
     background: ${({ color }) => BACKGROUND_COLOR[color]};

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { ThemeColor } from '@/types';
+import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import * as S from './Notice.styled';
 
 const Notice = ({ color }: { color: ThemeColor }) => {
-  const [isToggle, setIsToggle] = useState<boolean>(false);
+  const [isToggle, setIsToggle] = useState<boolean>(true);
 
   const toggleHandler = () => {
     setIsToggle(!isToggle);
@@ -13,6 +14,9 @@ const Notice = ({ color }: { color: ThemeColor }) => {
     <S.NoticeContainer>
       <S.NoticeTitle onClick={toggleHandler} color={color}>
         주의사항
+        <S.ImageContainer $isToggle={isToggle}>
+          <DropDownArrow />
+        </S.ImageContainer>
       </S.NoticeTitle>
       {isToggle && (
         <S.NoticeTextContainer>
