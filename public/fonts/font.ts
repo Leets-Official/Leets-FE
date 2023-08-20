@@ -3,16 +3,6 @@ import localFont from 'next/font/local';
 export const NotoSansKR = localFont({
   src: [
     {
-      path: './DMSans/DMSans-Thin.ttf',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: './DMSans/DMSans-ExtraLight.ttf',
-      weight: '200',
-      style: 'normal',
-    },
-    {
       path: './DMSans/DMSans-Light.ttf',
       weight: '300',
       style: 'normal',
@@ -37,31 +27,11 @@ export const NotoSansKR = localFont({
       weight: '700',
       style: 'normal',
     },
-    {
-      path: './DMSans/DMSans-ExtraBold.ttf',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: './DMSans/DMSans-Black.ttf',
-      weight: '900',
-      style: 'normal',
-    },
   ],
 });
 
 export const Pretendard = localFont({
   src: [
-    {
-      path: './Pretendard/Pretendard-Thin.woff',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: './Pretendard/Pretendard-ExtraLight.woff',
-      weight: '200',
-      style: 'normal',
-    },
     {
       path: './Pretendard/Pretendard-Light.woff',
       weight: '300',
@@ -85,16 +55,6 @@ export const Pretendard = localFont({
     {
       path: './Pretendard/Pretendard-Bold.woff',
       weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './Pretendard/Pretendard-ExtraBold.woff',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: './Pretendard/Pretendard-Black.woff',
-      weight: '900',
       style: 'normal',
     },
   ],
