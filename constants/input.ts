@@ -163,14 +163,14 @@ export const DEV_TEXTAREAS = [
     maxLength: MAX_LENGTH.COMPLETION,
   },
   {
-    id: 'level',
+    id: 'pros',
     title: '본인의 장단점을 구체적인 경험을 바탕으로 소개해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.LEVEL,
   },
   {
-    id: 'pros',
+    id: 'level',
     title:
       '개발 실력을 1부터 10까지 점수로 표현해주세요.\n이유를 공부한 과정을 기반으로 작성해주시고, 학습 계획에 대해 자세히 소개해주세요.',
     holderText: '내용을 입력해주세요.',
@@ -202,14 +202,14 @@ export const DESIGN_TEXTAREAS = [
     maxLength: MAX_LENGTH.COMPLETION,
   },
   {
-    id: 'level',
+    id: 'pros',
     title: '본인의 장단점을 구체적인 경험을 바탕으로 소개해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.LEVEL,
   },
   {
-    id: 'pros',
+    id: 'level',
     title:
       '디자인 실력을 1부터 10까지 점수로 표현해주세요.\n이유를 공부한 과정을 기반으로 작성해주시고, 학습 계획에 대해 자세히 소개해주세요.',
     holderText: '내용을 입력해주세요.',
