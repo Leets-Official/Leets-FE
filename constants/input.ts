@@ -58,7 +58,7 @@ export const DEV_INPUTS = [
   },
   {
     id: 'portfolio',
-    title: 'Github',
+    title: 'Github/포트폴리오',
     holderText: 'Github 주소를 입력하세요.',
     required: false,
     maxLength: MAX_LENGTH.PORTFOLIO,
@@ -111,13 +111,6 @@ export const DESING_INPUTS = [
     maxLength: MAX_LENGTH.GPA,
   },
   {
-    id: 'algorithm',
-    title: '알고리즘',
-    holderText: '알고리즘 수준을 입력하세요. (ex 백준/릿코드/프로그래머스)',
-    required: false,
-    maxLength: MAX_LENGTH.ALGORITHM,
-  },
-  {
     id: 'project',
     title: '프로젝트',
     holderText: '프로젝트 경험을 입력하세요. (ex TODO 프로젝트 배포 1회/기여 내용 등)',
@@ -126,8 +119,8 @@ export const DESING_INPUTS = [
   },
   {
     id: 'portfolio',
-    title: 'Figma',
-    holderText: 'Figma 주소를 입력하세요.',
+    title: 'Figma/포트폴리오',
+    holderText: 'Figma/포트폴리오 주소를 입력하세요.',
     required: false,
     maxLength: MAX_LENGTH.PORTFOLIO,
   },

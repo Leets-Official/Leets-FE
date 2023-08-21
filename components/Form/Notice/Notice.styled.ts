@@ -44,3 +44,7 @@ export const NoticeTextContainer = styled.div`
 export const Notice = styled.div`
   line-height: 2;
 `;
+
+export const Highlight = styled.span`
+  color: #eb3d4d;
+`;
