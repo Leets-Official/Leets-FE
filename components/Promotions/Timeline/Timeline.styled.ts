@@ -86,7 +86,7 @@ export const KeyStyle = styled.div`
 
 export const ValueStyle = styled.div`
   ${MQ({
-    fontWeight: '700',
+    fontWeight: '500',
     fontSize: [15.9, 15.9, 22.9, 28.0],
 
     color: '#cccccc',

@@ -55,7 +55,7 @@ export const KeyStyle = styled.span`
 `;
 
 export const ValueStyle = styled.div`
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
 
   line-height: 24px;
