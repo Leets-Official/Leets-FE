@@ -1,5 +1,5 @@
 export const MAX_LENGTH = {
-  NAME: 4,
+  NAME: 5,
   GRADE: 1,
   MAJOR: 10,
   GPA: 4,
@@ -99,7 +99,7 @@ export const DESING_INPUTS = [
   {
     id: 'career',
     title: '희망 직무',
-    holderText: '희망 직무를 입력하세요. (ex 백엔드, 프론트엔드, 미정)',
+    holderText: '희망 직무를 입력하세요. (ex UI/UX 디자이너)',
     required: false,
     maxLength: MAX_LENGTH.CAREER,
   },
@@ -113,7 +113,7 @@ export const DESING_INPUTS = [
   {
     id: 'project',
     title: '프로젝트',
-    holderText: '프로젝트 경험을 입력하세요. (ex TODO 프로젝트 배포 1회/기여 내용 등)',
+    holderText: '프로젝트 경험을 입력하세요. (ex UI/UX 디자인 제작, 디자인시스템 제작 등)',
     required: false,
     maxLength: MAX_LENGTH.PROJECT,
   },
@@ -127,7 +127,7 @@ export const DESING_INPUTS = [
   {
     id: 'phone',
     title: '전화번호',
-    holderText: '전화번호를 입력하세요. (모든 개인 정보는 안내 이외에는 사용되지 않습니다.)',
+    holderText: '전화번호를 입력하세요. (ex 010-1234-5678)',
     required: true,
     maxLength: MAX_LENGTH.PHONE,
   },

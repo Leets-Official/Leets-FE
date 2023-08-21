@@ -3,7 +3,7 @@ import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';
 import * as S from './InputTextarea.styled';
 
-const InputTextarea = ({ position, text, setText, application }: ApplicationTextareaProp) => {
+const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
   const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
   const color = MAIN_COLOR;
 
@@ -25,7 +25,7 @@ const InputTextarea = ({ position, text, setText, application }: ApplicationText
           <S.TextareaStyle
             color={color}
             id={id}
-            value={application[id] || text[id]}
+            value={text[id]}
             placeholder={holderText}
             onChange={(e) => setText({ ...text, [id]: e.target.value })}
             required={required}

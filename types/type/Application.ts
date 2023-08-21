@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { APPLICATION_STATUS_MAP, SUBMIT_STATUS, POSITION_FILTER_MAP, APPLY_POSITION } from '@/constants';
 import { Applicant } from './User';
 import { KeyOf, ValueOf } from '../Helper';
@@ -96,15 +96,14 @@ export type GetUserApplicationResponse = GetApplicationDetaiResponse;
 
 export type ApplicationInputProp = {
   position: PositionType;
-  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, value: keyof ApplicationInput) => void;
-  application: ApplicationInput;
+  input: ApplicationInput;
+  setInput: Dispatch<SetStateAction<ApplicationInput>>;
 };
 
 export type ApplicationTextareaProp = {
   position: PositionType;
   text: ApplicationTextarea;
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
-  application: ApplicationTextarea;
 };
 
 export type ApplicationData = ApplicationInput & {

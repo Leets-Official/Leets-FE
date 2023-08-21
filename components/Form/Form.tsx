@@ -10,9 +10,9 @@ import {
   APPLY_PERIOD,
   MAIN_COLOR,
 } from '@/constants';
-import { ApplicationInput, KeyOf, ApplicationData, SubmitStatus } from '@/types';
+import { KeyOf, ApplicationData, SubmitStatus } from '@/types';
 import * as api from '@/api';
-import { useBeforeUnload, useInputRef } from '@/hooks';
+import { useBeforeUnload } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
@@ -26,7 +26,7 @@ import * as S from './Form.styled';
 import Notice from './Notice';
 
 const Form = () => {
-  const { inputRef, changeHandler } = useInputRef<ApplicationInput>({ defaultValues: APPLICATION_INPUT_DEFAULT });
+  const [applicationInput, setApplicationInput] = useState(APPLICATION_INPUT_DEFAULT);
   const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
@@ -60,7 +60,7 @@ const Form = () => {
     }
 
     const applicationData: ApplicationData = {
-      ...inputRef.current,
+      ...applicationInput,
       ...applicationText,
       email,
       position,
@@ -77,7 +77,7 @@ const Form = () => {
         currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
       await session.update({ submitStatus: currentSubmitStatus });
       Alert.success(successMessage);
-      router.refresh();
+      router.replace(USER.APPLY);
     }
   };
 
@@ -86,11 +86,8 @@ const Form = () => {
       const { result } = await api.getUserApplication(token);
       if (!axios.isAxiosError(result)) {
         const { enhancement, level, pros, goal, completion, user } = result;
-        inputRef.current = {
-          ...user,
-          ...result,
-        };
         setApplicationText({ enhancement, level, pros, goal, completion });
+        setApplicationInput({ ...user, ...result });
         setPosition(result.position);
       }
     };
@@ -120,13 +117,8 @@ const Form = () => {
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} changeHandler={changeHandler} application={inputRef.current} />
-            <InputTextarea
-              position={position}
-              text={applicationText}
-              setText={setApplicationText}
-              application={applicationText}
-            />
+            <InputText position={position} input={applicationInput} setInput={setApplicationInput} />
+            <InputTextarea position={position} text={applicationText} setText={setApplicationText} />
             <S.PrivacyContainer>
               <S.PrivacyCheckBox type="checkbox" required />
               <S.Text>
