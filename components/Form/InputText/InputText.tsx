@@ -1,17 +1,10 @@
 import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR } from '@/constants';
 import { ApplicationInputProp } from '@/types';
-import { KeyboardEvent } from 'react';
 import * as S from './InputText.styled';
 
 const InputText = ({ position, input, setInput }: ApplicationInputProp) => {
   const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
   const color = MAIN_COLOR;
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, id: string) => {
-    if (e.key === 'Backspace' || e.key === 'Delete') {
-      setInput({ ...input, [id]: '' });
-    }
-  };
 
   return (
     <>
@@ -30,7 +23,6 @@ const InputText = ({ position, input, setInput }: ApplicationInputProp) => {
             placeholder={holderText}
             required={required}
             maxLength={maxLength}
-            onKeyDown={(e) => handleKeyDown(e, id)}
           />
         </S.ListStyle>
       ))}
