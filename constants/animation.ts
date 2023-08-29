@@ -3,4 +3,4 @@ export const HeaderAnimation = {
     opacity: 0,
   },
   start: { opacity: 1, transition: { duration: 1, delay: 0.1 } },
-};
+} as const;
