@@ -1,4 +1,4 @@
-export const MAIN_COLOR = 'yellow' as const;
+export const MAIN_COLOR = 'blue' as const;
 
 export const THEME_COLOR = { GREEN: 'green', BLUE: 'blue', YELLOW: 'yellow' } as const;
 
