@@ -16,7 +16,6 @@ export const APPLICATION_TEXT_DEFAULT = {
 export const APPLICATION_INPUT_DEFAULT = {
   grade: '',
   name: '',
-  // email: '',
   phone: '',
   gpa: '',
   major: '',
