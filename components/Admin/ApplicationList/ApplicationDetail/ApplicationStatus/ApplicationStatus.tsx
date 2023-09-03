@@ -106,7 +106,7 @@ const ApplicationStatus = ({
       {fixedInterviewDate ? (
         <S.RangePicker
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
-          defaultValue={dayjs(newInterviewDate)}
+          defaultValue={dayjs(fixedInterviewDate)}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={(date) => onChangeDate(date)}
         />
