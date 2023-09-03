@@ -36,7 +36,7 @@ export type SubmitStatus = ValueOf<typeof SUBMIT_STATUS>;
 
 export type IdRequest = { id: number };
 
-export type ApplicationStatusType = keyof typeof APPLICATION_STATUS_MAP;
+export type ApplicationStatusType = KeyOf<typeof APPLICATION_STATUS_MAP>;
 
 export type GetApplicationRequest = {
   position: KeyOf<typeof POSITION_FILTER_MAP>;
@@ -54,11 +54,12 @@ export type GetApplicationResponse = {
   fixedInterviewDate: string;
   hasInterview: InterviewStatusType;
   applicationStatus: ApplicationStatusType;
+  phone: string;
 };
 
 export type ApplicationListType = GetApplicationResponse;
 
-export type PositionType = keyof typeof APPLY_POSITION;
+export type PositionType = KeyOf<typeof APPLY_POSITION>;
 
 export type PatchApplication = Application & {
   position: PositionType;

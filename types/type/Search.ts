@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { SORT_METHOD, SORT_TARGET } from '@/constants';
+import { SEARCH_TARGET, SORT_METHOD, SORT_TARGET } from '@/constants';
 import { ValueOf } from '../Helper';
 
 export type SearchInput = {
@@ -9,6 +9,7 @@ export type SearchInput = {
 
 export type SearchList<T> = {
   applications: T[];
+  searchTargets: ValueOf<typeof SEARCH_TARGET>[];
 };
 
 export type Order = {
