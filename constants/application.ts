@@ -41,6 +41,7 @@ export const APPLICATION_DETAIL_DEFAULT = {
   },
   position: 'DEV',
   applicationStatus: 'PENDING',
+  place: '',
   ...APPLICATION_INPUT_DEFAULT,
   ...APPLICATION_TEXT_DEFAULT,
 } as const;
