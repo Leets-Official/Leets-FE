@@ -4,7 +4,7 @@ import { ApplicationStatusType } from '@/types';
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
-  height: 480px;
+  height: 560px;
 
   display: flex;
   flex-direction: column;
@@ -33,6 +33,19 @@ export const SubHeader = styled.div`
   font-weight: 700;
 
   color: #000;
+`;
+
+export const Place = styled.input`
+  height: 30px;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  outline: none;
+  padding: 10px;
+
+  &:focus {
+    border: 1px solid #4a93ff;
+  }
 `;
 
 export const ApplicationStatus = styled.div<{ $applicationStatus: ApplicationStatusType }>`
