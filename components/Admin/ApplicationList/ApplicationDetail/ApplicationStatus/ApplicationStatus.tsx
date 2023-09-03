@@ -102,7 +102,7 @@ const ApplicationStatus = ({
       <S.DateContainer>
         <S.Place defaultValue={place || ''} onChange={(e) => setNewPlace(e.target.value)} />
       </S.DateContainer>
-      <S.SubHeader>면접 일시 변경</S.SubHeader>
+      <S.SubHeader>면접 일시</S.SubHeader>
       {fixedInterviewDate ? (
         <S.RangePicker
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
