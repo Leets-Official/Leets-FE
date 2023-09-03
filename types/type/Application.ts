@@ -80,6 +80,7 @@ export type GetApplicationDetaiResponse = Application & {
   fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
   position: PositionType;
+  place: string;
 };
 
 export type ApplicationDetailType = GetApplicationDetaiResponse;
@@ -88,6 +89,7 @@ export type PatchApplicationDetailRequest = {
   id: number;
   applicationStatus: ApplicationStatusType;
   fixedInterviewDate: string;
+  place: string;
 };
 
 export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;
