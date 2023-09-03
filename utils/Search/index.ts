@@ -1,7 +1,7 @@
-import { SORT_METHOD, SEARCH_TARGET, FILTER_DEFAULT_VALUE } from '@/constants';
+import { SORT_METHOD, FILTER_TARGET, FILTER_DEFAULT_VALUE } from '@/constants';
 import { KeyOf, SortByType, ApplicationFilterType, ApplicationListType } from '@/types';
 
-const { APPLICATION_STATUS, INTERVIEW_STATUS } = SEARCH_TARGET;
+const { APPLICATION_STATUS, INTERVIEW_STATUS } = FILTER_TARGET;
 
 export class Search {
   static isInclude(content: string, input: string) {

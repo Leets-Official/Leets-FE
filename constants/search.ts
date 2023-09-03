@@ -1,5 +1,9 @@
 export const SEARCH_TARGET = {
   NAME: 'name',
+  PHONE: 'phone',
+} as const;
+
+export const FILTER_TARGET = {
   APPLICATION_STATUS: 'applicationStatus',
   INTERVIEW_STATUS: 'hasInterview',
 } as const;

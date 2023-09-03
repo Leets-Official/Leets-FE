@@ -13,6 +13,7 @@ import {
   PAGINATION,
   SORT_TARGET,
   SORT_METHOD,
+  SEARCH_TARGET,
 } from '@/constants';
 import { useSearch, usePagination, useQueryCreator } from '@/hooks';
 import { Formatter, Search } from '@/utils';
@@ -25,7 +26,10 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
   const searchParams = useSearchParams();
   const router = useRouter();
   const queryCreator = useQueryCreator();
-  const { searchInput, onChangeHandler, renderList } = useSearch({ applications });
+  const { searchInput, onChangeHandler, renderList } = useSearch({
+    applications,
+    searchTargets: Object.values(SEARCH_TARGET),
+  });
   const [applicationCondition, setApplicationCondition] = useState(APPLICATION_FILTER_LIST);
   const filterConditions = Search.makeFilterConditionObj({
     filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],

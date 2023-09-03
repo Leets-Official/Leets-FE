@@ -33,7 +33,7 @@ const useLogin = () => {
       }
     }
   };
-  return { inputRef, changeHandler, onSubmitHandler };
+  return { changeHandler, onSubmitHandler };
 };
 
 export { useLogin };

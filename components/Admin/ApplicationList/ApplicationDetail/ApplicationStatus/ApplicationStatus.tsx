@@ -24,6 +24,7 @@ type ApplicationStatusProps = {
   updatedAt: string;
   appliedAt: string;
   fixedInterviewDate: string;
+  place: string;
 };
 
 const ApplicationStatus = ({
@@ -32,10 +33,12 @@ const ApplicationStatus = ({
   updatedAt,
   appliedAt,
   fixedInterviewDate,
+  place,
 }: ApplicationStatusProps) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus);
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
+  const [newPlace, setNewPlace] = useState<string>('');
 
   const onChangeDate = (date: dayjs.Dayjs | null) => {
     const formattedDate = date?.format();
@@ -60,6 +63,7 @@ const ApplicationStatus = ({
       id,
       applicationStatus: selectedApplicationStatus as ApplicationStatusType,
       fixedInterviewDate: newInterviewDate,
+      place: newPlace,
     });
     if (!axios.isAxiosError(result)) {
       Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
@@ -94,7 +98,11 @@ const ApplicationStatus = ({
       <S.DateContainer>{Formatter.normalizeDate(appliedAt)}</S.DateContainer>
       <S.SubHeader>면접 일시</S.SubHeader>
       <S.DateContainer>{Formatter.normalizeDate(fixedInterviewDate)}</S.DateContainer>
-      <S.SubHeader>면접 일시 변경</S.SubHeader>
+      <S.SubHeader>면접 장소</S.SubHeader>
+      <S.DateContainer>
+        <S.Place defaultValue={place || ''} onChange={(e) => setNewPlace(e.target.value)} />
+      </S.DateContainer>
+      <S.SubHeader>면접 일시</S.SubHeader>
       {fixedInterviewDate ? (
         <S.RangePicker
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}

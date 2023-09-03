@@ -60,12 +60,14 @@ export const patchApplicationDetail = ({
   id,
   applicationStatus,
   fixedInterviewDate,
+  place,
 }: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
   http.patch({
     url: `/application/${id}`,
     data: {
       applicationStatus,
       fixedInterviewDate,
+      place,
     },
   });
 

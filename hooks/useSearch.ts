@@ -2,12 +2,12 @@
 
 import { useState, ChangeEvent, useMemo } from 'react';
 import { SearchList, ApplicationListType } from '@/types';
-import { SEARCH_TARGET, PAGINATION } from '@/constants';
+import { PAGINATION } from '@/constants';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from '@/utils';
 import { useQueryCreator } from './useQueryCreator';
 
-const useSearch = ({ applications }: SearchList<ApplicationListType>) => {
+const useSearch = ({ applications, searchTargets }: SearchList<ApplicationListType>) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
@@ -15,7 +15,9 @@ const useSearch = ({ applications }: SearchList<ApplicationListType>) => {
     if (!searchInput) {
       return applications;
     }
-    return applications.filter((elem) => Search.isInclude(`${elem[SEARCH_TARGET.NAME]}`, searchInput));
+    return applications.filter((application) =>
+      searchTargets.some((searchTarget) => Search.isInclude(`${application[searchTarget]}`, searchInput))
+    );
   }, [searchInput, applications]);
   const queryCreator = useQueryCreator();
 
