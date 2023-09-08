@@ -6,7 +6,7 @@ const Study = ({ benefits }: { benefits: string[] }) => (
     <S.GridContainer>
       {benefits.slice(NUMBER.ZERO, NUMBER.DIVIDER).map((benefit, index) => (
         <S.BenefitContainer key={benefit}>
-          <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.ONE_INDEX}`}</S.NumberStyle>
+          <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.ONE}`}</S.NumberStyle>
           <S.TextStyle>{benefit}</S.TextStyle>
         </S.BenefitContainer>
       ))}
@@ -15,7 +15,7 @@ const Study = ({ benefits }: { benefits: string[] }) => (
       {benefits.slice(NUMBER.DIVIDER).map((benefit, index) => (
         <S.FlexBlockStyle key={benefit}>
           <S.BenefitContainer>
-            <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.DIVIDER + NUMBER.ONE_INDEX}`}</S.NumberStyle>
+            <S.NumberStyle>{`${NUMBER.ZERO}${index + NUMBER.DIVIDER + NUMBER.ONE}`}</S.NumberStyle>
             <S.TextStyle>{benefit}</S.TextStyle>
           </S.BenefitContainer>
         </S.FlexBlockStyle>
