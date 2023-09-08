@@ -94,7 +94,7 @@ export const SelfIntroductionContainer = styled.div`
 
 export const SelfIntroduction = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50%;
 
   background: white;
   padding: 24px;
@@ -106,7 +106,7 @@ export const SelfIntroduction = styled.div`
 export const Text = styled.div`
   line-height: 1.5;
   width: 100%;
-  height: 90%;
+  height: 80%;
 
   display: flex;
   padding: 8px 12px;
