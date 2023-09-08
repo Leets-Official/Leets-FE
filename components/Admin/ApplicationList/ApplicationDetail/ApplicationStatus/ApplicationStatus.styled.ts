@@ -1,6 +1,7 @@
 import { DatePicker } from 'antd';
 import { styled } from 'styled-components';
 import { ApplicationStatusType } from '@/types';
+import { APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
@@ -60,10 +61,8 @@ export const ApplicationStatus = styled.div<{ $applicationStatus: ApplicationSta
   align-items: center;
 
   border-radius: 8px;
-  background: ${({ $applicationStatus }) =>
-    $applicationStatus === 'PENDING' ? '#e9e8e8' : $applicationStatus.includes('PASS') ? '#e9faf7' : '#feecee'};
-  color: ${({ $applicationStatus }) =>
-    $applicationStatus === 'PENDING' ? '#989898' : $applicationStatus.includes('PASS') ? '#1a9882' : '#eb3d4d'};
+  background: ${({ $applicationStatus }) => APPLICATION_STATUS_BG_COLOR[$applicationStatus]};
+  color: ${({ $applicationStatus }) => APPLICATION_STATUS_TEXT_COLOR[$applicationStatus]};
 `;
 
 export const DateContainer = styled.div`

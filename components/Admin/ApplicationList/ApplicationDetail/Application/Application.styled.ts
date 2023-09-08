@@ -80,10 +80,10 @@ export const LinkContainer = styled.div`
   width: 100%;
 
   padding: 24px;
-  background: white;
   margin-top: 24px;
   margin-bottom: 24px;
   border-radius: 12px;
+  background: white;
   box-shadow: 0px 4px 30px 0px rgba(46, 45, 116, 0.05);
 `;
 
@@ -105,12 +105,13 @@ export const SelfIntroduction = styled.div`
 
 export const Text = styled.div`
   line-height: 1.5;
+
   width: 100%;
   height: 80%;
 
   display: flex;
-  padding: 8px 12px;
 
+  padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #e0e2e7;
   overflow: scroll;
