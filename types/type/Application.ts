@@ -42,7 +42,7 @@ export type GetApplicationRequest = {
   position: KeyOf<typeof POSITION_FILTER_MAP>;
 };
 
-export type InterviewStatusType = 'CHECK' | 'UNCHECK';
+export type InterviewStatusType = 'CHECK' | 'UNCHECK' | 'PENDING';
 
 export type GetApplicationResponse = {
   id: number;
