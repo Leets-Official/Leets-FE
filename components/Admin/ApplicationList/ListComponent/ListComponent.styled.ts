@@ -120,7 +120,8 @@ export const CheckInterview = styled.div<{ $hasInterview: InterviewStatusType }>
   align-items: center;
 
   border-radius: 30px;
-  background: ${({ $hasInterview }) => ($hasInterview === 'CHECK' ? '#4a93ff' : '#f3758b')};
+  background: ${({ $hasInterview }) =>
+    $hasInterview === 'CHECK' ? '#4a93ff' : $hasInterview === 'UNCHECK' ? '#f3758b' : '#e9e8e8'};
 `;
 
 export const Status = styled.div`
