@@ -7,3 +7,10 @@ export const SUBMIT_STATUS = {
   SAVE: 'SAVE',
   SUBMIT: 'SUBMIT',
 } as const;
+
+export const NUMBER = {
+  DIVIDER: 3,
+  ONE: 1,
+  ZERO: 0,
+  TEN: 10,
+} as const;
