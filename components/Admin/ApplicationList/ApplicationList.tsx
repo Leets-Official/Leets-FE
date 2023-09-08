@@ -2,7 +2,7 @@
 
 import Nav from '@/components/Admin/Nav';
 import { useState, useEffect } from 'react';
-import { ApplicationListType, KeyOf } from '@/types';
+import { ApplicationType, KeyOf } from '@/types';
 import * as api from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
@@ -16,7 +16,7 @@ import * as S from './ApplicationList.styled';
 import ListComponent from './ListComponent';
 
 const ApplicationList = () => {
-  const [applications, setApplications] = useState<ApplicationListType[]>([]);
+  const [applications, setApplications] = useState<ApplicationType[]>([]);
   const [position, setPosition] = useState<KeyOf<typeof POSITION_FILTER_MAP>>(POSITION_FILTER_MAP.All);
   const isLoading = useIsLoading();
   const { name } = useAppSelector((state) => state.admin);

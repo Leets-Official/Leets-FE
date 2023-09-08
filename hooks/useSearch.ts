@@ -1,24 +1,21 @@
 'use client';
 
-import { useState, ChangeEvent, useMemo } from 'react';
-import { SearchList, ApplicationListType } from '@/types';
+import { useState, ChangeEvent } from 'react';
+import { SearchList, ApplicationType } from '@/types';
 import { PAGINATION } from '@/constants';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from '@/utils';
 import { useQueryCreator } from './useQueryCreator';
 
-const useSearch = ({ applications, searchTargets }: SearchList<ApplicationListType>) => {
+const useSearch = ({ applications, searchTargets }: SearchList<ApplicationType>) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
-  const renderList = useMemo(() => {
-    if (!searchInput) {
-      return applications;
-    }
-    return applications.filter((application) =>
-      searchTargets.some((searchTarget) => Search.isInclude(`${application[searchTarget]}`, searchInput))
-    );
-  }, [searchInput, applications]);
+  const renderList = searchInput
+    ? applications.filter((application) =>
+        searchTargets.some((searchTarget) => Search.isInclude(`${application[searchTarget]}`, searchInput))
+      )
+    : applications;
   const queryCreator = useQueryCreator();
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

@@ -24,9 +24,9 @@ const useLogin = () => {
     const { id, password } = inputRef.current;
     const { result } = await api.postAdminLogin({ id, password });
     if (!axios.isAxiosError(result)) {
+      const admin = await api.getAdmin();
       LocalStorage.setItem(ACCESS_TOKEN, result.accessToken);
 
-      const admin = await api.getAdmin();
       if (!axios.isAxiosError(admin.result)) {
         dispatch(login({ name: admin.result.name }));
         router.replace(ADMIN.HOME);

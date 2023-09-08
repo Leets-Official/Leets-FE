@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import SearchBar from '@/components/Admin/SearchBar';
 import Pagination from '@/components/Admin/Pagination';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
@@ -14,15 +14,16 @@ import {
   SORT_TARGET,
   SORT_METHOD,
   SEARCH_TARGET,
+  NUMBER,
 } from '@/constants';
 import { useSearch, usePagination, useQueryCreator } from '@/hooks';
 import { Formatter, Search } from '@/utils';
-import { KeyOf, SortByType, ApplicationListType } from '@/types';
+import { KeyOf, SortByType, ApplicationType } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
 import * as S from './ListComponent.styled';
 import Status from './Status';
 
-const ListComponent = ({ applications }: { applications: ApplicationListType[] }) => {
+const ListComponent = ({ applications }: { applications: ApplicationType[] }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const queryCreator = useQueryCreator();
@@ -31,9 +32,11 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
     searchTargets: Object.values(SEARCH_TARGET),
   });
   const [applicationCondition, setApplicationCondition] = useState(APPLICATION_FILTER_LIST);
-  const filterConditions = Search.makeFilterConditionObj({
-    filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],
-  });
+  const filterConditions = useMemo(() => {
+    return Search.makeFilterConditionObj({
+      filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],
+    });
+  }, [applicationCondition]);
   const [sortBy, setSortBy] = useState<SortByType>({ target: null, method: SORT_METHOD.ASC });
   const filteredList = Search.filter(renderList, filterConditions, sortBy);
   const { currentPage, currentItems, handlePageChange } = usePagination({
@@ -44,10 +47,12 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
     setApplicationCondition(APPLICATION_FILTER_LIST);
   };
 
-  if (Object.entries(filterConditions).length && searchParams.get(PAGINATION.QUERY) !== '1') {
-    const query = queryCreator(PAGINATION.QUERY, PAGINATION.DEFAULT_PAGE);
-    router.push(query);
-  }
+  useEffect(() => {
+    if (Object.entries(filterConditions).length && searchParams.get(PAGINATION.QUERY) !== '1') {
+      const query = queryCreator(PAGINATION.QUERY, PAGINATION.DEFAULT_PAGE);
+      router.push(query);
+    }
+  }, [filterConditions]);
 
   return (
     <S.ApplicationContainer>
@@ -74,12 +79,12 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             setSelected={(selected) => setApplicationCondition((prev) => ({ ...prev, gpa: selected as string }))}
             sortTarget={SORT_TARGET.GPA}
             setSortBy={setSortBy}
-            otherSortInit={() => {
+            otherSortInit={() =>
               setApplicationCondition({
                 ...applicationCondition,
                 fixedInterviewDate: APPLICATION_FILTER_LIST.fixedInterviewDate,
-              });
-            }}
+              })
+            }
           />
           <FilterDropDown
             list={ORDER_LIST}
@@ -89,12 +94,12 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
             }
             sortTarget={SORT_TARGET.INTERVIEW_DATE}
             setSortBy={setSortBy}
-            otherSortInit={() => {
+            otherSortInit={() =>
               setApplicationCondition({
                 ...applicationCondition,
                 gpa: APPLICATION_FILTER_LIST.gpa,
-              });
-            }}
+              })
+            }
           />
         </S.DropDownContainer>
         <S.InitFilterButton onClick={initHandler}>
@@ -133,7 +138,7 @@ const ListComponent = ({ applications }: { applications: ApplicationListType[] }
       <S.PaginationContainer>
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(filteredList.length / 10)}
+          totalPages={Math.ceil(filteredList.length / NUMBER.TEN)}
           onPageChange={handlePageChange}
         />
       </S.PaginationContainer>

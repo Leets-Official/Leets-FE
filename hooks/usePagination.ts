@@ -2,30 +2,30 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { PAGINATION } from '@/constants';
-import { ApplicationListType } from '@/types';
+import { NUMBER, PAGINATION } from '@/constants';
+import { ApplicationType } from '@/types';
 
 type PaginationResult = {
   currentPage: number;
-  currentItems: Omit<ApplicationListType, 'position'>[];
+  currentItems: Omit<ApplicationType, 'position'>[];
   handlePageChange: (pageNumber: number) => void;
 };
 
-const usePagination = ({ items }: { items: ApplicationListType[] }): PaginationResult => {
+const usePagination = ({ items }: { items: ApplicationType[] }): PaginationResult => {
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get(PAGINATION.QUERY);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(NUMBER.ONE);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   useEffect(() => {
-    setCurrentPage(Number(pageNumber ?? 1));
+    setCurrentPage(Number(pageNumber ?? NUMBER.ONE));
   }, [pageNumber]);
 
-  const indexOfLastItem = currentPage * 10;
-  const indexOfFirstItem = indexOfLastItem - 10;
+  const indexOfLastItem = currentPage * NUMBER.TEN;
+  const indexOfFirstItem = indexOfLastItem - NUMBER.TEN;
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
   return {

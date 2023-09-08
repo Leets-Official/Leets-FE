@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BUTTON_COLOR, TEXT_COLOR } from '@/constants';
+import { APPLY_BUTTON_COLOR, TEXT_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
 import Link from 'next/link';
 
@@ -25,7 +25,7 @@ export const ApplyButton = styled(Link)<{ color: ThemeColor }>`
   justify-content: center;
   align-items: center;
 
-  background: ${({ color }) => BUTTON_COLOR[color]};
+  background: ${({ color }) => APPLY_BUTTON_COLOR[color]};
   color: ${({ color }) => TEXT_COLOR[color]};
 
   border: none;

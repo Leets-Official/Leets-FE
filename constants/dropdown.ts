@@ -7,7 +7,7 @@ export const FILTER_DEFAULT_VALUE = {
 
 export const ORDER_LIST = ['ASC', 'DESC'] as const;
 export const APPLICATION_STAUTS_LIST = ['PENDING', 'PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'] as const;
-export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK'] as const;
+export const INTERVIEW_STATUS_LIST = ['CHECK', 'UNCHECK', 'PENDING'] as const;
 
 export const APPLICATION_STATUS_MAP = {
   FAIL_PAPER: '서류 탈락',

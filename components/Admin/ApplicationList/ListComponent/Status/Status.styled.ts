@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { ApplicationStatusType } from '@/types';
+import { APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
 
 export const StatusContainer = styled.div<{ $applicationStatus: ApplicationStatusType }>`
   width: 70%;
@@ -11,8 +12,6 @@ export const StatusContainer = styled.div<{ $applicationStatus: ApplicationStatu
   align-items: center;
 
   border-radius: 8px;
-  background: ${({ $applicationStatus }) =>
-    $applicationStatus === 'PENDING' ? '#e9e8e8' : $applicationStatus.includes('PASS') ? '#e9faf7' : '#feecee'};
-  color: ${({ $applicationStatus }) =>
-    $applicationStatus === 'PENDING' ? '#989898' : $applicationStatus.includes('PASS') ? '#1a9882' : '#eb3d4d'};
+  background: ${({ $applicationStatus }) => APPLICATION_STATUS_BG_COLOR[$applicationStatus]};
+  color: ${({ $applicationStatus }) => APPLICATION_STATUS_TEXT_COLOR[$applicationStatus]};
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
-import { BUTTON_COLOR, TEXT_COLOR, MQ } from '@/constants';
+import { APPLY_BUTTON_COLOR, TEXT_COLOR, MQ } from '@/constants';
 import { ThemeColor } from '@/types';
 
 export const Container = styled.div`
@@ -32,7 +32,7 @@ export const ApplyButton = styled(Link)`
     border: 'none',
     borderRadius: '40px',
 
-    background: ({ color }: { color: ThemeColor }) => BUTTON_COLOR[color],
+    background: ({ color }: { color: ThemeColor }) => APPLY_BUTTON_COLOR[color],
     color: ({ color }: { color: ThemeColor }) => TEXT_COLOR[color],
     '&:hover': {
       color: ({ color }: { color: ThemeColor }) => (color === 'blue' ? 'black' : 'white'),

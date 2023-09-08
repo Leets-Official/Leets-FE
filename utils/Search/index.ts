@@ -1,5 +1,5 @@
 import { SORT_METHOD, FILTER_TARGET, FILTER_DEFAULT_VALUE } from '@/constants';
-import { KeyOf, SortByType, ApplicationFilterType, ApplicationListType } from '@/types';
+import { KeyOf, SortByType, ApplicationFilterType, ApplicationType } from '@/types';
 
 const { APPLICATION_STATUS, INTERVIEW_STATUS } = FILTER_TARGET;
 
@@ -8,10 +8,9 @@ export class Search {
     return content.includes(input) || input.includes(content);
   }
 
-  static filter(list: ApplicationListType[], conditions: ApplicationFilterType, sortBy: SortByType) {
+  static filter(list: ApplicationType[], conditions: ApplicationFilterType, sortBy: SortByType) {
     const newList = Object.entries(conditions).reduce(
-      (beforeList, [key, value]) =>
-        beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationListType>]) === value),
+      (beforeList, [key, value]) => beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationType>]) === value),
       list
     );
     if (sortBy.target) {
