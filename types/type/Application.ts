@@ -57,7 +57,7 @@ export type GetApplicationResponse = {
   phone: string;
 };
 
-export type ApplicationListType = GetApplicationResponse;
+export type ApplicationType = GetApplicationResponse;
 
 export type PositionType = KeyOf<typeof APPLY_POSITION>;
 
