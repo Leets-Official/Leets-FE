@@ -73,7 +73,7 @@ export const DateContainer = styled.div`
   color: #777980;
 `;
 
-export const RangePicker = styled(DatePicker)`
+export const DateInput = styled(DatePicker)`
   color: black;
 `;
 

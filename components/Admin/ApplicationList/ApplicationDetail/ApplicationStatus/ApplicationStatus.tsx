@@ -104,14 +104,14 @@ const ApplicationStatus = ({
       </S.DateContainer>
       <S.SubHeader>면접 일시</S.SubHeader>
       {fixedInterviewDate ? (
-        <S.RangePicker
+        <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
-          defaultValue={dayjs(fixedInterviewDate)}
+          value={dayjs(fixedInterviewDate)}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={(date) => onChangeDate(date)}
         />
       ) : (
-        <S.RangePicker
+        <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={(date) => onChangeDate(date)}
