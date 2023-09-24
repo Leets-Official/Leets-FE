@@ -1,4 +1,4 @@
-# [Leets](https://leets.pages.dev)
+# [Leets](https://leets.land)
 
 - 가천대학교 IT 학술 동아리 `Leets`의 활동과 모집을 위한 홈페이지 레포지토리입니다.
 - Elite에서 파생된 단어 Leet은 엘리트의 의미를 담고 있습니다.
