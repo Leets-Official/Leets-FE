@@ -36,9 +36,6 @@ const Form = () => {
   const submitClickHandler = useBeforeUnload();
   const color = MAIN_COLOR;
 
-  console.log('session', session);
-  console.log('token', token);
-
   const clickHandler = (type: SubmitStatus) => {
     setCurrentSubmitStatus(type);
     submitClickHandler();
