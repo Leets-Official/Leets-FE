@@ -1,7 +1,9 @@
 import { ThemeColor } from '@/types';
-import { USER } from '@/constants';
+import { USER, APPLICATION } from '@/constants';
 import { MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import { Schedule } from '@/utils/Schedule';
+import { Alert } from '@/utils';
 import * as S from './ApplyButton.styled';
 
 const ApplyButton = ({ color }: { color: ThemeColor }) => {
@@ -9,6 +11,12 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
 
   const clickHandler = (e: MouseEvent) => {
     e.preventDefault();
+
+    const period = Schedule.getCurrentPeriod(new Date());
+    if (period === 'CLOSE') {
+      Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
+      return;
+    }
 
     router.push(USER.APPLY);
   };

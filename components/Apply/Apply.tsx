@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
+import { Schedule } from '@/utils/Schedule';
 import * as S from './Apply.styled';
 
 const Apply = () => {
@@ -20,6 +21,10 @@ const Apply = () => {
   useEffect(() => {
     if (!isDesktop) {
       Alert.error(APPLICATION.ASK_USE_DESKTOP);
+      router.push(USER.HOME);
+    }
+    const period = Schedule.getCurrentPeriod(new Date());
+    if (period === 'CLOSE') {
       router.push(USER.HOME);
     }
   });
