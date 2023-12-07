@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import RestButtonImage from '@/public/assets/image/ResetButtonImage.svg';
 import { InterviewStatusType } from '@/types';
+import { INTERVIEW_ATTEND_STATUS_COLOR } from '@/constants';
 
 export const ApplicationContainer = styled.section`
   width: 100%;
@@ -120,8 +121,7 @@ export const CheckInterview = styled.div<{ $hasInterview: InterviewStatusType }>
   align-items: center;
 
   border-radius: 30px;
-  background: ${({ $hasInterview }) =>
-    $hasInterview === 'CHECK' ? '#4a93ff' : $hasInterview === 'UNCHECK' ? '#f3758b' : '#e9e8e8'};
+  background: ${({ $hasInterview }) => INTERVIEW_ATTEND_STATUS_COLOR[$hasInterview]};
 `;
 
 export const Status = styled.div`

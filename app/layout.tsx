@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/components/Common/ScrollTop';
-import { NotoSansKR, Pretendard } from '@/public/fonts/font';
+import { DM_SANS, Pretendard } from '@/public/fonts';
 import { NextAuthProvider } from './lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
-      <body className={(NotoSansKR.className, Pretendard.className)}>
+      <body className={(DM_SANS.className, Pretendard.className)}>
         <StyledProvider>
           <RTProvider>
             <ScrollToTop />

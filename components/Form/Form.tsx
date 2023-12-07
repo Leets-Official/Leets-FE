@@ -7,7 +7,6 @@ import {
   SUBMIT_STATUS,
   APPLICATION,
   APPLY_POSITION,
-  APPLY_PERIOD,
   MAIN_COLOR,
 } from '@/constants';
 import { KeyOf, ApplicationData, SubmitStatus } from '@/types';
@@ -19,7 +18,6 @@ import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Schedule } from '@/utils/Schedule';
 import InputText from './InputText';
 import InputTextarea from './InputTextarea';
 import * as S from './Form.styled';
@@ -38,6 +36,9 @@ const Form = () => {
   const submitClickHandler = useBeforeUnload();
   const color = MAIN_COLOR;
 
+  console.log('session', session);
+  console.log('token', token);
+
   const clickHandler = (type: SubmitStatus) => {
     setCurrentSubmitStatus(type);
     submitClickHandler();
@@ -51,10 +52,7 @@ const Form = () => {
       router.refresh();
       return;
     }
-    if (Schedule.getCurrentPeriod(new Date()) === APPLY_PERIOD.CLOSE) {
-      Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
-      return;
-    }
+
     if (currentSubmitStatus === SUBMIT_STATUS.SUBMIT && !window.confirm(APPLICATION.CONFIRM_SUBMIT)) {
       return;
     }

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { APPLY_BUTTON_COLOR, TEXT_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
-import Link from 'next/link';
 
 export const ButtonContainer = styled.div`
   width: 100%;
@@ -12,7 +11,7 @@ export const ButtonContainer = styled.div`
   margin-bottom: 100px;
 `;
 
-export const ApplyButton = styled(Link)<{ color: ThemeColor }>`
+export const ApplyButton = styled.div<{ color: ThemeColor }>`
   font-family: 'Pretendard';
   font-weight: 600;
   font-size: 16px;

@@ -1,4 +1,4 @@
-export const MAIN_COLOR = 'blue' as const;
+export const MAIN_COLOR = 'green' as const;
 
 export const THEME_COLOR = { GREEN: 'green', BLUE: 'blue', YELLOW: 'yellow' } as const;
 
@@ -34,4 +34,10 @@ export const APPLICATION_STATUS_BG_COLOR = {
   PASS_PAPER: '#e9faf7',
   FAIL: '#feecee',
   FAIL_PAPER: '#feecee',
+} as const;
+
+export const INTERVIEW_ATTEND_STATUS_COLOR = {
+  CHECK: '#4a93ff',
+  UNCHECK: '#f3758b',
+  PENDING: '#e9e8e8',
 } as const;

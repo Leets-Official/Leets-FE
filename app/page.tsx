@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 import { PointerWrapper } from '@/styles/global-style';
 import BackgroundImage from '@/components/BackgroundImage';
 import Promotions from '@/components/Promotions';

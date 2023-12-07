@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         const {
           result: { accessToken },
-        } = await api.postUserLogin({ idToken: account.id_token! });
+        } = await api.postUserLogin({ idToken: account?.id_token! });
         const {
           result: { submitStatus },
         } = await api.getApplicant({ accessToken });
