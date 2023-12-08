@@ -2,7 +2,7 @@
 import { DM_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
-export const DM_SANS = DM_Sans({ weight: ['400', '500', '700'], subsets: ['latin'] });
+export const DM_SANS = DM_Sans({ weight: ['400', '500', '700'], subsets: ['latin'], display: 'swap' });
 
 export const Pretendard = localFont({
   src: [
@@ -27,4 +27,5 @@ export const Pretendard = localFont({
       style: 'normal',
     },
   ],
+  display: 'swap',
 });
