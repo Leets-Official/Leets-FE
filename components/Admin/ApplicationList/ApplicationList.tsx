@@ -45,6 +45,7 @@ const ApplicationList = () => {
   if (isLoading) {
     return <Loading color={color} />;
   }
+
   return (
     <S.ApplicationListContainer>
       <S.ContentContainer>
