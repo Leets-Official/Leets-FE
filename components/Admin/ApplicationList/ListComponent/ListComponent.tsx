@@ -32,11 +32,13 @@ const ListComponent = ({ applications }: { applications: ApplicationType[] }) =>
     searchTargets: Object.values(SEARCH_TARGET),
   });
   const [applicationCondition, setApplicationCondition] = useState(APPLICATION_FILTER_LIST);
-  const filterConditions = useMemo(() => {
-    return Search.makeFilterConditionObj({
-      filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],
-    });
-  }, [applicationCondition]);
+  const filterConditions = useMemo(
+    () =>
+      Search.makeFilterConditionObj({
+        filterValueList: [applicationCondition.applicationStatus, applicationCondition.hasInterview],
+      }),
+    [applicationCondition]
+  );
   const [sortBy, setSortBy] = useState<SortByType>({ target: null, method: SORT_METHOD.ASC });
   const filteredList = Search.filter(renderList, filterConditions, sortBy);
   const { currentPage, currentItems, handlePageChange } = usePagination({
@@ -79,7 +81,7 @@ const ListComponent = ({ applications }: { applications: ApplicationType[] }) =>
             setSelected={(selected) => setApplicationCondition((prev) => ({ ...prev, gpa: selected as string }))}
             sortTarget={SORT_TARGET.GPA}
             setSortBy={setSortBy}
-            otherSortInit={() =>
+            initOtherSort={() =>
               setApplicationCondition({
                 ...applicationCondition,
                 fixedInterviewDate: APPLICATION_FILTER_LIST.fixedInterviewDate,
@@ -94,7 +96,7 @@ const ListComponent = ({ applications }: { applications: ApplicationType[] }) =>
             }
             sortTarget={SORT_TARGET.INTERVIEW_DATE}
             setSortBy={setSortBy}
-            otherSortInit={() =>
+            initOtherSort={() =>
               setApplicationCondition({
                 ...applicationCondition,
                 gpa: APPLICATION_FILTER_LIST.gpa,
@@ -119,21 +121,23 @@ const ListComponent = ({ applications }: { applications: ApplicationType[] }) =>
         <S.Status>합격 여부</S.Status>
       </S.ApplicationColumn>
       <S.AapplicationComponentContainer>
-        {currentItems.map(({ id, name, gpa, grade, career, fixedInterviewDate, hasInterview, applicationStatus }) => (
-          <S.Application key={id} onClick={() => router.push(`/admin/application/${id}`)}>
-            <S.Name>{name}</S.Name>
-            <S.GPA>{gpa}</S.GPA>
-            <S.Grade>{grade}</S.Grade>
-            <S.Position>{career}</S.Position>
-            <S.InterviewDate>{Formatter.normalizeDate(fixedInterviewDate)}</S.InterviewDate>
-            <S.InterviewStatus>
-              <S.CheckInterview $hasInterview={hasInterview} />
-            </S.InterviewStatus>
-            <S.Status>
-              <Status applicationStatus={applicationStatus} />
-            </S.Status>
-          </S.Application>
-        ))}
+        {currentItems.map(
+          ({ id, name, gpa, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+            <S.Application key={id} onClick={() => router.push(`/admin/application/${id}`)}>
+              <S.Name>{name}</S.Name>
+              <S.GPA>{gpa}</S.GPA>
+              <S.Grade>{grade}</S.Grade>
+              <S.Position>{career}</S.Position>
+              <S.InterviewDate>{Formatter.normalizeDate(fixedInterviewDate)}</S.InterviewDate>
+              <S.InterviewStatus>
+                <S.CheckInterview $hasInterview={hasInterview} />
+              </S.InterviewStatus>
+              <S.Status>
+                <Status applicationStatus={applicationStatus} />
+              </S.Status>
+            </S.Application>
+          )
+        )}
       </S.AapplicationComponentContainer>
       <S.PaginationContainer>
         <Pagination

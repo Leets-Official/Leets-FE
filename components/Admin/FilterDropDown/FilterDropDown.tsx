@@ -11,7 +11,7 @@ type FilterDropdownProps = {
   setSelected: Dispatch<SetStateAction<any>>;
   sortTarget?: string;
   setSortBy?: Dispatch<SetStateAction<SortByType>>;
-  otherSortInit?: () => void;
+  initOtherSort?: () => void;
   setToggle?: Dispatch<SetStateAction<boolean>>;
   customWidth?: number;
 };
@@ -22,7 +22,7 @@ const FilterDropDown = ({
   setSelected,
   sortTarget,
   setSortBy,
-  otherSortInit,
+  initOtherSort,
   setToggle,
   customWidth,
 }: FilterDropdownProps) => {
@@ -32,9 +32,9 @@ const FilterDropDown = ({
     setSelected(type);
     toggleDropdown();
 
-    if (setSortBy && otherSortInit) {
+    if (setSortBy && initOtherSort) {
+      initOtherSort();
       setSortBy(() => ({ target: sortTarget, method: type } as SortByType));
-      otherSortInit();
     }
 
     if (setToggle) {

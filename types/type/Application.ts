@@ -51,8 +51,10 @@ export type GetApplicationResponse = {
   grade: string;
   position: string;
   career: string;
-  fixedInterviewDate: string;
-  hasInterview: InterviewStatusType;
+  interview: {
+    fixedInterviewDate: string;
+    hasInterview: InterviewStatusType;
+  };
   applicationStatus: ApplicationStatusType;
   phone: string;
 };
