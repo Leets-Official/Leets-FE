@@ -2,7 +2,7 @@
 
 import Nav from '@/components/Admin/Nav';
 import { useEffect, useState } from 'react';
-import * as api from '@/api';
+import { getApplicationDetail } from '@/api';
 import axios from 'axios';
 import { ApplicationDetailType } from '@/types';
 import { APPLICATION_DETAIL_DEFAULT, ADMIN, MAIN_COLOR } from '@/constants';
@@ -24,7 +24,7 @@ const ApplicationDetail = ({ id }: { id: number }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await api.getApplicationDetail({ id: Number(id) });
+      const { result } = await getApplicationDetail({ id: Number(id) });
       if (!axios.isAxiosError(result)) {
         setApplication(result);
       }
