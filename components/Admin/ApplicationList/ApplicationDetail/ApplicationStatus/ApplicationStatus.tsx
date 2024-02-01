@@ -14,7 +14,7 @@ import { KeyOf, ApplicationStatusType } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import { isAxiosError } from 'axios';
-import * as api from '@/api';
+import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
 import { useRouter } from 'next/navigation';
 import * as S from './ApplicationStatus.styled';
 
@@ -62,17 +62,17 @@ const ApplicationStatus = ({
     }
     const { result: interviewResult } =
       place || fixedInterviewDate
-        ? await api.patchInterviewInformation({
+        ? await patchInterviewInformation({
             id,
             fixedInterviewDate: newInterviewDate,
             place: newPlace,
           })
-        : await api.postInterviewInformation({
+        : await postInterviewInformation({
             id,
             fixedInterviewDate: newInterviewDate,
             place: newPlace,
           });
-    const { result: applicationPatchResult } = await api.patchApplicationDetail({
+    const { result: applicationPatchResult } = await patchApplicationDetail({
       id,
       applicationStatus: selectedApplicationStatus,
     });
