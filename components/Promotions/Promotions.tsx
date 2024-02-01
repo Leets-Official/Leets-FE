@@ -1,6 +1,6 @@
 import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
 import { ThemeColor } from '@/types';
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import Project from './Project';
 import Study from './Study';
 import Entertainment from './Entertainment';
@@ -37,4 +37,4 @@ const Promotions = ({ color }: { color: ThemeColor }) => {
   );
 };
 
-export default Promotions;
+export default memo(Promotions);

@@ -1,4 +1,5 @@
 import { CONTACT_LAYOUT } from '@/constants';
+import { memo } from 'react';
 import * as S from './Contact.styled';
 
 const Contact = () => (
@@ -28,4 +29,4 @@ const Contact = () => (
   </S.SectionContainer>
 );
 
-export default Contact;
+export default memo(Contact);
