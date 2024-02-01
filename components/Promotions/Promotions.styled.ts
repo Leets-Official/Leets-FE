@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 
 export const Section = styled.section`
   ${MQ({
-    fontFamily: 'DM Sans',
-
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

@@ -16,7 +16,6 @@ export const ContentContainer = styled.div`
 `;
 
 export const Subject = styled(motion.div)`
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;
   line-height: 100%;

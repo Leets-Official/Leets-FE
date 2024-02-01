@@ -43,7 +43,6 @@ export const HeadStyle = styled.div`
   width: content;
   height: auto;
 
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 8.8vw;
   text-align: center;

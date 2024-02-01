@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/components/Common/ScrollTop';
-import { DM_SANS, Pretendard } from '@/app/fonts';
+import { DM_SANS } from '@/app/fonts';
 import { NextAuthProvider } from '../lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {
@@ -24,7 +24,13 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
-      <body className={(DM_SANS.className, Pretendard.className)}>
+      <link
+        rel="stylesheet preload"
+        as="style"
+        crossOrigin=""
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+      />
+      <body className={DM_SANS.className}>
         <StyledProvider>
           <RTProvider>
             <NextAuthProvider>

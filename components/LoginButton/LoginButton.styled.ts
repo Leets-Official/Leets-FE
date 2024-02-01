@@ -62,7 +62,6 @@ export const TextStyle = styled.div`
 `;
 
 export const HeadStyle = styled.h1`
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 8.8vw;
   letter-spacing: -0.03em;

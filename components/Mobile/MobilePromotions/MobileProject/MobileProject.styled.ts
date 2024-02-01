@@ -15,7 +15,6 @@ export const BlockStyle = styled.div`
 `;
 
 export const HeadContainer = styled.div`
-  font-family: 'DM Sans';
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;

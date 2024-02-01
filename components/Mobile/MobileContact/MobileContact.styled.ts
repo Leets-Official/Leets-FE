@@ -8,7 +8,6 @@ export const SectionContainer = styled.section`
 `;
 
 export const HeadContainer = styled.div`
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 32px;
   line-height: 100%;

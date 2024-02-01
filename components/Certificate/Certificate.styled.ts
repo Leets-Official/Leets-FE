@@ -17,7 +17,6 @@ export const ContentContainer = styled.section`
 `;
 
 export const HeadStyle = styled.div`
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 6vw;
   letter-spacing: -0.03em;

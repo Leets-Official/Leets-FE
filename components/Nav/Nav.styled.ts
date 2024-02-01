@@ -20,7 +20,6 @@ export const Container = styled.div`
 `;
 
 export const LinkContainer = styled(Link)`
-  font-family: 'DM Sans';
   font-size: 26px;
 
   background: white;
