@@ -1,6 +1,5 @@
 'use client';
 
-import { MouseEvent, useState } from 'react';
 import { PointerWrapper } from '@/styles/global-style';
 import BackgroundImage from '@/components/BackgroundImage';
 import Promotions from '@/components/Promotions';
@@ -11,32 +10,16 @@ import Contact from '@/components/Contact';
 import Timeline from '@/components/Promotions/Timeline';
 import Footer from '@/components/Footer';
 import MobileContainer from '@/components/Mobile/MobileContanier';
-import { useDeviceChecker } from '@/hooks';
+import { useDeviceChecker, useMousePosition } from '@/hooks';
 import { MAIN_COLOR } from '@/constants';
 import Loading from '@/components/Common/Loading';
 import { useIsLoading } from '@/hooks/useIsLoading';
 
 const Index = () => {
   const color = MAIN_COLOR;
-  const { isMobile } = useDeviceChecker();
   const isLoading = useIsLoading();
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  const updatePosition = (x: number, y: number) => {
-    requestAnimationFrame(() => {
-      setPosition({
-        x,
-        y,
-      });
-    });
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    updatePosition(e.clientX, e.clientY);
-  };
+  const { isMobile } = useDeviceChecker();
+  const { position, handleMouseMove } = useMousePosition();
 
   if (isLoading) {
     return <Loading color={color} backgroundColor="black" />;

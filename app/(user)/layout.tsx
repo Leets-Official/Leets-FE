@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { RTProvider, StyledProvider } from '@/lib/Provider';
 import ScrollToTop from '@/components/Common/ScrollTop';
 import { DM_SANS, Pretendard } from '@/app/fonts';
-import { NextAuthProvider } from './lib/Provider/SessionProvider';
+import { NextAuthProvider } from '../lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s · Leets' },
@@ -27,8 +27,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body className={(DM_SANS.className, Pretendard.className)}>
         <StyledProvider>
           <RTProvider>
-            <ScrollToTop />
-            <NextAuthProvider>{children}</NextAuthProvider>
+            <NextAuthProvider>
+              <ScrollToTop />
+              {children}
+            </NextAuthProvider>
           </RTProvider>
         </StyledProvider>
       </body>
