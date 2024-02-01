@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { KeyOf, ApplicationStatusType } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import * as api from '@/api';
 import { useRouter } from 'next/navigation';
 import * as S from './ApplicationStatus.styled';
@@ -23,8 +23,10 @@ type ApplicationStatusProps = {
   applicationStatus: ApplicationStatusType;
   updatedAt: string;
   appliedAt: string;
-  fixedInterviewDate: string;
-  place: string;
+  interview: {
+    fixedInterviewDate: string;
+    place: string;
+  };
 };
 
 const ApplicationStatus = ({
@@ -32,15 +34,14 @@ const ApplicationStatus = ({
   applicationStatus,
   updatedAt,
   appliedAt,
-  fixedInterviewDate,
-  place,
+  interview: { fixedInterviewDate, place },
 }: ApplicationStatusProps) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus);
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
   const [newPlace, setNewPlace] = useState<string>('');
 
-  const onChangeDate = (date: dayjs.Dayjs | null) => {
+  const handleDate = (date: dayjs.Dayjs | null) => {
     const formattedDate = date?.format();
 
     if (formattedDate) {
@@ -50,7 +51,7 @@ const ApplicationStatus = ({
     }
   };
 
-  const changeApplication = async () => {
+  const handleApplicationStatus = async () => {
     if (!appliedAt) {
       Alert.error(APPLICATION.REJECT_CHANGE_APPLICATION_STATUS);
       return;
@@ -59,23 +60,40 @@ const ApplicationStatus = ({
       Alert.error(APPLICATION.ASK_INPUT_DATE);
       return;
     }
-    const { result } = await api.patchApplicationDetail({
+    const { result: interviewResult } =
+      place || fixedInterviewDate
+        ? await api.patchInterviewInformation({
+            id,
+            fixedInterviewDate: newInterviewDate,
+            place: newPlace,
+          })
+        : await api.postInterviewInformation({
+            id,
+            fixedInterviewDate: newInterviewDate,
+            place: newPlace,
+          });
+    const { result: applicationPatchResult } = await api.patchApplicationDetail({
       id,
-      applicationStatus: selectedApplicationStatus as ApplicationStatusType,
-      fixedInterviewDate: newInterviewDate,
-      place: newPlace,
+      applicationStatus: selectedApplicationStatus,
     });
-    if (!axios.isAxiosError(result)) {
+
+    if (!isAxiosError(applicationPatchResult) && !isAxiosError(interviewResult)) {
       Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
       router.refresh();
-    } else {
-      Alert.error(CHANGE_APPLICATION_STATUS.FAIL);
     }
   };
 
   useEffect(() => {
     setSelectedApplicationCondition(applicationStatus);
   }, [applicationStatus]);
+
+  useEffect(() => {
+    setFixedInterviewDate(fixedInterviewDate);
+  }, [fixedInterviewDate]);
+
+  useEffect(() => {
+    setNewPlace(place);
+  }, [place]);
 
   return (
     <S.ApplicationStatusContainer>
@@ -108,17 +126,17 @@ const ApplicationStatus = ({
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           value={dayjs(fixedInterviewDate)}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => onChangeDate(date)}
+          onChange={(date) => handleDate(date)}
         />
       ) : (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => onChangeDate(date)}
+          onChange={(date) => handleDate(date)}
         />
       )}
       <S.ButtonContainer>
-        <S.ChangeButton onClick={changeApplication}>변경하기</S.ChangeButton>
+        <S.ChangeButton onClick={handleApplicationStatus}>변경하기</S.ChangeButton>
       </S.ButtonContainer>
     </S.ApplicationStatusContainer>
   );

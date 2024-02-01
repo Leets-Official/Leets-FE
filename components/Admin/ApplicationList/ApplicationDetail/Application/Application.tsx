@@ -22,12 +22,11 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
     completion,
     updatedAt,
     appliedAt,
-    fixedInterviewDate,
     applicationStatus,
     interviewDay,
     interviewTime,
     position,
-    place,
+    interview,
   } = application;
 
   return (
@@ -119,8 +118,7 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
         applicationStatus={applicationStatus}
         updatedAt={updatedAt}
         appliedAt={appliedAt}
-        fixedInterviewDate={fixedInterviewDate}
-        place={place}
+        interview={interview}
       />
     </S.ApplicationContainer>
   );
