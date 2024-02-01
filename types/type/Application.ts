@@ -51,8 +51,10 @@ export type GetApplicationResponse = {
   grade: string;
   position: string;
   career: string;
-  fixedInterviewDate: string;
-  hasInterview: InterviewStatusType;
+  interview: {
+    fixedInterviewDate: string;
+    hasInterview: InterviewStatusType;
+  };
   applicationStatus: ApplicationStatusType;
   phone: string;
 };
@@ -78,10 +80,12 @@ export type GetApplicationDetaiResponse = Application & {
   grade: string;
   updatedAt: string;
   appliedAt: string;
-  fixedInterviewDate: string;
   applicationStatus: ApplicationStatusType;
   position: PositionType;
-  place: string;
+  interview: {
+    place: string;
+    fixedInterviewDate: string;
+  };
 };
 
 export type ApplicationDetailType = GetApplicationDetaiResponse;
@@ -89,8 +93,6 @@ export type ApplicationDetailType = GetApplicationDetaiResponse;
 export type PatchApplicationDetailRequest = {
   id: number;
   applicationStatus: ApplicationStatusType;
-  fixedInterviewDate: string;
-  place: string;
 };
 
 export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;

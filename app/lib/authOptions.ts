@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import * as api from '@/api';
+import { postUserLogin, getApplicant } from '@/api';
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -24,10 +24,10 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         const {
           result: { accessToken },
-        } = await api.postUserLogin({ idToken: account?.id_token! });
+        } = await postUserLogin({ idToken: account?.id_token! });
         const {
           result: { submitStatus },
-        } = await api.getApplicant({ accessToken });
+        } = await getApplicant({ accessToken });
         // eslint-disable-next-line no-param-reassign
         token.submitStatus = submitStatus;
         // eslint-disable-next-line no-param-reassign

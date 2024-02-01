@@ -30,7 +30,6 @@ export const APPLICATION_INPUT_DEFAULT = {
 export const APPLICATION_DETAIL_DEFAULT = {
   uid: '',
   id: 0,
-  fixedInterviewDate: '',
   updatedAt: '',
   appliedAt: '',
   user: {
@@ -41,7 +40,10 @@ export const APPLICATION_DETAIL_DEFAULT = {
   },
   position: 'DEV',
   applicationStatus: 'PENDING',
-  place: '',
+  interview: {
+    place: '',
+    fixedInterviewDate: '',
+  },
   ...APPLICATION_INPUT_DEFAULT,
   ...APPLICATION_TEXT_DEFAULT,
 } as const;

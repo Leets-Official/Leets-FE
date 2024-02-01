@@ -59,15 +59,11 @@ export const getApplicationDetail = ({ id }: IdRequest): Promise<BaseResponse<Ge
 export const patchApplicationDetail = ({
   id,
   applicationStatus,
-  fixedInterviewDate,
-  place,
 }: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
   http.patch({
     url: `/application/${id}`,
     data: {
       applicationStatus,
-      fixedInterviewDate,
-      place,
     },
   });
 
@@ -78,3 +74,38 @@ export const getUserApplication = (token: string): Promise<BaseResponse<GetAppli
     },
     token
   );
+
+export const postInterviewInformation = ({
+  id,
+  fixedInterviewDate,
+  place,
+}: {
+  id: number;
+  fixedInterviewDate: string;
+  place: string;
+}): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
+  http.post({
+    url: '/interview',
+    data: {
+      id,
+      fixedInterviewDate,
+      place,
+    },
+  });
+
+export const patchInterviewInformation = ({
+  id,
+  fixedInterviewDate,
+  place,
+}: {
+  id: number;
+  fixedInterviewDate: string;
+  place: string;
+}): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
+  http.patch({
+    url: `/interview/${id}`,
+    data: {
+      fixedInterviewDate,
+      place,
+    },
+  });

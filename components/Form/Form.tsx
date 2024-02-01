@@ -10,7 +10,7 @@ import {
   MAIN_COLOR,
 } from '@/constants';
 import { KeyOf, ApplicationData, SubmitStatus } from '@/types';
-import * as api from '@/api';
+import { postApplication, patchApplication, getUserApplication } from '@/api';
 import { useBeforeUnload } from '@/hooks';
 import axios from 'axios';
 import { Alert } from '@/utils';
@@ -64,8 +64,8 @@ const Form = () => {
 
     const { result } =
       beforeSubmitStatus === SUBMIT_STATUS.NONE
-        ? await api.postApplication(applicationData, token)
-        : await api.patchApplication(applicationData, token);
+        ? await postApplication(applicationData, token)
+        : await patchApplication(applicationData, token);
 
     if (!axios.isAxiosError(result)) {
       const successMessage =
@@ -78,7 +78,7 @@ const Form = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await api.getUserApplication(token);
+      const { result } = await getUserApplication(token);
       if (!axios.isAxiosError(result)) {
         const { enhancement, level, pros, goal, completion, user } = result;
         setApplicationText({ enhancement, level, pros, goal, completion });

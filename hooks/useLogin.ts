@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
-import * as api from '@/api';
+import { postAdminLogin, getAdmin } from '@/api';
 import { ACCESS_TOKEN, ADMIN, LOGIN } from '@/constants';
 import axios from 'axios';
 import { LocalStorage } from '@/utils';
@@ -22,9 +22,9 @@ const useLogin = () => {
     e.preventDefault();
 
     const { id, password } = inputRef.current;
-    const { result } = await api.postAdminLogin({ id, password });
+    const { result } = await postAdminLogin({ id, password });
     if (!axios.isAxiosError(result)) {
-      const admin = await api.getAdmin();
+      const admin = await getAdmin();
       LocalStorage.setItem(ACCESS_TOKEN, result.accessToken);
 
       if (!axios.isAxiosError(admin.result)) {

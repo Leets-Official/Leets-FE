@@ -3,7 +3,7 @@
 import Nav from '@/components/Admin/Nav';
 import { useState, useEffect } from 'react';
 import { ApplicationType, KeyOf } from '@/types';
-import * as api from '@/api';
+import { getApplicationList } from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
 import { ADMIN, MAIN_COLOR, POSITION_FILTER_MAP } from '@/constants';
@@ -31,7 +31,7 @@ const ApplicationList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await api.getApplicationList({ position });
+      const { result } = await getApplicationList({ position });
       if (!axios.isAxiosError(result)) {
         setApplications(result);
       }
@@ -45,6 +45,7 @@ const ApplicationList = () => {
   if (isLoading) {
     return <Loading color={color} />;
   }
+
   return (
     <S.ApplicationListContainer>
       <S.ContentContainer>

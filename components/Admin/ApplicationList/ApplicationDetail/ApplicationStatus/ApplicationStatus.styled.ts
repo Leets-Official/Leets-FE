@@ -38,6 +38,7 @@ export const SubHeader = styled.div`
 
 export const Place = styled.input`
   height: 30px;
+  width: 100%;
 
   border: 1px solid #d9d9d9;
   border-radius: 4px;
