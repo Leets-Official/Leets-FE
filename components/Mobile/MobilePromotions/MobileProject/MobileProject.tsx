@@ -8,7 +8,7 @@ const MobileProject = ({ benefits, imageSrc }: { benefits: string[]; imageSrc: s
         <S.BlockStyle key={benefit}>
           <S.HeadContainer>
             {`0${index + 1}`}
-            <Image src={`${imageSrc}/star${index + 1}.png`} alt="Project" width={40} height={40} />
+            <Image src={`${imageSrc}/star${index + 1}.svg`} alt="Project" width={40} height={40} />
           </S.HeadContainer>
           <S.BenefitContainer>{benefit}</S.BenefitContainer>
         </S.BlockStyle>
