@@ -43,10 +43,3 @@ export const BenefitContainer = styled.div`
   margin-right: 26px;
   margin-top: 22.28px;
 `;
-
-export const ImgStyle = styled.img`
-  width: 40px;
-  height: 40px;
-
-  background: #0f0f0f;
-`;

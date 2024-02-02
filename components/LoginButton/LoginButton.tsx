@@ -16,7 +16,7 @@ const LoginButton = () => {
         </S.HeadStyle>
         <S.ButtonContainer>
           <S.ButtonStyle type="button" onClick={handleGoogleLogin}>
-            <S.ImageStyle src="/assets/image/googleLogo.png" alt="logo" />
+            <S.ImageStyle src="/assets/image/googleLogo.png" alt="logo" width={30} height={30} />
             <S.TextStyle>구글 아이디로 로그인</S.TextStyle>
           </S.ButtonStyle>
         </S.ButtonContainer>

@@ -35,11 +35,6 @@ export const ImgContainer = styled.div`
   margin-top: 80px;
 `;
 
-export const ImgStyle = styled.img`
-  width: 240px;
-  height: ${({ height }) => height}px;
-`;
-
 export const BottomContainer = styled.div`
   width: 100%;
   height: 100%;

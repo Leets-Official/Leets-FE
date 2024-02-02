@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { MQ } from '@/constants';
 import { motion } from 'framer-motion';
 
+interface ImageContainerProps {
+  $height: number;
+}
+
 export const Section = styled.section`
   ${MQ({
     display: 'flex',
@@ -45,17 +49,18 @@ export const Subject = styled(motion.div)`
   })}
 `;
 
-export const Image = styled.img(({ height }) =>
-  MQ({
+export const ImageContainer = styled.div<ImageContainerProps>`
+  ${MQ({
     width: ['36.25vw', 297, 427, 522],
     height: [
-      ((height as number) / 1440) * 820,
-      ((height as number) / 1440) * 820,
-      ((height as number) / 1440) * 1180,
-      height,
+      ({ $height }: ImageContainerProps) => `${($height / 1440) * 820}px`,
+      ({ $height }: ImageContainerProps) => `${($height / 1440) * 820}px`,
+      ({ $height }: ImageContainerProps) => `${($height / 1440) * 1180}px`,
+      ({ $height }: ImageContainerProps) => `${$height}px`,
     ],
-  })
-);
+  })}
+  position: relative;
+`;
 
 export const BottomContainer = styled.div`
   ${MQ({
