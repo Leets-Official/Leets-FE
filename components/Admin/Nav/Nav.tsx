@@ -1,18 +1,9 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
 import { ADMIN } from '@/constants';
 import * as S from './Nav.styled';
 
 const Nav = () => {
-  const router = useRouter();
-
-  const clickHandler = () => {
-    router.push(ADMIN.HOME);
-  };
-
   return (
-    <S.HeaderContainer onClick={clickHandler}>
+    <S.HeaderContainer href={ADMIN.HOME}>
       <S.Header>
         <S.AdminLogoContainer />
         Leets

@@ -3,12 +3,12 @@ import { MQ } from '@/constants';
 
 export const ContentContainer = styled.div`
   ${MQ({
+    width: '100%',
+    height: '100%',
+
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: [18, 18, 26, 32],
-
-    width: '100%',
-    height: '100%',
   })}
 `;
 
@@ -63,7 +63,7 @@ export const TextStyle = styled.div`
     fontSize: [9, 11, 16, 18],
     lineHeight: 1.5,
 
-    width: '100%',
+    width: '70%',
     height: 'content',
 
     background: '#0f0f0f',
@@ -79,15 +79,15 @@ export const IconContainer = styled.div`
 
   background: #0f0f0f;
   border-radius: 24px;
+  height: 100%;
 `;
 
-export const ImgStyle = styled.img`
+export const IconWrapper = styled.div`
   ${MQ({
     width: [41, 41, 59, 72],
     height: [41, 41, 59, 72],
-
-    background: '#0f0f0f',
     marginRight: [9, 9, 13, 16],
     marginBottom: [9, 9, 13, 16],
   })}
+  position: relative;
 `;

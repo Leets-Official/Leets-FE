@@ -1,6 +1,6 @@
 import { ThemeColor } from '@/types';
 import { USER, APPLICATION } from '@/constants';
-import { MouseEvent } from 'react';
+import { MouseEvent, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Schedule } from '@/utils/Schedule';
 import { Alert } from '@/utils';
@@ -17,7 +17,6 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;
     }
-
     router.push(USER.APPLY);
   };
 
@@ -30,4 +29,4 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
   );
 };
 
-export default ApplyButton;
+export default memo(ApplyButton);

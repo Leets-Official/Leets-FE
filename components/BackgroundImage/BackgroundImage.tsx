@@ -3,6 +3,7 @@ import Blue from '@/public/assets/image/Background/Blue.svg';
 import Yellow from '@/public/assets/image/Background/Yellow.svg';
 import { ThemeColor } from '@/types';
 import { THEME_COLOR } from '@/constants';
+import { memo } from 'react';
 
 const BackgroundImage = ({ color }: { color: ThemeColor }) => {
   if (color === THEME_COLOR.GREEN) {
@@ -11,4 +12,4 @@ const BackgroundImage = ({ color }: { color: ThemeColor }) => {
   return color === THEME_COLOR.BLUE ? <Blue /> : <Yellow />;
 };
 
-export default BackgroundImage;
+export default memo(BackgroundImage);

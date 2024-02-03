@@ -3,7 +3,6 @@ import { MQ } from '@/constants';
 
 export const FooterContainer = styled.footer`
   width: 100%;
-  height: 100%;
 
   display: flex;
   justify-content: center;

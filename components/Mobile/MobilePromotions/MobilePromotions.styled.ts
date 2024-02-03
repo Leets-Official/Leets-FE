@@ -20,7 +20,6 @@ export const TopContainer = styled.div`
 `;
 
 export const SubjectStyle = styled(motion.div)`
-  font-family: 'DM Sans';
   font-weight: 500;
   font-size: 42px;
   line-height: 100%;
@@ -34,11 +33,6 @@ export const ImgContainer = styled.div`
   align-items: center;
 
   margin-top: 80px;
-`;
-
-export const ImgStyle = styled.img`
-  width: 240px;
-  height: ${({ height }) => height}px;
 `;
 
 export const BottomContainer = styled.div`

@@ -1,5 +1,6 @@
 import { TIMELINE_LAYOUT } from '@/constants';
 import { ThemeColor } from '@/types';
+import { memo } from 'react';
 import * as S from './Timeline.styled';
 import TimelineImage from './TimelineImage';
 
@@ -26,4 +27,4 @@ const Timeline = ({ color }: { color: ThemeColor }) => (
   </S.SectionContainer>
 );
 
-export default Timeline;
+export default memo(Timeline);

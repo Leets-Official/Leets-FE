@@ -1,5 +1,6 @@
 import { MOBILE_PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants/';
 import { ThemeColor } from '@/types';
+import Image from 'next/image';
 import * as S from './MobilePromotions.styled';
 import MobileProject from './MobileProject';
 import MobileStudy from './MobileStudy';
@@ -18,7 +19,7 @@ const MobilePromotions = ({ color }: { color: ThemeColor }) => (
                 {title}
               </S.SubjectStyle>
               <S.ImgContainer>
-                <S.ImgStyle src={imageSrc} alt={title} height={height} />
+                <Image src={imageSrc} alt={title} width={240} height={height} />
               </S.ImgContainer>
             </S.TopContainer>
             {title === PROMOTION_TYPE.PROJECT && (

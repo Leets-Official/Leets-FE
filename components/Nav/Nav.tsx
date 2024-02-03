@@ -7,6 +7,7 @@ import * as S from './Nav.styled';
 
 const Nav = ({ color }: { color: ThemeColor }) => {
   const { data: session } = useSession();
+  const name = session?.user?.name || '알 수 없는 유저';
 
   const handleLogout = () => {
     signOut({ callbackUrl: USER.HOME });
@@ -16,11 +17,11 @@ const Nav = ({ color }: { color: ThemeColor }) => {
     <S.NavContainer>
       <S.Container>
         <S.LinkContainer href={USER.HOME}>Leets</S.LinkContainer>
-        <S.WelcomeContainer name={session?.user?.name as string}>
-          {session?.user?.name && (
+        <S.WelcomeContainer name={name as string}>
+          {name && (
             <>
-              <S.WelcomeStyle>{`${session?.user?.name}님 `}환영해요!</S.WelcomeStyle>
-              <S.LogoutButton type="button" onClick={handleLogout} name={session?.user?.name} color={color}>
+              <S.WelcomeStyle>{`${name}님 `}환영해요!</S.WelcomeStyle>
+              <S.LogoutButton type="button" onClick={handleLogout} name={name} color={color}>
                 로그아웃
               </S.LogoutButton>
             </>

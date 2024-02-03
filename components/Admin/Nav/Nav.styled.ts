@@ -1,12 +1,14 @@
 import { styled } from 'styled-components';
 import AdminLogo from '@/public/assets/image/Logo/Blue.svg';
+import Link from 'next/link';
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled(Link)`
+  all: unset;
+
   width: fit-content;
 
   display: flex;
   align-items: center;
-
   cursor: pointer;
 `;
 

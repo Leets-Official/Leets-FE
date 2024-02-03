@@ -1,14 +1,13 @@
 import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
 import { ThemeColor } from '@/types';
-import { useRef } from 'react';
+import { memo } from 'react';
+import Image from 'next/image';
 import Project from './Project';
 import Study from './Study';
 import Entertainment from './Entertainment';
 import * as S from './Promotions.styled';
 
 const Promotions = ({ color }: { color: ThemeColor }) => {
-  const scrollRef = useRef(null);
-
   return (
     <>
       {PROMOTION_LAYOUT.map(({ title, height, benefits }) => {
@@ -18,11 +17,13 @@ const Promotions = ({ color }: { color: ThemeColor }) => {
         return (
           <S.Section key={title}>
             <S.Content>
-              <S.TopContainer ref={scrollRef}>
+              <S.TopContainer>
                 <S.Subject initial={{ x: -100 }} whileInView={{ x: 0 }} transition={{ duration: 0.5 }}>
                   {title}
                 </S.Subject>
-                <S.Image src={imageSrc} alt={title} height={height} />
+                <S.ImageContainer $height={height}>
+                  <Image src={imageSrc} alt={title} fill priority={false} />
+                </S.ImageContainer>
               </S.TopContainer>
               <S.BottomContainer>
                 {title === PROMOTION_TYPE.PROJECT && <Project benefits={benefits} imageSrc={projectImageSrc} />}
@@ -37,4 +38,4 @@ const Promotions = ({ color }: { color: ThemeColor }) => {
   );
 };
 
-export default Promotions;
+export default memo(Promotions);

@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 import { postAdminLogin, getAdmin } from '@/api';
 import { ACCESS_TOKEN, ADMIN, LOGIN } from '@/constants';
-import axios from 'axios';
-import { LocalStorage } from '@/utils';
+import { isAxiosError } from 'axios';
 import { AdminLoginRequest } from '@/types';
 import { useAppDispatch } from '@/store';
 import { login } from '@/store/adminSlice';
+import { setCookie } from 'cookies-next';
 import { useInputRef } from './useInputRef';
 
 const useLogin = () => {
@@ -23,12 +23,13 @@ const useLogin = () => {
 
     const { id, password } = inputRef.current;
     const { result } = await postAdminLogin({ id, password });
-    if (!axios.isAxiosError(result)) {
-      const admin = await getAdmin();
-      LocalStorage.setItem(ACCESS_TOKEN, result.accessToken);
 
-      if (!axios.isAxiosError(admin.result)) {
-        dispatch(login({ name: admin.result.name }));
+    if (!isAxiosError(result)) {
+      const { result: admin } = await getAdmin();
+      setCookie(ACCESS_TOKEN, result.accessToken);
+
+      if (!isAxiosError(result)) {
+        dispatch(login({ name: admin.name }));
         router.replace(ADMIN.HOME);
       }
     }

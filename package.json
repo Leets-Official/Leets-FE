@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.8.2",
     "axios": "^1.4.0",
+    "cookies-next": "^4.1.1",
     "dayjs": "^1.11.9",
     "eslint-import-resolver-typescript": "^3.5.5",
     "facepaint": "^1.2.1",

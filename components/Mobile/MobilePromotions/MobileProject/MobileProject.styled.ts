@@ -15,7 +15,6 @@ export const BlockStyle = styled.div`
 `;
 
 export const HeadContainer = styled.div`
-  font-family: 'DM Sans';
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
@@ -43,11 +42,4 @@ export const BenefitContainer = styled.div`
   margin-left: 24px;
   margin-right: 26px;
   margin-top: 22.28px;
-`;
-
-export const ImgStyle = styled.img`
-  width: 40px;
-  height: 40px;
-
-  background: #0f0f0f;
 `;

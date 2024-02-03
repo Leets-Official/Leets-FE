@@ -1,4 +1,5 @@
 import { HeaderAnimation } from '@/constants';
+import { memo } from 'react';
 import * as S from './Header.styled';
 
 const Header = () => (
@@ -7,4 +8,4 @@ const Header = () => (
   </S.HeadContainer>
 );
 
-export default Header;
+export default memo(Header);
