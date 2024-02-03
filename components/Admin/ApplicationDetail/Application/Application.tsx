@@ -1,6 +1,6 @@
 import { ApplicationDetailType } from '@/types';
 import { APPLY_POSITION } from '@/constants';
-import ApplicationStatus from '../ApplicationStatus';
+import ApplicationStatus from './ApplicationStatus';
 import * as S from './Application.styled';
 
 const Application = ({ application }: { application: ApplicationDetailType }) => {

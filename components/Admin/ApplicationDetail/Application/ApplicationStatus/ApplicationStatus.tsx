@@ -18,7 +18,7 @@ import { patchInterviewInformation, postInterviewInformation, patchApplicationDe
 import { useRouter } from 'next/navigation';
 import * as S from './ApplicationStatus.styled';
 
-type ApplicationStatusProps = {
+interface ApplicationStatusProps {
   id: number;
   applicationStatus: ApplicationStatusType;
   updatedAt: string;
@@ -27,7 +27,7 @@ type ApplicationStatusProps = {
     fixedInterviewDate: string;
     place: string;
   };
-};
+}
 
 const ApplicationStatus = ({
   id,

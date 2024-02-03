@@ -17,7 +17,6 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;
     }
-
     router.push(USER.APPLY);
   };
 

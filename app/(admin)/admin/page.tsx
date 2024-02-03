@@ -2,7 +2,7 @@
 
 import Nav from '@/components/Admin/Nav';
 import { useLogin } from '@/hooks';
-import * as S from './Admin.styled';
+import * as S from './styled';
 
 const Admin = () => {
   const { changeHandler, onSubmitHandler } = useLogin();
