@@ -22,7 +22,7 @@ const Promotions = ({ color }: { color: ThemeColor }) => {
                   {title}
                 </S.Subject>
                 <S.ImageContainer $height={height}>
-                  <Image src={imageSrc} alt={title} fill />
+                  <Image src={imageSrc} alt={title} fill priority={false} />
                 </S.ImageContainer>
               </S.TopContainer>
               <S.BottomContainer>
