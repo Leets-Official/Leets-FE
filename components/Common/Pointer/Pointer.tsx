@@ -1,6 +1,5 @@
-import { useDeviceChecker } from '@/hooks';
-import './Pointer.css';
 import { ThemeColor } from '@/types';
+import * as S from './Pointer.styled';
 
 type PointerProp = {
   position: { x: number; y: number };
@@ -9,14 +8,9 @@ type PointerProp = {
 };
 
 const Pointer = ({ position, size, color }: PointerProp) => {
-  const { isDesktop } = useDeviceChecker();
-
-  if (!isDesktop) {
-    return null;
-  }
   return (
-    <div
-      className={`Pointer Pointer--${color}`}
+    <S.Pointer
+      color={color}
       style={{
         transform: `translate(${position.x}px, ${position.y}px)`,
         width: `${size}rem`,
