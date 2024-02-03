@@ -70,8 +70,3 @@ export const TIMELINE_LAYOUT = {
   '최종 합격자 발표': '23.09.18',
   '정규 활동 시작': '23.09.21',
 } as const;
-
-export const LOGIN_LAYOUT = [
-  { key: 'id', placeholder: '아이디' },
-  { key: 'password', placeholder: '비밀번호' },
-] as const;

@@ -47,9 +47,10 @@ export const InputSection = styled.section`
 `;
 
 export const InputStyle = styled.input`
+  font-size: 16px;
+
   width: 100%;
   height: 56px;
-  font-size: 16px;
 
   ::placeholder {
     color: #94a3b8;
@@ -64,12 +65,11 @@ export const InputStyle = styled.input`
   padding: 12px;
   border-radius: 12px;
   border: 2px solid #e2e8f0;
-
   box-sizing: border-box;
   margin-bottom: 13px;
 `;
 
-export const Button = styled.button`
+export const LoginButton = styled.button`
   font-weight: 700;
   font-size: 16px;
 
@@ -78,9 +78,8 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 8px;
-
-  cursor: pointer;
   margin-top: 55px;
   color: white;
   background: #4a93ff;
+  cursor: pointer;
 `;

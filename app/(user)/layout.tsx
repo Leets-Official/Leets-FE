@@ -1,9 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { RTProvider, StyledProvider } from '@/lib/Provider';
+import { RTProvider, StyledProvider, NextAuthProvider, DM_SANS } from '@/lib';
 import ScrollToTop from '@/components/Common/ScrollTop';
-import { DM_SANS } from '@/app/fonts';
-import { NextAuthProvider } from '../lib/Provider/SessionProvider';
 
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s · Leets' },
