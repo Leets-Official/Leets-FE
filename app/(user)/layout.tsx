@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider, NextAuthProvider, DM_SANS } from '@/lib';
-import ScrollToTop from '@/components/Common/ScrollTop';
 
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s · Leets' },
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Leets',
     description: 'Who Cares?',
-    url: 'https://leets.land',
+    url: 'https://www.leets.land',
     images: ['/assets/image/OG.png'],
     locale: 'ko-KR',
     type: 'website',
@@ -31,10 +30,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body className={DM_SANS.className}>
         <StyledProvider>
           <RTProvider>
-            <NextAuthProvider>
-              <ScrollToTop />
-              {children}
-            </NextAuthProvider>
+            <NextAuthProvider>{children}</NextAuthProvider>
           </RTProvider>
         </StyledProvider>
       </body>

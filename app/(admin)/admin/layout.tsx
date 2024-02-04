@@ -1,10 +1,21 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { RTProvider, StyledProvider, DM_SANS } from '@/lib';
-import ScrollToTop from '@/components/Common/ScrollTop';
 
 export const metadata: Metadata = {
-  title: '관리자',
+  title: { default: '관리자 · Leets', template: '%s · Leets' },
+  description: 'Who Cares?',
+  openGraph: {
+    title: 'Leets',
+    description: 'Who Cares?',
+    url: 'https://www.leets.land',
+    images: ['/assets/image/OG.png'],
+    locale: 'ko-KR',
+    type: 'website',
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
@@ -12,10 +23,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
     <html lang="ko">
       <body className={DM_SANS.className}>
         <StyledProvider>
-          <RTProvider>
-            <ScrollToTop />
-            {children}
-          </RTProvider>
+          <RTProvider>{children}</RTProvider>
         </StyledProvider>
       </body>
     </html>
