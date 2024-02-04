@@ -5,14 +5,6 @@ import { RTProvider, StyledProvider, DM_SANS } from '@/lib';
 export const metadata: Metadata = {
   title: { default: '관리자 · Leets', template: '%s · Leets' },
   description: 'Who Cares?',
-  openGraph: {
-    title: 'Leets',
-    description: 'Who Cares?',
-    url: 'https://www.leets.land',
-    images: ['/assets/image/OG.png'],
-    locale: 'ko-KR',
-    type: 'website',
-  },
   icons: {
     icon: '/favicon.ico',
   },
