@@ -42,7 +42,3 @@ const Index = () => {
 };
 
 export default Index;
-
-// 관리자 < - > 유저 간 데이터를 확인할 수 없어야 한다.
-// 유저 -> 관리자 accessToken이 있어야 하고 role: 'admin'이어야 한다.
-// 관리자 -> 유저 accessToken이 있어야 하고 role: 'admin'이 아니어야 한다.
