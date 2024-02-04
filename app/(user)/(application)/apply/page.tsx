@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation';
 import { Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
 import { Schedule } from '@/utils/Schedule';
-import * as S from './styled';
 
 const Apply = () => {
   const router = useRouter();
@@ -23,20 +22,20 @@ const Apply = () => {
       Alert.error(APPLICATION.ASK_USE_DESKTOP);
       router.push(USER.HOME);
     }
-    const period = Schedule.getCurrentPeriod(new Date());
-    if (period === 'CLOSE') {
-      router.push(USER.HOME);
-    }
+    // const period = Schedule.getCurrentPeriod(new Date());
+    // if (period === 'CLOSE') {
+    //   router.push(USER.HOME);
+    // }
   });
 
   if (status === SESSION_STATUS.LOADING) {
     return <Loading color={MAIN_COLOR} />;
   }
   return (
-    <S.ApplyContainer>
+    <>
       <Nav color={MAIN_COLOR} />
       {data?.user ? <Form /> : <LoginButton />}
-    </S.ApplyContainer>
+    </>
   );
 };
 

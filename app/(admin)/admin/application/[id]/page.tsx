@@ -30,7 +30,6 @@ const ApplicationDetail = ({ params: { id } }: { params: { id: number } }) => {
   }, [id, isLoading]);
 
   const logoutHandler = () => {
-    // dispatch(logout());
     deleteCookie(ACCESS_TOKEN);
     router.push(ADMIN.LOGIN);
   };
