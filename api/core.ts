@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import { ACCESS_TOKEN, HTTP_METHODS, UNEXPECTED_ERROR } from '@/constants';
-import { Alert, LocalStorage } from '@/utils';
+import { Alert } from '@/utils';
+import { getCookie } from 'cookies-next';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -9,14 +10,14 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 const handleRequest = (config: AxiosRequestConfig, token?: string) => {
-  const localToken = LocalStorage.getItem(ACCESS_TOKEN);
-  return !token && !localToken
+  const accessToken = getCookie(ACCESS_TOKEN);
+  return !token && !accessToken
     ? config
     : {
         ...config,
         headers: {
           ...config.headers,
-          Authorization: `Bearer ${localToken ?? token}`,
+          Authorization: `Bearer ${accessToken ?? token}`,
         },
       };
 };

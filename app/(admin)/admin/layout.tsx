@@ -15,7 +15,9 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
     <html lang="ko">
       <body className={DM_SANS.className}>
         <StyledProvider>
-          <RTProvider>{children}</RTProvider>
+          {/* <RTProvider> */}
+          {children}
+          {/* </RTProvider> */}
         </StyledProvider>
       </body>
     </html>

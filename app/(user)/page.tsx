@@ -1,6 +1,5 @@
 'use client';
 
-import { PointerWrapper } from '@/styles/global-style';
 import BackgroundImage from '@/components/BackgroundImage';
 import Promotions from '@/components/Promotions';
 import Header from '@/components/Header';
@@ -14,6 +13,7 @@ import { useDeviceChecker, useMousePosition } from '@/hooks';
 import { MAIN_COLOR } from '@/constants';
 import Loading from '@/components/Common/Loading';
 import { useIsLoading } from '@/hooks/useIsLoading';
+import { PointerWrapper } from './styled';
 
 const Index = () => {
   const color = MAIN_COLOR;

@@ -1,4 +1,4 @@
-import { styled, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -11,11 +11,4 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     background: black;
   }
-`;
-
-export const PointerWrapper = styled.main`
-  width: 100%;
-  height: auto;
-
-  cursor: none;
 `;

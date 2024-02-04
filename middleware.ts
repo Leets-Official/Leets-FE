@@ -1,10 +1,9 @@
-import { getCookie } from 'cookies-next';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { ACCESS_TOKEN } from './constants';
 
 export function middleware(request: NextRequest) {
-  const accessToken = getCookie(ACCESS_TOKEN);
+  const accessToken = request.cookies.get(ACCESS_TOKEN);
 
   if (request.nextUrl.pathname === '/admin') {
     if (accessToken) {

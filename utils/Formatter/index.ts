@@ -18,6 +18,4 @@ export class Formatter {
     const minutes = dateObject.getMinutes().toString().padStart(2, '0');
     return `${year}.${month}.${day} ${hours}:${minutes}`;
   }
-
-  // static sliceMaxLength
 }
