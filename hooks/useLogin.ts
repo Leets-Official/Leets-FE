@@ -8,7 +8,7 @@ import { isAxiosError } from 'axios';
 import { AdminLoginRequest } from '@/types';
 import { setCookie } from 'cookies-next';
 import { Alert } from '@/utils';
-import { useInputRef } from './useInputRef';
+import useInputRef from './useInputRef';
 
 const useLogin = () => {
   const router = useRouter();
@@ -41,4 +41,4 @@ const useLogin = () => {
   return { changeHandler, onSubmitHandler };
 };
 
-export { useLogin };
+export default useLogin;

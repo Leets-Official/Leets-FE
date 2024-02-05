@@ -26,7 +26,7 @@ const FilterDropDown = ({
   setToggle,
   customWidth,
 }: FilterDropdownProps) => {
-  const [isOpen, toggleDropdown, dropdownRef] = useDropdown();
+  const { isOpen, toggleDropdown, dropdownRef } = useDropdown();
 
   const clickHandler = (type: string) => {
     setSelected(type);

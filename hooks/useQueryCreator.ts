@@ -8,7 +8,7 @@ const useQueryCreator = (): ((key: string, value: string) => string) => {
   const pathname = usePathname();
   const createQueryString = useCallback(
     (name: string, queryValue: string) => {
-      const params = new URLSearchParams(searchParams);
+      const params = new URLSearchParams(searchParams.toString());
       params.set(name, queryValue);
       return params.toString();
     },
@@ -17,4 +17,4 @@ const useQueryCreator = (): ((key: string, value: string) => string) => {
   return (key: string, value: string) => `${pathname}?${createQueryString(key, value)}`;
 };
 
-export { useQueryCreator };
+export default useQueryCreator;

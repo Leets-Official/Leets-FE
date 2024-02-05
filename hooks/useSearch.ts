@@ -5,7 +5,7 @@ import { SearchList, ApplicationType } from '@/types';
 import { PAGINATION } from '@/constants';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from '@/utils';
-import { useQueryCreator } from './useQueryCreator';
+import useQueryCreator from './useQueryCreator';
 
 const useSearch = ({ applications, searchTargets }: SearchList<ApplicationType>) => {
   const router = useRouter();
@@ -36,4 +36,4 @@ const useSearch = ({ applications, searchTargets }: SearchList<ApplicationType>)
   };
 };
 
-export { useSearch };
+export default useSearch;

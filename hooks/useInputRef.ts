@@ -3,7 +3,7 @@
 import { KeyOf, ValueOf } from '@/types';
 import { useRef, ChangeEvent, MutableRefObject } from 'react';
 
-export type InputRefProp<T> = {
+type InputRefProp<T> = {
   defaultValues: T;
 };
 
@@ -15,4 +15,4 @@ const useInputRef = <T>({ defaultValues }: InputRefProp<T>) => {
   return { inputRef, changeHandler };
 };
 
-export { useInputRef };
+export default useInputRef;
