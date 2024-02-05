@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useMousePosition() {
   const [position, setPosition] = useState({
@@ -8,7 +8,7 @@ export function useMousePosition() {
     y: 0,
   });
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: any) => {
     requestAnimationFrame(() => {
       setPosition({
         x: e.clientX,
@@ -17,5 +17,13 @@ export function useMousePosition() {
     });
   };
 
-  return { position, handleMouseMove };
+  useEffect(() => {
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return { position };
 }
