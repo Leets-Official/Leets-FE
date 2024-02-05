@@ -1,14 +1,38 @@
-import { type NextRequest } from 'next/server';
-import { Middleware } from './utils';
+import { type NextRequest, NextResponse } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+import { ACCESS_TOKEN } from '@/constants';
 
 export async function middleware(request: NextRequest) {
-  const middlewareInstance = new Middleware(request);
-  const { pathname } = request.nextUrl;
+  const {
+    nextUrl: { pathname },
+    url,
+  } = request;
+  const accessToken = request.cookies.get(ACCESS_TOKEN);
 
   if (pathname.includes('admin')) {
-    return middlewareInstance.admin();
+    if (pathname === '/admin') {
+      if (accessToken) {
+        return NextResponse.redirect(new URL('/admin/application', url));
+      }
+      return NextResponse.next();
+    }
+    if (accessToken) {
+      return NextResponse.next();
+    }
+    return NextResponse.redirect(new URL('/admin', url));
   }
-  return middlewareInstance.user();
+
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  if (pathname.includes('apply')) {
+    if (token?.accessToken) {
+      return NextResponse.next();
+    }
+    return NextResponse.redirect(new URL('/login', url));
+  }
+  if (token?.accessToken) {
+    return NextResponse.redirect(new URL('/apply', url));
+  }
+  return NextResponse.next();
 }
 
 export const config = {
