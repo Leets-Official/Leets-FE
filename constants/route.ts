@@ -5,6 +5,7 @@ export const ADMIN = {
 
 export const USER = {
   HOME: '/',
+  LOGIN: '/login',
   APPLY: '/apply',
   CERTIFICATE: '/certificate',
 } as const;

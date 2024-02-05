@@ -2,6 +2,7 @@
 
 import { ThemeColor } from '@/types';
 import { useMousePosition } from '@/hooks';
+import { memo } from 'react';
 import * as S from './Pointer.styled';
 
 type PointerProp = {
@@ -26,4 +27,4 @@ const Pointer = ({ size, color }: PointerProp) => {
   );
 };
 
-export default Pointer;
+export default memo(Pointer);
