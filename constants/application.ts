@@ -21,7 +21,7 @@ export const APPLICATION_INPUT_DEFAULT = {
   major: '',
   algorithm: '',
   project: '',
-  career: '',
+  job: '',
   portfolio: '',
   interviewDay: '',
   interviewTime: '',

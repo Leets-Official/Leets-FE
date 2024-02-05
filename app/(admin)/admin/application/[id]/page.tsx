@@ -8,12 +8,12 @@ import { ApplicationDetailType } from '@/types';
 import { APPLICATION_DETAIL_DEFAULT, ADMIN, MAIN_COLOR, ACCESS_TOKEN } from '@/constants';
 import Loading from '@/components/Common/Loading';
 import { useRouter } from 'next/navigation';
-import { useIsLoading } from '@/hooks/useIsLoading';
+import { useIsLoading } from '@/hooks';
 import Application from '@/components/Admin/ApplicationDetail/Application';
 import { deleteCookie } from 'cookies-next';
 import * as S from './styled';
 
-const ApplicationDetail = ({ params: { id } }: { params: { id: number } }) => {
+const ApplicationDetail = ({ params: { id } }: { params: { id: string } }) => {
   const isLoading = useIsLoading();
   const [application, setApplication] = useState<ApplicationDetailType>(APPLICATION_DETAIL_DEFAULT);
   const router = useRouter();
@@ -21,7 +21,7 @@ const ApplicationDetail = ({ params: { id } }: { params: { id: number } }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await getApplicationDetail({ id: Number(id) });
+      const { result } = await getApplicationDetail({ id });
       if (!isAxiosError(result)) {
         setApplication(result);
       }

@@ -9,7 +9,7 @@ import PositionFilter from '@/components/Admin/PositionFilter';
 import { ACCESS_TOKEN, ADMIN, MAIN_COLOR, POSITION_FILTER_MAP } from '@/constants';
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Common/Loading';
-import { useIsLoading } from '@/hooks/useIsLoading';
+import { useIsLoading } from '@/hooks';
 import ApplicationList from '@/components/Admin/ApplicationList';
 import { deleteCookie } from 'cookies-next';
 import * as S from './styled';

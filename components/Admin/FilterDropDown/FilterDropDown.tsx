@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { KeyOf, SortByType } from '@/types';
-import { useDropdown } from '@/hooks';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import { DROPDOWN_MAP } from '@/constants';
+import { useDropDown } from '@/hooks';
 import * as S from './FilterDropDown.styled';
 
 type FilterDropdownProps = {
@@ -26,7 +26,7 @@ const FilterDropDown = ({
   setToggle,
   customWidth,
 }: FilterDropdownProps) => {
-  const { isOpen, toggleDropdown, dropdownRef } = useDropdown();
+  const { isOpen, toggleDropdown, dropdownRef } = useDropDown();
 
   const clickHandler = (type: string) => {
     setSelected(type);

@@ -1,9 +1,9 @@
-export const MAX_LENGTH = {
+const MAX_LENGTH = {
   NAME: 5,
   GRADE: 1,
   MAJOR: 10,
   GPA: 4,
-  CAREER: 10,
+  JOB: 10,
   ALGORITHM: 50,
   PROJECT: 50,
   PORTFOLIO: 50,
@@ -16,7 +16,7 @@ export const MAX_LENGTH = {
   LEVEL: 500,
   PROS: 500,
   ENHANCEMENT: 700,
-};
+} as const;
 
 export const DEV_INPUTS = [
   { id: 'name', title: '이름', holderText: '이름을 입력하세요.', required: true, maxLength: MAX_LENGTH.NAME },
@@ -29,11 +29,11 @@ export const DEV_INPUTS = [
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
-    id: 'career',
+    id: 'job',
     title: '희망 직무',
     holderText: '희망 직무를 입력하세요. (ex 백엔드, 프론트엔드, 미정)',
     required: false,
-    maxLength: MAX_LENGTH.CAREER,
+    maxLength: MAX_LENGTH.JOB,
   },
   {
     id: 'gpa',
@@ -97,11 +97,11 @@ export const DESING_INPUTS = [
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
-    id: 'career',
+    id: 'job',
     title: '희망 직무',
     holderText: '희망 직무를 입력하세요. (ex UI/UX 디자이너)',
     required: false,
-    maxLength: MAX_LENGTH.CAREER,
+    maxLength: MAX_LENGTH.JOB,
   },
   {
     id: 'gpa',
