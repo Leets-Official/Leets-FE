@@ -9,10 +9,9 @@ import Contact from '@/components/Contact';
 import Timeline from '@/components/Promotions/Timeline';
 import Footer from '@/components/Footer';
 import MobileContainer from '@/components/Mobile/MobileContanier';
-import { useDeviceChecker } from '@/hooks';
+import { useDeviceChecker, useIsLoading } from '@/hooks';
 import { MAIN_COLOR } from '@/constants';
 import Loading from '@/components/Common/Loading';
-import { useIsLoading } from '@/hooks/useIsLoading';
 import { Main } from './styled';
 
 const Index = () => {
