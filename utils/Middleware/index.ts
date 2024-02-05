@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { ACCESS_TOKEN } from '@/constants';
-import { getSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 
 export class Middleware {
   #request;
@@ -28,23 +28,16 @@ export class Middleware {
   }
 
   async user() {
-    const { nextUrl, headers, url } = this.#request;
+    const { nextUrl, url } = this.#request;
     const { pathname } = nextUrl;
-
-    const requestForNextAuth = {
-      headers: {
-        cookie: headers.get('cookie') ?? undefined,
-      },
-    };
-    const session = await getSession({ req: requestForNextAuth });
-
+    const token = await getToken({ req: this.#request, secret: process.env.NEXTAUTH_SECRET });
     if (pathname.includes('apply')) {
-      if (session?.accessToken) {
+      if (token?.accessToken) {
         return NextResponse.next();
       }
       return NextResponse.redirect(new URL('/login', url));
     }
-    if (session?.accessToken) {
+    if (token?.accessToken) {
       return NextResponse.redirect(new URL('/apply', url));
     }
     return NextResponse.next();
