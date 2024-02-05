@@ -1,6 +1,6 @@
 export class Validator {
   static isValidInput(id: string, value: string) {
-    if (id === 'name' || id === 'major' || id === 'career') {
+    if (id === 'name' || id === 'major' || id === 'job') {
       return this.koreanValidator(value);
     }
     if (id === 'SID') {

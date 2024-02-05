@@ -1,8 +1,8 @@
 import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR } from '@/constants';
 import { ApplicationInputProp } from '@/types';
-import * as S from './InputText.styled';
+import * as S from './InputTexts.styled';
 
-const InputText = ({ position, input, setInput }: ApplicationInputProp) => {
+const InputTexts = ({ position, input, setInput }: ApplicationInputProp) => {
   const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
   const color = MAIN_COLOR;
 
@@ -30,4 +30,4 @@ const InputText = ({ position, input, setInput }: ApplicationInputProp) => {
   );
 };
 
-export default InputText;
+export default InputTexts;

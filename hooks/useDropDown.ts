@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect, RefObject } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-const useDropdown = (): [boolean, () => void, RefObject<HTMLDivElement>] => {
-  const [isOpen, setIsOpen] = useState(false);
+const useDropdown = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const useDropdown = (): [boolean, () => void, RefObject<HTMLDivElement>] => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  return [isOpen, toggleDropdown, dropdownRef];
+  return { isOpen, toggleDropdown, dropdownRef };
 };
 
-export { useDropdown };
+export default useDropdown;

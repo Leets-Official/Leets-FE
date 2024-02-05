@@ -6,13 +6,12 @@ import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
 import axios from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
-import { ADMIN, MAIN_COLOR, POSITION_FILTER_MAP } from '@/constants';
+import { ACCESS_TOKEN, ADMIN, MAIN_COLOR, POSITION_FILTER_MAP } from '@/constants';
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Common/Loading';
-import { useAppDispatch } from '@/store';
-import { logout } from '@/store/adminSlice';
-import { useIsLoading } from '@/hooks/useIsLoading';
+import { useIsLoading } from '@/hooks';
 import ApplicationList from '@/components/Admin/ApplicationList';
+import { deleteCookie } from 'cookies-next';
 import * as S from './styled';
 
 const Application = () => {
@@ -20,11 +19,10 @@ const Application = () => {
   const [position, setPosition] = useState<KeyOf<typeof POSITION_FILTER_MAP>>(POSITION_FILTER_MAP.All);
   const isLoading = useIsLoading();
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const color = MAIN_COLOR;
 
   const handleLogout = () => {
-    dispatch(logout());
+    deleteCookie(ACCESS_TOKEN);
     router.push(ADMIN.LOGIN);
   };
 
@@ -41,7 +39,6 @@ const Application = () => {
   if (isLoading) {
     return <Loading color={color} />;
   }
-
   return (
     <S.ApplicationListContainer>
       <S.ContentContainer>

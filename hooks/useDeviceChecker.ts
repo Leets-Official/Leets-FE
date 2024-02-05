@@ -18,4 +18,4 @@ const useDeviceChecker = () => {
   return { isDesktop, isMobile };
 };
 
-export { useDeviceChecker };
+export default useDeviceChecker;

@@ -31,7 +31,6 @@
 - [Next.js app directory](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Styled-Components](https://styled-components.com/) (CSS-in-JS)
-- [Redux Toolkit](https://redux-toolkit.js.org/) (Managing State)
 
 <br>
 

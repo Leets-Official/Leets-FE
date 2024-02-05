@@ -3,15 +3,18 @@ import { APPLICATION_STATUS_MAP, SUBMIT_STATUS, POSITION_FILTER_MAP, APPLY_POSIT
 import { Applicant } from './User';
 import { KeyOf, ValueOf } from '../Helper';
 
-export type ApplicationInput = {
+type ApplicationLink = {
+  portfolio: string;
+};
+
+export type ApplicationInput = ApplicationLink & {
   name: string;
   grade: string;
   gpa: string;
   major: string;
   algorithm: string;
   project: string;
-  career: string;
-  portfolio: string;
+  job: string;
   phone: string;
   interviewDay: string;
   interviewTime: string;
@@ -34,7 +37,7 @@ export type Input = {
 
 export type SubmitStatus = ValueOf<typeof SUBMIT_STATUS>;
 
-export type IdRequest = { id: number };
+export type IdRequest = { id: string };
 
 export type ApplicationStatusType = KeyOf<typeof APPLICATION_STATUS_MAP>;
 
@@ -50,7 +53,7 @@ export type GetApplicationResponse = {
   gpa: string;
   grade: string;
   position: string;
-  career: string;
+  job: string;
   interview: {
     fixedInterviewDate: string;
     hasInterview: InterviewStatusType;
@@ -111,12 +114,7 @@ export type ApplicationTextareaProp = {
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
 };
 
-export type ApplicationData = ApplicationInput & {
-  enhancement: string;
-  level: string;
-  pros: string;
-  goal: string;
-  completion: string;
+export type ApplicationData = Application & {
   email: string;
   position: PositionType;
   submitStatus: SubmitStatus;

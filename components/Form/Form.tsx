@@ -18,8 +18,8 @@ import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import InputText from './InputText';
-import InputTextarea from './InputTextarea';
+import InputTexts from './InputTexts';
+import InputTextareas from './InputTextareas';
 import * as S from './Form.styled';
 import Notice from './Notice';
 
@@ -112,8 +112,8 @@ const Form = () => {
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputText position={position} input={applicationInput} setInput={setApplicationInput} />
-            <InputTextarea position={position} text={applicationText} setText={setApplicationText} />
+            <InputTexts position={position} input={applicationInput} setInput={setApplicationInput} />
+            <InputTextareas position={position} text={applicationText} setText={setApplicationText} />
             <S.PrivacyContainer>
               <S.PrivacyCheckBox type="checkbox" required />
               <S.Text>

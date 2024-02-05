@@ -1,7 +1,9 @@
+'use client';
+
 import { APPLICATION } from '@/constants';
 import { useState, useEffect } from 'react';
 
-export function useBeforeUnload() {
+const useBeforeUnload = () => {
   const [submitClicked, setSubmitClicked] = useState<boolean>(false);
 
   const submitClickHandler = () => {
@@ -22,4 +24,6 @@ export function useBeforeUnload() {
   }, [submitClicked]);
 
   return submitClickHandler;
-}
+};
+
+export default useBeforeUnload;

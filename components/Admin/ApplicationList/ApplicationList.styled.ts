@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import RestButtonImage from '@/public/assets/image/ResetButtonImage.svg';
+import RestButtonImage from '@/public/assets/image/Admin/ResetButtonImage.svg';
 import { InterviewStatusType, ApplicationStatusType } from '@/types';
 import { INTERVIEW_ATTEND_STATUS_COLOR, APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
 

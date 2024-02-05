@@ -35,4 +35,4 @@ const usePagination = ({ items }: { items: ApplicationType[] }): PaginationResul
   };
 };
 
-export { usePagination };
+export default usePagination;

@@ -121,12 +121,12 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
       </S.ApplicationColumn>
       <S.AapplicationComponentContainer>
         {currentItems.map(
-          ({ id, name, gpa, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+          ({ id, name, gpa, grade, job, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
             <S.Application key={id} onClick={() => router.push(`/admin/application/${id}`)}>
               <S.Name>{name}</S.Name>
               <S.GPA>{gpa}</S.GPA>
               <S.Grade>{grade}</S.Grade>
-              <S.Position>{career}</S.Position>
+              <S.Position>{job}</S.Position>
               <S.InterviewDate>{Formatter.normalizeDate(fixedInterviewDate)}</S.InterviewDate>
               <S.InterviewStatus>
                 <S.CheckInterview $hasInterview={hasInterview} />

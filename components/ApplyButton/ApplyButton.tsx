@@ -1,3 +1,5 @@
+'use client';
+
 import { ThemeColor } from '@/types';
 import { USER, APPLICATION } from '@/constants';
 import { MouseEvent, memo } from 'react';
@@ -17,12 +19,12 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;
     }
-    router.push(USER.APPLY);
+    router.push(USER.LOGIN);
   };
 
   return (
     <S.Container>
-      <S.ApplyButton href={USER.APPLY} color={color} onClick={clickHandler}>
+      <S.ApplyButton href={USER.LOGIN} color={color} onClick={clickHandler}>
         지원하기
       </S.ApplyButton>
     </S.Container>

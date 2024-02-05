@@ -65,9 +65,9 @@ export const InfoContainer = styled.div`
     fontWeight: '500',
     lineHeight: '24px',
 
-    width: [163.2, 163.4, 235.2, 287.0],
     height: [31.9, 31.9, 45.9, 56.0],
   })}
+  width: 100%;
 `;
 
 export const TitleStyle = styled.div`

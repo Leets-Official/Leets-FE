@@ -7,7 +7,7 @@ import * as S from './Nav.styled';
 
 const Nav = ({ color }: { color: ThemeColor }) => {
   const { data: session } = useSession();
-  const name = session?.user?.name || '알 수 없는 유저';
+  const name = session?.user?.name;
 
   const handleLogout = () => {
     signOut({ callbackUrl: USER.HOME });

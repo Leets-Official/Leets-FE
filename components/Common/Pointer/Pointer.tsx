@@ -1,13 +1,18 @@
+'use client';
+
 import { ThemeColor } from '@/types';
+import { useMousePosition } from '@/hooks';
+import { memo } from 'react';
 import * as S from './Pointer.styled';
 
 type PointerProp = {
-  position: { x: number; y: number };
   size: number;
   color: ThemeColor;
 };
 
-const Pointer = ({ position, size, color }: PointerProp) => {
+const Pointer = ({ size, color }: PointerProp) => {
+  const { position } = useMousePosition();
+
   return (
     <S.Pointer
       color={color}
@@ -22,4 +27,4 @@ const Pointer = ({ position, size, color }: PointerProp) => {
   );
 };
 
-export default Pointer;
+export default memo(Pointer);

@@ -14,7 +14,7 @@ const PROJECT_TEXT = {
     '여러 사람들과 함께 프로젝트를 진행하며\n소프트 스킬을 개발하고, 효과적으로\n협업하는 방법을 배워요.',
     '프로젝트 결과물은 기업, 대학원, 공모전\n등에 지원하거나 참여할 때 자신의 기술을\n보여주는 물리적 근거로 사용해요.',
   ],
-};
+} as const;
 
 const STUDY_TEXT = {
   title: `Study & Networking`,
@@ -26,13 +26,13 @@ const STUDY_TEXT = {
     '사람들과의 네트워크는 미래의 협업과\n취업에서 유리하게 작용해요.',
     '서로의 성장을 응원하는 분위기에서\n더 넓고 더 깊게 공부해요.',
   ],
-};
+} as const;
 
 const ENTERTIANMENT_TEXT = {
   title: 'Entertainment',
   height: 434,
   benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLEETS DAY!', 'LEET’S PLAY!'],
-};
+} as const;
 
 export const MOBILE_PROMOTION_LAYOUT = [
   {
@@ -70,3 +70,35 @@ export const TIMELINE_LAYOUT = {
   '최종 합격자 발표': '23.09.18',
   '정규 활동 시작': '23.09.21',
 } as const;
+
+export const SHORT_INFO_LAYOUT = [
+  { title: '이름', value: 'name' },
+  { title: '학년', value: 'grade' },
+  { title: '전공', value: 'major' },
+  { title: '학점', value: 'gpa' },
+  { title: '희망 직무', value: 'job' },
+  { title: '전화번호', value: 'phone' },
+  { title: '희망 면접 날짜', value: 'interviewDay' },
+  { title: '희망 면접 시간', value: 'interviewTime' },
+  { title: '지원 파트', value: 'position' },
+] as const;
+
+export const LONG_INFO_LAYOUT = [
+  { title: '알고리즘', value: 'algorithm' },
+  { title: '프로젝트 경험', value: 'project' },
+] as const;
+
+export const SELF_INTRODUCTION_LAYOUT = [
+  { title: 'Leets에 들어와서 얻어가고 싶은 것은 무엇인가요?', value: 'goal' },
+  { title: '무언가 열심히 해서 얻은 경험은 무엇인가요?', value: 'completion' },
+  { title: '본인의 장단점을 구체적인 경험을 바탕으로 소개해주세요.', value: 'pros' },
+  {
+    title:
+      '개발 실력을 1부터 10까지 점수로 표현해주세요. 점수에 대한 이유를 공부한 과정을 기반으로 작성해주시고, 앞으로의 학습 계획에 대해 자세히 소개해주세요.',
+    value: 'level',
+  },
+  {
+    title: '소프트웨어 개발을 더 잘하고 싶어서 시도했던 경험을 적어주세요.',
+    value: 'enhancement',
+  },
+] as const;

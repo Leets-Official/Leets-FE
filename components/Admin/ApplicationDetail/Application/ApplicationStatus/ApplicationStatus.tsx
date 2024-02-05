@@ -10,24 +10,13 @@ import {
   APPLICATION,
 } from '@/constants';
 import { useEffect, useState } from 'react';
-import { KeyOf, ApplicationStatusType } from '@/types';
+import { ApplicationDetailType, KeyOf } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import { isAxiosError } from 'axios';
-import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
 import { useRouter } from 'next/navigation';
+import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
 import * as S from './ApplicationStatus.styled';
-
-interface ApplicationStatusProps {
-  id: number;
-  applicationStatus: ApplicationStatusType;
-  updatedAt: string;
-  appliedAt: string;
-  interview: {
-    fixedInterviewDate: string;
-    place: string;
-  };
-}
 
 const ApplicationStatus = ({
   id,
@@ -35,7 +24,7 @@ const ApplicationStatus = ({
   updatedAt,
   appliedAt,
   interview: { fixedInterviewDate, place },
-}: ApplicationStatusProps) => {
+}: ApplicationDetailType) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus);
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
   const router = useRouter();
@@ -51,7 +40,7 @@ const ApplicationStatus = ({
     }
   };
 
-  const handleApplicationStatus = async () => {
+  const submitApplicationStatus = async () => {
     if (!appliedAt) {
       Alert.error(APPLICATION.REJECT_CHANGE_APPLICATION_STATUS);
       return;
@@ -136,7 +125,7 @@ const ApplicationStatus = ({
         />
       )}
       <S.ButtonContainer>
-        <S.ChangeButton onClick={handleApplicationStatus}>변경하기</S.ChangeButton>
+        <S.ChangeButton onClick={submitApplicationStatus}>변경하기</S.ChangeButton>
       </S.ButtonContainer>
     </S.ApplicationStatusContainer>
   );

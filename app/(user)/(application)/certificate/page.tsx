@@ -1,13 +1,8 @@
-import Nav from '@/components/Nav';
-import { MAIN_COLOR } from '@/constants';
 import * as S from './styled';
 
 const Certificate = () => {
-  const color = MAIN_COLOR;
-
   return (
     <S.CertificateContainer>
-      <Nav color={color} />
       <S.ContentContainer>
         <S.HeadStyle>Certificate</S.HeadStyle>
         <S.PrivacyContainer>

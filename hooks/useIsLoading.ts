@@ -11,4 +11,4 @@ const useIsLoading = () => {
   return isLoading;
 };
 
-export { useIsLoading };
+export default useIsLoading;
