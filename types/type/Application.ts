@@ -7,7 +7,7 @@ type ApplicationLink = {
   portfolio: string;
 };
 
-export type ApplicationInput = {
+export type ApplicationInput = ApplicationLink & {
   name: string;
   grade: string;
   gpa: string;
@@ -28,7 +28,7 @@ export type ApplicationTextarea = {
   completion: string;
 };
 
-export type Application = ApplicationInput & ApplicationTextarea & ApplicationLink;
+export type Application = ApplicationInput & ApplicationTextarea;
 
 export type Input = {
   id: string;
@@ -114,12 +114,7 @@ export type ApplicationTextareaProp = {
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
 };
 
-export type ApplicationData = ApplicationInput & {
-  enhancement: string;
-  level: string;
-  pros: string;
-  goal: string;
-  completion: string;
+export type ApplicationData = Application & {
   email: string;
   position: PositionType;
   submitStatus: SubmitStatus;

@@ -1,7 +1,7 @@
 import { DEV_TEXTAREAS, DESIGN_TEXTAREAS, MAIN_COLOR } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';
-import * as S from './InputTextarea.styled';
+import * as S from './InputTextareas.styled';
 
 const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
   const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;

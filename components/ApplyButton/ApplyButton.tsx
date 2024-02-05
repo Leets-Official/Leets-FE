@@ -1,3 +1,5 @@
+'use client';
+
 import { ThemeColor } from '@/types';
 import { USER, APPLICATION } from '@/constants';
 import { MouseEvent, memo } from 'react';
