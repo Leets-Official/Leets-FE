@@ -9,10 +9,10 @@ import {
   APPLY_POSITION,
   MAIN_COLOR,
 } from '@/constants';
-import { KeyOf, ApplicationData, SubmitStatus } from '@/types';
+import { KeyOf, SubmitStatus } from '@/types';
 import { postApplication, patchApplication, getUserApplication } from '@/api';
 import { useBeforeUnload } from '@/hooks';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
@@ -29,24 +29,19 @@ const Form = () => {
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
+  const { allowLeave } = useBeforeUnload();
   const token = session.data?.accessToken;
   const email = session.data?.user?.email!;
-  const beforeSubmitStatus = session.data?.submitStatus;
+  const prevSubmitStatus = session.data?.submitStatus;
   const router = useRouter();
-  const submitClickHandler = useBeforeUnload();
   const color = MAIN_COLOR;
-
-  const clickHandler = (type: SubmitStatus) => {
-    setCurrentSubmitStatus(type);
-    submitClickHandler();
-  };
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
+    allowLeave();
 
-    if (beforeSubmitStatus === SUBMIT_STATUS.SUBMIT) {
+    if (prevSubmitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
-      router.refresh();
       return;
     }
 
@@ -54,7 +49,7 @@ const Form = () => {
       return;
     }
 
-    const applicationData: ApplicationData = {
+    const applicationData = {
       ...applicationInput,
       ...applicationText,
       email,
@@ -63,11 +58,11 @@ const Form = () => {
     };
 
     const { result } =
-      beforeSubmitStatus === SUBMIT_STATUS.NONE
+      prevSubmitStatus === SUBMIT_STATUS.NONE
         ? await postApplication(applicationData, token)
         : await patchApplication(applicationData, token);
 
-    if (!axios.isAxiosError(result)) {
+    if (!isAxiosError(result)) {
       const successMessage =
         currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
       await session.update({ submitStatus: currentSubmitStatus });
@@ -79,18 +74,18 @@ const Form = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await getUserApplication(token);
-      if (!axios.isAxiosError(result)) {
-        const { enhancement, level, pros, goal, completion, user } = result;
+      if (!isAxiosError(result)) {
+        const { enhancement, level, pros, goal, completion, user, position: fetchPosition } = result;
         setApplicationText({ enhancement, level, pros, goal, completion });
         setApplicationInput({ ...user, ...result });
-        setPosition(result.position);
+        setPosition(fetchPosition);
       }
     };
-    if (session.data?.submitStatus !== SUBMIT_STATUS.NONE) {
+    if (session.data?.submitStatus && session.data?.submitStatus !== SUBMIT_STATUS.NONE) {
       fetchData();
     }
     if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
-      submitClickHandler();
+      allowLeave();
     }
   }, [session.data?.submitStatus]);
 
@@ -126,10 +121,10 @@ const Form = () => {
           </S.InputContainer>
           <Notice color={color} />
           <S.ButtonContainer>
-            <S.SaveButton type="submit" color={color} onClick={() => clickHandler(SUBMIT_STATUS.SAVE)}>
+            <S.SaveButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
               임시저장
             </S.SaveButton>
-            <S.SubmitButton type="submit" color={color} onClick={() => clickHandler(SUBMIT_STATUS.SUBMIT)}>
+            <S.SubmitButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SUBMIT)}>
               제출하기
             </S.SubmitButton>
           </S.ButtonContainer>

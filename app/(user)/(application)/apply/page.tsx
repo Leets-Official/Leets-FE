@@ -21,7 +21,7 @@ const Apply = () => {
     if (period === 'CLOSE') {
       router.push(USER.HOME);
     }
-  });
+  }, []);
 
   return <Form />;
 };
