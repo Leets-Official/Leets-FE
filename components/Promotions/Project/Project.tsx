@@ -1,24 +1,42 @@
+'use client';
+
 import Image from 'next/image';
+import { useViewport } from '@/hooks';
 import * as S from './Project.styled';
 
-const Project = ({ imageSrc, benefits }: { benefits: string[]; imageSrc: string }) => (
-  <S.ContentContainer>
-    {benefits.map((benefit, index) => (
-      <S.BlockStyle key={benefit}>
-        <S.NumberContainer>
-          <S.NumberStyle>{`${0}${index + 1}`}</S.NumberStyle>
-        </S.NumberContainer>
-        <S.BenefitContainer>
-          <S.TextStyle>{benefit}</S.TextStyle>
-          <S.IconContainer>
-            <S.IconWrapper>
-              <Image src={`${imageSrc}/star${index + 1}.svg`} alt={`title${index + 1}`} fill />
-            </S.IconWrapper>
-          </S.IconContainer>
-        </S.BenefitContainer>
-      </S.BlockStyle>
-    ))}
-  </S.ContentContainer>
-);
+const Project = ({ imageSrc, benefits }: { benefits: string[]; imageSrc: string }) => {
+  const { isDesktop } = useViewport();
+
+  return (
+    <S.ContentContainer>
+      {isDesktop &&
+        benefits.map((benefit, index) => (
+          <S.BenefitContainer key={benefit}>
+            <S.NumberContainer>
+              <S.NumberStyle>{`${0}${index + 1}`}</S.NumberStyle>
+            </S.NumberContainer>
+            <S.Benefit>
+              <S.TextStyle>{benefit}</S.TextStyle>
+              <S.IconContainer>
+                <S.IconWrapper>
+                  <Image src={`${imageSrc}/star${index + 1}.svg`} alt={`title${index + 1}`} fill />
+                </S.IconWrapper>
+              </S.IconContainer>
+            </S.Benefit>
+          </S.BenefitContainer>
+        ))}
+      {!isDesktop &&
+        benefits.map((benefit, index) => (
+          <S.BenefitContainer key={benefit}>
+            <S.HeadContainer>
+              {`0${index + 1}`}
+              <Image src={`${imageSrc}/star${index + 1}.svg`} alt="Project" width={40} height={40} />
+            </S.HeadContainer>
+            <S.Benefit>{benefit}</S.Benefit>
+          </S.BenefitContainer>
+        ))}
+    </S.ContentContainer>
+  );
+};
 
 export default Project;

@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 
@@ -10,15 +12,31 @@ export const ContentContainer = styled.div`
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: [18, 18, 26, 32],
   })}
+
+  @media screen and (max-width: 541px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
-export const BlockStyle = styled.div`
+export const BenefitContainer = styled.div`
   ${MQ({
     width: '100%',
-    height: [95, 96, 137, 168],
+    height: [95, 110, 137, 168],
 
     display: 'flex',
   })}
+
+  @media screen and (max-width: 541px) {
+    width: 100%;
+    height: 168px;
+    flex-direction: column;
+
+    background: #0f0f0f;
+    border-radius: 24px;
+    margin-top: 16px;
+  }
 `;
 
 export const NumberContainer = styled.div`
@@ -44,7 +62,7 @@ export const NumberStyle = styled.div`
   color: #666666;
 `;
 
-export const BenefitContainer = styled.div`
+export const Benefit = styled.div`
   ${MQ({
     width: '67.5%',
 
@@ -54,13 +72,25 @@ export const BenefitContainer = styled.div`
     background: '#0f0f0f',
     borderRadius: '24px',
   })}
+
+  @media screen and (max-width: 541px) {
+    line-height: 1.5;
+    color: white;
+
+    background: #0f0f0f;
+    white-space: pre-wrap;
+
+    margin-left: 24px;
+    margin-right: 26px;
+    margin-top: 22.28px;
+  }
 `;
 
 export const TextStyle = styled.div`
   ${MQ({
     fontFamily: 'Pretendard',
     fontWeight: '500',
-    fontSize: [9, 11, 16, 18],
+    fontSize: [9, 12, 16, 18],
     lineHeight: 1.5,
 
     width: '70%',
@@ -90,4 +120,22 @@ export const IconWrapper = styled.div`
     marginBottom: [9, 9, 13, 16],
   })}
   position: relative;
+`;
+
+export const HeadContainer = styled.div`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #666666;
+  margin-top: 16px;
+  margin-left: 24px;
+  margin-right: 16px;
+  background: #0f0f0f;
 `;
