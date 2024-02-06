@@ -113,9 +113,3 @@ export type ApplicationTextareaProp = {
   text: ApplicationTextarea;
   setText: Dispatch<SetStateAction<ApplicationTextarea>>;
 };
-
-export type ApplicationData = Application & {
-  email: string;
-  position: PositionType;
-  submitStatus: SubmitStatus;
-};
