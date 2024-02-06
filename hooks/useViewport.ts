@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 import useDeviceChecker from './useDeviceChecker';
 
 const useViewport = () => {
-  const [viewport, setViewport] = useState<'desktop' | 'mobile'>('desktop');
+  const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
   const { isDesktop } = useDeviceChecker();
 
   useEffect(() => {
     const handleResize = () => {
       const { innerWidth } = window;
 
-      if (innerWidth <= 541 && !isDesktop) {
-        setViewport('mobile');
+      if (innerWidth <= 541 || !isDesktop) {
+        setDevice('mobile');
       } else {
-        setViewport('desktop');
+        setDevice('desktop');
       }
     };
     handleResize();
@@ -25,7 +25,7 @@ const useViewport = () => {
     };
   }, [isDesktop]);
 
-  return { isDesktop: viewport === 'desktop' };
+  return { isDesktop: device === 'desktop' };
 };
 
 export default useViewport;
