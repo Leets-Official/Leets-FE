@@ -1,8 +1,6 @@
-import Green from '@/public/assets/image/Background/Green.svg';
-import Blue from '@/public/assets/image/Background/Blue.svg';
-import Yellow from '@/public/assets/image/Background/Yellow.svg';
 import { ThemeColor } from '@/types';
 import { memo } from 'react';
+import { Blue, Green, Yellow } from './Image';
 
 const BackgroundImage = ({ color }: { color: ThemeColor }) => {
   const BACKGROUND_IMAGE = {
