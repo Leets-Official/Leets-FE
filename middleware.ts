@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse, userAgent } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { ACCESS_TOKEN } from '@/constants';
 
@@ -22,7 +22,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/admin', url));
   }
 
+  const {
+    device: { type = 'desktop' },
+  } = userAgent(request);
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+
+  if (type !== 'desktop') {
+    return NextResponse.redirect(new URL('/', url));
+  }
+
   if (pathname.includes('apply')) {
     if (token?.accessToken) {
       return NextResponse.next();
