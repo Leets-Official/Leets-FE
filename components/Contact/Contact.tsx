@@ -6,8 +6,8 @@ const Contact = () => (
   <S.SectionContainer>
     <S.ContentContainer>
       <S.HrStyle />
-      <S.HeadContainer>
-        Contact
+      <S.Content>
+        <S.HeadContainer>Contact</S.HeadContainer>
         <S.GridContainer>
           {CONTACT_LAYOUT.map(({ title, value, hasLink }) => (
             <S.InfoContainer key={title}>
@@ -24,7 +24,7 @@ const Contact = () => (
             </S.InfoContainer>
           ))}
         </S.GridContainer>
-      </S.HeadContainer>
+      </S.Content>
     </S.ContentContainer>
   </S.SectionContainer>
 );

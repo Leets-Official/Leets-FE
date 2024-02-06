@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import Link from 'next/link';
 import { MQ } from '@/constants';
@@ -14,6 +16,10 @@ export const SectionContainer = styled.section`
     color: 'white',
     marginBottom: '100px',
   })}
+
+  @media screen and (max-width: 541px) {
+    height: 100%;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -27,20 +33,33 @@ export const HrStyle = styled.hr`
   background: #666666;
 `;
 
-export const HeadContainer = styled.div`
+export const Content = styled.div`
   ${MQ({
-    fontFamily: 'DM Sans',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: [27.3, 27.3, 39.3, 48.0],
-    lineHeight: '100%',
-
-    display: 'flex',
-    justifyContent: 'space-between',
-
-    color: '#ffffff',
     marginTop: [36.4, 36.4, 52.4, 64.0],
   })}
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @media screen and (max-width: 541px) {
+    flex-direction: column;
+  }
+`;
+
+export const HeadContainer = styled.div`
+  ${MQ({
+    fontSize: [27.3, 27.3, 39.3, 48.0],
+  })}
+  font-family: 'DM Sans';
+  font-weight: 500;
+
+  @media screen and (max-width: 541px) {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const GridContainer = styled.div`
@@ -58,6 +77,14 @@ export const GridContainer = styled.div`
 
     marginRight: [54.6, 54.7, 78.7, 96.0],
   })}
+
+  @media screen and (max-width: 541px) {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -67,7 +94,11 @@ export const InfoContainer = styled.div`
 
     height: [31.9, 31.9, 45.9, 56.0],
   })}
-  width: 100%;
+
+  @media screen and (max-width: 541px) {
+    padding-top: 48px;
+    height: 100%;
+  }
 `;
 
 export const TitleStyle = styled.div`
@@ -76,6 +107,10 @@ export const TitleStyle = styled.div`
     marginBottom: [1, 2, 6.6, 8.0],
     color: '#666666',
   })}
+
+  @media screen and (max-width: 541px) {
+    font-size: 16px;
+  }
 `;
 
 export const InfoStyle = styled.div`
@@ -84,6 +119,10 @@ export const InfoStyle = styled.div`
     letterSpacing: '-0.01em',
     color: '#e6e6e6',
   })}
+
+  @media screen and (max-width: 541px) {
+    font-size: 16px;
+  }
 `;
 
 export const LinkStyle = styled(Link)`
