@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { NextAuthProvider, StyledProvider } from '@/lib';
-import Nav from '@/components/Nav';
+import Nav from '@/components/Common/Nav';
 import { MAIN_COLOR } from '@/constants';
 
 export const metadata: Metadata = {
