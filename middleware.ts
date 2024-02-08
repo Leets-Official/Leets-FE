@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse, userAgent } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-import { ACCESS_TOKEN } from '@/constants';
+import { ACCESS_TOKEN, APPLY_PERIOD } from '@/constants';
+import { Schedule } from './utils/Schedule';
 
 export async function middleware(request: NextRequest) {
   const {
@@ -22,10 +23,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/admin', url));
   }
 
+  const period = Schedule.getCurrentPeriod();
+  if (period !== APPLY_PERIOD.RECRUIT) {
+    return NextResponse.redirect(new URL('/', url));
+  }
+
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
   const {
     device: { type = 'desktop' },
   } = userAgent(request);
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
   if (type !== 'desktop') {
     return NextResponse.redirect(new URL('/', url));
