@@ -1,5 +1,7 @@
+'use client';
+
 import styled from 'styled-components';
-import { MQ } from '@/constants';
+import { MQ, mobileMQ } from '@/constants';
 import { motion } from 'framer-motion';
 
 export const HeadContainer = styled(motion.header)`
@@ -13,6 +15,15 @@ export const HeadContainer = styled(motion.header)`
 
     marginBottom: [100, 200, 0, 0],
     background: 'black',
+  })}
+
+  ${mobileMQ({
+    width: '100%',
+    height: [100, 420, 520],
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   })}
 `;
 

@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 import { motion } from 'framer-motion';
@@ -17,6 +19,11 @@ export const Section = styled.section`
 
     color: 'white',
   })}
+
+  @media screen and (max-width: 541px) {
+    height: 100%;
+    margin-top: 80px;
+  }
 `;
 
 export const Content = styled.div`
@@ -27,6 +34,10 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 541px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const TopContainer = styled.div`
@@ -35,6 +46,10 @@ export const TopContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 541px) {
+    flex-direction: column;
+  }
 `;
 
 export const Subject = styled(motion.div)`
@@ -47,6 +62,11 @@ export const Subject = styled(motion.div)`
 
     color: 'white',
   })}
+
+  @media screen and (max-width: 541px) {
+    font-size: 42px;
+    line-height: 100%;
+  }
 `;
 
 export const ImageContainer = styled.div<ImageContainerProps>`
@@ -60,6 +80,16 @@ export const ImageContainer = styled.div<ImageContainerProps>`
     ],
   })}
   position: relative;
+
+  @media screen and (max-width: 541px) {
+    width: 240px;
+
+    display: flex;
+    justify-content: center;
+
+    margin: 0 auto;
+    margin-top: 80px;
+  }
 `;
 
 export const BottomContainer = styled.div`
@@ -68,4 +98,9 @@ export const BottomContainer = styled.div`
     height: [209, 210, 301, 368],
     marginTop: [58, 59, 84, 103],
   })}
+
+  @media screen and (max-width: 541px) {
+    margin-top: 64px;
+    height: 100%;
+  }
 `;

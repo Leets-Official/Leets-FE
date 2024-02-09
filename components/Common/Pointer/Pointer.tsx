@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeColor } from '@/types';
-import { useMousePosition } from '@/hooks';
+import { useDeviceChecker, useMousePosition, useViewport } from '@/hooks';
 import { memo } from 'react';
 import * as S from './Pointer.styled';
 
@@ -12,6 +12,11 @@ type PointerProp = {
 
 const Pointer = ({ size, color }: PointerProp) => {
   const { position } = useMousePosition();
+  const { isDesktop } = useDeviceChecker();
+
+  if (!isDesktop) {
+    return null;
+  }
 
   return (
     <S.Pointer

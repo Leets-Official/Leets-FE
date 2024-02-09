@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 import { KeyOf, SortByType } from '@/types';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import { DROPDOWN_MAP } from '@/constants';
@@ -69,4 +69,5 @@ const FilterDropDown = ({
     </>
   );
 };
-export default FilterDropDown;
+
+export default memo(FilterDropDown);

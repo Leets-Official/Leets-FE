@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 
@@ -18,6 +20,14 @@ export const GridContainer = styled.div`
     margin: '0 auto',
     textAlign: 'center',
   })}
+
+  @media screen and (max-width: 541px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Balloon = styled.div<{ $index: number }>`
@@ -58,6 +68,26 @@ export const Balloon = styled.div<{ $index: number }>`
   ${({ $index }) => $index === 1 && 'align-self: end;'}
 `;
 
+export const BalloonMobile = styled.div<{ $index: number }>`
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #0f0f0f;
+  margin-bottom: 24px;
+  border-radius: 76px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    margin-left: ${({ $index }) => ($index % 2 ? '6.6%' : '75%')};
+    transform: rotate(${({ $index }) => ($index % 2 ? '-22deg' : '22deg')});
+    border-right: 30px solid transparent;
+    border-left: 30px solid transparent;
+    border-bottom: 50px solid #0f0f0f;
+  }
+`;
+
 export const TextStyle = styled.div`
   ${MQ({
     fontFamily: 'Pretendard',
@@ -77,4 +107,10 @@ export const TextStyle = styled.div`
     whiteSpace: 'pre-wrap',
     background: '#0f0f0f',
   })}
+
+  @media screen and (max-width: 541px) {
+    font-size: 16px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
 `;

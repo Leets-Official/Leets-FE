@@ -3,6 +3,7 @@
 import { ThemeColor } from '@/types';
 import { signOut, useSession } from 'next-auth/react';
 import { USER } from '@/constants';
+import { memo } from 'react';
 import * as S from './Nav.styled';
 
 const Nav = ({ color }: { color: ThemeColor }) => {
@@ -32,4 +33,4 @@ const Nav = ({ color }: { color: ThemeColor }) => {
   );
 };
 
-export default Nav;
+export default memo(Nav);

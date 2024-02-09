@@ -23,7 +23,7 @@ const useBeforeUnload = () => {
     };
   }, [submitClicked]);
 
-  return submitClickHandler;
+  return { allowLeave: submitClickHandler };
 };
 
 export default useBeforeUnload;

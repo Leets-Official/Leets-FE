@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 import { motion } from 'framer-motion';
@@ -13,6 +15,10 @@ export const SectionContainer = styled.div`
 
     color: 'white',
   })}
+
+  @media screen and (max-width: 541px) {
+    margin-top: 120px;
+  }
 `;
 
 export const ContentContainer = styled.div`

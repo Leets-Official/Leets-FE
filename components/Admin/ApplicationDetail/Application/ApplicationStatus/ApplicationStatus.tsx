@@ -1,6 +1,6 @@
 'use client';
 
-import FilterDropDown from '@/components/Admin/FilterDropDown';
+import FilterDropDown from '@/components/Common/FilterDropDown';
 import {
   APPLICATION_STATUS_MAP,
   APPLICATION_STAUTS_LIST,

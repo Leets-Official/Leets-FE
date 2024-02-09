@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 
@@ -79,4 +81,44 @@ export const FlexBlockStyle = styled.div`
     margin: [4.5, 4.6, 6.6, 8.0],
     marginTop: [9.1, 9.1, 13.1, 16.0],
   })}
+`;
+
+export const BenefitContainerMobile = styled.div`
+  width: 100%;
+  height: 168px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #0f0f0f;
+  margin-top: 16px;
+  border-radius: 24px;
+`;
+
+export const Benefit = styled.div`
+  line-height: 1.5;
+
+  background: #0f0f0f;
+  white-space: pre-wrap;
+  color: white;
+  margin-left: 24px;
+  margin-right: 26px;
+  margin-top: 27.63px;
+`;
+
+export const HeadContainer = styled.div`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #666666;
+  margin-top: 16px;
+  margin-left: 24px;
+  margin-right: 16px;
 `;
