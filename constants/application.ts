@@ -47,3 +47,15 @@ export const APPLICATION_DETAIL_DEFAULT = {
   ...APPLICATION_INPUT_DEFAULT,
   ...APPLICATION_TEXT_DEFAULT,
 } as const;
+
+export const APPLICATION_DEFAULT = {
+  ...APPLICATION_TEXT_DEFAULT,
+  ...APPLICATION_INPUT_DEFAULT,
+  user: {
+    uid: '',
+    name: '',
+    phone: '',
+    email: '',
+  },
+  position: 'DEV',
+};
