@@ -1,46 +1,43 @@
 'use client';
 
-import {
-  APPLICATION_TEXT_DEFAULT,
-  APPLICATION_INPUT_DEFAULT,
-  USER,
-  SUBMIT_STATUS,
-  APPLICATION,
-  APPLY_POSITION,
-  MAIN_COLOR,
-} from '@/constants';
-import { KeyOf, SubmitStatus } from '@/types';
-import { postApplication, patchApplication, getUserApplication } from '@/api';
-import { useBeforeUnload } from '@/hooks';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useState, SetStateAction, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { USER, SUBMIT_STATUS, APPLICATION, APPLY_POSITION, MAIN_COLOR } from '@/constants';
+import { KeyOf, PositionType, SubmitStatus } from '@/types';
+import { postApplication, patchApplication } from '@/api';
+import { useApplyContext, useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
-import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import FilterDropDown from '@/components/Admin/FilterDropDown';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import InputTexts from './InputTexts';
 import InputTextareas from './InputTextareas';
 import * as S from './Form.styled';
 import Notice from './Notice';
 
 const Form = () => {
-  const [applicationInput, setApplicationInput] = useState(APPLICATION_INPUT_DEFAULT);
-  const [applicationText, setApplicationText] = useState(APPLICATION_TEXT_DEFAULT);
-  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>('DEV');
+  const { applicationInput, applicationText, position: applyPosition, submitStatus, email, token } = useApplyContext();
+  const [infoInput, setInfoInput] = useState(applicationInput);
+  const [longText, setLogntext] = useState(applicationText);
+  const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(applyPosition as PositionType);
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
   const { allowLeave } = useBeforeUnload();
-  const token = session.data?.accessToken;
-  const email = session.data?.user?.email!;
-  const prevSubmitStatus = session.data?.submitStatus;
   const router = useRouter();
+
   const color = MAIN_COLOR;
+
+  useEffect(() => {
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+      allowLeave();
+    }
+  }, [submitStatus]);
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     allowLeave();
 
-    if (prevSubmitStatus === SUBMIT_STATUS.SUBMIT) {
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
       return;
     }
@@ -50,15 +47,15 @@ const Form = () => {
     }
 
     const applicationData = {
-      ...applicationInput,
-      ...applicationText,
+      ...infoInput,
+      ...longText,
       email,
       position,
       submitStatus: currentSubmitStatus,
     };
 
     const { result } =
-      prevSubmitStatus === SUBMIT_STATUS.NONE
+      submitStatus === SUBMIT_STATUS.NONE
         ? await postApplication(applicationData, token)
         : await patchApplication(applicationData, token);
 
@@ -67,27 +64,9 @@ const Form = () => {
         currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
       await session.update({ submitStatus: currentSubmitStatus });
       Alert.success(successMessage);
-      router.replace(USER.APPLY);
+      router.refresh();
     }
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { result } = await getUserApplication(token);
-      if (!isAxiosError(result)) {
-        const { enhancement, level, pros, goal, completion, user, position: fetchPosition } = result;
-        setApplicationText({ enhancement, level, pros, goal, completion });
-        setApplicationInput({ ...user, ...result });
-        setPosition(fetchPosition);
-      }
-    };
-    if (session.data?.submitStatus && session.data?.submitStatus !== SUBMIT_STATUS.NONE) {
-      fetchData();
-    }
-    if (session.data?.submitStatus === SUBMIT_STATUS.SUBMIT) {
-      allowLeave();
-    }
-  }, [session.data?.submitStatus]);
 
   return (
     <S.FormContainer>
@@ -107,8 +86,8 @@ const Form = () => {
                 customWidth={15}
               />
             </S.DropDownContainer>
-            <InputTexts position={position} input={applicationInput} setInput={setApplicationInput} />
-            <InputTextareas position={position} text={applicationText} setText={setApplicationText} />
+            <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
+            <InputTextareas position={position} text={longText} setText={setLogntext} />
             <S.PrivacyContainer>
               <S.PrivacyCheckBox type="checkbox" required />
               <S.Text>

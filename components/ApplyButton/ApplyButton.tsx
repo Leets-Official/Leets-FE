@@ -4,8 +4,7 @@ import { ThemeColor } from '@/types';
 import { USER, APPLICATION } from '@/constants';
 import { MouseEvent, memo } from 'react';
 import { useRouter } from 'next/navigation';
-import { Schedule } from '@/utils/Schedule';
-import { Alert } from '@/utils';
+import { Schedule, Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
 import * as S from './ApplyButton.styled';
 
@@ -16,7 +15,7 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
   const clickHandler = (e: MouseEvent) => {
     e.preventDefault();
 
-    const period = Schedule.getCurrentPeriod(new Date());
+    const period = Schedule.getCurrentPeriod();
     if (period === 'CLOSE') {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;
