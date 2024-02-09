@@ -8,6 +8,7 @@ import { ApplicationType } from '@/types';
 type PaginationResult = {
   currentPage: number;
   currentItems: Omit<ApplicationType, 'position'>[];
+  // eslint-disable-next-line
   handlePageChange: (pageNumber: number) => void;
 };
 

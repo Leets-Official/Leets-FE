@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeColor } from '@/types';
-import { useDeviceChecker, useMousePosition, useViewport } from '@/hooks';
+import { useDeviceChecker, useMousePosition } from '@/hooks';
 import { memo } from 'react';
 import * as S from './Pointer.styled';
 
