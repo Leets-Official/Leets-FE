@@ -6,6 +6,7 @@ import * as S from './Pagination.styled';
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
+  // eslint-disable-next-line
   onPageChange: (pageNumber: number) => void;
 };
 
