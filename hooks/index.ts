@@ -9,3 +9,4 @@ export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useMousePosition } from './useMousePosition';
 export { default as useIsLoading } from './useIsLoading';
 export { default as useViewport } from './useViewport';
+export { default as useApplyContext } from './useApplyContext';
