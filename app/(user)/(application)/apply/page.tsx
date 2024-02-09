@@ -1,29 +1,28 @@
-'use client';
-
 import Form from '@/components/Form';
-import { USER, APPLICATION } from '@/constants';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Alert } from '@/utils';
-import { useDeviceChecker } from '@/hooks';
-import { Schedule } from '@/utils/Schedule';
+import { getUserApplication } from '@/api';
+import { getServerSession } from 'next-auth';
+import { authOptions, ApplyProvider } from '@/app/lib';
 
-const Apply = () => {
-  const router = useRouter();
-  const { isDesktop } = useDeviceChecker();
+const getApplication = async () => {
+  const session = await getServerSession(authOptions);
+  const token = session?.accessToken;
+  const submitStatus = session?.submitStatus;
+  try {
+    const { result } = await getUserApplication(token);
+    return { result, submitStatus, token };
+  } catch (err) {
+    return { submitStatus, token };
+  }
+};
 
-  useEffect(() => {
-    if (!isDesktop) {
-      Alert.error(APPLICATION.ASK_USE_DESKTOP);
-      router.push(USER.HOME);
-    }
-    const period = Schedule.getCurrentPeriod(new Date());
-    if (period === 'CLOSE') {
-      router.push(USER.HOME);
-    }
-  }, []);
+const Apply = async () => {
+  const application = await getApplication();
 
-  return <Form />;
+  return (
+    <ApplyProvider application={application}>
+      <Form />
+    </ApplyProvider>
+  );
 };
 
 export default Apply;
