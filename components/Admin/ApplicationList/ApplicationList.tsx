@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import SearchBar from '@/components/Admin/SearchBar';
 import Pagination from '@/components/Admin/Pagination';
-import FilterDropDown from '@/components/Admin/FilterDropDown';
+import FilterDropDown from '@/components/Common/FilterDropDown';
 import {
   APPLICATION_STAUTS_LIST,
   INTERVIEW_STATUS_LIST,

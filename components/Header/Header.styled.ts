@@ -1,12 +1,8 @@
 'use client';
 
 import styled from 'styled-components';
-import { MQ } from '@/constants';
+import { MQ, mobileMQ } from '@/constants';
 import { motion } from 'framer-motion';
-import facepaint from 'facepaint';
-
-const MOBILE_VIEWPORTS = [360, 375, 390, 412] as const;
-export const mobileMQ = facepaint(MOBILE_VIEWPORTS.map((breakpoint) => `@media(min-width: ${breakpoint}px)`));
 
 export const HeadContainer = styled(motion.header)`
   ${MQ({
@@ -21,10 +17,14 @@ export const HeadContainer = styled(motion.header)`
     background: 'black',
   })}
 
-  @media screen and (max-width: 541px) {
-    height: 380px;
-    margin-bottom: 50px;
-  }
+  ${mobileMQ({
+    width: '100%',
+    height: [100, 420, 520],
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  })}
 `;
 
 export const TitleStyle = styled.h1`

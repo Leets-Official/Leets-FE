@@ -9,7 +9,7 @@ import { postApplication, patchApplication } from '@/api';
 import { useApplyContext, useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
-import FilterDropDown from '@/components/Admin/FilterDropDown';
+import FilterDropDown from '@/components/Common/FilterDropDown';
 import InputTexts from './InputTexts';
 import InputTextareas from './InputTextareas';
 import * as S from './Form.styled';
@@ -24,7 +24,6 @@ const Form = () => {
   const session = useSession();
   const { allowLeave } = useBeforeUnload();
   const router = useRouter();
-
   const color = MAIN_COLOR;
 
   useEffect(() => {

@@ -64,7 +64,7 @@ export const NumberStyle = styled.div`
 
 export const Benefit = styled.div`
   ${MQ({
-    width: '67.5%',
+    width: '80%',
 
     display: 'flex',
     justifyContent: 'space-between',
