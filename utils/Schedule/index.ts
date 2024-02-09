@@ -8,7 +8,7 @@ export class Schedule {
     return new Date(utcUnixTime + diffKSTFromUTC);
   }
 
-  static getCurrentPeriod(date: Date): KeyOf<typeof APPLY_PERIOD> {
+  static getCurrentPeriod(date: Date = new Date()): KeyOf<typeof APPLY_PERIOD> {
     const kstDate = this.getKSTDate(date);
     const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
 
