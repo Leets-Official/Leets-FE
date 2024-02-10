@@ -60,6 +60,10 @@ export const BottomContainer = styled.div`
     marginTop: [45.5, 45.6, 65.6, 80.0],
     paddingLeft: '35%',
   })}
+
+  @media screen and (max-width: 541px) {
+    padding-left: 15%;
+  }
 `;
 
 export const InfoStyle = styled.div`
