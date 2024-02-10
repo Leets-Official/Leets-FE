@@ -14,6 +14,10 @@ export const Container = styled.div`
     background: 'black',
     marginTop: [18.2, 18.2, 26.2, 32.0],
   })}
+
+  @media screen and (max-width: 541px) {
+    width: 100%;
+  }
 `;
 
 export const ApplyButton = styled(Link)`
@@ -41,4 +45,9 @@ export const ApplyButton = styled(Link)`
     textDecoration: 'none',
   })}
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+
+  @media screen and (max-width: 541px) {
+    width: 92%;
+    font-size: 16px;
+  }
 `;
