@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
+import * as S from './styled';
 
 export const metadata: Metadata = {
   title: { default: '관리자', template: '%s · Leets' },
@@ -21,7 +22,9 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
       <body className={DM_SANS.className}>
-        <StyledProvider>{children}</StyledProvider>
+        <StyledProvider>
+          <S.AdminContainer>{children}</S.AdminContainer>
+        </StyledProvider>
       </body>
     </html>
   );
