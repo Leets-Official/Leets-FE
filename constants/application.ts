@@ -27,27 +27,6 @@ export const APPLICATION_INPUT_DEFAULT = {
   interviewTime: '',
 };
 
-export const APPLICATION_DETAIL_DEFAULT = {
-  uid: '',
-  id: 0,
-  updatedAt: '',
-  appliedAt: '',
-  user: {
-    uid: '',
-    name: '',
-    phone: '',
-    email: '',
-  },
-  position: 'DEV',
-  applicationStatus: 'PENDING',
-  interview: {
-    place: '',
-    fixedInterviewDate: '',
-  },
-  ...APPLICATION_INPUT_DEFAULT,
-  ...APPLICATION_TEXT_DEFAULT,
-} as const;
-
 export const APPLICATION_DEFAULT = {
   ...APPLICATION_TEXT_DEFAULT,
   ...APPLICATION_INPUT_DEFAULT,
