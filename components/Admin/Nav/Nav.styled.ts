@@ -1,3 +1,5 @@
+'use client';
+
 import { styled } from 'styled-components';
 import AdminLogo from '@/public/assets/image/Logo/Blue.svg';
 import Link from 'next/link';

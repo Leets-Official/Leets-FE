@@ -115,13 +115,13 @@ const ApplicationStatus = ({
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           value={dayjs(fixedInterviewDate)}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => handleDate(date)}
+          onChange={handleDate}
         />
       ) : (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => handleDate(date)}
+          onChange={handleDate}
         />
       )}
       <S.ButtonContainer>
