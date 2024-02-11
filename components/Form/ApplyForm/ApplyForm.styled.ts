@@ -1,20 +1,9 @@
+import Link from 'next/link';
 import { styled } from 'styled-components';
 import { BACKGROUND_COLOR } from '@/constants';
 import { ThemeColor } from '@/types';
-import Link from 'next/link';
 
-export const FormContainer = styled.div`
-  position: absolute;
-
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-
-  background: white;
-`;
-
-export const FormStyle = styled.form`
+export const Form = styled.form`
   width: 45%;
   height: auto;
 
@@ -78,25 +67,6 @@ export const PositionContainer = styled.div`
   color: gray;
 `;
 
-export const PrivacyContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-export const PrivacyCheckBox = styled.input``;
-
-export const Text = styled.div`
-  font-size: 12px;
-
-  display: flex;
-  align-items: center;
-`;
-export const LinkConatiner = styled(Link)`
-  text-decoration: none;
-  color: black;
-`;
-
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -144,4 +114,23 @@ export const SubmitButton = styled.button<{ color: ThemeColor }>`
   &:hover {
     background: ${({ color }) => BACKGROUND_COLOR[color]};
   }
+`;
+
+export const PrivacyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const PrivacyCheckBox = styled.input``;
+
+export const Text = styled.div`
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+`;
+export const LinkConatiner = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;
