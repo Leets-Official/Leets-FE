@@ -3,8 +3,8 @@
 import { styled } from 'styled-components';
 
 export const ContentContainer = styled.section`
-  width: 95%;
-  height: 100%;
+  width: 100%;
+  height: 90vh;
 `;
 
 export const Title = styled.section`

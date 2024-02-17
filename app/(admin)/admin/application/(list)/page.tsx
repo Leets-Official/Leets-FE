@@ -24,11 +24,11 @@ const Application = () => {
   }, [position]);
 
   return (
-    <>
+    <S.ContentContainer>
       <PositionFilter clickHandler={setPosition} type={position} />
       <S.Title>지원서 내역</S.Title>
       <ApplicationList applications={applications} />
-    </>
+    </S.ContentContainer>
   );
 };
 

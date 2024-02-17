@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 
 export const ContentContainer = styled.section`
   width: 95%;
-  height: auto;
 `;
 
 export const Title = styled.section`
