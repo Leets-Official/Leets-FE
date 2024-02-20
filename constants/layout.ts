@@ -76,7 +76,7 @@ export const SHORT_INFO_LAYOUT = [
   { title: '학년', value: 'grade' },
   { title: '전공', value: 'major' },
   { title: '학점', value: 'gpa' },
-  { title: '희망 직무', value: 'job' },
+  { title: '희망 직무', value: 'career' },
   { title: '전화번호', value: 'phone' },
   { title: '희망 면접 날짜', value: 'interviewDay' },
   { title: '희망 면접 시간', value: 'interviewTime' },

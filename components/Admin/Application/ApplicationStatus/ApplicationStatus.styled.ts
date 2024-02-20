@@ -5,7 +5,7 @@ import { APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/co
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
-  height: 560px;
+  height: fit-content;
 
   display: flex;
   flex-direction: column;

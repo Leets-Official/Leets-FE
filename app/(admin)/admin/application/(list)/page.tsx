@@ -7,6 +7,7 @@ import { isAxiosError } from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
 import { POSITION_FILTER_MAP } from '@/constants';
 import ApplicationList from '@/components/Admin/ApplicationList';
+import { ApplicationFilterProvider } from '@/app/lib';
 import * as S from './styled';
 
 const Application = () => {
@@ -27,7 +28,9 @@ const Application = () => {
     <S.ContentContainer>
       <PositionFilter clickHandler={setPosition} type={position} />
       <S.Title>지원서 내역</S.Title>
-      <ApplicationList applications={applications} />
+      <ApplicationFilterProvider>
+        <ApplicationList applications={applications} />
+      </ApplicationFilterProvider>
     </S.ContentContainer>
   );
 };

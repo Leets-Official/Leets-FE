@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 
 export const ApplicationContainer = styled.section`
   width: 100%;
-  height: 73vh;
 
   display: flex;
   justify-content: space-between;
@@ -91,12 +90,11 @@ export const LinkContainer = styled.div`
 
 export const SelfIntroductionContainer = styled.div`
   width: 100%;
-  height: 100%;
 `;
 
 export const SelfIntroduction = styled.div`
   width: 100%;
-  height: 50%;
+  height: 280px;
 
   background: white;
   padding: 24px;

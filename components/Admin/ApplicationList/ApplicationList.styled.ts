@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import RestButtonImage from '@/public/assets/image/Admin/ResetButtonImage.svg';
 import { InterviewStatusType, ApplicationStatusType } from '@/types';
 import { INTERVIEW_ATTEND_STATUS_COLOR, APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
+import Link from 'next/link';
 
 export const ApplicationContainer = styled.section`
   width: 100%;
@@ -141,20 +142,20 @@ export const Status = styled.div<{ $applicationStatus: ApplicationStatusType }>`
   color: ${({ $applicationStatus }) => APPLICATION_STATUS_TEXT_COLOR[$applicationStatus]};
 `;
 
-export const AapplicationComponentContainer = styled.section`
+export const ApplicationComponentContainer = styled.section`
   width: 100%;
   height: 80%;
 
   background: white;
 `;
 
-export const Application = styled.div`
+export const Application = styled(Link)`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.07px;
 
   width: 100%;
-  height: 10%;
+  height: 50px;
 
   display: flex;
   justify-content: space-between;
@@ -165,6 +166,7 @@ export const Application = styled.div`
   padding-left: 10px;
   border-bottom: 1px solid #f0f1f3;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     background: #cfe1fd;

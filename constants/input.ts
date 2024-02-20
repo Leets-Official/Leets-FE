@@ -3,7 +3,7 @@ const MAX_LENGTH = {
   GRADE: 1,
   MAJOR: 10,
   GPA: 4,
-  JOB: 10,
+  CAREER: 10,
   ALGORITHM: 50,
   PROJECT: 50,
   PORTFOLIO: 50,
@@ -29,11 +29,11 @@ export const DEV_INPUTS = [
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
-    id: 'job',
+    id: 'career',
     title: '희망 직무',
     holderText: '희망 직무를 입력하세요. (ex 백엔드, 프론트엔드, 미정)',
     required: false,
-    maxLength: MAX_LENGTH.JOB,
+    maxLength: MAX_LENGTH.CAREER,
   },
   {
     id: 'gpa',
@@ -97,11 +97,11 @@ export const DESING_INPUTS = [
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
-    id: 'job',
+    id: 'career',
     title: '희망 직무',
     holderText: '희망 직무를 입력하세요. (ex UI/UX 디자이너)',
     required: false,
-    maxLength: MAX_LENGTH.JOB,
+    maxLength: MAX_LENGTH.CAREER,
   },
   {
     id: 'gpa',

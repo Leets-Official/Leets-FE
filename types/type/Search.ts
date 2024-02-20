@@ -4,6 +4,7 @@ import { ValueOf } from '../Helper';
 
 export type SearchInput = {
   value: string;
+  // eslint-disable-next-line no-unused-vars
   onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
