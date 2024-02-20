@@ -8,18 +8,13 @@ export class Search {
     return content.includes(input) || input.includes(content);
   }
 
-  static filter(list: ApplicationType[], conditions: ApplicationFilterType, sortBy: SortByType) {
-    const newList = Object.entries(conditions).reduce((beforeList, [key, value]) => {
+  static filter(list: ApplicationType[], conditions: ApplicationFilterType) {
+    return Object.entries(conditions).reduce((beforeList, [key, value]) => {
       if (key === 'hasInterview') {
         return beforeList.filter((elem) => String(elem.interview[key]) === value);
       }
       return beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationType>]) === value);
     }, list);
-
-    if (sortBy.target) {
-      return this.sort(newList, sortBy);
-    }
-    return newList;
   }
 
   static makeFilterConditionObj({ filterValueList }: { filterValueList: string[] }) {
