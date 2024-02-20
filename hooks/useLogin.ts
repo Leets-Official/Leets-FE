@@ -30,7 +30,7 @@ const useLogin = () => {
 
     if (!isAxiosError(result)) {
       setCookie(ACCESS_TOKEN, result.accessToken);
-      const { result: admin } = await getAdmin();
+      const { result: admin } = await getAdmin(result.accessToken);
 
       if (!isAxiosError(admin)) {
         inputRef.current = LOGIN_DEFAULT_VALUE;
