@@ -2,7 +2,7 @@ import Nav from '@/components/Admin/Nav';
 import LoginForm from '@/components/Form/LoginForm';
 import * as S from './styled';
 
-const Admin = () => (
+const Page = () => (
   <S.MainContainer>
     <S.ContentContainer>
       <S.FormContainer>
@@ -13,4 +13,4 @@ const Admin = () => (
   </S.MainContainer>
 );
 
-export default Admin;
+export default Page;

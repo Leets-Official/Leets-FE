@@ -18,7 +18,7 @@ import { KeyOf, ApplicationType } from '@/types';
 import * as S from './ApplicationList.styled';
 
 const ApplicationList = ({ applications }: { applications: ApplicationType[] }) => {
-  const { filterCondition, setFilterCondition } = useApplicationFilterContext()!;
+  const { query, setQuery, initQuery } = useApplicationFilterContext()!;
   const { searchInput, handleSearchInput, setSortBy, renderList } = useApplicationExplore({
     applications,
   });
@@ -28,10 +28,6 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
     indices: { start, end },
   } = usePagination();
 
-  const initHandler = () => {
-    setFilterCondition(APPLICATION_DEFAULT_FILTER_CONDITION);
-  };
-
   return (
     <S.ApplicationContainer>
       <S.SearchContainer>
@@ -39,42 +35,46 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
         <S.DropDownContainer>
           <FilterDropDown
             list={APPLICATION_STAUTS_LIST}
-            selected={filterCondition.applicationStatus as KeyOf<typeof DROPDOWN_MAP>}
-            setSelected={(selected) => setFilterCondition((prev) => ({ ...prev, applicationStatus: selected }))}
+            defaultValue="합격 여부"
+            selected={query.applicationStatus as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) => setQuery({ ...query, applicationStatus: selected })}
           />
           <FilterDropDown
+            defaultValue="면접 응시 여부"
             list={INTERVIEW_STATUS_LIST}
-            selected={filterCondition.hasInterview as KeyOf<typeof DROPDOWN_MAP>}
-            setSelected={(selected) => setFilterCondition((prev) => ({ ...prev, hasInterview: selected }))}
+            selected={query.hasInterview as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) => setQuery({ ...query, hasInterview: selected })}
           />
           <FilterDropDown
+            defaultValue="학점"
             list={ORDER_LIST}
-            selected={filterCondition.gpa as KeyOf<typeof DROPDOWN_MAP>}
-            setSelected={(selected) => setFilterCondition((prev) => ({ ...prev, gpa: selected }))}
+            selected={query.gpa as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) => setQuery({ ...query, gpa: selected })}
             sortTarget={SORT_TARGET.GPA}
             setSortBy={setSortBy}
             initOtherSort={() =>
-              setFilterCondition({
-                ...filterCondition,
+              setQuery({
+                ...query,
                 fixedInterviewDate: APPLICATION_DEFAULT_FILTER_CONDITION.fixedInterviewDate,
               })
             }
           />
           <FilterDropDown
+            defaultValue="면접 일시"
             list={ORDER_LIST}
-            selected={filterCondition.fixedInterviewDate as KeyOf<typeof DROPDOWN_MAP>}
-            setSelected={(selected) => setFilterCondition((prev) => ({ ...prev, fixedInterviewDate: selected }))}
+            selected={query.fixedInterviewDate as KeyOf<typeof DROPDOWN_MAP>}
+            setSelected={(selected) => setQuery({ ...query, fixedInterviewDate: selected })}
             sortTarget={SORT_TARGET.INTERVIEW_DATE}
             setSortBy={setSortBy}
             initOtherSort={() =>
-              setFilterCondition({
-                ...filterCondition,
+              setQuery({
+                ...query,
                 gpa: APPLICATION_DEFAULT_FILTER_CONDITION.gpa,
               })
             }
           />
         </S.DropDownContainer>
-        <S.InitFilterButton onClick={initHandler}>
+        <S.InitFilterButton onClick={initQuery}>
           초기화
           <S.ImageContainer>
             <S.ImageContainer />

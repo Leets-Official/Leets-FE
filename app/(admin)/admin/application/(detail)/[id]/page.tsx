@@ -16,7 +16,7 @@ const getApplication = async (id: string) => {
   }
 };
 
-const ApplicationDetail = async ({ params: { id } }: { params: { id: string } }) => {
+const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const { application } = await getApplication(id);
 
   return (
@@ -27,4 +27,4 @@ const ApplicationDetail = async ({ params: { id } }: { params: { id: string } })
   );
 };
 
-export default ApplicationDetail;
+export default Page;

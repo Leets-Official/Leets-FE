@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
 import { isAxiosError } from 'axios';
@@ -10,7 +10,7 @@ import ApplicationList from '@/components/Admin/ApplicationList';
 import { ApplicationFilterProvider } from '@/app/lib';
 import * as S from './styled';
 
-const Application = () => {
+const Page = () => {
   const [applications, setApplications] = useState<ApplicationType[]>([]);
   const [position, setPosition] = useState<KeyOf<typeof POSITION_FILTER_MAP>>(POSITION_FILTER_MAP.All);
 
@@ -35,4 +35,4 @@ const Application = () => {
   );
 };
 
-export default Application;
+export default memo(Page);
