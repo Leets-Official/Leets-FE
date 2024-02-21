@@ -11,4 +11,5 @@ export type FilterDropdownProps = {
   setSortBy?: Dispatch<SetStateAction<SortByType>>;
   initOtherSort?: () => void;
   customWidth?: number;
+  defaultValue: string;
 };

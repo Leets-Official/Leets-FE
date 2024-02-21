@@ -13,9 +13,12 @@ const FilterDropDown = ({
   setSortBy,
   initOtherSort,
   customWidth,
+  defaultValue,
 }: FilterDropdownProps) => {
   const { isOpen, toggleDropdown, dropdownRef } = useDropDown();
-  const newSelected = DROPDOWN_MAP[selected] ?? selected;
+  const value = selected || defaultValue;
+
+  const newSelected = DROPDOWN_MAP[value] ?? value;
   const width = customWidth ?? 20;
 
   const initSort = (type: string) => {
