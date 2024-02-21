@@ -78,6 +78,7 @@ const ApplyForm = () => {
           <S.DropDownContainer>
             <S.PositionContainer>지원 직무 :</S.PositionContainer>
             <FilterDropDown
+              defaultValue="선택"
               list={Object.keys(APPLY_POSITION)}
               selected={position as KeyOf<typeof APPLY_POSITION>}
               setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}

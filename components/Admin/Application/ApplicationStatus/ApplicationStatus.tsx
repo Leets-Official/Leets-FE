@@ -94,6 +94,7 @@ const ApplicationStatus = ({
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown
+        defaultValue="합격 상태"
         list={APPLICATION_STAUTS_LIST}
         selected={selectedApplicationStatus as KeyOf<typeof DROPDOWN_MAP>}
         setSelected={(selected) => setSelectedApplicationCondition(selected)}
