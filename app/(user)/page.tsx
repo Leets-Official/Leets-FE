@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import { MAIN_COLOR } from '@/constants';
 import { Main } from './styled';
 
-const Index = () => {
+const Page = () => {
   const color = MAIN_COLOR;
 
   return (
@@ -28,4 +28,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Page;

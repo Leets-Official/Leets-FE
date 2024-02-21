@@ -3,16 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { NUMBER, PAGINATION } from '@/constants';
-import { ApplicationType } from '@/types';
 
-type PaginationResult = {
-  currentPage: number;
-  currentItems: Omit<ApplicationType, 'position'>[];
-  // eslint-disable-next-line
-  handlePageChange: (pageNumber: number) => void;
-};
-
-const usePagination = ({ items }: { items: ApplicationType[] }): PaginationResult => {
+const usePagination = () => {
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get(PAGINATION.QUERY);
   const [currentPage, setCurrentPage] = useState<number>(NUMBER.ONE);
@@ -27,12 +19,11 @@ const usePagination = ({ items }: { items: ApplicationType[] }): PaginationResul
 
   const indexOfLastItem = currentPage * NUMBER.TEN;
   const indexOfFirstItem = indexOfLastItem - NUMBER.TEN;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
   return {
     currentPage,
-    currentItems,
     handlePageChange,
+    indices: { start: indexOfFirstItem, end: indexOfLastItem },
   };
 };
 

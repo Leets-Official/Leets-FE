@@ -34,7 +34,10 @@ export const getApplicant = ({ accessToken }: MeRequest): Promise<BaseResponse<M
     },
   });
 
-export const getAdmin = (): Promise<BaseResponse<AdminMeResponse>> =>
-  http.get({
-    url: '/admin/me',
-  });
+export const getAdmin = (accessToken: string): Promise<BaseResponse<AdminMeResponse>> =>
+  http.get(
+    {
+      url: '/admin/me',
+    },
+    accessToken
+  );

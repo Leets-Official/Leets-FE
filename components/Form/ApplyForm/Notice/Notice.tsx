@@ -1,10 +1,13 @@
+'use client';
+
 import { useState } from 'react';
-import { ThemeColor } from '@/types';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MAIN_COLOR } from '@/constants';
 import * as S from './Notice.styled';
 
-const Notice = ({ color }: { color: ThemeColor }) => {
+const Notice = () => {
+  const color = MAIN_COLOR;
   const [isToggle, setIsToggle] = useState<boolean>(true);
 
   const toggleHandler = () => {

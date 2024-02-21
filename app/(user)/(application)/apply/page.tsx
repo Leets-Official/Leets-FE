@@ -1,7 +1,7 @@
-import Form from '@/components/Form';
 import { getUserApplication } from '@/api';
 import { getServerSession } from 'next-auth';
 import { authOptions, ApplyProvider } from '@/app/lib';
+import ApplyForm from '@/components/Form/ApplyForm';
 
 const getApplication = async () => {
   const session = await getServerSession(authOptions);
@@ -20,7 +20,7 @@ const Apply = async () => {
 
   return (
     <ApplyProvider application={application}>
-      <Form />
+      <ApplyForm />
     </ApplyProvider>
   );
 };

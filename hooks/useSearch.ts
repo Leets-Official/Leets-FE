@@ -11,14 +11,14 @@ const useSearch = ({ applications, searchTargets }: SearchList<ApplicationType>)
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
-  const renderList = searchInput
+  const queryCreator = useQueryCreator();
+  const searchedList = searchInput
     ? applications.filter((application) =>
         searchTargets.some((searchTarget) => Search.isInclude(`${application[searchTarget]}`, searchInput))
       )
     : applications;
-  const queryCreator = useQueryCreator();
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
   };
 
@@ -31,8 +31,8 @@ const useSearch = ({ applications, searchTargets }: SearchList<ApplicationType>)
 
   return {
     searchInput,
-    onChangeHandler,
-    renderList,
+    handleSearchInput,
+    searchedList,
   };
 };
 

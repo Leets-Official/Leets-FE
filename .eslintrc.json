@@ -37,7 +37,8 @@
     "react/require-default-props": "off",
     "no-nested-ternary": "off",
     "no-use-before-define": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-vars": "off"
   },
   "settings": {
     "import/parsers": {

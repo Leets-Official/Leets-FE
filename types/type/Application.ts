@@ -14,7 +14,7 @@ export type ApplicationInput = ApplicationLink & {
   major: string;
   algorithm: string;
   project: string;
-  job: string;
+  career: string;
   phone: string;
   interviewDay: string;
   interviewTime: string;
@@ -53,7 +53,7 @@ export type GetApplicationResponse = {
   gpa: string;
   grade: string;
   position: string;
-  job: string;
+  career: string;
   interview: {
     fixedInterviewDate: string;
     hasInterview: InterviewStatusType;

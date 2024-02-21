@@ -8,18 +8,17 @@ export class Search {
     return content.includes(input) || input.includes(content);
   }
 
-  static filter(list: ApplicationType[], conditions: ApplicationFilterType, sortBy: SortByType) {
-    const newList = Object.entries(conditions).reduce((beforeList, [key, value]) => {
-      if (key === 'hasInterview') {
-        return beforeList.filter((elem) => String(elem.interview[key]) === value);
-      }
-      return beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationType>]) === value);
-    }, list);
-
-    if (sortBy.target) {
-      return this.sort(newList, sortBy);
-    }
-    return newList;
+  static filter(list: ApplicationType[], conditions: ApplicationFilterType) {
+    return (
+      Object.entries(conditions)
+        // .filter(([_, value]) => value)
+        .reduce((beforeList, [key, value]) => {
+          if (key === 'hasInterview') {
+            return beforeList.filter((elem) => String(elem.interview[key]) === value);
+          }
+          return beforeList.filter((elem) => String(elem[key as KeyOf<ApplicationType>]) === value);
+        }, list)
+    );
   }
 
   static makeFilterConditionObj({ filterValueList }: { filterValueList: string[] }) {
@@ -27,7 +26,7 @@ export class Search {
     const DEFAULT_VALUES = [FILTER_DEFAULT_VALUE.APPLICATION_STATUS, FILTER_DEFAULT_VALUE.INTERVIEW_STATUS];
 
     return filterValueList.reduce((obj, filterValue, index) => {
-      if (filterValue !== DEFAULT_VALUES[index]) {
+      if (filterValue && filterValue !== DEFAULT_VALUES[index]) {
         return { ...obj, [keys[index]]: filterValue };
       }
       return obj;

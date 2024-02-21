@@ -11,18 +11,19 @@ type PointerProp = {
 };
 
 const Pointer = ({ size, color }: PointerProp) => {
-  const { position } = useMousePosition();
+  const {
+    position: { x, y },
+  } = useMousePosition();
   const { isDesktop } = useDeviceChecker();
 
-  if (!isDesktop) {
+  if (!isDesktop || (x === 0 && y === 0)) {
     return null;
   }
-
   return (
     <S.Pointer
       color={color}
       style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        transform: `translate(${x}px, ${y}px)`,
         width: `${size}rem`,
         height: `${size}rem`,
         left: `-${size / 2}rem`,

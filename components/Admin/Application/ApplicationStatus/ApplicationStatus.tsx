@@ -94,6 +94,7 @@ const ApplicationStatus = ({
       </S.TitleContainer>
       <S.SubHeader>합격 상태 변경</S.SubHeader>
       <FilterDropDown
+        defaultValue="합격 상태"
         list={APPLICATION_STAUTS_LIST}
         selected={selectedApplicationStatus as KeyOf<typeof DROPDOWN_MAP>}
         setSelected={(selected) => setSelectedApplicationCondition(selected)}
@@ -115,13 +116,13 @@ const ApplicationStatus = ({
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           value={dayjs(fixedInterviewDate)}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => handleDate(date)}
+          onChange={handleDate}
         />
       ) : (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
-          onChange={(date) => handleDate(date)}
+          onChange={handleDate}
         />
       )}
       <S.ButtonContainer>

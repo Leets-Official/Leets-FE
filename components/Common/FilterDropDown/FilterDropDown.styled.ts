@@ -49,7 +49,7 @@ export const ImageContainer = styled.div<DropdownIconProp>`
   ${({ $isOpen }) => $isOpen && 'transform: rotate(180deg);'}
 `;
 
-export const DropdownDiv = styled.div`
+export const DropdownContent = styled.div`
   width: 100%;
 
   position: absolute;

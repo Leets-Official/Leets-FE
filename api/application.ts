@@ -51,10 +51,16 @@ export const patchApplication = (
     token
   );
 
-export const getApplicationDetail = ({ id }: IdRequest): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get({
-    url: `/application/${id}`,
-  });
+export const getApplicationDetail = (
+  { id }: IdRequest,
+  token: string
+): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
+  http.get(
+    {
+      url: `/application/${id}`,
+    },
+    token
+  );
 
 export const patchApplicationDetail = ({
   id,

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { USER, SUBMIT_STATUS, APPLICATION, APPLY_POSITION, MAIN_COLOR } from '@/constants';
+import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, MAIN_COLOR, USER } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus } from '@/types';
 import { postApplication, patchApplication } from '@/api';
 import { useApplyContext, useBeforeUnload } from '@/hooks';
@@ -12,10 +12,10 @@ import { Alert } from '@/utils';
 import FilterDropDown from '@/components/Common/FilterDropDown';
 import InputTexts from './InputTexts';
 import InputTextareas from './InputTextareas';
-import * as S from './Form.styled';
+import * as S from './ApplyForm.styled';
 import Notice from './Notice';
 
-const Form = () => {
+const ApplyForm = () => {
   const { applicationInput, applicationText, position: applyPosition, submitStatus, email, token } = useApplyContext();
   const [infoInput, setInfoInput] = useState(applicationInput);
   const [longText, setLogntext] = useState(applicationText);
@@ -68,48 +68,47 @@ const Form = () => {
   };
 
   return (
-    <S.FormContainer>
-      <S.FormStyle onSubmit={submitHandler}>
-        <S.FieldsetStyle>
-          <S.HeadStyle>
-            Join us!
-            <S.WriteStyle>지원서 작성하기</S.WriteStyle>
-          </S.HeadStyle>
-          <S.InputContainer>
-            <S.DropDownContainer>
-              <S.PositionContainer>지원 직무 :</S.PositionContainer>
-              <FilterDropDown
-                list={Object.keys(APPLY_POSITION)}
-                selected={position as KeyOf<typeof APPLY_POSITION>}
-                setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
-                customWidth={15}
-              />
-            </S.DropDownContainer>
-            <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
-            <InputTextareas position={position} text={longText} setText={setLogntext} />
-            <S.PrivacyContainer>
-              <S.PrivacyCheckBox type="checkbox" required />
-              <S.Text>
-                <S.LinkConatiner href={USER.CERTIFICATE} target="_blank">
-                  <u>개인정보 처리 방침</u>
-                </S.LinkConatiner>
-                에 동의합니다.
-              </S.Text>
-            </S.PrivacyContainer>
-          </S.InputContainer>
-          <Notice color={color} />
-          <S.ButtonContainer>
-            <S.SaveButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
-              임시저장
-            </S.SaveButton>
-            <S.SubmitButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SUBMIT)}>
-              제출하기
-            </S.SubmitButton>
-          </S.ButtonContainer>
-        </S.FieldsetStyle>
-      </S.FormStyle>
-    </S.FormContainer>
+    <S.Form onSubmit={submitHandler}>
+      <S.FieldsetStyle>
+        <S.HeadStyle>
+          Join us!
+          <S.WriteStyle>지원서 작성하기</S.WriteStyle>
+        </S.HeadStyle>
+        <S.InputContainer>
+          <S.DropDownContainer>
+            <S.PositionContainer>지원 직무 :</S.PositionContainer>
+            <FilterDropDown
+              defaultValue="선택"
+              list={Object.keys(APPLY_POSITION)}
+              selected={position as KeyOf<typeof APPLY_POSITION>}
+              setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
+              customWidth={15}
+            />
+          </S.DropDownContainer>
+          <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
+          <InputTextareas position={position} text={longText} setText={setLogntext} />
+        </S.InputContainer>
+        <S.PrivacyContainer>
+          <S.PrivacyCheckBox type="checkbox" required />
+          <S.Text>
+            <S.LinkConatiner href={USER.CERTIFICATE} target="_blank">
+              <u>개인정보 처리 방침</u>
+            </S.LinkConatiner>
+            에 동의합니다.
+          </S.Text>
+        </S.PrivacyContainer>
+        <Notice />
+        <S.ButtonContainer>
+          <S.SaveButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
+            임시저장
+          </S.SaveButton>
+          <S.SubmitButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SUBMIT)}>
+            제출하기
+          </S.SubmitButton>
+        </S.ButtonContainer>
+      </S.FieldsetStyle>
+    </S.Form>
   );
 };
 
-export default Form;
+export default ApplyForm;

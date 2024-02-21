@@ -1,3 +1,5 @@
+'use client';
+
 import { APPLICATION_INPUT_DEFAULT, APPLICATION_TEXT_DEFAULT } from '@/constants';
 import { createContext, useContext } from 'react';
 

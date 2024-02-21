@@ -1,20 +1,9 @@
-import { Dispatch, SetStateAction, memo } from 'react';
-import { KeyOf, SortByType } from '@/types';
+import { memo } from 'react';
+import { KeyOf, SortByType, FilterDropdownProps } from '@/types';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import { DROPDOWN_MAP } from '@/constants';
 import { useDropDown } from '@/hooks';
 import * as S from './FilterDropDown.styled';
-
-type FilterDropdownProps = {
-  list: readonly string[];
-  selected: KeyOf<typeof DROPDOWN_MAP>;
-  setSelected: Dispatch<SetStateAction<any>>;
-  sortTarget?: string;
-  setSortBy?: Dispatch<SetStateAction<SortByType>>;
-  initOtherSort?: () => void;
-  setToggle?: Dispatch<SetStateAction<boolean>>;
-  customWidth?: number;
-};
 
 const FilterDropDown = ({
   list,
@@ -23,27 +12,26 @@ const FilterDropDown = ({
   sortTarget,
   setSortBy,
   initOtherSort,
-  setToggle,
   customWidth,
+  defaultValue,
 }: FilterDropdownProps) => {
   const { isOpen, toggleDropdown, dropdownRef } = useDropDown();
+  const value = selected || defaultValue;
+
+  const newSelected = DROPDOWN_MAP[value] ?? value;
+  const width = customWidth ?? 20;
+
+  const initSort = (type: string) => {
+    initOtherSort?.();
+    setSortBy?.({ target: sortTarget, method: type } as SortByType);
+  };
 
   const clickHandler = (type: string) => {
     setSelected(type);
     toggleDropdown();
 
-    if (setSortBy && initOtherSort) {
-      initOtherSort();
-      setSortBy(() => ({ target: sortTarget, method: type } as SortByType));
-    }
-
-    if (setToggle) {
-      setToggle(false);
-    }
+    initSort(type);
   };
-
-  const newSelected = DROPDOWN_MAP[selected] ?? selected;
-  const width = customWidth ?? (newSelected.length > 2 ? 20 : 14);
 
   return (
     <>
@@ -55,7 +43,7 @@ const FilterDropDown = ({
           </S.ImageContainer>
         </S.DropdownContainer>
         {isOpen && (
-          <S.DropdownDiv>
+          <S.DropdownContent>
             <S.Ul>
               {list.map((type) => (
                 <S.List key={type} onClick={() => clickHandler(type)}>
@@ -63,7 +51,7 @@ const FilterDropDown = ({
                 </S.List>
               ))}
             </S.Ul>
-          </S.DropdownDiv>
+          </S.DropdownContent>
         )}
       </S.DropdownWrapper>
     </>
