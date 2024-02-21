@@ -1,3 +1,5 @@
+'use client';
+
 import { ApplicationFilterContext } from '@/app/lib/Provider/ApplicationFilterProvider';
 import { useContext } from 'react';
 

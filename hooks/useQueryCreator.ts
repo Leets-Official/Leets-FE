@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { useSearchParams, usePathname } from 'next/navigation';
 
-const useQueryCreator = (): ((key: string, value: string) => string) => {
+const useQueryCreator = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const createQueryString = useCallback(

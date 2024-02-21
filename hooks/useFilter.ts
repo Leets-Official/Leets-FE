@@ -12,8 +12,8 @@ const generateFilterConditions = ({ applicationStatus, hasInterview }: typeof AP
 };
 
 const useFilter = <T extends ApplicationType>({ list }: { list: T[] }) => {
-  const { filterCondition } = useApplicationFilterContext()!;
-  const filteredList = Search.filter(list, generateFilterConditions(filterCondition));
+  const { query } = useApplicationFilterContext()!;
+  const filteredList = Search.filter(list, generateFilterConditions(query));
 
   return { filteredList };
 };
