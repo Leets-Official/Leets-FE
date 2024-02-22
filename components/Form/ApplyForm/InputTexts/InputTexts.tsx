@@ -1,10 +1,9 @@
-import { DEV_INPUTS, DESING_INPUTS, MAIN_COLOR } from '@/constants';
+import { DEV_INPUTS, DESING_INPUTS } from '@/constants';
 import { ApplicationInputProp } from '@/types';
 import * as S from './InputTexts.styled';
 
 const InputTexts = ({ position, input, setInput }: ApplicationInputProp) => {
   const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
-  const color = MAIN_COLOR;
 
   return (
     <>
@@ -15,7 +14,6 @@ const InputTexts = ({ position, input, setInput }: ApplicationInputProp) => {
             {required && <S.RequireStyle />}
           </S.LabelStyle>
           <S.InputStyle
-            color={color}
             type="text"
             id={id}
             defaultValue={input[id]}

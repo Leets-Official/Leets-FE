@@ -1,10 +1,9 @@
 import { TIMELINE_LAYOUT } from '@/constants';
-import { ThemeColor } from '@/types';
 import { memo } from 'react';
 import * as S from './Timeline.styled';
 import TimelineImage from './TimelineImage';
 
-const Timeline = ({ color }: { color: ThemeColor }) => (
+const Timeline = () => (
   <S.SectionContainer>
     <S.ContentContainer>
       <S.TopContainer>
@@ -13,7 +12,7 @@ const Timeline = ({ color }: { color: ThemeColor }) => (
         </S.Subject>
       </S.TopContainer>
       <S.BottomContainer>
-        <TimelineImage color={color} />
+        <TimelineImage />
         <S.InfoStyle>
           {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
             <S.DateStyle key={key} initial={{ y: 100 }} whileInView={{ y: 0 }} transition={{ duration: 0.5 }}>

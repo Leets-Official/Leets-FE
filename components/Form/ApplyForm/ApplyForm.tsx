@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState, SetStateAction, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, MAIN_COLOR, USER } from '@/constants';
+import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, USER } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus } from '@/types';
 import { postApplication, patchApplication } from '@/api';
 import { useApplyContext, useBeforeUnload } from '@/hooks';
@@ -24,7 +24,6 @@ const ApplyForm = () => {
   const session = useSession();
   const { allowLeave } = useBeforeUnload();
   const router = useRouter();
-  const color = MAIN_COLOR;
 
   useEffect(() => {
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
@@ -99,10 +98,10 @@ const ApplyForm = () => {
         </S.PrivacyContainer>
         <Notice />
         <S.ButtonContainer>
-          <S.SaveButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
+          <S.SaveButton type="submit" onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
             임시저장
           </S.SaveButton>
-          <S.SubmitButton type="submit" color={color} onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SUBMIT)}>
+          <S.SubmitButton type="submit" onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SUBMIT)}>
             제출하기
           </S.SubmitButton>
         </S.ButtonContainer>

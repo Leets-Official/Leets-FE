@@ -1,13 +1,7 @@
 import { styled } from 'styled-components';
 import Link from 'next/link';
-import { ThemeColor } from '@/types';
-import { BACKGROUND_COLOR } from '@/constants';
 
-export const NavContainer = styled.nav`
-  background-color: black;
-`;
-
-export const Container = styled.div`
+export const NavContainer = styled.nav<{ darkMode: boolean }>`
   width: 100%;
   height: 80px;
 
@@ -15,16 +9,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  background: white;
-  padding-left: 3.81vw;
+  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
+  background: ${({ darkMode }) => (darkMode ? 'black' : 'white')};
+  padding: 0 3.81vw;
 `;
 
-export const LinkContainer = styled(Link)`
+export const LinkContainer = styled(Link)<{ color?: string }>`
   font-size: 26px;
 
-  background: white;
+  background: inherit;
+  color: inherit;
   text-decoration: none;
-  color: black;
 `;
 
 export const WelcomeContainer = styled.div<{ name: string }>`
@@ -45,17 +40,27 @@ export const WelcomeStyle = styled.div`
   background: white;
 `;
 
-export const LogoutButton = styled.button<{ color: ThemeColor }>`
+export const LogoutButton = styled.button`
   font-family: 'Pretendard';
   font-weight: 600;
   font-size: 14px;
 
   display: ${({ name }) => (name ? '' : 'none')};
 
-  color: ${({ color }) => BACKGROUND_COLOR[color]};
+  color: #3685fc;
   background: white;
   padding: 0;
   cursor: pointer;
   margin-left: 30px;
   border: none;
+`;
+
+export const Apply = styled(Link)`
+  background: black;
+  font-weight: 600;
+  font-size: 18px;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #3685fc;
 `;

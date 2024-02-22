@@ -1,14 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ThemeColor } from '@/types';
 import { USER, APPLICATION } from '@/constants';
 import { MouseEvent, memo } from 'react';
 import { Schedule, Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
 import * as S from './ApplyButton.styled';
 
-const ApplyButton = ({ color }: { color: ThemeColor }) => {
+const ApplyButton = () => {
   const router = useRouter();
   const { isDesktop } = useDeviceChecker();
 
@@ -29,7 +28,7 @@ const ApplyButton = ({ color }: { color: ThemeColor }) => {
 
   return (
     <S.Container>
-      <S.ApplyButton href={USER.LOGIN} color={color} onClick={clickHandler}>
+      <S.ApplyButton href={USER.LOGIN} onClick={clickHandler}>
         지원하기
       </S.ApplyButton>
     </S.Container>

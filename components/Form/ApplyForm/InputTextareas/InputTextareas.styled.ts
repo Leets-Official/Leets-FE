@@ -1,5 +1,3 @@
-import { BACKGROUND_COLOR } from '@/constants';
-import { ThemeColor } from '@/types';
 import styled from 'styled-components';
 
 export const ListStyle = styled.li`
@@ -41,7 +39,7 @@ export const RequireStyle = styled.div`
   background: #e15241;
 `;
 
-export const TextareaStyle = styled.textarea<{ color: ThemeColor }>`
+export const TextareaStyle = styled.textarea`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -61,7 +59,7 @@ export const TextareaStyle = styled.textarea<{ color: ThemeColor }>`
   }
   &:focus {
     outline: none;
-    border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};
+    border: #3685fc;
   }
 `;
 

@@ -1,11 +1,10 @@
-import { DEV_TEXTAREAS, DESIGN_TEXTAREAS, MAIN_COLOR } from '@/constants';
+import { DEV_TEXTAREAS, DESIGN_TEXTAREAS } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';
 import * as S from './InputTextareas.styled';
 
 const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
   const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
-  const color = MAIN_COLOR;
 
   const handleOnInput = (e: FormEvent<HTMLTextAreaElement>, maxLength: number) => {
     const inputValue = e.currentTarget.value;
@@ -23,7 +22,6 @@ const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => 
             {required && <S.RequireStyle />}
           </S.LabelStyle>
           <S.TextareaStyle
-            color={color}
             id={id}
             value={text[id]}
             placeholder={holderText}

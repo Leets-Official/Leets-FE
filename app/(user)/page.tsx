@@ -6,24 +6,20 @@ import Pointer from '@/components/Common/Pointer';
 import Contact from '@/components/Contact';
 import Timeline from '@/components/Promotions/Timeline';
 import Footer from '@/components/Footer';
-import { MAIN_COLOR } from '@/constants';
-import { Main } from './styled';
 
 const Page = () => {
-  const color = MAIN_COLOR;
-
   return (
     <>
-      <Pointer size={7} color={color} />
-      <Main>
+      <Pointer />
+      <main style={{ cursor: 'none' }}>
         <Header />
-        <BackgroundImage color={color} />
-        <Promotions color={color} />
-        <Timeline color={color} />
-        <ApplyButton color={color} />
+        <BackgroundImage />
+        <Promotions />
+        <Timeline />
+        <ApplyButton />
         <Contact />
         <Footer />
-      </Main>
+      </main>
     </>
   );
 };

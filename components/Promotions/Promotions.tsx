@@ -1,5 +1,4 @@
 import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
-import { ThemeColor } from '@/types';
 import { memo } from 'react';
 import Image from 'next/image';
 import Project from './Project';
@@ -7,12 +6,12 @@ import Study from './Study';
 import Entertainment from './Entertainment';
 import * as S from './Promotions.styled';
 
-const Promotions = ({ color }: { color: ThemeColor }) => {
+const Promotions = () => {
   return (
     <>
       {PROMOTION_LAYOUT.map(({ title, height, benefits }) => {
-        const imageSrc = `/assets/image/Main/${color}/${title}.svg`;
-        const projectImageSrc = `/assets/image/Project/${color}`;
+        const imageSrc = `/assets/image/Main/${title}.svg`;
+        const projectImageSrc = `/assets/image/Project`;
 
         return (
           <S.Section key={title}>
