@@ -18,7 +18,7 @@ const handleRequest = (config: AxiosRequestConfig, token?: string) => {
         ...config,
         headers: {
           ...config.headers,
-          Authorization: `Bearer ${accessToken ?? token}`,
+          Authorization: `Bearer ${token ?? accessToken}`,
         },
       };
 };
