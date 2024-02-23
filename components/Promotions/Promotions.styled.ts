@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface ImageContainerProps {
   $height: number;
@@ -52,7 +53,7 @@ export const TopContainer = styled.div`
   }
 `;
 
-export const Subject = styled(motion.div)`
+export const Title = styled(motion.div)`
   ${MQ({
     fontWeight: '500',
     fontSize: [54.7, 54.7, 78.7, 96],
@@ -63,10 +64,31 @@ export const Subject = styled(motion.div)`
     color: 'white',
   })}
 
+  display: flex;
+  flex-direction: column;
+
   @media screen and (max-width: 541px) {
     font-size: 42px;
     line-height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
   }
+`;
+
+export const ProjectLink = styled(Link)`
+  all: unset;
+
+  font-size: 24px;
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 22px;
+
+  cursor: pointer;
 `;
 
 export const ImageContainer = styled.div<ImageContainerProps>`
