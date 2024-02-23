@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <S.HeaderContainer href={ADMIN.HOME}>
       <S.Header>
-        <S.AdminLogoContainer />
+        <S.LogoContainer />
         Leets
       </S.Header>
     </S.HeaderContainer>

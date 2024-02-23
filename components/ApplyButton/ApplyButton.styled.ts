@@ -36,7 +36,7 @@ export const ApplyButton = styled(Link)`
     borderRadius: '40px',
 
     background: '#3685FC',
-    color: '#3685FC',
+    color: 'white',
     '&:hover': {
       color: 'black',
     },
