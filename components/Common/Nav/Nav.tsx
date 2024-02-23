@@ -1,8 +1,10 @@
 'use client';
 
 import { signOut, useSession } from 'next-auth/react';
-import { USER } from '@/constants';
-import { ReactNode, memo } from 'react';
+import { APPLY_PERIOD, USER } from '@/constants';
+import { ReactNode, memo, MouseEvent } from 'react';
+import { Alert, Schedule } from '@/utils';
+import { useRouter } from 'next/navigation';
 import * as S from './Nav.styled';
 
 const Nav = ({ children, darkMode = true }: { children?: ReactNode; darkMode?: boolean }) => {
@@ -37,7 +39,23 @@ export const Logout = () => {
 };
 
 export const Apply = () => {
-  return <S.Apply href={USER.APPLY}>Join Us!</S.Apply>;
+  const { push } = useRouter();
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+
+    const period = Schedule.getCurrentPeriod();
+    if (period !== APPLY_PERIOD.RECRUIT) {
+      Alert.error('지원 기간이 아닙니다.');
+      return;
+    }
+    push(USER.APPLY);
+  };
+
+  return (
+    <S.Apply href={USER.APPLY} onClick={handleClick}>
+      Join Us!
+    </S.Apply>
+  );
 };
 
 export default memo(Nav);
