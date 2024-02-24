@@ -9,7 +9,7 @@ import * as S from './Nav.styled';
 
 const Nav = ({ children, darkMode = true }: { children?: ReactNode; darkMode?: boolean }) => {
   return (
-    <S.NavContainer darkMode={darkMode}>
+    <S.NavContainer $darkMode={darkMode}>
       <S.LinkContainer href={USER.HOME}>Leets</S.LinkContainer>
       {children}
     </S.NavContainer>

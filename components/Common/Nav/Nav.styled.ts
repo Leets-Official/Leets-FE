@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Link from 'next/link';
 
-export const NavContainer = styled.nav<{ darkMode: boolean }>`
+export const NavContainer = styled.nav<{ $darkMode: boolean }>`
   width: 100%;
   height: 80px;
 
@@ -9,8 +9,8 @@ export const NavContainer = styled.nav<{ darkMode: boolean }>`
   align-items: center;
   justify-content: space-between;
 
-  color: ${({ darkMode }) => (darkMode ? 'white' : 'black')};
-  background: ${({ darkMode }) => (darkMode ? 'black' : 'white')};
+  color: ${({ $darkMode }) => ($darkMode ? 'white' : 'black')};
+  background: ${({ $darkMode }) => ($darkMode ? 'black' : 'white')};
   padding: 0 3.81vw;
 `;
 
