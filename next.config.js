@@ -22,6 +22,18 @@ const nextConfig = {
     config.plugins.push(new CompressionPlugin());
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_API_URL,
+      },
+    ],
+  },
 
   compiler: {
     styledComponents: true,
