@@ -9,11 +9,13 @@ import { postApplication, patchApplication } from '@/api';
 import { useApplyContext, useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
-import FilterDropDown from '@/components/Common/FilterDropDown';
+import dynamic from 'next/dynamic';
 import InputTexts from './InputTexts';
 import InputTextareas from './InputTextareas';
 import * as S from './ApplyForm.styled';
-import Notice from './Notice';
+
+const Notice = dynamic(() => import('./Notice'));
+const FilterDropDown = dynamic(() => import('@/components/Common/FilterDropDown'));
 
 const ApplyForm = () => {
   const { applicationInput, applicationText, position: applyPosition, submitStatus, email, token } = useApplyContext();

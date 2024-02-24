@@ -1,10 +1,12 @@
 import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
 import { memo } from 'react';
 import Image from 'next/image';
-import Project from './Project';
-import Study from './Study';
-import Entertainment from './Entertainment';
+import dynamic from 'next/dynamic';
 import * as S from './Promotions.styled';
+
+const Project = dynamic(() => import('./Project'));
+const Study = dynamic(() => import('./Study'));
+const Entertainment = dynamic(() => import('./Entertainment'));
 
 const Promotions = () => {
   return (
