@@ -12,7 +12,7 @@ const getApplication = async (id: string) => {
     const { result } = await getApplicationDetail({ id }, accessToken);
     return { application: result };
   } catch (err) {
-    return redirect(ADMIN.HOME);
+    redirect(ADMIN.HOME);
   }
 };
 
