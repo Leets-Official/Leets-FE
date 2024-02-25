@@ -20,6 +20,10 @@ export const LinkContainer = styled(Link)<{ color?: string }>`
   background: inherit;
   color: inherit;
   text-decoration: none;
+
+  @media screen and (max-width: 541px) {
+    font-size: 14px;
+  }
 `;
 
 export const WelcomeContainer = styled.div<{ name: string }>`
@@ -63,4 +67,8 @@ export const Apply = styled(Link)`
   text-decoration: underline;
   text-underline-offset: 4px;
   color: #3685fc;
+
+  @media screen and (max-width: 541px) {
+    font-size: 14px;
+  }
 `;
