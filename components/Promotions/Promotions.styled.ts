@@ -70,8 +70,6 @@ export const Title = styled(motion.div)`
   @media screen and (max-width: 541px) {
     font-size: 42px;
     line-height: 100%;
-    flex-direction: row;
-    justify-content: space-between;
   }
 `;
 

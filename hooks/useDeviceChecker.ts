@@ -5,17 +5,15 @@ import { useEffect, useState } from 'react';
 
 const useDeviceChecker = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!DeviceChecker.isDesktop()) {
+    if (DeviceChecker.isDesktop()) {
+      setIsDesktop(true);
+    } else {
       setIsDesktop(false);
     }
-    if (DeviceChecker.isMobile()) {
-      setIsMobile(true);
-    }
-  }, []);
-  return { isDesktop, isMobile };
+  }, [isDesktop]);
+  return { isDesktop };
 };
 
 export default useDeviceChecker;
