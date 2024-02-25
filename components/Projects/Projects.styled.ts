@@ -4,8 +4,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+export const ProjectContainer = styled.div`
+  width: 100vw;
+  max-width: 940px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 20px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 620px;
+  }
+
+  @media screen and (max-width: 675px) {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 300px;
+  }
+
+  margin: 0 auto;
+`;
+
 export const Title = styled.p`
   font-size: 24px;
+
+  width: 100vw;
+  max-width: 940px;
+
+  @media screen and (max-width: 1024px) {
+    max-width: 620px;
+  }
+
+  @media screen and (max-width: 675px) {
+    max-width: 300px;
+  }
+
+  margin: 0 auto;
+  margin-top: 60px;
+  color: white;
 `;
 
 export const Project = styled(Link)`
@@ -15,7 +52,6 @@ export const Project = styled(Link)`
   height: 300px;
 
   color: white;
-
   margin: 0 auto;
 
   &:hover img {

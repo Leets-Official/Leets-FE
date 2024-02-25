@@ -58,25 +58,9 @@ export const Underline = styled.div`
   border-top: 1px solid #3685fc;
 `;
 
-export const ProjectContainer = styled.div`
-  width: 100vw;
-  max-width: 940px;
+export const ProjectsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  gap: 20px;
-
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 620px;
-  }
-
-  @media screen and (max-width: 675px) {
-    grid-template-columns: repeat(1, 1fr);
-    max-width: 300px;
-  }
-
-  margin: 0 auto;
-  margin-top: 60px;
+  gap: 50px;
 `;

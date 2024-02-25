@@ -32,14 +32,14 @@ const Page = () => {
           </div>
         ))}
       </S.TabContainer>
-      <S.ProjectContainer>
+      <S.ProjectsContainer>
         <Projects projects={finalProjects}>
           <Projects.Title>최종 프로젝트</Projects.Title>
         </Projects>
         <Projects projects={toryProjects}>
           <Projects.Title>토이 프로젝트</Projects.Title>
         </Projects>
-      </S.ProjectContainer>
+      </S.ProjectsContainer>
     </>
   );
 };
