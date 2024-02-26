@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { NextAuthProvider, StyledProvider } from '@/lib';
+import { NextAuthProvider } from '@/lib';
 import Nav from '@/components/Common/Nav';
 import { Logout } from '@/components/Common/Nav/Nav';
 
@@ -14,16 +14,14 @@ export const metadata: Metadata = {
 
 const ApplicationLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <StyledProvider>
-      <NextAuthProvider>
-        <main style={{ width: '100%', height: '100%' }}>
-          <Nav darkMode={false}>
-            <Logout />
-          </Nav>
-          {children}
-        </main>
-      </NextAuthProvider>
-    </StyledProvider>
+    <NextAuthProvider>
+      <main style={{ width: '100%', height: '100%' }}>
+        <Nav darkMode={false}>
+          <Logout />
+        </Nav>
+        {children}
+      </main>
+    </NextAuthProvider>
   );
 };
 

@@ -1,25 +1,31 @@
+'use client';
+
 import { getUserApplication } from '@/api';
-import { getServerSession } from 'next-auth';
-import { authOptions, ApplyProvider } from '@/app/lib';
+import { ApplyProvider } from '@/app/lib';
 import ApplyForm from '@/components/Form/ApplyForm';
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
-const getApplication = async () => {
-  const session = await getServerSession(authOptions);
-  const token = session?.accessToken;
-  const submitStatus = session?.submitStatus;
-  try {
-    const { result } = await getUserApplication(token);
-    return { result, submitStatus, token };
-  } catch (err) {
-    return { submitStatus, token };
-  }
-};
+const Apply = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [application, setApplication] = useState<{ submitStatus: string; token: string }>();
+  const session = useSession();
+  const submitStatus = session.data?.submitStatus!;
+  const token = session.data?.accessToken!;
 
-const Apply = async () => {
-  const application = await getApplication();
+  useEffect(() => {
+    const fetch = async () => {
+      const { result } = await getUserApplication(token);
+      setApplication({ token, submitStatus, ...result });
+    };
+    if (submitStatus && submitStatus !== 'NONE') {
+      fetch();
+    }
+    setIsLoading(false);
+  }, [isLoading]);
 
   return (
-    <ApplyProvider application={application}>
+    <ApplyProvider application={{ ...application!, submitStatus }}>
       <ApplyForm />
     </ApplyProvider>
   );

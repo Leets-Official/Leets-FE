@@ -1,3 +1,5 @@
+'use client';
+
 import * as S from './Contributors.styled';
 
 const Contributors = ({ contributors }: { contributors: { name: string; position: string; githubUrl: string }[] }) => {
