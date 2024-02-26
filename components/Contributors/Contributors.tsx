@@ -1,5 +1,3 @@
-'use client';
-
 import * as S from './Contributors.styled';
 
 const Contributors = ({ contributors }: { contributors: { name: string; position: string; githubUrl: string }[] }) => {
@@ -10,7 +8,7 @@ const Contributors = ({ contributors }: { contributors: { name: string; position
         {contributors.map(({ name: contributor, position, githubUrl }) => (
           <S.Contributor key={githubUrl} href={githubUrl} target="_blank">
             <S.ContributorImageWrapper>
-              <S.ContributorImage src={`${githubUrl}.png`} alt="image" />
+              <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />
             </S.ContributorImageWrapper>
             <S.NameAndPosition>
               {contributor} - {position}

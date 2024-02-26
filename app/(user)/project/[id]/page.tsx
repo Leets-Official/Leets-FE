@@ -1,28 +1,30 @@
-'use client';
-
-import { getProject } from '@/api';
+import { getProject as getProjectDetail, getProjectList } from '@/api';
 import Link from 'next/link';
 import Contributors from '@/components/Contributors';
-import { useEffect, useState } from 'react';
-import { GetProjectResponse } from '@/types';
+import { redirect } from 'next/navigation';
 import * as S from './styled';
 
-const Page = ({ params: { id } }: { params: { id: string } }) => {
-  const [projectDetail, setProjectDetail] = useState<GetProjectResponse>();
+export async function generateStaticParams() {
+  const { result } = await getProjectList({ generation: 0 });
+  const projectList = result.flat(2);
 
-  useEffect(() => {
-    const fetch = async () => {
-      const { result } = await getProject({ portfolioId: id });
-      setProjectDetail(result);
-    };
-    fetch();
-  }, []);
+  return projectList.map((project) => ({
+    id: String(project.portfolioId),
+  }));
+}
 
-  if (!projectDetail) {
-    return null;
+const getProject = async (portfolioId: string) => {
+  try {
+    const { result } = await getProjectDetail({ portfolioId });
+    return result;
+  } catch (error) {
+    redirect('/project');
   }
+};
+
+const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
-    projectDetail!;
+    await getProject(id);
 
   return (
     <>
