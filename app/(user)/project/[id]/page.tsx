@@ -8,10 +8,7 @@ import { GetProjectResponse } from '@/types';
 import * as S from './styled';
 
 const Page = ({ params: { id } }: { params: { id: string } }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [projectDetail, setProjectDetail] = useState<GetProjectResponse>();
-  const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
-    projectDetail!;
 
   useEffect(() => {
     const fetch = async () => {
@@ -19,18 +16,19 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
       setProjectDetail(result);
     };
     fetch();
-    setIsLoading(false);
   }, []);
 
-  if (!projectDetail || isLoading) {
+  if (!projectDetail) {
     return null;
   }
+  const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
+    projectDetail!;
 
   return (
     <>
       <S.ContentContainer>
         <S.LogoContainer>
-          <S.LogoImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${logoImgName}`} alt="logo-image" fill />
+          <S.LogoImage src={`/assets/image/Portfolio/${logoImgName}`} alt="logo-image" fill />
         </S.LogoContainer>
         <S.Summary>{summary}</S.Summary>
         <S.ShortInformation>
@@ -46,7 +44,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
         </S.ShortInformation>
         <S.ImageContainer>
           <Link href={serviceUrl ?? '#'} target="_blank">
-            <S.MainImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${mainImgName}`} alt="main-image" fill />
+            <S.MainImage src={`/assets/image/Portfolio/${mainImgName}`} alt="main-image" fill />
           </Link>
         </S.ImageContainer>
         <S.Hr />

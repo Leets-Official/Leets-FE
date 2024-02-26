@@ -23,7 +23,7 @@ const Projects = ({
       <S.ProjectContainer>
         {projects.map(({ portfolioId, name, mainImgName }) => (
           <S.Project href={`/project/${portfolioId}`} key={portfolioId}>
-            <S.ImageStyle src={`${process.env.NEXT_PUBLIC_API_URL}/images/${mainImgName}`} alt={name} fill />
+            <S.ImageStyle src={`/assets/image/Portfolio/${mainImgName}`} alt={name} fill />
             <S.Blur>{name}</S.Blur>
           </S.Project>
         ))}
