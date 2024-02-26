@@ -63,14 +63,6 @@ export const PROMOTION_LAYOUT = [
   },
 ];
 
-export const TIMELINE_LAYOUT = {
-  지원기간: '23.08.21 ~ 23.09.07',
-  '면접 대상자 발표': '23.09.09',
-  면접: '23.09.11 ~ 23.09.15',
-  '최종 합격자 발표': '23.09.18',
-  '정규 활동 시작': '23.09.21',
-} as const;
-
 export const SHORT_INFO_LAYOUT = [
   { title: '이름', value: 'name' },
   { title: '학년', value: 'grade' },

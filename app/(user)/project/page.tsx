@@ -6,6 +6,18 @@ import { GetProjectListResponse } from '@/types';
 import Projects from '@/components/Projects';
 import * as S from './styled';
 
+export const generations = [
+  {
+    title: '전체',
+  },
+  {
+    title: '1기',
+  },
+  {
+    title: '2기',
+  },
+] as const;
+
 const Page = () => {
   const [generation, setGeneration] = useState<number>(0);
   const [projects, setProjects] = useState<GetProjectListResponse>([[], []]);
@@ -45,16 +57,3 @@ const Page = () => {
 };
 
 export default Page;
-
-export const generations = [
-  {
-    title: '전체',
-    finalProjects: [{ title: 'WeNeed' }],
-  },
-  {
-    title: '1기',
-  },
-  {
-    title: '2기',
-  },
-];

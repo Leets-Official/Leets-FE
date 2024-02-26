@@ -1,4 +1,4 @@
-import { TIMELINE_LAYOUT } from '@/constants';
+import { TIMELINE } from '@/constants';
 import { memo } from 'react';
 import * as S from './Timeline.styled';
 import TimelineImage from './TimelineImage';
@@ -14,7 +14,7 @@ const Timeline = () => (
       <S.BottomContainer>
         <TimelineImage />
         <S.InfoStyle>
-          {Object.entries(TIMELINE_LAYOUT).map(([key, value]) => (
+          {Object.entries(TIMELINE).map(([key, value]) => (
             <S.DateStyle key={key} initial={{ y: 100 }} whileInView={{ y: 0 }} transition={{ duration: 0.5 }}>
               <S.KeyStyle>{key}</S.KeyStyle>
               <S.ValueStyle>{value}</S.ValueStyle>
