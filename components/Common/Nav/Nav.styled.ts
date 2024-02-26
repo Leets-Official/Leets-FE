@@ -31,7 +31,6 @@ export const WelcomeContainer = styled.div<{ name: string }>`
   justify-content: ${({ name }) => (name ? 'space-between' : 'flex-end')};
 
   background: white;
-  margin-right: 3.81vw;
 `;
 
 export const WelcomeStyle = styled.div`

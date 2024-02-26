@@ -7,7 +7,6 @@ import {
   APPLICATION_STAUTS_LIST,
   INTERVIEW_STATUS_LIST,
   ORDER_LIST,
-  APPLICATION_DEFAULT_FILTER_CONDITION,
   DROPDOWN_MAP,
   SORT_TARGET,
   NUMBER,
@@ -46,20 +45,6 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
             setSelected={(selected) => setQuery({ ...query, hasInterview: selected })}
           />
           <FilterDropDown
-            defaultValue="학점"
-            list={ORDER_LIST}
-            selected={query.gpa as KeyOf<typeof DROPDOWN_MAP>}
-            setSelected={(selected) => setQuery({ ...query, gpa: selected })}
-            sortTarget={SORT_TARGET.GPA}
-            setSortBy={setSortBy}
-            initOtherSort={() =>
-              setQuery({
-                ...query,
-                fixedInterviewDate: APPLICATION_DEFAULT_FILTER_CONDITION.fixedInterviewDate,
-              })
-            }
-          />
-          <FilterDropDown
             defaultValue="면접 일시"
             list={ORDER_LIST}
             selected={query.fixedInterviewDate as KeyOf<typeof DROPDOWN_MAP>}
@@ -69,7 +54,6 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
             initOtherSort={() =>
               setQuery({
                 ...query,
-                gpa: APPLICATION_DEFAULT_FILTER_CONDITION.gpa,
               })
             }
           />

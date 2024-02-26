@@ -1,5 +1,4 @@
 export const APPLICATION_DEFAULT_FILTER_CONDITION = {
-  gpa: '학점',
   fixedInterviewDate: '면접 일시',
   applicationStatus: '합격 여부',
   hasInterview: '면접 응시 여부',

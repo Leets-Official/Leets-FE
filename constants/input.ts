@@ -2,7 +2,6 @@ const MAX_LENGTH = {
   NAME: 5,
   GRADE: 1,
   MAJOR: 10,
-  GPA: 4,
   CAREER: 10,
   ALGORITHM: 50,
   PROJECT: 50,
@@ -36,13 +35,6 @@ export const DEV_INPUTS = [
     maxLength: MAX_LENGTH.CAREER,
   },
   {
-    id: 'gpa',
-    title: '학점',
-    holderText: '학점을 입력하세요.',
-    required: true,
-    maxLength: MAX_LENGTH.GPA,
-  },
-  {
     id: 'algorithm',
     title: '알고리즘',
     holderText: '알고리즘 수준을 입력하세요. (ex 백준/릿코드/프로그래머스)',
@@ -73,7 +65,7 @@ export const DEV_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '9.11 ~ 9.15 중 하루를 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.20 ~ 3.26 중 평일을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
@@ -104,13 +96,6 @@ export const DESING_INPUTS = [
     maxLength: MAX_LENGTH.CAREER,
   },
   {
-    id: 'gpa',
-    title: '학점',
-    holderText: '학점을 입력하세요.',
-    required: true,
-    maxLength: MAX_LENGTH.GPA,
-  },
-  {
     id: 'project',
     title: '프로젝트',
     holderText: '프로젝트 경험을 입력하세요. (ex UI/UX 디자인 제작, 디자인시스템 제작 등)',
@@ -134,7 +119,7 @@ export const DESING_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '9.11 ~ 9.15 중 하루를 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.20 ~ 3.26 중 평일을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },

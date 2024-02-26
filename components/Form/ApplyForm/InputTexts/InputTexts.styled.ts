@@ -57,6 +57,6 @@ export const InputStyle = styled.input`
   }
   &:focus {
     outline: none;
-    border: #3685fc;
+    border: 1px solid #3685fc;
   }
 `;
