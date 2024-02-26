@@ -1,7 +1,6 @@
 'use client';
 
 import Swal from 'sweetalert2';
-import { MAIN_COLOR, BACKGROUND_COLOR } from '@/constants';
 
 export class Alert {
   static error(title: string) {
@@ -9,7 +8,7 @@ export class Alert {
       icon: 'error',
       title,
       confirmButtonText: '확인',
-      confirmButtonColor: BACKGROUND_COLOR[MAIN_COLOR],
+      confirmButtonColor: '#3685FC',
     });
   }
 
@@ -18,7 +17,7 @@ export class Alert {
       icon: 'success',
       title,
       confirmButtonText: '확인',
-      confirmButtonColor: BACKGROUND_COLOR[MAIN_COLOR],
+      confirmButtonColor: '#3685FC',
     });
   }
 }

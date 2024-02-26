@@ -1,5 +1,3 @@
-import { BACKGROUND_COLOR } from '@/constants';
-import { ThemeColor } from '@/types';
 import styled from 'styled-components';
 
 export const ListStyle = styled.li`
@@ -39,7 +37,7 @@ export const RequireStyle = styled.div`
   border-radius: 8px;
 `;
 
-export const InputStyle = styled.input<{ color: ThemeColor }>`
+export const InputStyle = styled.input`
   font-family: 'Pretendard';
   font-weight: 500;
   font-size: 16px;
@@ -59,6 +57,6 @@ export const InputStyle = styled.input<{ color: ThemeColor }>`
   }
   &:focus {
     outline: none;
-    border: ${({ color }) => `1px solid ${BACKGROUND_COLOR[color]}`};
+    border: #3685fc;
   }
 `;

@@ -8,4 +8,12 @@ export const APPLY_PERIOD = {
   CLOSE: 'CLOSE',
 } as const;
 
-export const APPLY_DATE = { START: new Date('2023-08-18T12:00:00+09:00'), END: new Date('2023-09-07T23:59:59+09:00') };
+export const TIMELINE = {
+  지원기간: '24.03.04 ~ 24.03.15',
+  '면접 대상자 발표': '24.03.19',
+  면접: '24.03.20 ~ 24.03.26',
+  '최종 합격자 발표': '24.03.27',
+  '정규 활동 시작': '24.03.28',
+} as const;
+
+export const APPLY_DATE = { START: new Date('2024-03-04T12:00:00+09:00'), END: new Date('2024-03-15T23:59:59+09:00') };

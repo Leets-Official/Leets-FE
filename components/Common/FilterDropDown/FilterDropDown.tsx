@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import { KeyOf, SortByType, FilterDropdownProps } from '@/types';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';

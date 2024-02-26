@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from 'styled-components';
-import AdminLogo from '@/public/assets/image/Logo/Blue.svg';
+import Logo from '@/public/assets/image/Logo/Blue.svg';
 import Link from 'next/link';
 
 export const HeaderContainer = styled(Link)`
@@ -25,7 +25,7 @@ export const Header = styled.header`
   align-items: center;
 `;
 
-export const AdminLogoContainer = styled(AdminLogo)`
+export const LogoContainer = styled(Logo)`
   width: 33px;
   height: 20px;
 

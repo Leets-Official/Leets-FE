@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
 
 export const metadata: Metadata = {
-  title: 'Leets',
+  title: { default: 'Leets', template: '%s · Leets' },
   description: 'Who Cares?',
   metadataBase: new URL('https://leets.land'),
   openGraph: {

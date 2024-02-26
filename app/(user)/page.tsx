@@ -1,29 +1,27 @@
 import BackgroundImage from '@/components/BackgroundImage';
 import Promotions from '@/components/Promotions';
 import Header from '@/components/Header';
-import ApplyButton from '@/components/ApplyButton';
 import Pointer from '@/components/Common/Pointer';
 import Contact from '@/components/Contact';
 import Timeline from '@/components/Promotions/Timeline';
 import Footer from '@/components/Footer';
-import { MAIN_COLOR } from '@/constants';
-import { Main } from './styled';
+import dynamic from 'next/dynamic';
+
+const ApplyButton = dynamic(() => import('@/components/ApplyButton'));
 
 const Page = () => {
-  const color = MAIN_COLOR;
-
   return (
     <>
-      <Pointer size={7} color={color} />
-      <Main>
+      <Pointer />
+      <main style={{ cursor: 'none', position: 'relative' }}>
         <Header />
-        <BackgroundImage color={color} />
-        <Promotions color={color} />
-        <Timeline color={color} />
-        <ApplyButton color={color} />
+        <BackgroundImage />
+        <Promotions />
+        <Timeline />
+        <ApplyButton />
         <Contact />
         <Footer />
-      </Main>
+      </main>
     </>
   );
 };

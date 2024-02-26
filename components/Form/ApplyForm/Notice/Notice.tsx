@@ -3,11 +3,9 @@
 import { useState } from 'react';
 import DropDownArrow from '@/public/assets/image/DropDownArrow.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MAIN_COLOR } from '@/constants';
 import * as S from './Notice.styled';
 
 const Notice = () => {
-  const color = MAIN_COLOR;
   const [isToggle, setIsToggle] = useState<boolean>(true);
 
   const toggleHandler = () => {
@@ -16,7 +14,7 @@ const Notice = () => {
 
   return (
     <S.NoticeContainer>
-      <S.NoticeTitle onClick={toggleHandler} color={color}>
+      <S.NoticeTitle onClick={toggleHandler}>
         주의사항
         <S.ImageContainer $isToggle={isToggle}>
           <DropDownArrow />

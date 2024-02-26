@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { styled } from 'styled-components';
-import { BACKGROUND_COLOR } from '@/constants';
-import { ThemeColor } from '@/types';
 
 export const Form = styled.form`
   width: 45%;
@@ -76,7 +74,7 @@ export const ButtonContainer = styled.div`
   margin-top: 60px;
 `;
 
-export const SaveButton = styled.button<{ color: ThemeColor }>`
+export const SaveButton = styled.button`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;
@@ -92,11 +90,11 @@ export const SaveButton = styled.button<{ color: ThemeColor }>`
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
-    background: ${({ color }) => BACKGROUND_COLOR[color]};
+    background: #3685fc;
   }
 `;
 
-export const SubmitButton = styled.button<{ color: ThemeColor }>`
+export const SubmitButton = styled.button`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 16px;
@@ -112,7 +110,7 @@ export const SubmitButton = styled.button<{ color: ThemeColor }>`
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
-    background: ${({ color }) => BACKGROUND_COLOR[color]};
+    background: #3685fc;
   }
 `;
 

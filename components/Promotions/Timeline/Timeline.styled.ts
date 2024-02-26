@@ -62,7 +62,7 @@ export const BottomContainer = styled.div`
   })}
 
   @media screen and (max-width: 541px) {
-    padding-left: 15%;
+    padding-left: 30%;
   }
 `;
 

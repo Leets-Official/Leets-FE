@@ -31,36 +31,36 @@ export const getApplicationList = ({
 };
 
 export const postApplication = (application: PostApplication, token: string): Promise<BaseResponse<PostApplication>> =>
-  http.post(
-    {
-      url: '/application',
-      data: application,
+  http.post({
+    url: '/application',
+    data: application,
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    token
-  );
+  });
 
 export const patchApplication = (
   application: PatchApplication,
   token: string
 ): Promise<BaseResponse<PatchApplication>> =>
-  http.patch(
-    {
-      url: `/application`,
-      data: application,
+  http.patch({
+    url: `/application`,
+    data: application,
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    token
-  );
+  });
 
 export const getApplicationDetail = (
   { id }: IdRequest,
   token: string
 ): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get(
-    {
-      url: `/application/${id}`,
+  http.get({
+    url: `/application/${id}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    token
-  );
+  });
 
 export const patchApplicationDetail = ({
   id,
@@ -74,12 +74,12 @@ export const patchApplicationDetail = ({
   });
 
 export const getUserApplication = (token: string): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get(
-    {
-      url: '/application/me',
+  http.get({
+    url: '/application/me',
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
-    token
-  );
+  });
 
 export const postInterviewInformation = ({
   id,
