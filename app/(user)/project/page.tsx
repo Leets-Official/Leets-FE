@@ -6,7 +6,7 @@ import { GetProjectListResponse } from '@/types';
 import Projects from '@/components/Projects';
 import * as S from './styled';
 
-export const generations = [
+const generations = [
   {
     title: '전체',
   },
