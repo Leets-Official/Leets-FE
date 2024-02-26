@@ -15,14 +15,14 @@ const getProject = async (portfolioId: string) => {
 };
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
-  const { summary, description, type, startDate, endDate, logoImgUrl, mainImgUrl, serviceUrl, contributors } =
+  const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
     await getProject(id);
 
   return (
     <>
       <S.ContentContainer>
         <S.LogoContainer>
-          <S.LogoImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${logoImgUrl}`} alt="logo-image" fill />
+          <S.LogoImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${logoImgName}`} alt="logo-image" fill />
         </S.LogoContainer>
         <S.Summary>{summary}</S.Summary>
         <S.ShortInformation>
@@ -37,8 +37,8 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           </S.Information>
         </S.ShortInformation>
         <S.ImageContainer>
-          <Link href={serviceUrl}>
-            <S.MainImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${mainImgUrl}`} alt="main-image" fill />
+          <Link href={serviceUrl ?? '#'}>
+            <S.MainImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${mainImgName}`} alt="main-image" fill />
           </Link>
         </S.ImageContainer>
         <S.Hr />

@@ -4,7 +4,7 @@ const Contributors = ({ contributors }: { contributors: { name: string; position
   return (
     <S.ContributorsContainer>
       <S.Teams>팀원</S.Teams>
-      <S.Contributors>
+      <S.ContributorsWrapper>
         {contributors.map(({ name: contributor, position, githubUrl }) => (
           <S.Contributor href={githubUrl} target="_blank">
             <S.ContributorImageWrapper>
@@ -15,7 +15,7 @@ const Contributors = ({ contributors }: { contributors: { name: string; position
             </div>
           </S.Contributor>
         ))}
-      </S.Contributors>
+      </S.ContributorsWrapper>
     </S.ContributorsContainer>
   );
 };

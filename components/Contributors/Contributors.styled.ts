@@ -21,7 +21,7 @@ export const ContributorsContainer = styled.div`
   margin-bottom: 30vh;
 `;
 
-export const Contributors = styled.div`
+export const ContributorsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 240px);
   gap: 50px;

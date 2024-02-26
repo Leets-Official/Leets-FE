@@ -5,8 +5,8 @@ export type GetProjectResponse = {
   type: string;
   startDate: string;
   endDate: string;
-  logoImgUrl: string;
-  mainImgUrl: string;
+  logoImgName: string;
+  mainImgName: string;
   serviceUrl: string;
   contributors: Array<{
     name: string;
@@ -23,7 +23,7 @@ export type GetProjectListResponse = Array<
   Array<{
     portfolioId: number;
     name: string;
-    coverImgUrl: string;
+    mainImgName: string;
   }>
 >;
 

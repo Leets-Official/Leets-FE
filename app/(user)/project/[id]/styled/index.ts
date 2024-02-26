@@ -127,6 +127,8 @@ export const Description = styled.div`
   font-size: 20px;
   white-space: pre-wrap;
 
+  line-height: 2;
+
   @media screen and (max-width: 680px) {
     font-size: 14px;
   }
