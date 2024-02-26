@@ -24,9 +24,9 @@ export async function middleware(request: NextRequest) {
   }
 
   const period = Schedule.getCurrentPeriod();
-  if (period !== APPLY_PERIOD.RECRUIT) {
-    return NextResponse.redirect(new URL('/', url));
-  }
+  // if (period !== APPLY_PERIOD.RECRUIT) {
+  //   return NextResponse.redirect(new URL('/', url));
+  // }
 
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
   const {
