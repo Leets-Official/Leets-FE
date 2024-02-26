@@ -10,9 +10,9 @@ const Contributors = ({ contributors }: { contributors: { name: string; position
             <S.ContributorImageWrapper>
               <S.ContributorImage src={`${githubUrl}.png`} fill alt="image" />
             </S.ContributorImageWrapper>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <S.NameAndPosition>
               {contributor} - {position}
-            </div>
+            </S.NameAndPosition>
           </S.Contributor>
         ))}
       </S.ContributorsWrapper>

@@ -70,20 +70,6 @@ export const Information = styled.div`
   gap: 10px;
 `;
 
-export const MainImage = styled(Image)`
-  object-fit: cover;
-  border-radius: 30px;
-  transition: all 250ms ease;
-
-  @media screen and (max-width: 1024px) {
-    border-radius: 16px;
-  }
-
-  &:hover {
-    filter: drop-shadow(0 0 0.5rem white);
-  }
-`;
-
 export const ImageContainer = styled.div`
   position: relative;
 
@@ -97,8 +83,24 @@ export const ImageContainer = styled.div`
   border-radius: 30px;
 `;
 
+export const MainImage = styled(Image)`
+  object-fit: cover;
+  border-radius: 30px;
+
+  transition: all 250ms ease;
+
+  @media screen and (max-width: 1024px) {
+    border-radius: 16px;
+  }
+
+  &:hover {
+    filter: drop-shadow(0 0 0.5rem white);
+  }
+`;
+
 export const Hr = styled.div`
   width: 70%;
+
   border-top: 1px solid #666666;
   margin: 8vw 0;
 

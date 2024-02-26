@@ -58,3 +58,8 @@ export const ContributorImage = styled(Image)`
   border-radius: 12px;
   object-position: center center;
 `;
+
+export const NameAndPosition = styled.div`
+  display: flex;
+  justify-content: center;
+`;
