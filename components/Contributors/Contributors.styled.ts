@@ -44,6 +44,13 @@ export const Contributor = styled(Link)`
 export const ContributorImageWrapper = styled.div`
   position: relative;
 
+  transition: all 250ms ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 0.5rem white);
+    scale: 1.02;
+  }
+
   height: 240px;
 `;
 

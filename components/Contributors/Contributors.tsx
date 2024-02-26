@@ -6,7 +6,7 @@ const Contributors = ({ contributors }: { contributors: { name: string; position
       <S.Teams>팀원</S.Teams>
       <S.ContributorsWrapper>
         {contributors.map(({ name: contributor, position, githubUrl }) => (
-          <S.Contributor href={githubUrl} target="_blank">
+          <S.Contributor key={githubUrl} href={githubUrl} target="_blank">
             <S.ContributorImageWrapper>
               <S.ContributorImage src={`${githubUrl}.png`} fill alt="image" />
             </S.ContributorImageWrapper>
