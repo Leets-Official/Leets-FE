@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, Suspense } from 'react';
 import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
 import { isAxiosError } from 'axios';
@@ -28,9 +28,11 @@ const Page = () => {
     <S.ContentContainer>
       <PositionFilter clickHandler={setPosition} type={position} />
       <S.Title>지원서 내역</S.Title>
-      <ApplicationFilterProvider>
-        <ApplicationList applications={applications} />
-      </ApplicationFilterProvider>
+      <Suspense>
+        <ApplicationFilterProvider>
+          <ApplicationList applications={applications} />
+        </ApplicationFilterProvider>
+      </Suspense>
     </S.ContentContainer>
   );
 };
