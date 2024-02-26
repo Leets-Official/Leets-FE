@@ -46,7 +46,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
         </S.ShortInformation>
         <S.ImageContainer>
           <Link href={serviceUrl ?? '#'} target="_blank">
-            <S.MainImage src={`/assets/image/Portfolio/${mainImgName}`} alt="main-image" fill />
+            <S.MainImage src={`${process.env.NEXT_PUBLIC_API_URL}/images/${mainImgName}`} alt="main-image" fill />
           </Link>
         </S.ImageContainer>
         <S.Hr />
