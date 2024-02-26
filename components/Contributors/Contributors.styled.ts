@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -50,11 +49,12 @@ export const ContributorImageWrapper = styled.div`
     filter: drop-shadow(0 0 0.5rem white);
     scale: 1.02;
   }
-
-  height: 240px;
 `;
 
-export const ContributorImage = styled(Image)`
+export const ContributorImage = styled.img`
+  width: 240px;
+  height: 240px;
+
   border-radius: 12px;
   object-position: center center;
 `;

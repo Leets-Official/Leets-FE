@@ -9,8 +9,6 @@ export const PageContainer = styled.main`
 
 export const PageWrapper = styled.div`
   width: 92%;
-
-  margin-bottom: 30vh;
 `;
 
 export const Header = styled.header`
