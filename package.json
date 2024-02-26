@@ -9,7 +9,7 @@
     "dayjs": "^1.11.9",
     "facepaint": "^1.2.1",
     "framer-motion": "^10.16.0",
-    "next": "^13.4.12",
+    "next": "^14.1.0",
     "next-auth": "^4.23.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
@@ -30,18 +30,6 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
     "@svgr/webpack": "^8.0.1",
@@ -49,11 +37,15 @@
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/facepaint": "^1.2.2",
+    "@types/node": "^20.11.20",
+    "@types/react": "^18.2.58",
+    "@types/react-dom": "^18.2.19",
     "@typescript-eslint/parser": "^6.19.1",
     "compression-webpack-plugin": "^11.0.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-html": "^7.1.0",

@@ -10,7 +10,7 @@ export const PageContainer = styled.main`
 export const PageWrapper = styled.div`
   width: 92%;
 
-  padding-bottom: 15 vh;
+  padding-bottom: 15vh;
 `;
 
 export const Header = styled.header`
