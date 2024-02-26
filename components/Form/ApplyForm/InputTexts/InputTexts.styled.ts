@@ -11,7 +11,7 @@ export const ListStyle = styled.li`
 `;
 
 export const LabelStyle = styled.label`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -38,7 +38,7 @@ export const RequireStyle = styled.div`
 `;
 
 export const InputStyle = styled.input`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;

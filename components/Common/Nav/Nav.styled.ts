@@ -34,7 +34,7 @@ export const WelcomeContainer = styled.div<{ name: string }>`
 `;
 
 export const WelcomeStyle = styled.div`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -44,7 +44,7 @@ export const WelcomeStyle = styled.div`
 `;
 
 export const LogoutButton = styled.button`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 600;
   font-size: 14px;
 

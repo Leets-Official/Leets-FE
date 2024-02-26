@@ -78,7 +78,7 @@ export const HeadStyle = styled.h1`
 `;
 
 export const WriteStyle = styled.p`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 600;
   font-size: 24px;
   letter-spacing: 0;

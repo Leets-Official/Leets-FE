@@ -76,7 +76,7 @@ export const Title = styled(motion.div)`
 export const ProjectLink = styled(Link)`
   all: unset;
 
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 24px;
 
   width: fit-content;

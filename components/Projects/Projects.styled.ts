@@ -74,7 +74,7 @@ export const ImageStyle = styled(Image)`
 `;
 
 export const Blur = styled.div`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 24px;
 
   position: absolute;

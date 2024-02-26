@@ -11,7 +11,7 @@ export const ListStyle = styled.li`
 `;
 
 export const LabelStyle = styled.label`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -40,7 +40,7 @@ export const RequireStyle = styled.div`
 `;
 
 export const TextareaStyle = styled.textarea`
-  font-family: 'Pretendard' sans-serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
