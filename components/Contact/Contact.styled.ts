@@ -51,7 +51,6 @@ export const HeadContainer = styled.div`
   ${MQ({
     fontSize: [27.3, 27.3, 39.3, 48.0],
   })}
-  font-family: 'DM Sans';
   font-weight: 500;
 
   @media screen and (max-width: 541px) {
@@ -64,7 +63,7 @@ export const HeadContainer = styled.div`
 
 export const GridContainer = styled.div`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard, sans-serif',
     fontWeight: '500',
 
     display: 'grid',

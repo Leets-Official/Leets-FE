@@ -36,7 +36,6 @@ export const BenefitContainer = styled.div`
 
 export const NumberStyle = styled.div`
   ${MQ({
-    fontFamily: 'DM Sans',
     fontWeight: '400',
     fontSize: [27, 27, 39, 48],
 
@@ -51,7 +50,7 @@ export const NumberStyle = styled.div`
 
 export const TextStyle = styled.div`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard, sans-serif',
     fontWeight: '500',
     fontSize: [9, 11, 16, 18],
     lineHeight: 1.5,

@@ -40,7 +40,7 @@ export const HeadStyle = styled.div`
 `;
 
 export const WriteStyle = styled.div`
-  font-family: 'Pretendard';
+  font-family: 'Pretendard' sans-serif;
   font-weight: 600;
   font-size: 24px;
   text-align: center;
@@ -75,7 +75,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const SaveButton = styled.button`
-  font-family: 'Pretendard';
+  font-family: 'Pretendard' sans-serif;
   font-weight: 700;
   font-size: 16px;
 
@@ -95,7 +95,7 @@ export const SaveButton = styled.button`
 `;
 
 export const SubmitButton = styled.button`
-  font-family: 'Pretendard';
+  font-family: 'Pretendard' sans-serif;
   font-weight: 700;
   font-size: 16px;
 

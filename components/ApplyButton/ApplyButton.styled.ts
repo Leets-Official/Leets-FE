@@ -21,7 +21,7 @@ export const Container = styled.div`
 
 export const ApplyButton = styled(Link)`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard, sans-serif',
     fontWeight: 600,
     fontSize: [11.4, 11.4, 16.4, 20.0],
 

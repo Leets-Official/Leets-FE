@@ -78,7 +78,7 @@ export const InfoStyle = styled.div`
 
 export const DateStyle = styled(motion.div)`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard, sans-serif',
 
     marginBottom: [70, 70, 101, 124.0],
   })}

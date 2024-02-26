@@ -56,7 +56,7 @@ export const ImageStyle = styled(Image)`
 
 export const TextStyle = styled.div`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard "sans-serif"',
     fontWeight: '400',
     fontSize: [13, 18, 18, 20.0],
     lineHeight: '24px',
@@ -78,7 +78,7 @@ export const HeadStyle = styled.h1`
 `;
 
 export const WriteStyle = styled.p`
-  font-family: 'Pretendard';
+  font-family: 'Pretendard' sans-serif;
   font-weight: 600;
   font-size: 24px;
   letter-spacing: 0;

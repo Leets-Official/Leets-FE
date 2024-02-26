@@ -90,7 +90,7 @@ export const BalloonMobile = styled.div<{ $index: number }>`
 
 export const TextStyle = styled.div`
   ${MQ({
-    fontFamily: 'Pretendard',
+    fontFamily: 'Pretendard, sans-serif',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: [9, 11, 16, 20],

@@ -28,7 +28,6 @@ export const HrStyle = styled.hr`
 
 export const CopyrightText = styled.div`
   ${MQ({
-    fontFamily: 'DM Sans',
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: [13, 14, 14, 18],

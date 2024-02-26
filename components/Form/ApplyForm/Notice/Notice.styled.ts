@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const NoticeContainer = styled.div`
-  font-family: 'Pretendard';
+  font-family: 'Pretendard' sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;

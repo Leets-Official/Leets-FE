@@ -31,7 +31,6 @@ export const HeadStyle = styled.div`
 `;
 
 export const PrivacyContainer = styled.article`
-  font-family: DM Sans;
   line-height: 2;
 
   width: 80%;
