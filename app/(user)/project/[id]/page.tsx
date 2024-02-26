@@ -1,22 +1,30 @@
-import { getProject as getProjectDetail } from '@/api';
-import { redirect } from 'next/navigation';
+'use client';
+
+import { getProject } from '@/api';
 import Link from 'next/link';
 import Contributors from '@/components/Contributors';
+import { useEffect, useState } from 'react';
+import { GetProjectResponse } from '@/types';
 import * as S from './styled';
 
-const getProject = async (portfolioId: string) => {
-  try {
-    const { result } = await getProjectDetail({ portfolioId });
-    return result;
-  } catch (err) {
-    // TODO: not-found 이동
-    redirect('/project');
-  }
-};
-
-const Page = async ({ params: { id } }: { params: { id: string } }) => {
+const Page = ({ params: { id } }: { params: { id: string } }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [projectDetail, setProjectDetail] = useState<GetProjectResponse>();
   const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
-    await getProject(id);
+    projectDetail!;
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { result } = await getProject({ portfolioId: id });
+      setProjectDetail(result);
+    };
+    fetch();
+    setIsLoading(false);
+  }, []);
+
+  if (!projectDetail || isLoading) {
+    return null;
+  }
 
   return (
     <>

@@ -27,14 +27,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'github.com',
-        port: '',
-        pathname: '/images/**',
       },
       {
         protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_IMAGE_HOST,
-        port: '',
-        pathname: '/images/**',
       },
     ],
   },
