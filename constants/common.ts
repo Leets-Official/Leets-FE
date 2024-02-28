@@ -1,7 +1,3 @@
-export const SESSION_STATUS = {
-  LOADING: 'loading',
-} as const;
-
 export const SUBMIT_STATUS = {
   NONE: 'NONE',
   SAVE: 'SAVE',
@@ -13,4 +9,10 @@ export const NUMBER = {
   ONE: 1,
   ZERO: 0,
   TEN: 10,
+} as const;
+
+export const PROMOTION_TYPE = {
+  PROJECT: 'Project',
+  STUDY: 'Study & Networking',
+  ENTERTAINMENT: 'Entertainment',
 } as const;
