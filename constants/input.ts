@@ -209,3 +209,8 @@ export const DESIGN_TEXTAREAS = [
     maxLength: MAX_LENGTH.ENHANCEMENT,
   },
 ] as const;
+
+export const LOGIN_DEFAULT_VALUE = {
+  id: '',
+  password: '',
+} as const;
