@@ -11,9 +11,9 @@ import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
 import InputTexts from './InputTexts';
-import InputTextareas from './InputTextareas';
 import * as S from './ApplyForm.styled';
 
+const InputTextareas = dynamic(() => import('./InputTextareas'));
 const Notice = dynamic(() => import('./Notice'));
 const FilterDropDown = dynamic(() => import('@/components/Common/FilterDropDown'));
 
