@@ -11,9 +11,9 @@ import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
 import InputTexts from './InputTexts';
-import InputTextareas from './InputTextareas';
 import * as S from './ApplyForm.styled';
 
+const InputTextareas = dynamic(() => import('./InputTextareas'));
 const Notice = dynamic(() => import('./Notice'));
 
 const ApplyForm = () => {

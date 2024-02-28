@@ -1,3 +1,5 @@
+'use client';
+
 import { DEV_TEXTAREAS, DESIGN_TEXTAREAS } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';

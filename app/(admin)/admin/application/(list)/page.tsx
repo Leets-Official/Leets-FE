@@ -5,9 +5,11 @@ import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
 import PositionFilter from '@/components/Admin/PositionFilter';
 import { POSITION_FILTER_MAP } from '@/constants';
-import ApplicationList from '@/components/Admin/ApplicationList';
 import { ApplicationFilterProvider } from '@/app/lib';
+import dynamic from 'next/dynamic';
 import * as S from './styled';
+
+const ApplicationList = dynamic(() => import('@/components/Admin/ApplicationList'));
 
 const Page = () => {
   const [applications, setApplications] = useState<ApplicationType[]>([]);

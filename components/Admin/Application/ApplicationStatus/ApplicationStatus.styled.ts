@@ -1,7 +1,9 @@
-import { DatePicker } from 'antd';
+import dynamic from 'next/dynamic';
 import { styled } from 'styled-components';
 import { ApplicationStatusType } from '@/types';
 import { APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
+
+const DatePicker = dynamic(() => import('antd').then((mod) => mod.DatePicker));
 
 export const ApplicationStatusContainer = styled.section`
   width: 20%;
