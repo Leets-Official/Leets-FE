@@ -12,11 +12,6 @@ export type SearchList<T> = {
   searchTargets: ValueOf<typeof SEARCH_TARGET>[];
 };
 
-export type Order = {
-  ASC: string;
-  DESC: string;
-};
-
 export type SortByType = {
   target: ValueOf<typeof SORT_TARGET> | null;
   method: ValueOf<typeof SORT_METHOD>;
