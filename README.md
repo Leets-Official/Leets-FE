@@ -8,21 +8,55 @@
 
 # 메인 페이지
 
-![image](https://user-images.githubusercontent.com/86355699/224530995-928c6ad5-537a-46a2-930b-4918865f991d.png)
-![image](https://user-images.githubusercontent.com/86355699/224530944-de278c81-891d-4146-90ef-5f45dede079b.png)
-![image](https://user-images.githubusercontent.com/86355699/224530965-c7e0c5fa-de5c-4125-b285-82d07935381d.png)
-![image](https://user-images.githubusercontent.com/86355699/224530981-88283845-8b6d-47db-a4b2-4ddbe23f40ee.png)
-![image](https://user-images.githubusercontent.com/86355699/224531020-dd674c5b-4097-4697-be34-933a944fda8c.png)
-![image](https://user-images.githubusercontent.com/86355699/224531070-7304a7dc-f4fb-4ed9-802d-d513b21a7415.png)
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/c6275a69-2f39-4f79-b437-7db72c37cc53">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/cb3ba63d-4ff5-4a16-81d3-678e862644b1">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/27c02405-0759-4a89-bd95-55ca96fc872e">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/f48dae39-763b-4741-9457-750f7d94a63e">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/1287204a-bc3e-4155-a710-798339c3b227">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/d2973161-c2c4-4dbd-9c1e-84aaf731fc5d">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/15900ec7-eb97-4535-8eae-90e86f81c6c1">
 
 <br>
 
-# 지원 페이지
+<details>
 
-![image](https://user-images.githubusercontent.com/86355699/224532373-1b49d731-0d17-42e5-8055-431a80b15607.png)
-![image](https://user-images.githubusercontent.com/86355699/224532399-ad3c1ce9-b9b9-498d-ac87-dce207cf22d8.png)
-![image](https://user-images.githubusercontent.com/86355699/224532415-82b23799-61ae-48bc-aad0-c80b8d44cacf.png)
-![image](https://user-images.githubusercontent.com/86355699/224532433-8653c12a-195f-4b83-8cf7-4c059a410707.png)
+<summary>지원 페이지</summary>
+
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/b26d2ab5-ca55-4b80-a8b7-7721cd97d6e8">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/f292e1fa-8447-4755-b6b6-d326436e7bb8">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/98b5dd4f-0e36-44dd-9b68-4bc9522a7aec">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/138787ee-025c-4412-ae11-31b780e734c4">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/274cf385-4aaf-4d6f-bf6c-effdcd3fe325">
+
+</details>
+
+<br/>
+
+<details>
+
+<summary>관리자 페이지</summary>
+
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/8d2fa358-5d53-4ee4-ab28-b4e047c634ab">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/4abf91ff-25b9-4ce8-9c8c-d3ea003285ab">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/a1443a1d-094d-4194-b99a-ce8b696604be">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/fab52a88-1358-478b-8038-5ef261fdb5f0">
+
+</details>
+
+<br/>
+
+<details>
+
+<summary>프로젝트 페이지</summary>
+
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/b2da15c2-bf2f-44cd-8e64-3c3faad72caf">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/8437adf5-bdb0-4fec-8155-71fbebe71206">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/977a2e7c-cbd4-4773-844a-7183f49fd329">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/9fe6fa70-635f-4328-94e5-70db9559b9e0">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/dcca4767-f51d-4550-bc6e-58970fd4c2d0">
+<img width="1470" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/04152917-c88b-4c0c-b693-f0d8e8138d26">
+
+</details>
 
 <br>
 
@@ -40,15 +74,17 @@
 
 <br>
 
-# 💻 적응형 CSS
+# 💻 반응형 CSS
 
-- Chrome 개발자 도구에서 확인할 수 있는 디바이스에 대하여 적응형 `CSS`를 적용하였습니다.
-- 모바일 7개 기기, 태블릿의 가로/세로 모드, 데스크탑 총 10개 디바이스에 적용할 수 있는 `CSS`를 구현하였습니다.
+- 반응형 CSS를 사용하여 여러 디바이스 환경에서도 일관된 UI를 제공하고 있습니다.
+- 지원자의 UX 향상을 위해 적응형 CSS에서 반응형 CSS로 리팩터링했습니다.
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/86355699/224531175-e8bfbfc5-1283-4ad1-bfe1-8991814dbfcd.png)
+<img width="321" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/30806e0e-d506-48e9-8633-04bf4039cf4c">
 
-![image](https://user-images.githubusercontent.com/86355699/224531238-edfed3c9-de65-4ba4-9327-921c46b84254.png)
+<img width="317" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/cbb9cf5e-eaae-4163-973b-86e4e08d5958">
+
+<img width="317" alt="image" src="https://github.com/Leets-Official/Leets-FE/assets/86355699/d1c23092-ba73-46ff-9976-f2c4c19fbbaf">
 
 </div>
