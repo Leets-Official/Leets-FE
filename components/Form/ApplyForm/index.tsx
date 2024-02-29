@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { FormEvent, useState, SetStateAction, useEffect } from 'react';
+import { FormEvent, useState, SetStateAction, useEffect, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, USER } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus } from '@/types';
@@ -10,12 +10,12 @@ import { useApplyContext, useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
+import FilterDropDown from '@/components/Common/FilterDropDown';
 import InputTexts from './InputTexts';
 import * as S from './ApplyForm.styled';
 
-const InputTextareas = dynamic(() => import('./InputTextareas'));
 const Notice = dynamic(() => import('./Notice'));
-const FilterDropDown = dynamic(() => import('@/components/Common/FilterDropDown'));
+const InputTextareas = dynamic(() => import('./InputTextareas'));
 
 const ApplyForm = () => {
   const { applicationInput, applicationText, position: applyPosition, submitStatus, email, token } = useApplyContext();
@@ -87,7 +87,9 @@ const ApplyForm = () => {
             />
           </S.DropDownContainer>
           <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
-          <InputTextareas position={position} text={longText} setText={setLogntext} />
+          <Suspense>
+            <InputTextareas position={position} text={longText} setText={setLogntext} />
+          </Suspense>
         </S.InputContainer>
         <S.PrivacyContainer>
           <S.PrivacyCheckBox type="checkbox" required />
@@ -98,7 +100,9 @@ const ApplyForm = () => {
             에 동의합니다.
           </S.Text>
         </S.PrivacyContainer>
-        <Notice />
+        <Suspense>
+          <Notice />
+        </Suspense>
         <S.ButtonContainer>
           <S.SaveButton type="submit" onClick={() => setCurrentSubmitStatus(SUBMIT_STATUS.SAVE)}>
             임시저장
