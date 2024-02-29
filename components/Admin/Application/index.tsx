@@ -1,9 +1,10 @@
-import { ApplicationDetailType } from '@/types';
+import { ApplicationDetailType, CommentsResponse } from '@/types';
 import { APPLY_POSITION, SHORT_INFO_LAYOUT, LONG_INFO_LAYOUT, SELF_INTRODUCTION_LAYOUT } from '@/constants';
 import ApplicationStatus from './ApplicationStatus';
 import * as S from './Application.styled';
+import Comments from './Comments';
 
-const Application = ({ application }: { application: ApplicationDetailType }) => {
+const Application = ({ application, comments }: { application: ApplicationDetailType; comments: CommentsResponse }) => {
   const applicationWithPosition = { ...application, position: APPLY_POSITION[application.position] };
 
   return (
@@ -34,7 +35,10 @@ const Application = ({ application }: { application: ApplicationDetailType }) =>
           ))}
         </S.SelfIntroductionContainer>
       </S.ApplicationTextContainer>
-      <ApplicationStatus {...application} />
+      <S.SideBar>
+        <ApplicationStatus {...application} />
+        <Comments comments={comments} />
+      </S.SideBar>
     </S.ApplicationContainer>
   );
 };

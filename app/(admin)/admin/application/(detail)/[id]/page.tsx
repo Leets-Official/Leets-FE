@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { getApplicationDetail } from '@/api';
+import { getApplicationDetail, getComments as getCommentsRequest } from '@/api';
 import { ACCESS_TOKEN, ADMIN } from '@/constants';
 import Application from '@/components/Admin/Application';
 import { redirect } from 'next/navigation';
@@ -16,13 +16,24 @@ const getApplication = async (id: string) => {
   }
 };
 
+const getComments = async (applicationId: string) => {
+  const accessToken = cookies().get(ACCESS_TOKEN)?.value!;
+
+  try {
+    const { result } = await getCommentsRequest({ applicationId, accessToken });
+    return { comments: result };
+  } catch (err) {
+    redirect(ADMIN.HOME);
+  }
+};
+
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
-  const { application } = await getApplication(id);
+  const [{ application }, { comments }] = await Promise.all([await getApplication(id), await getComments(id)]);
 
   return (
     <>
       <S.Title>지원서 상세</S.Title>
-      <Application application={application} />
+      <Application application={application} comments={comments} />
     </>
   );
 };

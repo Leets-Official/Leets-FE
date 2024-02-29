@@ -117,3 +117,11 @@ export const Text = styled.div`
   overflow: scroll;
   background: #f9f9fc;
 `;
+
+export const SideBar = styled.article`
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
