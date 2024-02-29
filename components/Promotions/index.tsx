@@ -1,5 +1,5 @@
 import { PROMOTION_LAYOUT, PROMOTION_TYPE } from '@/constants';
-import { memo } from 'react';
+import { Suspense, memo } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import * as S from './Promotions.styled';
@@ -30,9 +30,11 @@ const Promotions = () => {
               </S.ImageContainer>
             </S.TopContainer>
             <S.BottomContainer>
-              {title === PROMOTION_TYPE.PROJECT && <Project benefits={benefits} />}
-              {title === PROMOTION_TYPE.STUDY && <Study benefits={benefits} />}
-              {title === PROMOTION_TYPE.ENTERTAINMENT && <Entertainment benefits={benefits} />}
+              <Suspense>
+                {title === PROMOTION_TYPE.PROJECT && <Project benefits={benefits} />}
+                {title === PROMOTION_TYPE.STUDY && <Study benefits={benefits} />}
+                {title === PROMOTION_TYPE.ENTERTAINMENT && <Entertainment benefits={benefits} />}
+              </Suspense>
             </S.BottomContainer>
           </S.Content>
         </S.Section>
