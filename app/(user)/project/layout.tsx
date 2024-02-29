@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import Nav from '@/components/Common/Nav';
-import { Apply } from '@/components/Common/Nav/Nav';
+import Nav, { Apply } from '@/components/Common/Nav';
 import { PageContainer, PageWrapper } from './styled';
 
 export const metadata: Metadata = {
