@@ -6,7 +6,6 @@ import {
   PatchApplication,
   PostApplication,
   GetApplicationDetaiResponse,
-  IdRequest,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
 } from '@/types';
