@@ -37,8 +37,6 @@ export type Input = {
 
 export type SubmitStatus = ValueOf<typeof SUBMIT_STATUS>;
 
-export type IdRequest = { id: string };
-
 export type ApplicationStatusType = KeyOf<typeof APPLICATION_STATUS_MAP>;
 
 export type GetApplicationRequest = {
@@ -99,8 +97,6 @@ export type PatchApplicationDetailRequest = {
 };
 
 export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;
-
-export type GetUserApplicationResponse = GetApplicationDetaiResponse;
 
 export type ApplicationInputProp = {
   position: PositionType;

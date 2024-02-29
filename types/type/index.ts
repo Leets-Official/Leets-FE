@@ -5,3 +5,4 @@ export * from './Application';
 export * from './Login';
 export * from './Dropdown';
 export * from './Project';
+export * from './Comments';
