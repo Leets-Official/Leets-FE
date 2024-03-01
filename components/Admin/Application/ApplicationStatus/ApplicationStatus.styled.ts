@@ -6,7 +6,7 @@ import { APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/co
 const DatePicker = dynamic(() => import('antd').then((mod) => mod.DatePicker));
 
 export const ApplicationStatusContainer = styled.section`
-  width: 20%;
+  width: 100%;
   height: fit-content;
 
   display: flex;

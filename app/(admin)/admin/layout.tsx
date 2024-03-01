@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
 import * as S from './styled';
@@ -22,9 +22,11 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
       <body className={DM_SANS.className}>
-        <StyledProvider>
-          <S.AdminContainer>{children}</S.AdminContainer>
-        </StyledProvider>
+        <Suspense>
+          <StyledProvider>
+            <S.AdminContainer>{children}</S.AdminContainer>
+          </StyledProvider>
+        </Suspense>
       </body>
     </html>
   );

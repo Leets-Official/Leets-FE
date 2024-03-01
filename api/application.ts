@@ -7,7 +7,6 @@ import {
   PatchApplication,
   PostApplication,
   GetApplicationDetaiResponse,
-  IdRequest,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
 } from '@/types';
@@ -52,7 +51,7 @@ export const patchApplication = (
   });
 
 export const getApplicationDetail = (
-  { id }: IdRequest,
+  { id }: { id: string },
   token: string
 ): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
   http.get({
