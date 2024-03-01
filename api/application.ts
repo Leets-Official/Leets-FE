@@ -22,19 +22,21 @@ export const getApplicationList = ({ position }: GetApplicationRequest) => {
   return http.get<GetApplicationResponse[]>(`/application?position=${position.toLowerCase()}`);
 };
 
-export const postApplication = (application: PostApplication) =>
+export const postApplication = (application: PostApplication, accessToken: string) =>
   http.post<PostApplication>(
     '/application',
     WithFetchConfig({
       body: application,
+      accessToken,
     })
   );
 
-export const patchApplication = (application: PatchApplication) =>
+export const patchApplication = (application: PatchApplication, accessToken: string) =>
   http.patch<PatchApplication>(
     `/application`,
     WithFetchConfig({
       body: application,
+      accessToken,
     })
   );
 
@@ -49,7 +51,8 @@ export const getApplicationDetail = ({ id }: IdRequest, accessToken: string) =>
 export const patchApplicationDetail = ({ id, applicationStatus }: PatchApplicationDetailRequest) =>
   http.patch<PatchApplicationDetailResponse>(`/application/${id}`, WithFetchConfig({ body: applicationStatus }));
 
-export const getUserApplication = () => http.get<GetApplicationDetaiResponse>('/application/me', WithFetchConfig({}));
+export const getUserApplication = (accessToken: string) =>
+  http.get<GetApplicationDetaiResponse>('/application/me', WithFetchConfig({ accessToken }));
 
 export const postInterviewInformation = ({
   id,
