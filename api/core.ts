@@ -1,51 +1,42 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
-import { ACCESS_TOKEN, HTTP_METHODS, UNEXPECTED_ERROR } from '@/constants';
+import { HTTP_METHODS } from '@/constants';
+import { BaseResponse } from '@/types';
 import { Alert } from '@/utils';
-import { getCookie } from 'cookies-next';
+import { RequestInit } from 'next/dist/server/web/spec-extension/request';
+import { baseUrl, baseHeader, isServer } from './config';
 
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 10000,
-  headers: { 'Content-Type': 'application/json' },
-  withCredentials: true,
-});
+const createMethods =
+  (method: keyof typeof HTTP_METHODS) =>
+  async <T>(url: string, config?: RequestInit, callback?: () => void): Promise<BaseResponse<T>> => {
+    try {
+      const response = await fetch(`${baseUrl}${url}`, {
+        method,
+        headers: { ...baseHeader, ...config?.headers },
+        body: config?.body,
+        cache: config?.cache ?? 'force-cache',
+        credentials: 'same-origin',
+        next: config?.next,
+      });
 
-const handleRequest = (config: AxiosRequestConfig, token?: string) => {
-  const accessToken = getCookie(ACCESS_TOKEN);
-  return !token && !accessToken
-    ? config
-    : {
-        ...config,
-        headers: {
-          ...config.headers,
-          Authorization: `Bearer ${token ?? accessToken}`,
-        },
-      };
-};
+      const { result } = await response.json();
+      const { message } = result;
 
-const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
+      if (message) {
+        throw message;
+      }
+      return { result };
+    } catch (err) {
+      if (!isServer) {
+        Alert.error(err as string);
+      }
+      callback?.();
+      return Promise.reject(err);
+    }
+  };
 
-const handleError = (error: unknown) => {
-  if (axios.isAxiosError(error)) {
-    const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
-    Alert.error(message);
-    return { result: error };
-  }
-  Alert.error(UNEXPECTED_ERROR);
-  throw Error(UNEXPECTED_ERROR);
-};
-
-const createApiMethod =
-  (_axiosInstance: AxiosInstance, methodType: Method) =>
-  (config: AxiosRequestConfig, token?: string): Promise<any> =>
-    _axiosInstance({ ...handleRequest(config, token), method: methodType })
-      .then(handleResponse)
-      .catch(handleError);
-
-export const http = {
-  get: createApiMethod(axiosInstance, HTTP_METHODS.GET),
-  post: createApiMethod(axiosInstance, HTTP_METHODS.POST),
-  patch: createApiMethod(axiosInstance, HTTP_METHODS.PATCH),
-  put: createApiMethod(axiosInstance, HTTP_METHODS.PUT),
-  delete: createApiMethod(axiosInstance, HTTP_METHODS.DELETE),
+export default {
+  get: createMethods(HTTP_METHODS.GET),
+  post: createMethods(HTTP_METHODS.POST),
+  patch: createMethods(HTTP_METHODS.PATCH),
+  put: createMethods(HTTP_METHODS.PUT),
+  delete: createMethods(HTTP_METHODS.DELETE),
 };
