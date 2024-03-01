@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 import { ApplicationDetailType, KeyOf } from '@/types';
 import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
-import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
 import * as S from './ApplicationStatus.styled';
@@ -31,13 +30,9 @@ const ApplicationStatus = ({
   const [newPlace, setNewPlace] = useState<string>('');
 
   const handleDate = (date: dayjs.Dayjs | null) => {
-    const formattedDate = date?.format();
+    const formattedDate = date?.format() || '';
 
-    if (formattedDate) {
-      setFixedInterviewDate(Formatter.convertStringToUTC(formattedDate.toString()));
-    } else {
-      setFixedInterviewDate('');
-    }
+    setFixedInterviewDate(Formatter.convertStringToUTC(formattedDate));
   };
 
   const submitApplicationStatus = async () => {
@@ -45,31 +40,26 @@ const ApplicationStatus = ({
       Alert.error(APPLICATION.REJECT_CHANGE_APPLICATION_STATUS);
       return;
     }
-    if (selectedApplicationStatus === 'PASS_PAPER' && !newInterviewDate) {
+    if (selectedApplicationStatus === 'PASS_PAPER' && !(newInterviewDate && newPlace)) {
       Alert.error(APPLICATION.ASK_INPUT_DATE);
       return;
     }
-    const { result: interviewResult } =
-      place || fixedInterviewDate
-        ? await patchInterviewInformation({
-            id,
-            fixedInterviewDate: newInterviewDate,
-            place: newPlace,
-          })
-        : await postInterviewInformation({
-            id,
-            fixedInterviewDate: newInterviewDate,
-            place: newPlace,
-          });
-    const { result: applicationPatchResult } = await patchApplicationDetail({
-      id,
-      applicationStatus: selectedApplicationStatus,
-    });
 
-    if (!isAxiosError(applicationPatchResult) && !isAxiosError(interviewResult)) {
-      Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
-      router.refresh();
-    }
+    const interviewRequest = appliedAt ? patchInterviewInformation : postInterviewInformation;
+    await Promise.all([
+      await interviewRequest({
+        id,
+        fixedInterviewDate: newInterviewDate,
+        place: newPlace,
+      }),
+      await patchApplicationDetail({
+        id,
+        applicationStatus: selectedApplicationStatus,
+      }),
+    ]);
+
+    Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
+    router.refresh();
   };
 
   useEffect(() => {
