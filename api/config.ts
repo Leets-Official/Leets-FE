@@ -9,18 +9,19 @@ export const baseHeader = {
 };
 
 export const WithFetchConfig = <T>({
-  accessToken,
   header,
   body,
+  accessToken,
+  next,
 }: {
   header?: RequestInit['headers'];
   body?: T;
   accessToken?: string;
+  next?: RequestInit['next'];
 }) => {
   const headers = {
     ...header,
     Authorization: `Bearer ${accessToken ?? getCookie(ACCESS_TOKEN)}`,
   };
-
-  return { headers, body: JSON.stringify(body) };
+  return { headers, body: JSON.stringify(body), next };
 };
