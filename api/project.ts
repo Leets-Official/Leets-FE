@@ -1,27 +1,13 @@
-import { http } from '@/api/core';
-import {
-  BaseResponse,
-  GetProjectRequest,
-  GetProjectResponse,
-  GetProjectListRequest,
-  GetProjectListResponse,
-} from '@/types';
+import http from '@/api/core';
 
-export const getProjectList = ({
-  generation,
-}: GetProjectListRequest): Promise<BaseResponse<GetProjectListResponse>> => {
+import { GetProjectRequest, GetProjectResponse, GetProjectListRequest, GetProjectListResponse } from '@/types';
+
+export const getProjectList = ({ generation }: GetProjectListRequest) => {
   if (generation) {
-    return http.get({
-      url: `/portfolios`,
-      params: { generation },
-    });
+    return http.get<GetProjectListResponse>(`/portfolios${generation}`);
   }
-  return http.get({
-    url: `/portfolios`,
-  });
+  return http.get(`/portfolios`);
 };
 
-export const getProject = ({ portfolioId }: GetProjectRequest): Promise<BaseResponse<GetProjectResponse>> =>
-  http.get({
-    url: `/portfolios/${portfolioId}`,
-  });
+export const getProject = ({ portfolioId }: GetProjectRequest) =>
+  http.get<GetProjectResponse>(`/portfolios/${portfolioId}`);
