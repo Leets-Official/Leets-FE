@@ -9,7 +9,7 @@ export const ApplyContext = createContext({
   position: 'DEV',
   submitStatus: 'NONE',
   email: '',
-  token: '',
+  accessToken: '',
 });
 
 const useApplyContext = () => {

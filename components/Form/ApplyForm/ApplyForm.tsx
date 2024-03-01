@@ -18,9 +18,16 @@ const Notice = dynamic(() => import('./Notice'));
 const FilterDropDown = dynamic(() => import('@/components/Common/FilterDropDown'));
 
 const ApplyForm = () => {
-  const { applicationInput, applicationText, position: applyPosition, submitStatus, email, token } = useApplyContext();
+  const {
+    applicationInput,
+    applicationText,
+    position: applyPosition,
+    submitStatus,
+    email,
+    accessToken,
+  } = useApplyContext();
   const [infoInput, setInfoInput] = useState(applicationInput);
-  const [longText, setLogntext] = useState(applicationText);
+  const [longText, setLongText] = useState(applicationText);
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(applyPosition as PositionType);
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
@@ -56,8 +63,8 @@ const ApplyForm = () => {
 
     const { result } =
       submitStatus === SUBMIT_STATUS.NONE
-        ? await postApplication(applicationData, token)
-        : await patchApplication(applicationData, token);
+        ? await postApplication(applicationData, accessToken)
+        : await patchApplication(applicationData, accessToken);
 
     if (!isAxiosError(result)) {
       const successMessage =
@@ -87,7 +94,7 @@ const ApplyForm = () => {
             />
           </S.DropDownContainer>
           <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
-          <InputTextareas position={position} text={longText} setText={setLogntext} />
+          <InputTextareas position={position} text={longText} setText={setLongText} />
         </S.InputContainer>
         <S.PrivacyContainer>
           <S.PrivacyCheckBox type="checkbox" required />
