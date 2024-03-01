@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
 
@@ -27,7 +27,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
       />
       <body className={DM_SANS.className}>
-        <StyledProvider>{children}</StyledProvider>
+        <Suspense>
+          <StyledProvider>{children}</StyledProvider>
+        </Suspense>
       </body>
     </html>
   );
