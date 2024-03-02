@@ -1,5 +1,6 @@
-import { http } from '@/api/core';
+import http from '@/api/core';
 import { BaseResponse, PostCommentsRequest, CommentsResponse } from '@/types';
+import { WithFetchConfig } from './config';
 
 export const getComments = ({
   applicationId,
@@ -7,22 +8,15 @@ export const getComments = ({
 }: {
   applicationId: string;
   accessToken: string;
-}): Promise<BaseResponse<CommentsResponse>> =>
-  http.get({
-    url: `/comments/${applicationId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+}): Promise<BaseResponse<CommentsResponse>> => http.get(`/comments/${applicationId}`, WithFetchConfig({ accessToken }));
 
 export const postComments = ({
   applicationId,
   content,
 }: PostCommentsRequest): Promise<BaseResponse<FlatArray<CommentsResponse, 1>>> =>
-  http.post({
-    url: `/comments`,
-    data: {
-      applicationId,
-      content,
-    },
-  });
+  http.post(
+    `/comments`,
+    WithFetchConfig({
+      body: { applicationId, content },
+    })
+  );

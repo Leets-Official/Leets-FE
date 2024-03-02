@@ -41,7 +41,7 @@ export const patchApplication = (application: PatchApplication, accessToken: str
     })
   );
 
-export const getApplicationDetail = ({ id }: IdRequest, accessToken: string) =>
+export const getApplicationDetail = ({ id }: { id: string }, accessToken: string) =>
   http.get<GetApplicationDetaiResponse>(
     `/application/${id}`,
     WithFetchConfig({
