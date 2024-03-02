@@ -3,7 +3,6 @@
 import { useState, useEffect, memo, Suspense } from 'react';
 import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
-import { isAxiosError } from 'axios';
 import PositionFilter from '@/components/Admin/PositionFilter';
 import { POSITION_FILTER_MAP } from '@/constants';
 import { ApplicationFilterProvider } from '@/app/lib';
@@ -19,9 +18,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await getApplicationList({ position });
-      if (!isAxiosError(result)) {
-        setApplications(result);
-      }
+      setApplications(result);
     };
     fetchData();
   }, [position]);

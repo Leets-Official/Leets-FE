@@ -1,7 +1,6 @@
-import { http } from '@/api/core';
+import http from '@/api/core';
 import { POSITION_FILTER_MAP } from '@/constants';
 import {
-  BaseResponse,
   GetApplicationRequest,
   GetApplicationResponse,
   PatchApplication,
@@ -10,75 +9,51 @@ import {
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
 } from '@/types';
+import { WithFetchConfig } from './config';
 
-export const getApplicationList = ({
-  position,
-}: GetApplicationRequest): Promise<BaseResponse<GetApplicationResponse[]>> => {
+export const getApplicationList = ({ position }: GetApplicationRequest) => {
   if (position === POSITION_FILTER_MAP.All) {
-    return http.get({
-      url: '/application',
-    });
+    return http.get<GetApplicationResponse[]>('/application');
   }
   if (position === 'SAVE') {
-    return http.get({
-      url: `/application?status=${position.toLowerCase()}`,
-    });
+    return http.get<GetApplicationResponse[]>(`/application?status=${position.toLowerCase()}`);
   }
-  return http.get({
-    url: `/application?position=${position.toLowerCase()}`,
-  });
+  return http.get<GetApplicationResponse[]>(`/application?position=${position.toLowerCase()}`);
 };
 
-export const postApplication = (application: PostApplication, token: string): Promise<BaseResponse<PostApplication>> =>
-  http.post({
-    url: '/application',
-    data: application,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const postApplication = (application: PostApplication, accessToken: string) =>
+  http.post<PostApplication>(
+    '/application',
+    WithFetchConfig({
+      body: application,
+      accessToken,
+      cache: 'no-store',
+    })
+  );
 
-export const patchApplication = (
-  application: PatchApplication,
-  token: string
-): Promise<BaseResponse<PatchApplication>> =>
-  http.patch({
-    url: `/application`,
-    data: application,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const patchApplication = (application: PatchApplication, accessToken: string) =>
+  http.patch<PatchApplication>(
+    `/application`,
+    WithFetchConfig({
+      body: application,
+      accessToken,
+      cache: 'no-store',
+    })
+  );
 
-export const getApplicationDetail = (
-  { id }: { id: string },
-  token: string
-): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get({
-    url: `/application/${id}`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getApplicationDetail = ({ id }: { id: string }, accessToken: string) =>
+  http.get<GetApplicationDetaiResponse>(
+    `/application/${id}`,
+    WithFetchConfig({
+      accessToken,
+    })
+  );
 
-export const patchApplicationDetail = ({
-  id,
-  applicationStatus,
-}: PatchApplicationDetailRequest): Promise<BaseResponse<PatchApplicationDetailResponse>> =>
-  http.patch({
-    url: `/application/${id}`,
-    data: {
-      applicationStatus,
-    },
-  });
+export const patchApplicationDetail = ({ id, applicationStatus }: PatchApplicationDetailRequest) =>
+  http.patch<PatchApplicationDetailResponse>(`/application/${id}`, WithFetchConfig({ body: applicationStatus }));
 
-export const getUserApplication = (token: string): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.get({
-    url: '/application/me',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getUserApplication = (accessToken: string) =>
+  http.get<GetApplicationDetaiResponse>('/application/me', WithFetchConfig({ accessToken, cache: 'no-store' }));
 
 export const postInterviewInformation = ({
   id,
@@ -88,15 +63,17 @@ export const postInterviewInformation = ({
   id: number;
   fixedInterviewDate: string;
   place: string;
-}): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.post({
-    url: '/interview',
-    data: {
-      id,
-      fixedInterviewDate,
-      place,
-    },
-  });
+}) =>
+  http.post<GetApplicationDetaiResponse>(
+    '/interview',
+    WithFetchConfig({
+      body: {
+        id,
+        fixedInterviewDate,
+        place,
+      },
+    })
+  );
 
 export const patchInterviewInformation = ({
   id,
@@ -106,11 +83,13 @@ export const patchInterviewInformation = ({
   id: number;
   fixedInterviewDate: string;
   place: string;
-}): Promise<BaseResponse<GetApplicationDetaiResponse>> =>
-  http.patch({
-    url: `/interview/${id}`,
-    data: {
-      fixedInterviewDate,
-      place,
-    },
-  });
+}) =>
+  http.patch<GetApplicationDetaiResponse>(
+    `/interview/${id}`,
+    WithFetchConfig({
+      body: {
+        fixedInterviewDate,
+        place,
+      },
+    })
+  );

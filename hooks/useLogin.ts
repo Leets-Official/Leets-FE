@@ -2,9 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
-import { postAdminLogin, getAdmin } from '@/api';
+import { postAdminLogin } from '@/api';
 import { ACCESS_TOKEN, ADMIN, LOGIN_DEFAULT_VALUE } from '@/constants';
-import { isAxiosError } from 'axios';
 import { AdminLoginRequest } from '@/types';
 import { setCookie } from 'cookies-next';
 import { Alert } from '@/utils';
@@ -26,17 +25,12 @@ const useLogin = () => {
       return;
     }
 
-    const { result } = await postAdminLogin({ id, password });
+    const {
+      result: { accessToken },
+    } = await postAdminLogin({ id, password });
 
-    if (!isAxiosError(result)) {
-      setCookie(ACCESS_TOKEN, result.accessToken);
-      const { result: admin } = await getAdmin(result.accessToken);
-
-      if (!isAxiosError(admin)) {
-        inputRef.current = LOGIN_DEFAULT_VALUE;
-        router.replace(ADMIN.HOME);
-      }
-    }
+    setCookie(ACCESS_TOKEN, accessToken);
+    router.replace(ADMIN.HOME);
   };
   return { changeHandler, onSubmitHandler };
 };

@@ -7,16 +7,24 @@ import { ReactNode, useMemo } from 'react';
 
 const ApplyProvider = ({
   children,
-  application: { result = APPLICATION_DEFAULT, submitStatus = 'NONE', token = '' },
+  application,
 }: {
   children: ReactNode;
-  application: { result?: typeof APPLICATION_DEFAULT; submitStatus?: SubmitStatus; token: string };
+  application: typeof APPLICATION_DEFAULT & { accessToken: string; submitStatus: SubmitStatus };
 }) => {
-  const { enhancement, level, pros, goal, completion, user, position } = result;
-  const { email } = user;
+  const { enhancement, level, pros, goal, completion, position, submitStatus, accessToken, ...applicationInput } =
+    application;
   const applicationText = { enhancement, level, pros, goal, completion };
-  const applicationInput = { ...user, ...result };
-  const value = useMemo(() => ({ applicationInput, applicationText, position, submitStatus, email, token }), []);
+  const value = useMemo(
+    () => ({
+      applicationInput: { ...applicationInput },
+      applicationText,
+      position,
+      submitStatus,
+      accessToken,
+    }),
+    []
+  );
 
   return <ApplyContext.Provider value={value}>{children}</ApplyContext.Provider>;
 };

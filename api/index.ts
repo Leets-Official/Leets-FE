@@ -1,4 +1,4 @@
-export * from './core';
+export { default as http } from './core';
 export * from './application';
 export * from './login';
 export * from './project';

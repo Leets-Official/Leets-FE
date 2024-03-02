@@ -10,7 +10,6 @@ type ApplicationLink = {
 export type ApplicationInput = ApplicationLink & {
   name: string;
   grade: string;
-  gpa: string;
   major: string;
   algorithm: string;
   project: string;
@@ -28,7 +27,7 @@ export type ApplicationTextarea = {
   completion: string;
 };
 
-export type Application = ApplicationInput & ApplicationTextarea;
+export type Application = ApplicationInput & ApplicationTextarea & Applicant & { position: PositionType };
 
 export type Input = {
   id: string;
@@ -69,11 +68,7 @@ export type PatchApplication = Application & {
   submitStatus: SubmitStatus;
 };
 
-export type PostApplication = Application &
-  PatchApplication & {
-    email?: string;
-    submitStatus: SubmitStatus;
-  };
+export type PostApplication = PatchApplication;
 
 export type GetApplicationDetaiResponse = Application & {
   user: Applicant;

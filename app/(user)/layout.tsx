@@ -2,6 +2,8 @@ import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
 
+export const revalidate = 60 * 5;
+
 export const metadata: Metadata = {
   title: { default: 'Leets', template: '%s · Leets' },
   description: 'Who Cares?',

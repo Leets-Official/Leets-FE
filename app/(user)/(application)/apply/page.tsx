@@ -5,27 +5,28 @@ import { ApplyProvider } from '@/app/lib';
 import ApplyForm from '@/components/Form/ApplyForm';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { Application } from '@/types';
+import { APPLICATION_DEFAULT } from '@/constants';
 
 const Apply = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [application, setApplication] = useState<{ submitStatus: string; token: string }>();
+  const [application, setApplication] = useState<Application>(APPLICATION_DEFAULT);
   const session = useSession();
+  const accessToken = session.data?.accessToken!;
   const submitStatus = session.data?.submitStatus!;
-  const token = session.data?.accessToken!;
+  const applicatoinData = { ...application, submitStatus, accessToken };
 
   useEffect(() => {
     const fetch = async () => {
-      const { result } = await getUserApplication(token);
-      setApplication({ token, submitStatus, ...result });
+      const { result } = await getUserApplication(accessToken);
+      setApplication(result);
     };
     if (submitStatus && submitStatus !== 'NONE') {
       fetch();
     }
-    setIsLoading(false);
-  }, [isLoading]);
+  }, []);
 
   return (
-    <ApplyProvider application={{ ...application!, submitStatus }}>
+    <ApplyProvider application={applicatoinData}>
       <ApplyForm />
     </ApplyProvider>
   );

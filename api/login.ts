@@ -1,43 +1,15 @@
-import { http } from '@/api/core';
-import {
-  BaseResponse,
-  LoginRequest,
-  AdminLoginRequest,
-  LoginResponse,
-  MeRequest,
-  MeResponse,
-  AdminMeResponse,
-} from '@/types';
+import http from '@/api/core';
+import { LoginRequest, AdminLoginRequest, LoginResponse, MeRequest, MeResponse, AdminMeResponse } from '@/types';
+import { WithFetchConfig } from './config';
 
-export const postUserLogin = ({ idToken }: LoginRequest): Promise<BaseResponse<LoginResponse>> =>
-  http.post({
-    url: '/user/login',
-    data: {
-      idToken,
-    },
-  });
+export const postUserLogin = ({ idToken }: LoginRequest) =>
+  http.post<LoginResponse>('/user/login', WithFetchConfig({ body: idToken, cache: 'no-store' }));
 
-export const postAdminLogin = ({ id, password }: AdminLoginRequest): Promise<BaseResponse<LoginResponse>> =>
-  http.post({
-    url: '/admin/login',
-    data: {
-      id,
-      password,
-    },
-  });
+export const postAdminLogin = ({ id, password }: AdminLoginRequest) =>
+  http.post<LoginResponse>('/admin/login', WithFetchConfig({ body: { id, password }, cache: 'no-store' }));
 
-export const getApplicant = ({ accessToken }: MeRequest): Promise<BaseResponse<MeResponse>> =>
-  http.get({
-    url: '/user/me',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+export const getApplicant = ({ accessToken }: MeRequest) =>
+  http.get<MeResponse>('/user/me', WithFetchConfig({ accessToken, cache: 'no-store' }));
 
-export const getAdmin = (accessToken: string): Promise<BaseResponse<AdminMeResponse>> =>
-  http.get(
-    {
-      url: '/admin/me',
-    },
-    accessToken
-  );
+export const getAdmin = (accessToken: string) =>
+  http.get<AdminMeResponse>('/admin/me', WithFetchConfig({ accessToken, cache: 'no-store' }));

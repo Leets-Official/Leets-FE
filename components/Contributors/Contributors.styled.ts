@@ -16,8 +16,6 @@ export const ContributorsContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  margin-bottom: 30vh;
 `;
 
 export const ContributorsWrapper = styled.div`
