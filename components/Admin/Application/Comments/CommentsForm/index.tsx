@@ -3,7 +3,6 @@
 import { FormEvent, useState } from 'react';
 import { Alert } from '@/utils';
 import { postComments } from '@/api';
-import { isAxiosError } from 'axios';
 import { usePathname } from 'next/navigation';
 import * as S from './CommentsForm.styled';
 
@@ -19,12 +18,7 @@ const CommentsForm = () => {
       return;
     }
 
-    const { result } = await postComments({ content: comment, applicationId });
-
-    if (isAxiosError(result)) {
-      Alert.error('댓글 작성에 실패했습니다.');
-      return;
-    }
+    await postComments({ content: comment, applicationId });
     window.location.reload();
   };
 
