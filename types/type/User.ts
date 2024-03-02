@@ -4,7 +4,6 @@ export type Admin = {
 
 export type Applicant = {
   name: string;
-  email: string;
-  uid: string;
+  email?: string;
   phone: string;
 };

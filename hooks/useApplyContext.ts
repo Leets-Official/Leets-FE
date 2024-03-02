@@ -8,7 +8,6 @@ export const ApplyContext = createContext({
   applicationText: APPLICATION_TEXT_DEFAULT,
   position: 'DEV',
   submitStatus: 'NONE',
-  email: '',
   accessToken: '',
 });
 

@@ -16,7 +16,6 @@ export const APPLICATION_INPUT_DEFAULT = {
   grade: '',
   name: '',
   phone: '',
-  gpa: '',
   major: '',
   algorithm: '',
   project: '',
@@ -29,11 +28,5 @@ export const APPLICATION_INPUT_DEFAULT = {
 export const APPLICATION_DEFAULT = {
   ...APPLICATION_TEXT_DEFAULT,
   ...APPLICATION_INPUT_DEFAULT,
-  user: {
-    uid: '',
-    name: '',
-    phone: '',
-    email: '',
-  },
-  position: 'DEV',
+  position: 'DEV' as 'DEV' | 'DESIGN',
 };

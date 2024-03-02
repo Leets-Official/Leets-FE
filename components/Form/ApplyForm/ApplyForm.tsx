@@ -17,14 +17,7 @@ import * as S from './ApplyForm.styled';
 const Notice = dynamic(() => import('./Notice'));
 
 const ApplyForm = () => {
-  const {
-    applicationInput,
-    applicationText,
-    position: applyPosition,
-    submitStatus,
-    email,
-    accessToken,
-  } = useApplyContext();
+  const { applicationInput, applicationText, position: applyPosition, submitStatus, accessToken } = useApplyContext();
   const [infoInput, setInfoInput] = useState(applicationInput);
   const [longText, setLongText] = useState(applicationText);
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(applyPosition as PositionType);
@@ -55,7 +48,6 @@ const ApplyForm = () => {
     const applicationData = {
       ...infoInput,
       ...longText,
-      email,
       position,
       submitStatus: currentSubmitStatus,
     };
