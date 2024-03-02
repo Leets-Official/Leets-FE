@@ -28,6 +28,7 @@ export const postApplication = (application: PostApplication, accessToken: strin
     WithFetchConfig({
       body: application,
       accessToken,
+      cache: 'no-store',
     })
   );
 
@@ -37,6 +38,7 @@ export const patchApplication = (application: PatchApplication, accessToken: str
     WithFetchConfig({
       body: application,
       accessToken,
+      cache: 'no-store',
     })
   );
 
@@ -52,7 +54,7 @@ export const patchApplicationDetail = ({ id, applicationStatus }: PatchApplicati
   http.patch<PatchApplicationDetailResponse>(`/application/${id}`, WithFetchConfig({ body: applicationStatus }));
 
 export const getUserApplication = (accessToken: string) =>
-  http.get<GetApplicationDetaiResponse>('/application/me', WithFetchConfig({ accessToken }));
+  http.get<GetApplicationDetaiResponse>('/application/me', WithFetchConfig({ accessToken, cache: 'no-store' }));
 
 export const postInterviewInformation = ({
   id,
