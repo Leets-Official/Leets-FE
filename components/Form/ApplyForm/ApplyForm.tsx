@@ -7,15 +7,14 @@ import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, USER } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus } from '@/types';
 import { postApplication, patchApplication } from '@/api';
 import { useApplyContext, useBeforeUnload } from '@/hooks';
-import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
+import FilterDropDown from '@/components/Common/FilterDropDown';
 import InputTexts from './InputTexts';
 import InputTextareas from './InputTextareas';
 import * as S from './ApplyForm.styled';
 
 const Notice = dynamic(() => import('./Notice'));
-const FilterDropDown = dynamic(() => import('@/components/Common/FilterDropDown'));
 
 const ApplyForm = () => {
   const {
@@ -61,18 +60,17 @@ const ApplyForm = () => {
       submitStatus: currentSubmitStatus,
     };
 
-    const { result } =
-      submitStatus === SUBMIT_STATUS.NONE
-        ? await postApplication(applicationData, accessToken)
-        : await patchApplication(applicationData, accessToken);
-
-    if (!isAxiosError(result)) {
-      const successMessage =
-        currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
-      await session.update({ submitStatus: currentSubmitStatus });
-      Alert.success(successMessage);
-      router.refresh();
+    if (submitStatus === SUBMIT_STATUS.NONE) {
+      await postApplication(applicationData, accessToken);
+    } else {
+      await patchApplication(applicationData, accessToken);
     }
+
+    const successMessage =
+      currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
+    await session.update({ submitStatus: currentSubmitStatus });
+    Alert.success(successMessage);
+    router.refresh();
   };
 
   return (
