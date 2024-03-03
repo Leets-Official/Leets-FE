@@ -27,10 +27,9 @@ const useLogin = () => {
     }
 
     const { result } = await postAdminLogin({ id, password });
-    if (!isAxiosError(result)) {
+    if (isAxiosError(result)) {
       return;
     }
-
     setCookie(ACCESS_TOKEN, result.accessToken);
     router.replace(ADMIN.HOME);
   };

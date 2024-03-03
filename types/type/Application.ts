@@ -17,9 +17,6 @@ export type ApplicationInput = ApplicationLink & {
   phone: string;
   interviewDay: string;
   interviewTime: string;
-  user: {
-    phone: string;
-  };
 };
 
 export type ApplicationTextarea = {
@@ -30,7 +27,7 @@ export type ApplicationTextarea = {
   passion: string;
 };
 
-export type Application = ApplicationInput & ApplicationTextarea & Applicant & { position: PositionType };
+export type Application = ApplicationInput & ApplicationTextarea & { position: PositionType };
 
 export type Input = {
   id: string;
