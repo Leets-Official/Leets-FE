@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import { SUBMIT_STATUS, APPLICATION, APPLY_POSITION, USER } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus } from '@/types';
 import { postApplication, patchApplication } from '@/api';
-import { useApplyContext, useBeforeUnload } from '@/hooks';
+import { useBeforeUnload } from '@/hooks';
 import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
@@ -16,10 +16,10 @@ import * as S from './ApplyForm.styled';
 const Notice = dynamic(() => import('./Notice'));
 const InputTextareas = dynamic(() => import('./InputTextareas'));
 
-const ApplyForm = () => {
-  const { applicationInput, applicationText, position: applyPosition, submitStatus, accessToken } = useApplyContext();
+const ApplyForm = ({ application }: { application: any }) => {
+  const { applicationInput, applicationText, position: applyPosition, submitStatus, accessToken } = application;
   const [infoInput, setInfoInput] = useState(applicationInput);
-  const [longText, setLogntext] = useState(applicationText);
+  const [longText, setLongText] = useState(applicationText);
   const [position, setPosition] = useState<KeyOf<typeof APPLY_POSITION>>(applyPosition as PositionType);
   const [currentSubmitStatus, setCurrentSubmitStatus] = useState<SubmitStatus>(SUBMIT_STATUS.SAVE);
   const session = useSession();
@@ -31,6 +31,12 @@ const ApplyForm = () => {
       allowLeave();
     }
   }, [submitStatus]);
+
+  useEffect(() => {
+    setInfoInput(applicationInput);
+    setLongText(applicationText);
+    setPosition(applyPosition);
+  }, [application]);
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -85,7 +91,7 @@ const ApplyForm = () => {
           </S.DropDownContainer>
           <InputTexts position={position} input={infoInput} setInput={setInfoInput} />
           <Suspense>
-            <InputTextareas position={position} text={longText} setText={setLogntext} />
+            <InputTextareas position={position} text={longText} setText={setLongText} />
           </Suspense>
         </S.InputContainer>
         <S.PrivacyContainer>
