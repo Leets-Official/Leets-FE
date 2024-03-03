@@ -7,6 +7,7 @@ import PositionFilter from '@/components/Admin/PositionFilter';
 import { POSITION_FILTER_MAP } from '@/constants';
 import { ApplicationFilterProvider } from '@/app/lib';
 import dynamic from 'next/dynamic';
+import { isAxiosError } from 'axios';
 import * as S from './styled';
 
 const ApplicationList = dynamic(() => import('@/components/Admin/ApplicationList'));
@@ -18,7 +19,9 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await getApplicationList({ position });
-      setApplications(result);
+      if (!isAxiosError(result)) {
+        setApplications(result);
+      }
     };
     fetchData();
   }, [position]);

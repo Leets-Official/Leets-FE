@@ -7,6 +7,7 @@ import { ACCESS_TOKEN, ADMIN, LOGIN_DEFAULT_VALUE } from '@/constants';
 import { AdminLoginRequest } from '@/types';
 import { setCookie } from 'cookies-next';
 import { Alert } from '@/utils';
+import { isAxiosError } from 'axios';
 import useInputRef from './useInputRef';
 
 const useLogin = () => {
@@ -25,11 +26,12 @@ const useLogin = () => {
       return;
     }
 
-    const {
-      result: { accessToken },
-    } = await postAdminLogin({ id, password });
+    const { result } = await postAdminLogin({ id, password });
+    if (!isAxiosError(result)) {
+      return;
+    }
 
-    setCookie(ACCESS_TOKEN, accessToken);
+    setCookie(ACCESS_TOKEN, result.accessToken);
     router.replace(ADMIN.HOME);
   };
   return { changeHandler, onSubmitHandler };

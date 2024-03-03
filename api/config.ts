@@ -1,3 +1,4 @@
+// FIXME: temporary deprecated
 import { ACCESS_TOKEN } from '@/constants';
 import { RequestInit } from 'next/dist/server/web/spec-extension/request';
 import { getCookie } from 'cookies-next';
