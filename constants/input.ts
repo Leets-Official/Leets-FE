@@ -10,11 +10,11 @@ const MAX_LENGTH = {
   INTERVIEW_DAY: 10,
   INTERVIEW_TIME: 13,
 
-  GOAL: 700,
-  COMPLETION: 500,
-  LEVEL: 500,
-  PROS: 500,
-  ENHANCEMENT: 700,
+  MOTIVE: 600,
+  SCHEDULE: 600,
+  CAPABILITY: 600,
+  CONFLICT: 600,
+  PASSION: 600,
 } as const;
 
 export const DEV_INPUTS = [
@@ -134,79 +134,79 @@ export const DESING_INPUTS = [
 
 export const DEV_TEXTAREAS = [
   {
-    id: 'goal',
-    title: 'Leets에 들어와서 얻어가고 싶은 것은 무엇인가요?',
+    id: 'motive',
+    title: 'Leets에 지원한 동기와 개발 동아리 중 Leets를 선택한 이유는 무엇인지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.GOAL,
+    maxLength: MAX_LENGTH.MOTIVE,
   },
   {
-    id: 'completion',
-    title: '무언가 열심히 해서 얻은 경험을 적어주세요.',
+    id: 'schedule',
+    title: '지난 방학 동안 자기개발을 위해 어떠한 노력을 했는지와 이번 학기 목표나 계획을 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.COMPLETION,
+    maxLength: MAX_LENGTH.SCHEDULE,
   },
   {
-    id: 'pros',
-    title: '본인의 장단점을 구체적인 경험을 바탕으로 소개해주세요.',
-    holderText: '내용을 입력해주세요.',
-    required: true,
-    maxLength: MAX_LENGTH.LEVEL,
-  },
-  {
-    id: 'level',
+    id: 'capability',
     title:
-      '개발 실력을 1부터 10까지 점수로 표현해주세요.\n이유를 공부한 과정을 기반으로 작성해주시고, 학습 계획에 대해 자세히 소개해주세요.',
+      '개발자로서 가장 중요하다고 생각되는 능력은 무엇이며, 해당 능력을 향상시키기 위해 어떠한 노력을 했는지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.PROS,
+    maxLength: MAX_LENGTH.CAPABILITY,
   },
   {
-    id: 'enhancement',
-    title: '소프트웨어 개발을 더 잘하고 싶어서 시도했던 경험을 적어주세요.',
+    id: 'conflict',
+    title: '갈등 상황을 해결하였던 경험이나, 갈등 상황이 발생하였을 때 어떻게 해결할 것인지에 대하여 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.ENHANCEMENT,
+    maxLength: MAX_LENGTH.CONFLICT,
+  },
+  {
+    id: 'passion',
+    title: '결과와 상관없이 열정과 최선을 다했던 경험과, 그 과정에서 변화한 점과 느낀점은 무엇이었는지 작성해주세요.',
+    holderText: '내용을 입력해주세요.',
+    required: true,
+    maxLength: MAX_LENGTH.PASSION,
   },
 ] as const;
 
 export const DESIGN_TEXTAREAS = [
   {
-    id: 'goal',
-    title: 'Leets에 들어와서 얻어가고 싶은 것은 무엇인가요?',
+    id: 'motive',
+    title: 'Leets에 지원한 동기와 개발 동아리 중 Leets를 선택한 이유는 무엇인지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.GOAL,
+    maxLength: MAX_LENGTH.MOTIVE,
   },
   {
-    id: 'completion',
-    title: '무언가 열심히 해서 얻은 경험을 적어주세요.',
+    id: 'schedule',
+    title: '지난 방학 동안 자기개발을 위해 어떠한 노력을 했는지와 이번 학기 목표나 계획을 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.COMPLETION,
+    maxLength: MAX_LENGTH.SCHEDULE,
   },
   {
-    id: 'pros',
-    title: '본인의 장단점을 구체적인 경험을 바탕으로 소개해주세요.',
-    holderText: '내용을 입력해주세요.',
-    required: true,
-    maxLength: MAX_LENGTH.LEVEL,
-  },
-  {
-    id: 'level',
+    id: 'capability',
     title:
-      '디자인 실력을 1부터 10까지 점수로 표현해주세요.\n이유를 공부한 과정을 기반으로 작성해주시고, 학습 계획에 대해 자세히 소개해주세요.',
+      '디자이너로서 가장 중요하다고 생각되는 능력은 무엇이며, 해당 능력을 향상시키기 위해 어떠한 노력을 했는지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.PROS,
+    maxLength: MAX_LENGTH.CAPABILITY,
   },
   {
-    id: 'enhancement',
-    title: '디자인을 더 잘하고 싶어서 시도했던 경험을 적어주세요.',
+    id: 'conflict',
+    title: '갈등 상황을 해결하였던 경험이나, 갈등 상황이 발생하였을 때 어떻게 해결할 것인지에 대하여 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
-    maxLength: MAX_LENGTH.ENHANCEMENT,
+    maxLength: MAX_LENGTH.CONFLICT,
+  },
+  {
+    id: 'passion',
+    title: '결과와 상관없이 열정과 최선을 다했던 경험과, 그 과정에서 변화한 점과 느낀점은 무엇이었는지 작성해주세요.',
+    holderText: '내용을 입력해주세요.',
+    required: true,
+    maxLength: MAX_LENGTH.PASSION,
   },
 ] as const;
 
