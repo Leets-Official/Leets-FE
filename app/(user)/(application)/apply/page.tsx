@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { Application } from '@/types';
 import { APPLICATION_DEFAULT } from '@/constants';
+import { isAxiosError } from 'axios';
 
 const Apply = () => {
   const [application, setApplication] = useState<Application>(APPLICATION_DEFAULT);
@@ -28,7 +29,9 @@ const Apply = () => {
   useEffect(() => {
     const fetch = async () => {
       const { result } = await getUserApplication(accessToken);
-      setApplication(result);
+      if (!isAxiosError(result)) {
+        setApplication(result);
+      }
     };
     if (submitStatus && submitStatus !== 'NONE') {
       fetch();

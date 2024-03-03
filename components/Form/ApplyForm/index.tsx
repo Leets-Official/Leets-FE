@@ -10,6 +10,7 @@ import { useBeforeUnload } from '@/hooks';
 import { Alert } from '@/utils';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
+import { isAxiosError } from 'axios';
 import InputTexts from './InputTexts';
 import * as S from './ApplyForm.styled';
 
@@ -58,10 +59,11 @@ const ApplyForm = ({ application }: { application: any }) => {
       submitStatus: currentSubmitStatus,
     };
 
-    if (submitStatus === SUBMIT_STATUS.NONE) {
-      await postApplication(applicationData, accessToken);
-    } else {
-      await patchApplication(applicationData, accessToken);
+    const requestApplication = submitStatus === SUBMIT_STATUS.NONE ? postApplication : patchApplication;
+
+    const { result } = await requestApplication(applicationData, accessToken);
+    if (isAxiosError(result)) {
+      return;
     }
 
     const successMessage =

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getProjectList } from '@/api';
 import { GetProjectListResponse } from '@/types';
 import Projects from '@/components/Projects';
+import { isAxiosError } from 'axios';
 import * as S from './styled';
 
 const generations = [
@@ -26,7 +27,9 @@ const Page = () => {
   useEffect(() => {
     const fetch = async () => {
       const { result } = await getProjectList({ generation })!;
-      setProjects(result);
+      if (!isAxiosError(result)) {
+        setProjects(result);
+      }
     };
     fetch();
   }, [generation]);
