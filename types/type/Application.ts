@@ -17,14 +17,17 @@ export type ApplicationInput = ApplicationLink & {
   phone: string;
   interviewDay: string;
   interviewTime: string;
+  user: {
+    phone: string;
+  };
 };
 
 export type ApplicationTextarea = {
-  enhancement: string;
-  level: string;
-  pros: string;
-  goal: string;
-  completion: string;
+  motive: string;
+  capability: string;
+  conflict: string;
+  schedule: string;
+  passion: string;
 };
 
 export type Application = ApplicationInput & ApplicationTextarea & Applicant & { position: PositionType };

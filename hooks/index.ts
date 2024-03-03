@@ -8,7 +8,6 @@ export { default as useDeviceChecker } from './useDeviceChecker';
 export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useMousePosition } from './useMousePosition';
 export { default as useViewport } from './useViewport';
-export { default as useApplyContext } from './useApplyContext';
 export { default as useApplicationExplore } from './useApplicationExplore';
 export { default as useSort } from './useSort';
 export { default as useFilter } from './useFilter';
