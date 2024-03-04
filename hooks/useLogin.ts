@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 import { postAdminLogin } from '@/api';
 import { ACCESS_TOKEN, ADMIN, LOGIN_DEFAULT_VALUE } from '@/constants';
@@ -11,7 +10,6 @@ import { isAxiosError } from 'axios';
 import useInputRef from './useInputRef';
 
 const useLogin = () => {
-  const router = useRouter();
   const { inputRef, changeHandler } = useInputRef<AdminLoginRequest>({
     defaultValues: LOGIN_DEFAULT_VALUE,
   });
@@ -31,7 +29,7 @@ const useLogin = () => {
       return;
     }
     setCookie(ACCESS_TOKEN, result.accessToken);
-    router.replace(ADMIN.HOME);
+    window.location.href = ADMIN.HOME;
   };
   return { changeHandler, onSubmitHandler };
 };
