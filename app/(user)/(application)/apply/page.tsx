@@ -63,7 +63,6 @@ const Form = () => {
         currentSubmitStatus === SUBMIT_STATUS.SAVE ? APPLICATION.COMPLETE_SAVE : APPLICATION.COMPLETE_SUBMIT;
       await session.update({ submitStatus: currentSubmitStatus });
       Alert.success(successMessage);
-      router.replace(USER.APPLY);
     }
   };
 
