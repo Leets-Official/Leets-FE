@@ -15,7 +15,6 @@ import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import { FormEvent, useState, SetStateAction, useEffect, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import InputText from '@/components/Form/ApplyForm/InputTexts';
 import FilterDropDown from '@/components/Common/FilterDropDown';
@@ -32,7 +31,6 @@ const Form = () => {
   const session = useSession();
   const accessToken = session.data?.accessToken;
   const submitStatus = session.data?.submitStatus;
-  const router = useRouter();
   const { allowLeave } = useBeforeUnload();
 
   const submitHandler = async (e: FormEvent) => {

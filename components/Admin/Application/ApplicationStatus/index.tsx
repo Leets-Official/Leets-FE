@@ -15,7 +15,6 @@ import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import { useRouter } from 'next/navigation';
 import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
-import { isAxiosError } from 'axios';
 import * as S from './ApplicationStatus.styled';
 
 const ApplicationStatus = ({
