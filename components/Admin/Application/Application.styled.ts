@@ -101,6 +101,8 @@ export const SelfIntroduction = styled.div`
   margin-bottom: 24px;
   border-radius: 12px;
   box-shadow: 0px 4px 30px 0px rgba(46, 45, 116, 0.05);
+
+  white-space: pre-wrap;
 `;
 
 export const Text = styled.div`
