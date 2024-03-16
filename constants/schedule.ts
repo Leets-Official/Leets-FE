@@ -16,4 +16,4 @@ export const TIMELINE = {
   '정규 활동 시작': '24.03.28',
 } as const;
 
-export const APPLY_DATE = { START: new Date('2024-03-04T12:00:00+09:00'), END: new Date('2024-03-15T23:59:59+09:00') };
+export const APPLY_DATE = { START: new Date('2024-03-16T14:00:00+09:00'), END: new Date('2024-03-17T17:59:59+09:00') };
