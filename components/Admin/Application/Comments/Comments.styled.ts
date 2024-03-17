@@ -29,6 +29,8 @@ export const CommentContainer = styled.div`
 export const CommentContent = styled.div`
   line-height: 1.5;
   word-break: break-all;
+
+  white-space: pre-wrap;
 `;
 
 export const CommentAuthor = styled.div`
