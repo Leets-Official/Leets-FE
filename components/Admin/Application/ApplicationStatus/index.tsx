@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 import { Alert, Formatter } from '@/utils';
 import { useRouter } from 'next/navigation';
 import { patchInterviewInformation, postInterviewInformation, patchApplicationDetail } from '@/api';
+import { isAxiosError } from 'axios';
 import * as S from './ApplicationStatus.styled';
 
 const ApplicationStatus = ({
@@ -22,7 +23,7 @@ const ApplicationStatus = ({
   applicationStatus,
   updatedAt,
   appliedAt,
-  interview: { fixedInterviewDate, place },
+  interview: { fixedInterviewDate, place, id: interviewId },
 }: ApplicationDetailType) => {
   const [selectedApplicationStatus, setSelectedApplicationCondition] = useState(applicationStatus);
   const [newInterviewDate, setFixedInterviewDate] = useState<string>(fixedInterviewDate);
@@ -49,19 +50,28 @@ const ApplicationStatus = ({
       return;
     }
 
-    const interviewRequest = appliedAt ? patchInterviewInformation : postInterviewInformation;
+    const isInterviewFixed = place || fixedInterviewDate;
+    const interviewRequest = isInterviewFixed ? patchInterviewInformation : postInterviewInformation;
+    const requestId = isInterviewFixed ? interviewId : id;
 
-    await Promise.all([
-      await interviewRequest({
-        id,
-        fixedInterviewDate: newInterviewDate,
-        place: newPlace,
-      }),
-      await patchApplicationDetail({
-        id,
-        applicationStatus: selectedApplicationStatus,
-      }),
-    ]);
+    const allPassed = (
+      await Promise.all([
+        interviewRequest({
+          id: requestId,
+          fixedInterviewDate: newInterviewDate,
+          place: newPlace,
+        }),
+        patchApplicationDetail({
+          id,
+          applicationStatus: selectedApplicationStatus,
+        }),
+      ])
+    ).every(({ result }) => !isAxiosError(result));
+
+    if (!allPassed) {
+      Alert.error(CHANGE_APPLICATION_STATUS.FAIL);
+      return;
+    }
 
     Alert.success(CHANGE_APPLICATION_STATUS.SUCCESS);
     router.refresh();

@@ -81,6 +81,7 @@ export type GetApplicationDetaiResponse = Application & {
   interview: {
     place: string;
     fixedInterviewDate: string;
+    id: number;
   };
 };
 
