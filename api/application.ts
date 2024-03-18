@@ -80,7 +80,7 @@ export const postInterviewInformation = ({
   http.post<GetApplicationDetaiResponse>({
     url: '/interview',
     data: {
-      id,
+      applicationId: id,
       fixedInterviewDate,
       place,
     },
