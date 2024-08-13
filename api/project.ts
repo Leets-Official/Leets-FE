@@ -4,7 +4,12 @@ import { GetProjectRequest, GetProjectResponse, GetProjectListRequest, GetProjec
 
 export const getProjectList = ({ generation }: GetProjectListRequest) => {
   if (generation) {
-    return http.get<GetProjectListResponse>({ url: `/portfolios?generation=${generation}` });
+    return http.get<GetProjectListResponse>({
+      url: `/portfolios`,
+      params: {
+        generation,
+      },
+    });
   }
   return http.get<GetProjectListResponse>({ url: `/portfolios` });
 };

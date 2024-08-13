@@ -8,7 +8,7 @@ export const APPLICATION_TEXT_DEFAULT = {
   motive: '',
   capability: '',
   conflict: '',
-  schedule: '',
+  expectation: '',
   passion: '',
 };
 

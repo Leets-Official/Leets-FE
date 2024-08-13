@@ -49,6 +49,10 @@ const ApplicationStatus = ({
       Alert.error(APPLICATION.ASK_INPUT_DATE);
       return;
     }
+    if (newPlace || newInterviewDate) {
+      Alert.error(APPLICATION.ASK_INPUT_DATE);
+      return;
+    }
 
     const isInterviewFixed = place || fixedInterviewDate;
     const interviewRequest = isInterviewFixed ? patchInterviewInformation : postInterviewInformation;

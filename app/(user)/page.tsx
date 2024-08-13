@@ -19,9 +19,11 @@ const Page = () => {
         <BackgroundImage />
         <Promotions />
         <Timeline />
+
         <Suspense>
           <ApplyButton />
         </Suspense>
+
         <Contact />
         <Footer />
       </main>
