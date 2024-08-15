@@ -1,7 +1,7 @@
 'use client';
 
-import { useDeviceChecker, useMousePosition } from '@/hooks';
 import { memo } from 'react';
+import { useDeviceChecker, useMousePosition } from '@/hooks';
 import * as S from './Pointer.styled';
 
 const Pointer = () => {
