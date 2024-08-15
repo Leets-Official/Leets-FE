@@ -1,8 +1,8 @@
 export const CONTACT_LAYOUT = [
-  { title: 'Leader', value: '김성민', hasLink: false },
   { title: 'Github', value: 'https://github.com/Leets-Official', hasLink: true },
   { title: 'Mail', value: 'leetsland@gmail.com', hasLink: false },
   { title: 'Open Kakao', value: 'https://pf.kakao.com/_LtLyG', hasLink: true },
+  { title: 'Insta', value: 'https://instagram.com/leets.official', hasLink: true },
 ] as const;
 
 const PROJECT_TEXT = {
