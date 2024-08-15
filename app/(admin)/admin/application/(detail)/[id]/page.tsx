@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getApplicationDetail, getComments as getCommentsRequest } from '@/api';
 import { ACCESS_TOKEN, ADMIN } from '@/constants';
 import Application from '@/components/Admin/Application';
-import { redirect } from 'next/navigation';
 import * as S from './styled';
 
 const getApplication = async (id: string) => {
