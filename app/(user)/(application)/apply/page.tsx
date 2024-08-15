@@ -68,8 +68,8 @@ const Form = () => {
     const fetchData = async () => {
       const { result } = await getUserApplication(accessToken);
       if (!isAxiosError(result)) {
-        const { motive, capability, conflict, schedule, passion, user, position: fetchPosition } = result;
-        setApplicationText({ motive, capability, conflict, schedule, passion });
+        const { motive, capability, conflict, expectation, passion, user, position: fetchPosition } = result;
+        setApplicationText({ motive, capability, conflict, expectation, passion });
         setApplicationInput({ ...user, ...result });
         setPosition(fetchPosition);
       }

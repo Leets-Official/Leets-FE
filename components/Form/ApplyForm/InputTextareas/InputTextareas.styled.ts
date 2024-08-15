@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const ListStyle = styled.li`
+export const ListStyle = styled(motion.li)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +49,9 @@ export const TextareaStyle = styled.textarea`
   width: 100%;
   height: 168px;
 
-  border: 1px solid #e6e6e6;
+  transition: all 150ms;
+
+  border: 1.5px solid #e6e6e6;
   border-radius: 8px;
   background: white;
   padding: 8px;
@@ -59,7 +62,7 @@ export const TextareaStyle = styled.textarea`
   }
   &:focus {
     outline: none;
-    border: 1px solid #3685fc;
+    border: 1.5px solid #3685fc;
   }
 `;
 

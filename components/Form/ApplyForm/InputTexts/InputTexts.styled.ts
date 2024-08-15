@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const ListStyle = styled.li`
+export const ListStyle = styled(motion.li)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,10 +44,12 @@ export const InputStyle = styled.input`
   font-size: 16px;
   line-height: 24px;
 
+  transition: all 150ms;
+
   width: 100%;
   height: 56px;
 
-  border: 1px solid #eaeaea;
+  border: 1.5px solid #eaeaea;
   border-radius: 10px;
   padding-left: 5px;
   padding-right: 5px;
@@ -57,6 +60,6 @@ export const InputStyle = styled.input`
   }
   &:focus {
     outline: none;
-    border: 1px solid #3685fc;
+    border: 1.5px solid #3685fc;
   }
 `;

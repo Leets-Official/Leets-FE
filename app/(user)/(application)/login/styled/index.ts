@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import { MQ } from '@/constants';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export const LoginBackground = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ export const LoginBackground = styled.div`
   background: white;
 `;
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled(motion.div)`
   width: 45%;
   height: 100%;
 

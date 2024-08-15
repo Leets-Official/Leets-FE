@@ -10,11 +10,11 @@ const MAX_LENGTH = {
   INTERVIEW_DAY: 10,
   INTERVIEW_TIME: 13,
 
-  MOTIVE: 600,
-  SCHEDULE: 600,
-  CAPABILITY: 600,
-  CONFLICT: 600,
-  PASSION: 600,
+  MOTIVE: 500,
+  SCHEDULE: 500,
+  CAPABILITY: 500,
+  CONFLICT: 500,
+  PASSION: 500,
 } as const;
 
 export const DEV_INPUTS = [
@@ -135,14 +135,15 @@ export const DESING_INPUTS = [
 export const DEV_TEXTAREAS = [
   {
     id: 'motive',
-    title: 'Leets에 지원한 동기와 개발 동아리 중 Leets를 선택한 이유는 무엇인지 작성해 주세요.',
+    title: '여러 동아리 중 Leets를 선택한 이유와 개발자가 되고자 다짐하게 된 계기를 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.MOTIVE,
   },
   {
-    id: 'schedule',
-    title: '지난 방학 동안 자기개발을 위해 어떠한 노력을 했는지와 이번 학기 목표나 계획을 작성해 주세요.',
+    id: 'expectation',
+    title:
+      'Leets에서 어떠한 서비스를 완성해내고 싶은지 듣고 싶어요. 그리고 내가 어떤 모습으로 Leets에서 활동하고 있을지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.SCHEDULE,
@@ -150,21 +151,23 @@ export const DEV_TEXTAREAS = [
   {
     id: 'capability',
     title:
-      '개발자로서 가장 중요하다고 생각되는 능력은 무엇이며, 해당 능력을 향상하기 위해 어떤 노력을 했는지 작성해 주세요.',
+      '개발자로서 가장 중요하다고 생각되는 능력과 본인이 그 능력을 향상하기 위해 어떤 노력을 하셨는지 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.CAPABILITY,
   },
   {
     id: 'conflict',
-    title: '갈등 상황을 해결했던 경험이나, 갈등 상황이 발생했을 때 어떻게 해결할 것인지 작성해 주세요.',
+    title:
+      '지금까지 살아오면서 갈등을 경험했을 때, 이를 어떻게 해결했는지 적어주세요. 갈등 경험이 없다면 갈등 상황이 생겼을 때 이를 어떻게 해결할 것인지 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.CONFLICT,
   },
   {
     id: 'passion',
-    title: '결과와 상관없이 열정과 최선을 다했던 경험과 그 과정에서 변화한 점과 느낀점은 무엇이었는지 작성해 주세요.',
+    title:
+      '지금까지 결과와 무관하게 끝까지 열정을 다했던 경험, 가장 애정을 갖고 후회 없이 최선을 다했다고 생각하는 경험을 말씀해 주시고 이를 통해 깨달은 점과 스스로 변화한 점을 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.PASSION,
@@ -174,14 +177,15 @@ export const DEV_TEXTAREAS = [
 export const DESIGN_TEXTAREAS = [
   {
     id: 'motive',
-    title: 'Leets에 지원한 동기와 개발 동아리 중 Leets를 선택한 이유는 무엇인지 작성해 주세요.',
+    title: '여러 동아리 중 Leets를 선택한 이유와 디자이너가 되고자 다짐하게 된 계기를 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.MOTIVE,
   },
   {
-    id: 'schedule',
-    title: '지난 방학 동안 자기개발을 위해 어떠한 노력을 했는지와 이번 학기 목표나 계획을 작성해 주세요.  ',
+    id: 'expectation',
+    title:
+      'Leets에서 어떠한 서비스를 완성해내고 싶은지 듣고 싶어요. 그리고 내가 어떤 모습으로 Leets에서 활동하고 있을지 작성해주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.SCHEDULE,
@@ -189,21 +193,23 @@ export const DESIGN_TEXTAREAS = [
   {
     id: 'capability',
     title:
-      '디자이너로서 가장 중요하다고 생각되는 능력은 무엇이며, 해당 능력을 향상하기 위해 어떤 노력을 했는지 작성해 주세요.',
+      '디자이너로서 가장 중요하다고 생각되는 능력과 본인이 그 능력을 향상하기 위해 어떤 노력을 하셨는지 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.CAPABILITY,
   },
   {
     id: 'conflict',
-    title: '갈등 상황을 해결했던 경험이나, 갈등 상황이 발생했을 때 어떻게 해결할 것인지 작성해 주세요.',
+    title:
+      '지금까지 살아오면서 갈등을 경험했을 때, 이를 어떻게 해결했는지 적어주세요. 갈등 경험이 없다면 갈등 상황이 생겼을 때 이를 어떻게 해결할 것인지 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.CONFLICT,
   },
   {
     id: 'passion',
-    title: '결과와 상관없이 열정과 최선을 다했던 경험과 그 과정에서 변화한 점과 느낀점은 무엇이었는지 작성해 주세요.',
+    title:
+      '지금까지 결과와 무관하게 끝까지 열정을 다했던 경험, 가장 애정을 갖고 후회 없이 최선을 다했다고 생각하는 경험을 말씀해 주시고 이를 통해 깨달은 점과 스스로 변화한 점을 작성해 주세요.',
     holderText: '내용을 입력해주세요.',
     required: true,
     maxLength: MAX_LENGTH.PASSION,

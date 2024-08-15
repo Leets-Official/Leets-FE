@@ -23,7 +23,7 @@ export type ApplicationTextarea = {
   motive: string;
   capability: string;
   conflict: string;
-  schedule: string;
+  expectation: string;
   passion: string;
 };
 
