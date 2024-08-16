@@ -1,5 +1,5 @@
-import { getProject as getProjectDetail, getProjectList } from '@/api';
 import Link from 'next/link';
+import { getProject as getProjectDetail, getProjectList } from '@/api';
 import Contributors from '@/components/Contributors';
 import { redirect } from 'next/navigation';
 import * as S from './styled';

@@ -50,6 +50,7 @@ const Page = () => {
           </div>
         ))}
       </S.TabContainer>
+
       <S.ProjectsContainer>
         <Projects projects={finalProjects}>
           <Projects.Title>최종 프로젝트</Projects.Title>
