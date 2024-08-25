@@ -12,6 +12,8 @@ export type GetProjectResponse = {
     name: string;
     position: string;
     githubUrl: string;
+    profileUrl: string;
+    profile: string;
   }>;
 };
 

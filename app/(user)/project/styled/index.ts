@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const PageContainer = styled.main`
@@ -54,7 +55,7 @@ export const Tab = styled.button<{ selected: boolean }>`
   transition: all 250ms;
 `;
 
-export const Underline = styled.div`
+export const Underline = styled(motion.div)`
   width: 100%;
 
   border-top: 1px solid #3685fc;

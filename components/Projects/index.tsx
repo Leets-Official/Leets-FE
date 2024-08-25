@@ -1,5 +1,8 @@
+'use client';
+
 import { ReactNode } from 'react';
 import { GetProjectListResponse } from '@/types';
+import { AnimatePresence } from 'framer-motion';
 import * as S from './Projects.styled';
 
 const Title = ({ children }: { children: ReactNode }) => {
@@ -20,13 +23,22 @@ const Projects = ({
   return (
     <>
       {children}
+
       <S.ProjectContainer>
-        {projects.map(({ portfolioId, name, mainImgName }) => (
-          <S.Project key={portfolioId} href={`/project/${portfolioId}`}>
-            <S.ImageStyle src={`/assets/image/Portfolio/${mainImgName}`} alt={name} fill />
-            <S.Blur>{name}</S.Blur>
-          </S.Project>
-        ))}
+        <AnimatePresence mode="wait">
+          {projects.map(({ portfolioId, name, mainImgName }) => (
+            <S.Project
+              initial={{ scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              whileHover={{ scale: 1.02 }}
+              key={portfolioId}
+              href={`/project/${portfolioId}`}>
+              <S.ImageStyle src={`/assets/image/Portfolio/${mainImgName}`} alt={name} fill />
+              <S.Blur>{name}</S.Blur>
+            </S.Project>
+          ))}
+        </AnimatePresence>
       </S.ProjectContainer>
     </>
   );
