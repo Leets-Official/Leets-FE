@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const ProjectContainer = styled.div`
@@ -45,7 +46,7 @@ export const Title = styled.p`
   color: white;
 `;
 
-export const Project = styled(Link)`
+export const Project = styled(motion(Link))`
   position: relative;
 
   width: 300px;

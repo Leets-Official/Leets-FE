@@ -46,7 +46,14 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
         </S.ShortInformation>
         <S.ImageContainer>
           <Link href={serviceUrl ?? '#'} target="_blank">
-            <S.MainImage src={`/assets/image/Portfolio/${mainImgName}`} alt="main-image" fill />
+            <S.MainImage
+              initial={{ y: 0 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+              src={`/assets/image/Portfolio/${mainImgName}`}
+              alt="main-image"
+              fill
+            />
           </Link>
         </S.ImageContainer>
         <S.Hr />

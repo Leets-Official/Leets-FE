@@ -25,8 +25,8 @@ export const PAGINATION = {
 
 export const APPLY_POSITION = {
   DEV: '개발',
-  UI_UX_DESIGN: 'UI/UX',
-  BI_BX_DESIGN: 'BI/BX',
+  UI_UX: 'UI/UX',
+  BI_BX: 'BI/BX',
 } as const;
 
 export const POSITION_FILTER_MAP = {

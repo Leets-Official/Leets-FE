@@ -11,6 +11,16 @@ export const Teams = styled.div`
   }
 `;
 
+export const Part = styled.div`
+  font-size: 24px;
+
+  @media screen and (max-width: 680px) {
+    font-size: 18px;
+  }
+  margin-top: 6vw;
+  margin-bottom: 3vw;
+`;
+
 export const ContributorsContainer = styled.div`
   width: 70%;
 
@@ -22,8 +32,6 @@ export const ContributorsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 240px);
   gap: 50px;
-
-  margin-top: 6vw;
 `;
 
 export const Contributor = styled(Link)`

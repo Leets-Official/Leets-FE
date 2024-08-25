@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -27,8 +28,9 @@ export const Summary = styled.p`
 
   margin-top: 35px;
 
-  @media screen and (max-width: 541px) {
+  @media screen and (max-width: 600px) {
     margin-top: 60px;
+    width: 280px;
   }
 `;
 
@@ -83,7 +85,7 @@ export const ImageContainer = styled.div`
   border-radius: 30px;
 `;
 
-export const MainImage = styled(Image)`
+export const MainImage = styled(motion(Image))`
   object-fit: cover;
   border-radius: 30px;
 

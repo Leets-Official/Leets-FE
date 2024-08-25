@@ -46,7 +46,7 @@ const Page = () => {
             <S.Tab key={title} type="button" selected={idx === generation} onClick={() => setGeneration(idx)}>
               {title}
             </S.Tab>
-            {idx === generation && <S.Underline />}
+            {idx === generation && <S.Underline layoutId="underline" />}
           </div>
         ))}
       </S.TabContainer>
@@ -55,6 +55,7 @@ const Page = () => {
         <Projects projects={finalProjects}>
           <Projects.Title>최종 프로젝트</Projects.Title>
         </Projects>
+
         <Projects projects={toryProjects}>
           <Projects.Title>토이 프로젝트</Projects.Title>
         </Projects>
