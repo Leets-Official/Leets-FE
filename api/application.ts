@@ -18,11 +18,11 @@ export const getApplicationList = ({ position }: GetApplicationRequest) => {
   }
   if (position === 'SAVE') {
     return http.get<GetApplicationResponse[]>({
-      url: `/application?status=${position.toLowerCase()}`,
+      url: `/application?status=${position}`,
     });
   }
   return http.get<GetApplicationResponse[]>({
-    url: `/application?position=${position.toLowerCase()}`,
+    url: `/application?position=${position}`,
   });
 };
 
