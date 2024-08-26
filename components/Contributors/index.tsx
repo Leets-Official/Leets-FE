@@ -17,7 +17,7 @@ const Contributors = ({
         <>
           <S.Part>디자이너</S.Part>
           <S.ContributorsWrapper>
-            {DE.map(({ name: contributor, position, githubUrl, profileUrl, profile }) => (
+            {DE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
               <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
@@ -37,7 +37,7 @@ const Contributors = ({
           <S.Part>프론트엔드</S.Part>
 
           <S.ContributorsWrapper>
-            {FE.map(({ name: contributor, position, githubUrl, profileUrl, profile }) => (
+            {FE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
               <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
@@ -56,7 +56,7 @@ const Contributors = ({
         <>
           <S.Part>백엔드</S.Part>
           <S.ContributorsWrapper>
-            {BE.map(({ name: contributor, position, githubUrl, profileUrl, profile }) => (
+            {BE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
               <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
