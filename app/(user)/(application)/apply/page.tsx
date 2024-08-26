@@ -8,7 +8,7 @@ import {
   APPLICATION,
   APPLY_POSITION,
 } from '@/constants';
-import { KeyOf, SubmitStatus } from '@/types';
+import { KeyOf, PositionType, SubmitStatus } from '@/types';
 import { postApplication, patchApplication, getUserApplication } from '@/api';
 import { useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
@@ -54,7 +54,10 @@ const Form = () => {
     };
 
     const requestApplication = submitStatus === SUBMIT_STATUS.NONE ? postApplication : patchApplication;
-    const { result } = await requestApplication(applicationData, accessToken);
+    const { result } = await requestApplication(
+      { ...applicationData, position: applicationData.position.replace('/', '_') as PositionType },
+      accessToken
+    );
 
     if (!isAxiosError(result)) {
       const successMessage =
@@ -71,7 +74,7 @@ const Form = () => {
         const { motive, capability, conflict, expectation, passion, user, position: fetchPosition } = result;
         setApplicationText({ motive, capability, conflict, expectation, passion });
         setApplicationInput({ ...user, ...result });
-        setPosition(fetchPosition);
+        setPosition(fetchPosition.replace('_', '/') as PositionType);
       }
     };
     if (submitStatus && submitStatus !== SUBMIT_STATUS.NONE) {
