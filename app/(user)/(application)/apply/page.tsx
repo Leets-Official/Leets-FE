@@ -91,7 +91,7 @@ const Form = () => {
             <S.PositionContainer>지원 직무 :</S.PositionContainer>
             <FilterDropDown
               defaultValue="선택"
-              list={Object.keys(APPLY_POSITION)}
+              list={Object.keys(APPLY_POSITION).map((value) => value.replace('_', '/'))}
               selected={position as KeyOf<typeof APPLY_POSITION>}
               setSelected={(selected) => setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)}
               customWidth={15}
