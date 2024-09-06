@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { USER, APPLICATION } from '@/constants';
 import { MouseEvent, memo } from 'react';
+import { USER, APPLICATION } from '@/constants';
 import { Schedule, Alert } from '@/utils';
 import { useDeviceChecker } from '@/hooks';
 import * as S from './ApplyButton.styled';
