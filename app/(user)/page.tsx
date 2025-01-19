@@ -5,6 +5,7 @@ import Pointer from '@/components/Common/Pointer';
 import Contact from '@/components/Contact';
 import Timeline from '@/components/Promotions/Timeline';
 import Footer from '@/components/Footer';
+import ScheduleBanner from '@/components/SchedulesBanner';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
@@ -16,7 +17,10 @@ const Page = () => {
       <Pointer />
       <main style={{ cursor: 'none', position: 'relative' }}>
         <Header />
-        <BackgroundImage />
+        <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+          <BackgroundImage />
+          <ScheduleBanner />
+        </div>
         <Promotions />
         <Timeline />
 
