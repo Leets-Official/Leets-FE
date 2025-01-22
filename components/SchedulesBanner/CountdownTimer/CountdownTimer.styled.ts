@@ -6,6 +6,22 @@ export const CountdownContainer = styled.div`
   align-items: center;
   gap: 1rem;
   color: white;
+  margin-top: 4rem;
+  @media (max-width: 1440px) {
+    margin-top: 2rem;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 768px) {
+    margin-top: 0.7rem;
+  }
+  @media (max-width: 480px) {
+    margin-top: 0.2rem;
+  }
+  @media (max-width: 320px) {
+    margin-top: 0.1rem;
+  }
 `;
 
 export const TimeBox = styled.div`

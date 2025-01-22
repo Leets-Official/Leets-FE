@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledBannerButton = styled.button`
-  padding: 1vw 1.8vw;
+  padding: 1em;
+  width: 12em;
   border-radius: 9999px;
   font-weight: 500;
-  font-size: 1vw;
   transition: all 200ms ease-in-out;
   transform: scale(1);
   border: none;
@@ -17,5 +17,28 @@ export const StyledBannerButton = styled.button`
     transform: scale(1.05);
     background: #fcb936;
     color: #ffffff;
+  }
+
+  font-size: 2.5rem;
+  @media (max-width: 1920px) {
+    font-size: 1.6rem;
+  }
+  @media (max-width: 1440px) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 1024px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 960px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 780px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
+  @media (max-width: 430px) {
+    font-size: 0.5rem;
   }
 `;
