@@ -1,8 +1,7 @@
 import React from 'react';
 import { getCurrentPhase } from '@/utils/ScheduleBanner';
-import { BannerButton } from './BannerButton';
-import { BannerInput } from './BannerInput';
 import { CountdownTimer } from './CountdownTimer';
+import SchedulesBannerClient from './ScheduelsBannerClient';
 import styles from './SchedulesBanner.module.css';
 
 export default function ScheduleBanner() {
@@ -29,10 +28,7 @@ export default function ScheduleBanner() {
         </div>
 
         <div className={`${styles.buttonWrapper} ${currentPhase.id !== 3 ? styles.buttonWrapperNotPhase3 : ''}`}>
-          {currentPhase.id !== 3 && (
-            <BannerInput type="email" placeholder="사전 알림을 받기 위한 메일을 입력해주세요" />
-          )}
-          <BannerButton>{currentPhase.buttonText}</BannerButton>
+          <SchedulesBannerClient currentPhase={currentPhase} />
         </div>
       </div>
     </div>
