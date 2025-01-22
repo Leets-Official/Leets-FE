@@ -4,7 +4,6 @@ export interface SchedulePhase {
   endDate: Date;
   title: string;
   subtitle: string;
-  showInput: boolean;
   buttonText: string;
   notice: string;
 }
