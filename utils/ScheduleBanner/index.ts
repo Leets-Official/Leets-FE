@@ -31,7 +31,7 @@ export const schedulePhases: SchedulePhase[] = [
 ];
 
 export function getCurrentPhase(): SchedulePhase | null {
-  const now = new Date('2025-02-16').toISOString();
+  const now = new Date().toISOString();
   return (
     schedulePhases.find((phase) => now >= phase.startDate.toISOString() && now <= phase.endDate.toISOString()) || null
   );
