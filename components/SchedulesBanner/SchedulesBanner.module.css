@@ -1,0 +1,113 @@
+.bannerContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  z-index: 3;
+}
+
+.bannerContent {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bannerTextBlock {
+  width: 100%;
+}
+
+.title {
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.titlePhase1 {
+  font-size: 5vw;
+}
+
+.subtitle {
+  width: 100%;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.notice {
+  font-size: 2.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fcb936;
+  padding: 0.5em 1em;
+}
+
+.phaseTitle {
+  font-size: 1.5vw;
+  margin-bottom: 5%;
+}
+
+.buttonWrapper {
+  width: 60%;
+  padding: 1vw;
+  margin-top: 3vw;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonWrapperNotPhase3 {
+  background-color: #000000;
+  border-radius: 9999px;
+  outline: none;
+  border: none;
+  justify-content: space-between;
+}
+
+@media (max-width: 1920px) {
+  .notice {
+    font-size: 1.6rem;
+    border-radius: 3.5px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .notice {
+    font-size: 1.4rem;
+    border-radius: 3px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .notice {
+    font-size: 1.2rem;
+    border-radius: 2.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notice {
+    font-size: 1rem;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notice {
+    font-size: 0.6rem;
+    border-radius: 1.2px;
+  }
+}
+
+@media (max-width: 320px) {
+  .notice {
+    font-size: 0.4rem;
+    border-radius: 1px;
+  }
+}
