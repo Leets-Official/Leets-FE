@@ -13,17 +13,17 @@ export default function ScheduleBanner() {
     <div className={styles.bannerContainer} key={currentPhase.id}>
       <div className={styles.bannerContent}>
         <div className={styles.bannerTextBlock}>
-          <p className={styles.phaseTitle}>Leets 5th Recruiting</p>
-          <p className={`${styles.title} ${currentPhase.id === 1 ? styles.titlePhase1 : ''}`}>
+          <div className={styles.phaseTitle}>Leets 5th Recruiting</div>
+          <div className={`${styles.title} ${currentPhase.id === 1 ? styles.titlePhase1 : ''}`}>
             {currentPhase.title}
             <br />
             {currentPhase.subtitle}
-          </p>
-          <p className={styles.notice}>{currentPhase.notice}</p>
+          </div>
+          <div className={styles.notice}>{currentPhase.notice}</div>
           {currentPhase.id > 1 && (
-            <p className={styles.subtitle}>
+            <div className={styles.subtitle}>
               <CountdownTimer targetDate={currentPhase.endDate} />
-            </p>
+            </div>
           )}
         </div>
 
