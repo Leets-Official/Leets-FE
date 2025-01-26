@@ -1,21 +1,36 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getCurrentPhase } from '@/utils/ScheduleBanner';
 import { CountdownTimer } from './CountdownTimer';
 import SchedulesBannerClient from './ScheduelsBannerClient';
 import styles from './SchedulesBanner.module.css';
 
-export const HeaderAnimation = {
-  ready: {
-    opacity: 0,
-  },
-  start: { opacity: 1, transition: { duration: 1, delay: 0.1 } },
-} as const;
-
 export default function ScheduleBanner() {
   const currentPhase = getCurrentPhase();
+  const [inView, setInView] = useState(false);
+
+  const handleScroll = () => {
+    const rect = document.querySelector(`.${styles.bannerContainer}`)?.getBoundingClientRect();
+    if (rect) {
+      const elementTop = rect.top;
+      const elementBottom = rect.bottom;
+      const windowHeight = window.innerHeight;
+
+      const isInView = elementTop < windowHeight * 0.5 && elementBottom > windowHeight * 0.5;
+      setInView(isInView);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   if (!currentPhase) return null;
 
@@ -23,11 +38,9 @@ export default function ScheduleBanner() {
     <motion.div
       className={styles.bannerContainer}
       key={currentPhase.id}
-      initial={{ y: -100, opacity: 0 }}
-      animate="start"
-      whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ amount: 0.5 }}
-      transition={{ duration: 1 }}>
+      initial={{ y: -50, opacity: 0 }}
+      animate={inView ? { y: 0, opacity: 1 } : { y: -50, opacity: 0 }}
+      transition={{ duration: 1, ease: 'easeOut' }}>
       <div className={styles.bannerContent}>
         <div className={styles.bannerTextBlock}>
           <div className={styles.phaseTitle}>Leets 5th Recruiting</div>
