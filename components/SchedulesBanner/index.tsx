@@ -18,7 +18,7 @@ export default function ScheduleBanner() {
       const elementBottom = rect.bottom;
       const windowHeight = window.innerHeight;
 
-      const isInView = elementTop < windowHeight * 0.5 && elementBottom > windowHeight * 0.5;
+      const isInView = elementTop < windowHeight * 0.3 && elementBottom > windowHeight * 0.3;
       setInView(isInView);
     }
   };
