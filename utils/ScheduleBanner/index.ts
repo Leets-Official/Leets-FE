@@ -4,7 +4,7 @@ export const schedulePhases: SchedulePhase[] = [
   {
     id: 1,
     startDate: getKSTDate(new Date('2025-01-01')),
-    endDate: getKSTDate(new Date('2025-02-16')),
+    endDate: getKSTDate(new Date('2025-02-12')),
     title: '함께 성장할 수 있는 건',
     subtitle: '결국 Leets이기에.',
     notice: '2025년 2월 모집예정',
@@ -12,7 +12,7 @@ export const schedulePhases: SchedulePhase[] = [
   },
   {
     id: 2,
-    startDate: getKSTDate(new Date('2025-02-17')),
+    startDate: getKSTDate(new Date('2025-02-13')),
     endDate: getKSTDate(new Date('2025-02-23')),
     title: 'Leets와 같이 성장할 여러분을 기다리고 있어요.',
     subtitle: '',
