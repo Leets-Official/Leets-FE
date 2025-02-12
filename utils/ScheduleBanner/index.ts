@@ -16,7 +16,7 @@ export const schedulePhases: SchedulePhase[] = [
     endDate: getKSTDate(new Date('2025-02-23')),
     title: 'Leets와 같이 성장할 여러분을 기다리고 있어요.',
     subtitle: '',
-    notice: '2025년 2월 24일 모집시작',
+    notice: '2025년 2월 24일 모집 시작',
     buttonText: '오픈 알림 신청하기',
   },
   {
