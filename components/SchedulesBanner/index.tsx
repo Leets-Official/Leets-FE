@@ -32,7 +32,9 @@ export default function ScheduleBanner() {
     };
   }, []);
 
-  if (!currentPhase) return null;
+  if (!currentPhase) {
+    return null;
+  }
 
   return (
     <motion.div
