@@ -20,6 +20,8 @@ export const LogoutContainer = styled.div`
 
 export const LogoutButton = styled.button`
   all: unset;
+  font-size: 14px;
+  font-weight: 600;
 
   color: #4a93ff;
   cursor: pointer;

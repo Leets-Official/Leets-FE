@@ -85,8 +85,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ChangeButton = styled.button`
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 14px !important;
+  font-weight: 600 !important;
 
   all: unset;
 

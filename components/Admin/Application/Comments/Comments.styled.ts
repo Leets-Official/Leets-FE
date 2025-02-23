@@ -14,6 +14,7 @@ export const CommentsContainer = styled.div`
 
 export const CommentContainer = styled.div`
   font-weight: 400;
+  font-size: 14px;
 
   width: 100%;
 

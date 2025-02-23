@@ -73,6 +73,7 @@ export const PositionContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 14px;
 
   margin-right: 15px;
   color: gray;
