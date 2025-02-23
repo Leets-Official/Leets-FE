@@ -46,6 +46,7 @@ export const Info = styled.div`
 
 export const Key = styled.div`
   font-weight: 600;
+  font-size: 14px;
 
   color: #000000;
   margin-bottom: 4px;
@@ -67,6 +68,7 @@ export const Value = styled.div`
 export const LongValue = styled.div`
   width: 90%;
   height: 40px;
+  font-size: 14px;
 
   display: flex;
   align-items: center;
@@ -107,6 +109,7 @@ export const SelfIntroduction = styled.div`
 
 export const Text = styled.div`
   line-height: 1.5;
+  font-size: 14px;
 
   width: 100%;
   height: 80%;
