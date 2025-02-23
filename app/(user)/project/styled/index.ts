@@ -39,6 +39,7 @@ export const TabContainer = styled.div`
 
 export const Tab = styled.button<{ selected: boolean }>`
   all: unset;
+  font-size: 16px;
 
   width: 50px;
   height: 40px;
