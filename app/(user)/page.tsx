@@ -14,7 +14,6 @@ const ApplyButton = dynamic(() => import('@/components/ApplyButton'));
 
 const Page = () => {
   const currentPhase = getCurrentPhase();
-  console.log('in page ====     ', currentPhase);
   return (
     <>
       <Pointer />

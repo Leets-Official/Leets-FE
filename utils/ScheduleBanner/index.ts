@@ -43,7 +43,7 @@ function getKSTDate(date: Date, isEndOfDay = false): Date {
 }
 
 export function getCurrentPhase(): SchedulePhase | null {
-  const now = new Date();
+  const now = getKSTDate(new Date());
   return (
     schedulePhases.find((phase) => {
       return now >= phase.startDate && now <= phase.endDate;

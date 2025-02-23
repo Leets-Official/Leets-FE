@@ -5,7 +5,6 @@ interface BackgroundImageProps {
 }
 
 const BackgroundImage = ({ id }: BackgroundImageProps) => {
-  console.log('id : ', id);
   return (
     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
       {id === 3 ? (

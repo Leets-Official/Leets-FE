@@ -36,8 +36,6 @@ export default function ScheduleBanner() {
     return null;
   }
 
-  console.log('in index =====      ', currentPhase);
-
   return (
     <motion.div
       className={styles.bannerContainer}
