@@ -1,6 +1,6 @@
 'use client';
 
-import { DEV_TEXTAREAS, DESIGN_TEXTAREAS } from '@/constants';
+import { DEV_TEXTAREAS, DESIGN_TEXTAREAS, PM_TEXTAREAS } from '@/constants';
 import { ApplicationTextareaProp } from '@/types';
 import { FormEvent } from 'react';
 import { motion } from 'framer-motion';
@@ -8,7 +8,7 @@ import * as S from './InputTextareas.styled';
 import { containerVariants, itemVariants } from '../InputTexts';
 
 const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
-  const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : DESIGN_TEXTAREAS;
+  const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : position === 'PM' ? PM_TEXTAREAS : DESIGN_TEXTAREAS;
 
   const handleOnInput = (e: FormEvent<HTMLTextAreaElement>, maxLength: number) => {
     const inputValue = e.currentTarget.value;

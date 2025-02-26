@@ -1,4 +1,4 @@
-import { DEV_INPUTS, DESING_INPUTS } from '@/constants';
+import { DEV_INPUTS, DESING_INPUTS, PM_INPUTS } from '@/constants';
 import { ApplicationInputProp } from '@/types';
 import { motion } from 'framer-motion';
 import * as S from './InputTexts.styled';
@@ -18,7 +18,7 @@ export const itemVariants = {
 };
 
 const InputTexts = ({ position, input, setInput }: ApplicationInputProp) => {
-  const LAYOUT = position === 'DEV' ? DEV_INPUTS : DESING_INPUTS;
+  const LAYOUT = position === 'DEV' ? DEV_INPUTS : position === 'PM' ? PM_INPUTS : DESING_INPUTS;
 
   return (
     <motion.div initial="hidden" animate="show" variants={containerVariants}>

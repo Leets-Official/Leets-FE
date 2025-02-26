@@ -81,7 +81,7 @@ export const LONG_INFO_LAYOUT = [
 
 export const SELF_INTRODUCTION_LAYOUT = [
   {
-    title: '여러 동아리 중 Leets를 선택한 이유와 개발자/디자이너가 되고자 다짐하게 된 계기를 작성해 주세요.',
+    title: '여러 동아리 중 Leets를 선택한 이유와 개발자/디자이너/기획자가 되고자 다짐하게 된 계기를 작성해 주세요.',
     value: 'motive',
   },
   {
@@ -91,7 +91,7 @@ export const SELF_INTRODUCTION_LAYOUT = [
   },
   {
     title:
-      '개발자/디자이너로서 가장 중요하다고 생각되는 능력과 본인이 그 능력을 향상하기 위해 어떤 노력을 하셨는지 작성해 주세요.',
+      '개발자/디자이너/기획자로서 가장 중요하다고 생각되는 능력과 본인이 그 능력을 향상하기 위해 어떤 노력을 하셨는지 작성해 주세요.',
     value: 'capability',
   },
   {
