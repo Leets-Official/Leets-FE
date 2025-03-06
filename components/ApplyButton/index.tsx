@@ -15,6 +15,7 @@ const ApplyButton = () => {
     e.preventDefault();
 
     const period = Schedule.getCurrentPeriod();
+    console.log('period', period);
     if (period === 'CLOSE') {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;
