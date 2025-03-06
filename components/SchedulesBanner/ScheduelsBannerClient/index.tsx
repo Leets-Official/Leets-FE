@@ -24,6 +24,7 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
     e.preventDefault();
 
     const period = Schedule.getCurrentPeriod();
+    console.log('period 2 in banner button', period);
     if (period === 'CLOSE') {
       Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
       return;

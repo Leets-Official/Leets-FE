@@ -13,7 +13,6 @@ const ApplyButton = () => {
 
   const clickHandler = (e: MouseEvent) => {
     e.preventDefault();
-
     const period = Schedule.getCurrentPeriod();
     console.log('period', period);
     if (period === 'CLOSE') {
