@@ -54,6 +54,12 @@
   margin-bottom: 5%;
 }
 
+.titlePhase4 {
+  font-size: 5vw;
+  font-weight: bold;
+  margin-top: 15vw;
+}
+
 .buttonWrapper {
   width: 60%;
   padding: 1vw;

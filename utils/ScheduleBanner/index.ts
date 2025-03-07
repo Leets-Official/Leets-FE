@@ -22,11 +22,20 @@ export const schedulePhases: SchedulePhase[] = [
   {
     id: 3,
     startDate: getKSTDate(new Date('2025-02-24')),
-    endDate: getKSTDate(new Date('2025-03-07'), true),
+    endDate: getKSTDate(new Date('2025-03-06'), true),
     title: 'Leets 5기 모집이 시작되었습니다!',
     subtitle: '',
     notice: '2025년 3월 7일 마감',
     buttonText: '5기 지원하러 가기',
+  },
+  {
+    id: 4,
+    startDate: getKSTDate(new Date('2025-03-07')),
+    endDate: getKSTDate(new Date('2025-03-19'), true),
+    title: 'Leets 5기 지원이 마감되었습니다.',
+    subtitle: '',
+    notice: '',
+    buttonText: '',
   },
 ];
 

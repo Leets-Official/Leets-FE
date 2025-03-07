@@ -46,22 +46,29 @@ export default function ScheduleBanner() {
       <div className={styles.bannerContent}>
         <div className={styles.bannerTextBlock}>
           <div className={styles.phaseTitle}>Leets 5th Recruiting</div>
-          <div className={`${styles.title} ${currentPhase.id === 1 ? styles.titlePhase1 : ''}`}>
+          <div
+            className={`${styles.title} ${currentPhase.id === 1 ? styles.titlePhase1 : ''} ${
+              currentPhase.id === 4 ? styles.titlePhase4 : ''
+            }`}>
             {currentPhase.title}
-            <br />
-            {currentPhase.subtitle}
+            {currentPhase.subtitle && <br />}
+            {currentPhase.subtitle && currentPhase.subtitle}
           </div>
-          <div className={styles.notice}>{currentPhase.notice}</div>
-          {currentPhase.id > 1 && (
+
+          {currentPhase.notice && <div className={styles.notice}>{currentPhase.notice}</div>}
+
+          {currentPhase.id > 1 && currentPhase.id !== 4 && (
             <div className={styles.subtitle}>
               <CountdownTimer targetDate={currentPhase.endDate} />
             </div>
           )}
         </div>
 
-        <div className={`${styles.buttonWrapper} ${currentPhase.id !== 3 ? styles.buttonWrapperNotPhase3 : ''}`}>
-          <SchedulesBannerClient currentPhase={currentPhase} />
-        </div>
+        {currentPhase.buttonText && (
+          <div className={`${styles.buttonWrapper} ${currentPhase.id !== 3 ? styles.buttonWrapperNotPhase3 : ''}`}>
+            <SchedulesBannerClient currentPhase={currentPhase} />
+          </div>
+        )}
       </div>
     </motion.div>
   );
