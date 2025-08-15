@@ -30,8 +30,9 @@ const ApplicationStatus = ({
   const router = useRouter();
   const [newPlace, setNewPlace] = useState<string>('');
 
-  const handleDate = (date: dayjs.Dayjs | null) => {
-    const formattedDate = date?.format();
+  const handleDate = (date: unknown | null) => {
+    const dayjsDate = dayjs.isDayjs(date) ? (date as dayjs.Dayjs) : null;
+    const formattedDate = dayjsDate?.format();
 
     if (formattedDate) {
       setFixedInterviewDate(Formatter.convertStringToUTC(formattedDate.toString()));
@@ -119,7 +120,7 @@ const ApplicationStatus = ({
       {fixedInterviewDate ? (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
-          value={dayjs(fixedInterviewDate)}
+          value={fixedInterviewDate ? dayjs(fixedInterviewDate) : null}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={handleDate}
         />
