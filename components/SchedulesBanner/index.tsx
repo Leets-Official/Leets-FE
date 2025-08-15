@@ -45,7 +45,7 @@ export default function ScheduleBanner() {
       transition={{ duration: 1, ease: 'easeOut' }}>
       <div className={styles.bannerContent}>
         <div className={styles.bannerTextBlock}>
-          <div className={styles.phaseTitle}>Leets 5th Recruiting</div>
+          <div className={styles.phaseTitle}>Leets 6th Recruiting</div>
           <div
             className={`${styles.title} ${currentPhase.id === 1 ? styles.titlePhase1 : ''} ${
               currentPhase.id === 4 ? styles.titlePhase4 : ''
