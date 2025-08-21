@@ -53,7 +53,7 @@ const positionData: PositionData[] = [
     skills: ['Figma', 'Adobe Tools', 'Data-Driven', 'Collaboration'],
     url: 'https://www.crayon.land/apply/fce95cf2-204c-4c42-8fe8-2c90947419cc',
     baseColor: '#2d3748',
-    hoverGradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #bd82ab 100%)',
+    hoverGradient: 'linear-gradient(135deg, #ff9a9e 0%, #ffbeea 50%, #bd82ab 100%)',
   },
   {
     id: 'planner',
