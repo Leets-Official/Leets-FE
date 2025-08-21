@@ -24,15 +24,11 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
     e.preventDefault();
 
     const period = Schedule.getCurrentPeriod();
-    if (period === 'CLOSE') {
-      Alert.error(APPLICATION.NOT_RECRUIT_PERIOD);
-      return;
-    }
     if (!isDesktop) {
       Alert.error(APPLICATION.ASK_USE_DESKTOP);
       return;
     }
-    router.push(USER.LOGIN);
+    router.push(USER.POSITION);
   };
 
   const isEmailValid = (value: string) => {

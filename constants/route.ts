@@ -8,4 +8,5 @@ export const USER = {
   LOGIN: '/login',
   APPLY: '/apply',
   CERTIFICATE: '/certificate',
+  POSITION: '/position',
 } as const;

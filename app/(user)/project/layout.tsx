@@ -9,9 +9,7 @@ export const metadata: Metadata = {
 
 const ProjectLayout = ({ children }: { children: ReactNode }) => (
   <>
-    <Nav>
-      <Apply />
-    </Nav>
+    <Nav />
     <PageContainer>
       <PageWrapper>{children}</PageWrapper>
     </PageContainer>
