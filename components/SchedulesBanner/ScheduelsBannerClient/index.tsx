@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDeviceChecker } from '@/hooks';
-import { Alert, Schedule } from '@/utils';
-import { USER, APPLICATION } from '@/constants';
+import { Alert } from '@/utils';
+import { USER } from '@/constants';
 import { postMailSubscribe } from '@/api/subscribe';
 import type { SchedulePhase } from '@/types/type/Schedule';
 import { BannerInput } from '../BannerInput';
@@ -18,16 +17,9 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const { isDesktop } = useDeviceChecker();
 
   const clickApply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    const period = Schedule.getCurrentPeriod();
-    if (!isDesktop) {
-      Alert.error(APPLICATION.ASK_USE_DESKTOP);
-      return;
-    }
     router.push(USER.POSITION);
   };
 

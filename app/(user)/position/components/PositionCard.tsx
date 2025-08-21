@@ -262,7 +262,9 @@ export default function PositionCard({ position }: PositionCardProps) {
 
   const handleClick = (e: React.MouseEvent) => {
     const period = Schedule.getCurrentPeriod();
+    console.log('Current Period:', period);
     if (period === 'CLOSE') {
+      console.log('Current Date:', Schedule.getKSTDate(new Date()));
       Alert.error('지원 기간이 아닙니다.');
       return;
     }
@@ -347,6 +349,7 @@ export default function PositionCard({ position }: PositionCardProps) {
       <ApplyButton
         onClick={() => {
           const period = Schedule.getCurrentPeriod();
+          console.log('Current Period:', period);
           if (period === 'CLOSE') {
             Alert.error('지원 기간이 아닙니다.');
             return;

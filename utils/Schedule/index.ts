@@ -11,7 +11,6 @@ export class Schedule {
   static getCurrentPeriod(date: Date = new Date()): KeyOf<typeof APPLY_PERIOD> {
     const kstDate = this.getKSTDate(date);
     const currentDate = date.getTime() === kstDate.getTime() ? date : kstDate;
-
     if (APPLY_DATE.START <= currentDate && currentDate <= APPLY_DATE.END) {
       return APPLY_PERIOD.RECRUIT;
     }
