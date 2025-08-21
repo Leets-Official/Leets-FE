@@ -9,6 +9,18 @@ const Contributors = ({
   const BE = contributors.filter(({ position }) => position === 'BACK_END');
   const DE = contributors.filter(({ position }) => position === 'UX_UI' || position === 'BX_BI');
 
+  const formatUrl = (url: string | null) => {
+    if (!url) {
+      return '#';
+    }
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+
+    return `https://${url}`;
+  };
+
   return (
     <S.ContributorsContainer>
       <S.Teams>팀원 소개</S.Teams>
@@ -18,7 +30,7 @@ const Contributors = ({
           <S.Part>디자이너</S.Part>
           <S.ContributorsWrapper>
             {DE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
+              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 
@@ -38,7 +50,7 @@ const Contributors = ({
 
           <S.ContributorsWrapper>
             {FE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
+              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 
@@ -57,7 +69,7 @@ const Contributors = ({
           <S.Part>백엔드</S.Part>
           <S.ContributorsWrapper>
             {BE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl} href={githubUrl || profileUrl} target="_blank">
+              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 
