@@ -20,7 +20,7 @@ export const ProjectContainer = styled.div`
   }
 
   @media screen and (max-width: 675px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     max-width: 300px;
   }
 
@@ -39,6 +39,10 @@ export const Title = styled.p`
 
   @media screen and (max-width: 675px) {
     max-width: 300px;
+  }
+
+  @media screen and (max-width: 680px) {
+    font-size: 18px;
   }
 
   margin: 0 auto;
@@ -62,6 +66,11 @@ export const Project = styled(motion(Link))`
   &:hover div {
     opacity: 1;
   }
+
+  @media screen and (max-width: 680px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 export const ImageStyle = styled(Image)`
@@ -69,6 +78,10 @@ export const ImageStyle = styled(Image)`
   height: 300px;
 
   border-radius: 30px;
+
+  @media screen and (max-width: 680px) {
+    border-radius: 12px;
+  }
 
   object-fit: cover;
   object-position: center;

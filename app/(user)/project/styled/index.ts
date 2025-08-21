@@ -35,6 +35,9 @@ export const TabContainer = styled.div`
   display: flex;
   gap: 30px;
   justify-content: center;
+  @media screen and (max-width: 680px) {
+    gap: 10px;
+  }
 `;
 
 export const Tab = styled.button<{ selected: boolean }>`
@@ -54,6 +57,12 @@ export const Tab = styled.button<{ selected: boolean }>`
   }
 
   transition: all 250ms;
+
+  @media screen and (max-width: 680px) {
+    font-size: 12px;
+    width: 40px;
+    height: 30px;
+  }
 `;
 
 export const Underline = styled(motion.div)`

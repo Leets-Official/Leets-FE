@@ -30,8 +30,15 @@ export const ContributorsContainer = styled.div`
 
 export const ContributorsWrapper = styled.div`
   display: grid;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, 240px);
   gap: 50px;
+
+  @media screen and (max-width: 680px) {
+    grid-template-columns: repeat(auto-fill, 100px);
+    gap: 20px;
+  }
 `;
 
 export const Contributor = styled(Link)`
@@ -48,7 +55,9 @@ export const Contributor = styled(Link)`
 
 export const ContributorImageWrapper = styled.div`
   position: relative;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: all 250ms ease;
 
   &:hover {
@@ -61,6 +70,11 @@ export const ContributorImage = styled.img`
   width: 240px;
   height: 240px;
 
+  @media screen and (max-width: 680px) {
+    width: 100px;
+    height: 100px;
+  }
+
   border-radius: 12px;
   object-position: center center;
 `;
@@ -68,4 +82,9 @@ export const ContributorImage = styled.img`
 export const NameAndPosition = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 18px;
+
+  @media screen and (max-width: 680px) {
+    font-size: 12px;
+  }
 `;
