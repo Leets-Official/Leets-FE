@@ -19,17 +19,8 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const clickApply = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const clickApply = (e: React.MouseEvent<HTMLButtonElement>, currentPhaseId: number) => {
     e.preventDefault();
-    router.push(USER.POSITION);
-  };
-
-  const isEmailValid = (value: string) => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-    return emailRegex.test(value);
-  };
-
-  const handleSubscribe = async (currentPhaseId: number) => {
     if (currentPhaseId === 3) {
       gtag.event({
         action: 'click_apply_button_banner',
@@ -38,6 +29,15 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
         value: 1,
       });
     }
+    router.push(USER.POSITION);
+  };
+
+  const isEmailValid = (value: string) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    return emailRegex.test(value);
+  };
+
+  const handleSubscribe = async () => {
     if (isSubmitting) return;
 
     if (!isEmailValid(email)) {
@@ -60,7 +60,7 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
 
   if (currentPhase.id === 3) {
     return (
-      <BannerButton onClick={clickApply} disabled={isSubmitting}>
+      <BannerButton onClick={(e) => clickApply(e, currentPhase.id)} disabled={isSubmitting}>
         {currentPhase.buttonText}
       </BannerButton>
     );
@@ -74,7 +74,7 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <BannerButton onClick={() => handleSubscribe(currentPhase.id)} disabled={email === '' || isSubmitting}>
+      <BannerButton onClick={handleSubscribe} disabled={email === '' || isSubmitting}>
         {currentPhase.buttonText}
       </BannerButton>
     </>
