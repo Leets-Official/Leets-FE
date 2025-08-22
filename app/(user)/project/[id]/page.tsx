@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import type { GetProjectResponse } from '@/types';
+import * as gtag from '@/lib/gtag';
 import * as S from './styled';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
@@ -33,6 +34,15 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
     project;
 
+  const handleProjectClick = () => {
+    gtag.event({
+      action: 'click_project',
+      category: 'Outbound Link_project',
+      label: `${mainImgName} - ${serviceUrl}`,
+      value: 10,
+    });
+  };
+
   return (
     <>
       <S.ContentContainer>
@@ -52,7 +62,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           </S.Information>
         </S.ShortInformation>
         <S.ImageContainer>
-          <Link href={serviceUrl ?? '#'} target="_blank">
+          <Link href={serviceUrl ?? '#'} target="_blank" onClick={handleProjectClick}>
             <S.MainImage
               initial={{ y: 0 }}
               animate={{ y: [0, -10, 0] }}

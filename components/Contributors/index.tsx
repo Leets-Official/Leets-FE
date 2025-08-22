@@ -1,3 +1,6 @@
+'use client';
+
+import * as gtag from '@/lib/gtag';
 import * as S from './Contributors.styled';
 
 const Contributors = ({
@@ -21,6 +24,15 @@ const Contributors = ({
     return `https://${url}`;
   };
 
+  const handleContributorsClick = (name: string, url: string | null) => {
+    gtag.event({
+      action: 'click_contributor',
+      category: 'Outbound Link_contributor',
+      label: `${name} - ${url}`,
+      value: 10,
+    });
+  };
+
   return (
     <S.ContributorsContainer>
       <S.Teams>팀원 소개</S.Teams>
@@ -30,7 +42,11 @@ const Contributors = ({
           <S.Part>디자이너</S.Part>
           <S.ContributorsWrapper>
             {DE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
+              <S.Contributor
+                key={githubUrl || profileUrl}
+                href={formatUrl(githubUrl || profileUrl)}
+                target="_blank"
+                onClick={() => handleContributorsClick(contributor, githubUrl || profileUrl)}>
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 
@@ -50,7 +66,11 @@ const Contributors = ({
 
           <S.ContributorsWrapper>
             {FE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
+              <S.Contributor
+                key={githubUrl || profileUrl}
+                href={formatUrl(githubUrl || profileUrl)}
+                target="_blank"
+                onClick={() => handleContributorsClick(contributor, githubUrl || profileUrl)}>
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 
@@ -69,7 +89,11 @@ const Contributors = ({
           <S.Part>백엔드</S.Part>
           <S.ContributorsWrapper>
             {BE.map(({ name: contributor, githubUrl, profileUrl, profile }) => (
-              <S.Contributor key={githubUrl || profileUrl} href={formatUrl(githubUrl || profileUrl)} target="_blank">
+              <S.Contributor
+                key={githubUrl || profileUrl}
+                href={formatUrl(githubUrl || profileUrl)}
+                target="_blank"
+                onClick={() => handleContributorsClick(contributor, githubUrl || profileUrl)}>
                 <S.ContributorImageWrapper>
                   {githubUrl && <S.ContributorImage src={`${githubUrl}.png`} alt="github-image" />}
 

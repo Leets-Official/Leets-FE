@@ -6,6 +6,7 @@ import { Alert } from '@/utils';
 import { USER } from '@/constants';
 import { postMailSubscribe } from '@/api/subscribe';
 import type { SchedulePhase } from '@/types/type/Schedule';
+import * as gtag from '@/lib/gtag';
 import { BannerInput } from '../BannerInput';
 import { BannerButton } from '../BannerButton';
 
@@ -28,7 +29,15 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
     return emailRegex.test(value);
   };
 
-  const handleSubscribe = async () => {
+  const handleSubscribe = async (currentPhaseId: number) => {
+    if (currentPhaseId === 3) {
+      gtag.event({
+        action: 'click_apply_button_banner',
+        category: 'banner',
+        label: 'Apply Button in Banner Clicked',
+        value: 1,
+      });
+    }
     if (isSubmitting) return;
 
     if (!isEmailValid(email)) {
@@ -65,7 +74,7 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <BannerButton onClick={handleSubscribe} disabled={email === '' || isSubmitting}>
+      <BannerButton onClick={() => handleSubscribe(currentPhase.id)} disabled={email === '' || isSubmitting}>
         {currentPhase.buttonText}
       </BannerButton>
     </>
