@@ -1,6 +1,9 @@
 import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
 import { StyledProvider, DM_SANS } from '@/lib';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import * as gtag from '@/lib/gtag';
+import { headers } from 'next/headers';
 
 export const revalidate = 60 * 5;
 
@@ -20,6 +23,9 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
+  const headerList = headers();
+  const domain = headerList.get('host');
+  const isProdDomain = domain === 'leets.land';
   return (
     <html lang="ko">
       <link
@@ -32,6 +38,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <Suspense>
           <StyledProvider>{children}</StyledProvider>
         </Suspense>
+        <GoogleAnalytics gaId={gtag.GA_TRACKING_ID as string} />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Schedule, Alert } from '@/utils';
 import styled from 'styled-components';
+import * as gtag from '@/lib/gtag';
 import { PositionData } from '../types/position';
 
 interface PositionCardProps {
@@ -262,9 +263,13 @@ export default function PositionCard({ position }: PositionCardProps) {
 
   const handleClick = (e: React.MouseEvent) => {
     const period = Schedule.getCurrentPeriod();
-    console.log('Current Period:', period);
+    gtag.event({
+      action: `click_position_card_${position.title}`,
+      category: 'Position Card for apply',
+      label: position.title,
+      value: 1,
+    });
     if (period === 'CLOSE') {
-      console.log('Current Date:', Schedule.getKSTDate(new Date()));
       Alert.error('지원 기간이 아닙니다.');
       return;
     }
@@ -349,13 +354,18 @@ export default function PositionCard({ position }: PositionCardProps) {
       <ApplyButton
         onClick={() => {
           const period = Schedule.getCurrentPeriod();
-          console.log('Current Period:', period);
           if (period === 'CLOSE') {
             Alert.error('지원 기간이 아닙니다.');
             return;
           }
 
           if (isMobile) {
+            gtag.event({
+              action: `click_position_card_${position.title}`,
+              category: 'Position Card for apply in button',
+              label: position.title,
+              value: 1,
+            });
             window.open(position.url, '_blank');
           }
         }}

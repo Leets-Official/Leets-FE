@@ -2,6 +2,7 @@
 
 import Footer from '@/components/Footer';
 import styled from 'styled-components';
+import * as gtag from '@/lib/gtag';
 
 const Container = styled.div`
   display: flex;
@@ -69,12 +70,24 @@ export default function PositionFooter() {
       <ButtonContainer>
         <Button
           onClick={() => {
+            gtag.event({
+              action: 'click_club_info_button',
+              category: 'Bottom Button_club',
+              label: '동아리 더 알아보기 Clicked',
+              value: 10,
+            });
             window.location.href = '/';
           }}>
           동아리 더 알아보기
         </Button>
         <Button
           onClick={() => {
+            gtag.event({
+              action: 'click_project_info_button',
+              category: 'Bottom Button_project',
+              label: '프로젝트 보러가기 Clicked',
+              value: 10,
+            });
             window.location.href = '/project';
           }}>
           프로젝트 보러가기

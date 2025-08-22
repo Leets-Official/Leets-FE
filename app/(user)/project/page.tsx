@@ -5,6 +5,7 @@ import { getProjectList } from '@/api';
 import { GetProjectListResponse } from '@/types';
 import Projects from '@/components/Projects';
 import { isAxiosError } from 'axios';
+import * as gtag from '@/lib/gtag';
 import * as S from './styled';
 
 const generations = [
@@ -49,7 +50,14 @@ const Page = () => {
       <S.TabContainer>
         {generations.map(({ title }, idx) => (
           <div key={title}>
-            <S.Tab key={title} type="button" selected={idx === generation} onClick={() => setGeneration(idx)}>
+            <S.Tab
+              key={title}
+              type="button"
+              selected={idx === generation}
+              onClick={() => {
+                setGeneration(idx);
+                gtag.event({ action: 'tab_click', category: 'project', label: title as string, value: 10 });
+              }}>
               {title}
             </S.Tab>
             {idx === generation && <S.Underline layoutId="underline" />}

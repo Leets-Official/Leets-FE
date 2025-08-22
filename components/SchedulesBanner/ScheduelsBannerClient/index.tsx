@@ -6,6 +6,7 @@ import { Alert } from '@/utils';
 import { USER } from '@/constants';
 import { postMailSubscribe } from '@/api/subscribe';
 import type { SchedulePhase } from '@/types/type/Schedule';
+import * as gtag from '@/lib/gtag';
 import { BannerInput } from '../BannerInput';
 import { BannerButton } from '../BannerButton';
 
@@ -18,8 +19,16 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const clickApply = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const clickApply = (e: React.MouseEvent<HTMLButtonElement>, currentPhaseId: number) => {
     e.preventDefault();
+    if (currentPhaseId === 3) {
+      gtag.event({
+        action: 'click_apply_button_banner',
+        category: 'banner',
+        label: 'Apply Button in Banner Clicked',
+        value: 1,
+      });
+    }
     router.push(USER.POSITION);
   };
 
@@ -51,7 +60,7 @@ export default function SchedulesBannerClient({ currentPhase }: SchedulesBannerC
 
   if (currentPhase.id === 3) {
     return (
-      <BannerButton onClick={clickApply} disabled={isSubmitting}>
+      <BannerButton onClick={(e) => clickApply(e, currentPhase.id)} disabled={isSubmitting}>
         {currentPhase.buttonText}
       </BannerButton>
     );
