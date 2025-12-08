@@ -17,14 +17,14 @@ const useLogin = () => {
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { id, password } = inputRef.current;
+    const { username, password } = inputRef.current;
 
-    if (!id || !password) {
+    if (!username || !password) {
       Alert.error('아이디나 비밀번호를 입력해주세요.');
       return;
     }
 
-    const { result } = await postAdminLogin({ id, password });
+    const { result } = await postAdminLogin({ username, password });
     if (isAxiosError(result)) {
       return;
     }

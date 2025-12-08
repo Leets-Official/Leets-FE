@@ -11,7 +11,7 @@ export type LoginResponse = {
 export type MeRequest = LoginResponse;
 
 export type AdminLoginRequest = {
-  id: string;
+  username: string;
   password: string;
 };
 

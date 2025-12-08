@@ -4,11 +4,11 @@ import { LoginRequest, AdminLoginRequest, LoginResponse, MeRequest, MeResponse, 
 export const postUserLogin = ({ idToken }: LoginRequest) =>
   http.post<LoginResponse>({ url: '/user/login', data: { idToken } });
 
-export const postAdminLogin = ({ id, password }: AdminLoginRequest) =>
+export const postAdminLogin = ({ username, password }: AdminLoginRequest) =>
   http.post<LoginResponse>({
     url: '/admin/login',
     data: {
-      id,
+      username,
       password,
     },
   });

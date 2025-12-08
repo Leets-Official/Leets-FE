@@ -313,6 +313,6 @@ export const PM_TEXTAREAS = [
 ] as const;
 
 export const LOGIN_DEFAULT_VALUE = {
-  id: '',
+  username: '',
   password: '',
 } as const;

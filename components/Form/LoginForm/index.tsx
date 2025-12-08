@@ -9,7 +9,12 @@ const LoginForm = () => {
   return (
     <S.Form onSubmit={onSubmitHandler}>
       <S.InputSection>
-        <S.InputStyle type="text" onChange={(e) => changeHandler(e, 'id')} placeholder="아이디" autoComplete="on" />
+        <S.InputStyle
+          type="text"
+          onChange={(e) => changeHandler(e, 'username')}
+          placeholder="사용자 이름"
+          autoComplete="on"
+        />
         <S.InputStyle
           type="password"
           onChange={(e) => changeHandler(e, 'password')}
