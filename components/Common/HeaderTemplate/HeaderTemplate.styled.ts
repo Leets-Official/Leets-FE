@@ -72,6 +72,33 @@ export const MenuItem = styled(Link)<{ $variant: 'white' | 'black' }>`
   }
 `;
 
+export const MenuButton = styled.button<{ $variant: 'white' | 'black' }>`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  color: ${({ $variant }) => ($variant === 'white' ? colors.neutral.white : colors.blue[800])};
+
+  &:hover {
+    background: ${({ $variant }) =>
+      $variant === 'white' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(53, 132, 251, 0.08)'};
+  }
+
+  @media (max-width: 541px) {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+`;
+
 export const AuthButton = styled.button<{ $variant: 'white' | 'black' }>`
   display: inline-flex;
   align-items: center;
@@ -80,7 +107,6 @@ export const AuthButton = styled.button<{ $variant: 'white' | 'black' }>`
   font-size: 12px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
   white-space: nowrap;
@@ -92,6 +118,9 @@ export const AuthButton = styled.button<{ $variant: 'white' | 'black' }>`
     $variant === 'white' ? colors.neutral.white : colors.neutral.lightBg};
   color: ${({ $variant }) =>
     $variant === 'white' ? colors.blue[800] : colors.blue[800]};
+  border: 1px solid ${({ $variant }) =>
+    $variant === 'white' ? 'rgba(255, 255, 255, 0.2)' : '#E4EEFF'};
+  box-shadow: 0 5px 35px rgba(18, 18, 18, 0.05);
 
   &:hover {
     opacity: 0.85;
