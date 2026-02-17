@@ -27,7 +27,6 @@ const TimelineSection = () => {
     <S.Section>
       <S.SectionInner>
         <motion.div
-          style={{ width: '100%', maxWidth: '480px' }}
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}

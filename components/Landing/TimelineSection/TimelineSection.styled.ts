@@ -2,13 +2,12 @@
 
 import styled from 'styled-components';
 import { colors, spacing } from '@/styles/theme';
-import { MQ } from '@/constants/viewports';
 
 export const Section = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 80px ${spacing.page.mobilePadding};
+  padding: 60px ${spacing.page.mobilePadding};
 
   @media (min-width: 820px) {
     padding: 120px 0;
@@ -20,20 +19,22 @@ export const SectionInner = styled.div`
   max-width: ${spacing.page.innerWidth};
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const Title = styled.h2`
   font-weight: 600;
   color: ${colors.blue[800]};
-  margin-bottom: 60px;
-  width: 100%;
-  max-width: 480px;
-  text-align: left;
+  font-size: 36px;
+  line-height: 43.2px;
+  letter-spacing: -0.72px;
+  margin-bottom: 36px;
 
-  ${MQ({
-    fontSize: ['32px', '48px', '72px', '80px'],
-  })}
+  @media (min-width: 820px) {
+    font-size: 80px;
+    line-height: 96px;
+    letter-spacing: -1.6px;
+    margin-bottom: 64px;
+  }
 `;
 
 export const TimelineContainer = styled.div`
@@ -43,13 +44,16 @@ export const TimelineContainer = styled.div`
   gap: 0;
   width: 100%;
   max-width: 480px;
+  margin: 0 auto;
+  padding-top: 40px;
 
+  /* Vertical line - starts ABOVE first marker, ends at last marker center */
   &::before {
     content: '';
     position: absolute;
-    left: 15px;
+    left: 9px;
     top: 0;
-    bottom: 0;
+    bottom: 37px;
     width: 3px;
     background: linear-gradient(
       180deg,
@@ -57,6 +61,15 @@ export const TimelineContainer = styled.div`
       rgba(53, 132, 251, 1) 40%
     );
     z-index: 0;
+  }
+
+  @media (min-width: 820px) {
+    padding-top: 48px;
+
+    &::before {
+      left: 16px;
+      bottom: 44px;
+    }
   }
 `;
 
@@ -75,10 +88,10 @@ export const MarkerColumn = styled.div`
 `;
 
 export const TimelineMarker = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 21px;
+  height: 21px;
   border-radius: 50%;
-  background: rgba(53, 132, 251, 0.2);
+  background: rgba(53, 132, 251, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,42 +101,64 @@ export const TimelineMarker = styled.div`
 
   &::after {
     content: '';
-    width: 16px;
-    height: 16px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     background: ${colors.blue[500]};
+  }
+
+  @media (min-width: 820px) {
+    width: 35px;
+    height: 35px;
+
+    &::after {
+      width: 15px;
+      height: 15px;
+    }
   }
 `;
 
 export const TimelineSpacer = styled.div`
   height: 64px;
   flex-shrink: 0;
+
+  @media (min-width: 820px) {
+    height: 80px;
+  }
 `;
 
 export const EntryContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-top: 4px;
+  padding-top: 0;
 `;
 
 export const EntryKey = styled.span`
   font-size: 16px;
   font-weight: 500;
   color: ${colors.blue[800]};
+  line-height: 19.2px;
+  letter-spacing: -0.32px;
 
   @media (min-width: 820px) {
     font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
   }
 `;
 
 export const EntryValue = styled.span`
   font-size: 20px;
   font-weight: 600;
-  color: ${colors.blue[900]};
+  color: ${colors.blue[800]};
+  line-height: 24px;
+  letter-spacing: -0.4px;
 
   @media (min-width: 820px) {
     font-size: 28px;
+    line-height: 33.6px;
+    letter-spacing: -0.56px;
   }
 `;
 
@@ -132,17 +167,20 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 480px;
-  margin-top: 60px;
+  margin: 40px auto 0;
 
   > button {
-    min-width: 280px;
+    width: 100%;
   }
 
-  @media (max-width: 820px) {
-    margin-top: 40px;
+  @media (min-width: 820px) {
+    margin-top: 60px;
 
     > button {
-      width: 100%;
+      width: 360px;
+      font-size: 28px;
+      line-height: 33.6px;
+      padding: 16px 36px;
     }
   }
 `;
