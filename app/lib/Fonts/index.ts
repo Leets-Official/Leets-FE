@@ -1,3 +1,2 @@
-import { DM_Sans as dmSans } from 'next/font/google';
-
-export const DM_SANS = dmSans({ weight: '500', subsets: ['latin'], display: 'swap' });
+// DM Sans 제거 — Pretendard만 사용 (CDN으로 로드)
+export const DM_SANS = { className: '' };
