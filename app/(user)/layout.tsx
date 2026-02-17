@@ -1,6 +1,6 @@
 import { ReactNode, Suspense } from 'react';
 import type { Metadata } from 'next';
-import { StyledProvider, DM_SANS } from '@/lib';
+import { StyledProvider, NextAuthProvider } from '@/lib';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import * as gtag from '@/lib/gtag';
 
@@ -30,9 +30,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         crossOrigin=""
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
       />
-      <body className={DM_SANS.className}>
+      <body>
         <Suspense>
-          <StyledProvider>{children}</StyledProvider>
+          <NextAuthProvider>
+            <StyledProvider>{children}</StyledProvider>
+          </NextAuthProvider>
         </Suspense>
         <GoogleAnalytics gaId={gtag.GA_TRACKING_ID as string} />
       </body>
