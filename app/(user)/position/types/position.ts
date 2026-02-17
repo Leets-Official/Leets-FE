@@ -3,9 +3,7 @@ export interface PositionData {
   title: string;
   description: string;
   hoverDescription: string;
-  icon: string;
+  iconSrc: string;
   skills: string[];
   url: string;
-  baseColor: string;
-  hoverGradient: string;
 }
