@@ -19,7 +19,7 @@ const PROJECT_TEXT = {
 };
 
 const STUDY_TEXT = {
-  title: `Study &\nNetworking`,
+  title: `Study&\nNetworking`,
   imageName: 'Study & Networking',
   variant: 'icon' as const,
   height: 455,

@@ -1,7 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { colors, radius, typography } from '@/styles/theme';
+import { colors, radius } from '@/styles/theme';
 
 interface CardContainerProps {
   $variant: 'icon' | 'number';
@@ -10,6 +10,7 @@ interface CardContainerProps {
 
 const smallIconStyles = css`
   flex-direction: row;
+  align-items: center;
   gap: 20px;
   padding: 20px 16px;
 `;
@@ -22,19 +23,30 @@ const smallNumberStyles = css`
 
 const largeIconStyles = css`
   flex-direction: row;
+  align-items: center;
   gap: 20px;
   padding: 30px 24px;
+
+  @media (max-width: 820px) {
+    padding: 20px 16px;
+  }
 `;
 
 const largeNumberStyles = css`
   flex-direction: column;
-  gap: 30px;
+  justify-content: space-between;
   padding: 30px;
+  min-height: 200px;
+
+  @media (max-width: 820px) {
+    min-height: auto;
+    gap: 20px;
+    padding: 20px;
+  }
 `;
 
 export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
-  align-items: flex-start;
   background: ${colors.neutral.cardBg};
   border: 1px solid ${colors.blue[500]};
   border-radius: ${radius.card};
@@ -51,12 +63,18 @@ export const CardContainer = styled.div<CardContainerProps>`
 export const CardNumber = styled.span<{ $size: 'small' | 'large' }>`
   font-weight: 300;
   color: ${colors.blue[800]};
+  letter-spacing: -1.2px;
 
   ${({ $size }) =>
     $size === 'large'
       ? css`
           font-size: 60px;
           line-height: 72px;
+
+          @media (max-width: 820px) {
+            font-size: 28px;
+            line-height: 33.6px;
+          }
         `
       : css`
           font-size: 28px;
@@ -65,18 +83,36 @@ export const CardNumber = styled.span<{ $size: 'small' | 'large' }>`
 `;
 
 export const CardIcon = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 820px) {
+    width: 64px;
+    height: 64px;
+  }
 `;
 
 export const CardText = styled.p`
-  font-size: ${typography.scale.bodyM.size};
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 16.8px;
+  letter-spacing: -0.28px;
   color: ${colors.blue[800]};
   white-space: pre-line;
+
+  @media (min-width: 820px) {
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: -0.32px;
+  }
 `;
