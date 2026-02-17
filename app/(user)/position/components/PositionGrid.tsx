@@ -15,7 +15,7 @@ const GridContainer = styled.div`
 
   @media (max-width: 820px) {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 `;
 
@@ -29,6 +29,13 @@ const positionData: PositionData[] = [
     iconSrc: '/assets/image/Icons/position-fe.png',
     skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
     url: 'https://www.crayon.land/apply/7d6d4dc8-7ac5-4497-8fdc-c219c3f65a70',
+    colorTheme: {
+      gradient: 'radial-gradient(ellipse at 50% 105%, #054FFF 0%, #3584FB 100%)',
+      hoverShadow: '0 4px 6px rgba(31, 79, 150, 0.4)',
+      mobileChipBg: 'rgba(53, 132, 251, 0.12)',
+      mobileChipBorder: '#3584FB',
+      mobileChipText: '#2A69C8',
+    },
   },
   {
     id: 'backend',
@@ -39,6 +46,13 @@ const positionData: PositionData[] = [
     iconSrc: '/assets/image/Icons/position-be.png',
     skills: ['Java', 'Spring Boot', 'MySQL', 'AWS'],
     url: 'https://www.crayon.land/apply/a6d03149-4a57-496a-b5f2-fb682df1be32',
+    colorTheme: {
+      gradient: 'radial-gradient(ellipse at 50% 105%, #00E192 0%, #10D9B2 100%)',
+      hoverShadow: '0 4px 6px rgba(0, 178, 138, 0.4)',
+      mobileChipBg: 'rgba(16, 217, 178, 0.12)',
+      mobileChipBorder: '#00B28A',
+      mobileChipText: '#00B28A',
+    },
   },
   {
     id: 'designer',
@@ -49,6 +63,13 @@ const positionData: PositionData[] = [
     iconSrc: '/assets/image/Icons/position-design.png',
     skills: ['Figma', 'Adobe Tools', 'Data-Driven', 'Collaboration'],
     url: 'https://www.crayon.land/apply/fce95cf2-204c-4c42-8fe8-2c90947419cc',
+    colorTheme: {
+      gradient: 'radial-gradient(ellipse at 50% 105%, #FF2BE8 0%, #FD8AF1 100%)',
+      hoverShadow: '0 4px 6px rgba(245, 74, 239, 0.4)',
+      mobileChipBg: 'rgba(253, 138, 241, 0.12)',
+      mobileChipBorder: '#F54AEF',
+      mobileChipText: '#F54AEF',
+    },
   },
   {
     id: 'planner',
@@ -59,6 +80,13 @@ const positionData: PositionData[] = [
     iconSrc: '/assets/image/Icons/position-pm.png',
     skills: ['User Research', 'Pretotyping', 'Collaboration', 'Product Metrics'],
     url: 'https://www.crayon.land/apply/48736325-828b-4ec6-a1ef-7aa6db97713e',
+    colorTheme: {
+      gradient: 'radial-gradient(ellipse at 50% 105%, #5C16F4 0%, #8658EA 100%)',
+      hoverShadow: '0 4px 6px rgba(92, 22, 244, 0.4)',
+      mobileChipBg: 'rgba(151, 71, 255, 0.12)',
+      mobileChipBorder: '#9747FF',
+      mobileChipText: '#7F2AEE',
+    },
   },
 ];
 
