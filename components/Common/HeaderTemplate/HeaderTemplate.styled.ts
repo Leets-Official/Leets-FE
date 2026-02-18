@@ -140,6 +140,21 @@ export const AuthButton = styled.button<{ $variant: 'white' | 'black' }>`
   }
 `;
 
+export const UserName = styled.span<{ $variant: 'white' | 'black' }>`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.8px;
+  letter-spacing: -0.02em;
+  padding: 8px 12px;
+  color: ${({ $variant }) => ($variant === 'white' ? colors.neutral.white : colors.blue[800])};
+
+  @media (max-width: 541px) {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+`;
+
 export const GoogleIcon = styled.img`
   width: 16px;
   height: 16px;

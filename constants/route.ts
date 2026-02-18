@@ -10,3 +10,10 @@ export const USER = {
   CERTIFICATE: '/certificate',
   POSITION: '/position',
 } as const;
+
+export const MANAGE = {
+  HOME: '/manage',
+  PROFILE: '/manage/profile',
+  PROJECT: '/manage/project',
+  PORTFOLIO: '/manage/portfolio',
+} as const;
