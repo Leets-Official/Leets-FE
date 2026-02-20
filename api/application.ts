@@ -102,3 +102,15 @@ export const patchInterviewInformation = ({
       place,
     },
   });
+
+export const patchInterviewAttendance = (
+  hasInterview: 'CHECK' | 'UNCHECK',
+  accessToken: string,
+) =>
+  http.patch<GetApplicationDetaiResponse>({
+    url: '/application/interview',
+    data: { hasInterview },
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
