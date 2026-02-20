@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { NextAuthProvider } from '@/lib';
-import Nav, { Logout } from '@/components/Common/Nav';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
 
 export const metadata: Metadata = {
   title: { default: '', template: '%s · Leets' },
@@ -15,9 +15,7 @@ const ApplicationLayout = ({ children }: { children: ReactNode }) => {
   return (
     <NextAuthProvider>
       <main style={{ width: '100%', height: '100%' }}>
-        <Nav darkMode={false}>
-          <Logout />
-        </Nav>
+        <HeaderTemplate variant="black" />
         {children}
       </main>
     </NextAuthProvider>

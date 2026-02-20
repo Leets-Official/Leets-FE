@@ -13,6 +13,6 @@ export interface PositionData {
   hoverDescription: string;
   iconSrc: string;
   skills: string[];
-  url: string;
+  applyPosition: string;
   colorTheme: PositionColorTheme;
 }

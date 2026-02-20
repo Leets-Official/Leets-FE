@@ -2,8 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { colors } from '@/styles/theme';
+import { USER } from '@/constants';
 import { Schedule, Alert } from '@/utils';
 import * as gtag from '@/lib/gtag';
 import { PositionData } from '../types/position';
@@ -277,6 +279,8 @@ interface PositionCardProps {
 }
 
 export default function PositionCard({ position }: PositionCardProps) {
+  const router = useRouter();
+
   const handleApply = () => {
     const period = Schedule.getCurrentPeriod();
     gtag.event({
@@ -289,7 +293,8 @@ export default function PositionCard({ position }: PositionCardProps) {
       Alert.error('지원 기간이 아닙니다.');
       return;
     }
-    window.open(position.url, '_blank');
+    sessionStorage.setItem('selectedApplyPosition', position.applyPosition);
+    router.push(USER.APPLY);
   };
 
   const { colorTheme } = position;

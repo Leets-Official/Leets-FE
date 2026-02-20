@@ -28,7 +28,7 @@ const positionData: PositionData[] = [
       '동아리 프로젝트를 통해 디자인과 기획이 실현되는 과정을 끝까지 경험하며, 실무에 가까운 협업 역량을 키울 수 있습니다.',
     iconSrc: '/assets/image/Icons/position-fe.png',
     skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
-    url: 'https://www.crayon.land/apply/7d6d4dc8-7ac5-4497-8fdc-c219c3f65a70',
+    applyPosition: 'FRONTEND',
     colorTheme: {
       gradient: 'radial-gradient(ellipse at 50% 105%, #054FFF 0%, #3584FB 100%)',
       hoverShadow: '0 4px 6px rgba(31, 79, 150, 0.4)',
@@ -45,7 +45,7 @@ const positionData: PositionData[] = [
       '실제 유저가 사용하는 서비스를 운영하며, 성능·보안·확장성 같은 백엔드의 진짜 과제를 직접 다뤄볼 수 있습니다.',
     iconSrc: '/assets/image/Icons/position-be.png',
     skills: ['Java', 'Spring Boot', 'MySQL', 'AWS'],
-    url: 'https://www.crayon.land/apply/a6d03149-4a57-496a-b5f2-fb682df1be32',
+    applyPosition: 'BACKEND',
     colorTheme: {
       gradient: 'radial-gradient(ellipse at 50% 105%, #00E192 0%, #10D9B2 100%)',
       hoverShadow: '0 4px 6px rgba(0, 178, 138, 0.4)',
@@ -62,7 +62,7 @@ const positionData: PositionData[] = [
       '단순 시안이 아닌, 실제 배포되는 서비스 디자인을 경험하고 데이터 기반으로 개선하는 과정까지 함께할 수 있습니다.',
     iconSrc: '/assets/image/Icons/position-design.png',
     skills: ['Figma', 'Adobe Tools', 'Data-Driven', 'Collaboration'],
-    url: 'https://www.crayon.land/apply/fce95cf2-204c-4c42-8fe8-2c90947419cc',
+    applyPosition: 'UX_UI',
     colorTheme: {
       gradient: 'radial-gradient(ellipse at 50% 105%, #FF2BE8 0%, #FD8AF1 100%)',
       hoverShadow: '0 4px 6px rgba(245, 74, 239, 0.4)',
@@ -79,7 +79,7 @@ const positionData: PositionData[] = [
       '아이디어 발굴에서 지표 분석까지, 서비스가 완성되는 모든 과정을 경험하며 PM으로서의 시야를 넓힐 수 있습니다.',
     iconSrc: '/assets/image/Icons/position-pm.png',
     skills: ['User Research', 'Pretotyping', 'Collaboration', 'Product Metrics'],
-    url: 'https://www.crayon.land/apply/48736325-828b-4ec6-a1ef-7aa6db97713e',
+    applyPosition: 'PM',
     colorTheme: {
       gradient: 'radial-gradient(ellipse at 50% 105%, #5C16F4 0%, #8658EA 100%)',
       hoverShadow: '0 4px 6px rgba(92, 22, 244, 0.4)',
