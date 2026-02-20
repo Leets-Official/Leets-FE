@@ -19,7 +19,7 @@ export const APPLICATION_INPUT_DEFAULT = {
   major: '',
   algorithm: '',
   project: '',
-  career: '',
+
   portfolio: '',
   interviewDay: '',
   interviewTime: '',
@@ -31,5 +31,5 @@ export const APPLICATION_DEFAULT = {
   user: {
     phone: '',
   },
-  position: 'DEV' as 'DEV' | 'DESIGN',
+  position: 'FRONTEND' as 'FRONTEND' | 'BACKEND' | 'BX_BI' | 'UX_UI' | 'PM',
 };

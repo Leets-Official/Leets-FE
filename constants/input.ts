@@ -2,7 +2,7 @@ const MAX_LENGTH = {
   NAME: 5,
   GRADE: 1,
   MAJOR: 10,
-  CAREER: 10,
+
   ALGORITHM: 50,
   PROJECT: 50,
   PORTFOLIO: 50,
@@ -27,13 +27,6 @@ export const DEV_INPUTS = [
     maxLength: MAX_LENGTH.GRADE,
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
-  {
-    id: 'career',
-    title: '희망 직무',
-    holderText: '희망 직무를 입력하세요. (ex 백엔드, 프론트엔드, 미정)',
-    required: false,
-    maxLength: MAX_LENGTH.CAREER,
-  },
   {
     id: 'algorithm',
     title: '알고리즘',
@@ -89,13 +82,6 @@ export const DESING_INPUTS = [
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
   {
-    id: 'career',
-    title: '희망 직무',
-    holderText: '희망 직무를 입력하세요. (ex UI/UX 디자이너)',
-    required: false,
-    maxLength: MAX_LENGTH.CAREER,
-  },
-  {
     id: 'project',
     title: '프로젝트',
     holderText: '프로젝트 경험을 입력하세요. (ex UI/UX 디자인 제작, 디자인시스템 제작 등)',
@@ -142,13 +128,6 @@ export const PM_INPUTS = [
     maxLength: MAX_LENGTH.GRADE,
   },
   { id: 'major', title: '학과', holderText: '학과를 입력하세요.', required: true, maxLength: MAX_LENGTH.MAJOR },
-  {
-    id: 'career',
-    title: '희망 직무',
-    holderText: '희망 직무를 입력하세요. (ex 앱/웹)',
-    required: false,
-    maxLength: MAX_LENGTH.CAREER,
-  },
   {
     id: 'project',
     title: '프로젝트',

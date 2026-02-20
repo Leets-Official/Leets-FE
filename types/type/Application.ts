@@ -13,7 +13,6 @@ export type ApplicationInput = ApplicationLink & {
   major: string;
   algorithm: string;
   project: string;
-  career: string;
   phone: string;
   interviewDay: string;
   interviewTime: string;
