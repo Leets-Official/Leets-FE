@@ -1,16 +1,20 @@
 'use client';
 
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { APPLY_PERIOD, USER } from '@/constants';
 import { ReactNode, memo, MouseEvent } from 'react';
 import { Alert, Schedule } from '@/utils';
 import { useRouter } from 'next/navigation';
+import LogoBlack from '@/public/assets/image/Logo/Logo_black.svg';
+import LogoWhite from '@/public/assets/image/Logo/Logo_white.svg';
 import * as S from './Nav.styled';
 
 const Nav = ({ children, darkMode = true }: { children?: ReactNode; darkMode?: boolean }) => {
   return (
     <S.NavContainer $darkMode={darkMode}>
-      <S.LinkContainer href={USER.HOME}>Leets</S.LinkContainer>
+      <S.LinkContainer href={USER.HOME}>
+        {darkMode ? <LogoWhite /> : <LogoBlack />}
+      </S.LinkContainer>
       {children}
     </S.NavContainer>
   );
@@ -20,21 +24,13 @@ export const Logout = () => {
   const { data: session } = useSession();
   const name = session?.user?.name;
 
-  const handleLogout = () => {
-    signOut({ callbackUrl: USER.HOME });
-  };
-
   return (
-    <S.WelcomeContainer name={name as string}>
+    <S.NavLinksContainer>
+      <S.NavLink href="/project">프로젝트</S.NavLink>
       {name && (
-        <>
-          <S.WelcomeStyle>{`${name}님 `}환영해요!</S.WelcomeStyle>
-          <S.LogoutButton type="button" onClick={handleLogout} name={name}>
-            로그아웃
-          </S.LogoutButton>
-        </>
+        <S.NavLink href="/manage">{name}님</S.NavLink>
       )}
-    </S.WelcomeContainer>
+    </S.NavLinksContainer>
   );
 };
 
