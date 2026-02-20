@@ -1,7 +1,7 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
-import { USER, MANAGE } from '@/constants';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { USER } from '@/constants';
 import * as S from './HeaderTemplate.styled';
 
 interface HeaderTemplateProps {
@@ -26,9 +26,9 @@ const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
             프로젝트
           </S.MenuItem>
           {isLoggedIn ? (
-            <S.MenuItem href={MANAGE.HOME} $variant={variant}>
-              {sessionData.data?.user?.name}님
-            </S.MenuItem>
+            <S.MenuButton $variant={variant} onClick={() => signOut({ callbackUrl: USER.HOME })}>
+              로그아웃
+            </S.MenuButton>
           ) : (
             <S.AuthButton $variant={variant} onClick={() => signIn('google', { callbackUrl: USER.HOME })}>
               <S.GoogleIcon src="/assets/image/googleLogo.png" alt="" />

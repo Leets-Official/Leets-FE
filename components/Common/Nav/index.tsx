@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { APPLY_PERIOD, USER } from '@/constants';
 import { ReactNode, memo, MouseEvent } from 'react';
 import { Alert, Schedule } from '@/utils';
@@ -24,11 +24,17 @@ export const Logout = () => {
   const { data: session } = useSession();
   const name = session?.user?.name;
 
+  const handleLogout = () => {
+    signOut({ callbackUrl: USER.HOME });
+  };
+
   return (
     <S.NavLinksContainer>
       <S.NavLink href="/project">프로젝트</S.NavLink>
       {name && (
-        <S.NavLink href="/manage">{name}님</S.NavLink>
+        <S.LogoutButton type="button" onClick={handleLogout} name={name}>
+          로그아웃
+        </S.LogoutButton>
       )}
     </S.NavLinksContainer>
   );
