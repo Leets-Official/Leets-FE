@@ -209,16 +209,16 @@ const SegmentItem = styled.button<{ $active: boolean }>`
 
 const SubmitButton = styled.button`
   width: 300px;
-  height: 56px;
+  height: 66px;
   border: none;
   border-radius: 99px;
   background: ${colors.blue[500]};
   color: ${colors.neutral.white};
   font-family: ${typography.fontFamily};
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 600;
-  line-height: 24px;
-  letter-spacing: -0.4px;
+  line-height: 33.6px;
+  letter-spacing: -0.56px;
   cursor: pointer;
   align-self: center;
   transition: opacity 0.2s ease;
@@ -228,7 +228,7 @@ const SubmitButton = styled.button`
   }
 
   @media (max-width: 820px) {
-    width: 320px;
+    width: 100%;
     height: 48px;
     font-size: 20px;
     line-height: 24px;
