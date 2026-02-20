@@ -420,7 +420,7 @@ const ApplyForm = () => {
                 <S.ConfirmContent>
                   <S.ConfirmTitle>{'지원서 제출 이후에는 수정할 수 없습니다.\n제출하시겠습니까?'}</S.ConfirmTitle>
                   <S.ConfirmDescription>
-                    하단의 이전 버튼 또는 위에 스테퍼를 클릭해서 지원서 작성란으로 돌아갈 수 있습니다.
+                    하단의 이전 버튼 또는 상단의 스테퍼를 클릭하여 지원서 작성란으로 돌아갈 수 있습니다.
                   </S.ConfirmDescription>
                   <S.ConfirmCheckboxContainer>
                     <S.ConfirmCheckbox
