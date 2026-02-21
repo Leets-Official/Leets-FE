@@ -46,7 +46,6 @@ export type InterviewStatusType = 'CHECK' | 'UNCHECK' | 'PENDING';
 export type GetApplicationResponse = {
   id: number;
   name: string;
-  gpa: string;
   grade: string;
   position: string;
   career: string;

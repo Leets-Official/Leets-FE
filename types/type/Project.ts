@@ -1,8 +1,11 @@
 export type GetProjectResponse = {
-  portfolioId: string;
+  portfolioId: number;
+  generation: number;
+  name: string;
   summary: string;
   description: string;
   type: string;
+  scope: string;
   startDate: string;
   endDate: string;
   logoImgName: string;
@@ -18,7 +21,7 @@ export type GetProjectResponse = {
 };
 
 export type GetProjectRequest = {
-  portfolioId: string;
+  portfolioId: number;
 };
 
 export type GetProjectListResponse = Array<

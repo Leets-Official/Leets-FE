@@ -6,9 +6,12 @@ export type LoginRequest = {
 
 export type LoginResponse = {
   accessToken: string;
+  refreshToken: string;
 };
 
-export type MeRequest = LoginResponse;
+export type MeRequest = {
+  accessToken: string;
+};
 
 export type AdminLoginRequest = {
   username: string;
@@ -17,6 +20,11 @@ export type AdminLoginRequest = {
 
 export type MeResponse = {
   uid: string;
+  sid: string;
+  name: string;
+  phone: string;
+  email: string;
+  major: string;
   submitStatus: SubmitStatus;
 };
 
