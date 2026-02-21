@@ -140,7 +140,13 @@ const PortfolioPage = () => {
       <TitleRow>
         <BackButton onClick={() => router.back()}>
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M17.5 21L10.5 14L17.5 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M17.5 21L10.5 14L17.5 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </BackButton>
         <Title>참여 프로젝트</Title>
@@ -148,11 +154,7 @@ const PortfolioPage = () => {
       <Grid>
         {allProjects.map(({ portfolioId, name, mainImgName }) => (
           <ProjectCard key={portfolioId} href={`/project/${portfolioId}`}>
-            <ProjectImage
-              src={`/assets/image/Portfolio/${mainImgName}`}
-              alt={name}
-              fill
-            />
+            <ProjectImage src={`/assets/image/Portfolio/${mainImgName}`} alt={name} fill />
             <ProjectOverlay>{name}</ProjectOverlay>
           </ProjectCard>
         ))}

@@ -87,12 +87,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
           {/* Mobile: favicon + title row */}
           <S.MobileTitleRow>
             {logoImgName && (
-              <S.Favicon
-                src={`/assets/image/Portfolio/${logoImgName}`}
-                alt="logo"
-                width={48}
-                height={48}
-              />
+              <S.Favicon src={`/assets/image/Portfolio/${logoImgName}`} alt="logo" width={48} height={48} />
             )}
             <S.MobileTitle>{summary?.split('\n')[0] || 'Project Name'}</S.MobileTitle>
           </S.MobileTitleRow>
@@ -107,11 +102,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
               </S.ChipTag>
             )}
             {serviceUrl && (
-              <S.ServiceLink
-                href={serviceUrl}
-                target="_blank"
-                onClick={handleProjectClick}
-              >
+              <S.ServiceLink href={serviceUrl} target="_blank" onClick={handleProjectClick}>
                 서비스로 이동 →
               </S.ServiceLink>
             )}
@@ -120,11 +111,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
 
         {mainImgName && (
           <S.HeroThumbnail>
-            <S.ThumbnailImage
-              src={`/assets/image/Portfolio/${mainImgName}`}
-              alt="thumbnail"
-              fill
-            />
+            <S.ThumbnailImage src={`/assets/image/Portfolio/${mainImgName}`} alt="thumbnail" fill />
           </S.HeroThumbnail>
         )}
       </S.HeroSection>
@@ -146,16 +133,9 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
               key={githubUrl || profileUrl || name}
               href={formatUrl(githubUrl || profileUrl)}
               target="_blank"
-              onClick={() => handleContributorsClick(name, githubUrl || profileUrl)}
-            >
+              onClick={() => handleContributorsClick(name, githubUrl || profileUrl)}>
               <S.ProfileImage
-                src={
-                  githubUrl
-                    ? `${githubUrl}.png`
-                    : profileUrl
-                      ? profile
-                      : '/assets/image/default-profile.png'
-                }
+                src={githubUrl ? `${githubUrl}.png` : profileUrl ? profile : '/assets/image/default-profile.png'}
                 alt={name}
               />
               <S.ProfileInfo>

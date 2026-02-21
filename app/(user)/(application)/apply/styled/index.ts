@@ -208,8 +208,7 @@ export const StepLabelPC = styled.span<{ $status: 'completed' | 'current' | 'upc
   font-weight: 600;
   letter-spacing: -0.28px;
   line-height: 120%;
-  color: ${({ $status }) =>
-    $status === 'upcoming' ? 'rgba(53, 132, 251, 0.2)' : colors.blue[500]};
+  color: ${({ $status }) => ($status === 'upcoming' ? 'rgba(53, 132, 251, 0.2)' : colors.blue[500])};
 `;
 
 /* ========== Stepper (Mobile - segmented bar) ========== */

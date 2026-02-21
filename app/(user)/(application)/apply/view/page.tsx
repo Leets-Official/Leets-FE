@@ -186,7 +186,7 @@ const FieldValueBox = styled.div`
   letter-spacing: -0.3px;
   line-height: 22px;
   padding: 12px 16px;
-  background: #E4EEFF;
+  background: #e4eeff;
   border: 1px solid rgba(31, 79, 150, 0.2);
   border-radius: ${radius.input};
   min-height: 48px;
@@ -209,7 +209,7 @@ const TextareaValueBox = styled.div`
   line-height: 24px;
   white-space: pre-wrap;
   padding: 16px;
-  background: #E4EEFF;
+  background: #e4eeff;
   border: 1px solid rgba(31, 79, 150, 0.2);
   border-radius: ${radius.input};
   min-height: 133px;
@@ -219,7 +219,6 @@ const TextareaValueBox = styled.div`
     padding: 14px;
   }
 `;
-
 
 /* ========== SVG ========== */
 
@@ -270,9 +269,7 @@ const ViewPage = () => {
   }, [accessToken, submitStatus, isMock]);
 
   const mockData = isMock ? MOCK_APPLICATION : null;
-  const position = isMock
-    ? (mockData?.position || 'FRONTEND')
-    : (application?.position?.replace('_', '/') || 'FRONTEND');
+  const position = isMock ? mockData?.position || 'FRONTEND' : application?.position?.replace('_', '/') || 'FRONTEND';
 
   const inputLayout = useMemo(() => {
     if (position === 'FRONTEND' || position === 'BACKEND') return DEV_INPUTS;

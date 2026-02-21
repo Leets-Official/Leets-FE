@@ -452,7 +452,13 @@ const ProjectManagePage = () => {
       <TitleRow>
         <BackButton onClick={() => router.back()}>
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M17.5 21L10.5 14L17.5 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M17.5 21L10.5 14L17.5 7"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </BackButton>
         <Title>프로젝트 관리</Title>
@@ -462,15 +468,23 @@ const ProjectManagePage = () => {
           <FieldLabel>구분</FieldLabel>
           <CategoryRow>
             <Select value={generation} onChange={(e) => setGeneration(e.target.value)} style={{ minWidth: 120 }}>
-              <option value="" disabled>기수</option>
+              <option value="" disabled>
+                기수
+              </option>
               {GENERATIONS.map(({ value, label }) => (
-                <option key={value} value={value}>{label}</option>
+                <option key={value} value={value}>
+                  {label}
+                </option>
               ))}
             </Select>
             <Select value={projectType} onChange={(e) => setProjectType(e.target.value)} style={{ minWidth: 160 }}>
-              <option value="" disabled>규모(최종/토이)</option>
+              <option value="" disabled>
+                규모(최종/토이)
+              </option>
               {PROJECT_TYPES.map(({ value, label }) => (
-                <option key={value} value={value}>{label}</option>
+                <option key={value} value={value}>
+                  {label}
+                </option>
               ))}
             </Select>
           </CategoryRow>
@@ -528,7 +542,9 @@ const ProjectManagePage = () => {
               }}
               placeholder="프로젝트에 대해 자세히 설명해주세요"
             />
-            <CharCount>{description.length}/{MAX_DESCRIPTION}</CharCount>
+            <CharCount>
+              {description.length}/{MAX_DESCRIPTION}
+            </CharCount>
           </TextareaWrapper>
         </FieldGroup>
 
@@ -537,14 +553,19 @@ const ProjectManagePage = () => {
           <ThumbnailUpload
             $hasImage={!!imagePreview}
             onClick={handleImageClick}
-            style={imagePreview ? { backgroundImage: `url(${imagePreview})` } : {}}
-          >
+            style={imagePreview ? { backgroundImage: `url(${imagePreview})` } : {}}>
             {!imagePreview && (
               <>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                   <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="2" />
                   <circle cx="17" cy="21" r="3" stroke="currentColor" strokeWidth="2" />
-                  <path d="M8 32L16 24L22 30L30 22L40 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M8 32L16 24L22 30L30 22L40 32"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
                 <ThumbnailHint>.png 형식의 이미지 파일을 첨부해주세요.</ThumbnailHint>
               </>
@@ -574,7 +595,9 @@ const ProjectManagePage = () => {
                   }
                 }}
               />
-              <AddButton type="button" onClick={addMember}>+</AddButton>
+              <AddButton type="button" onClick={addMember}>
+                +
+              </AddButton>
             </MemberRow>
             {members.length > 0 && (
               <ChipTagRow>

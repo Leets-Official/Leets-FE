@@ -68,7 +68,9 @@ export default function PositionFooter() {
   return (
     <Container>
       <MoreText>
-        {'고민중이신가요?\nLeets에서는 다양한 분야의 사람들과 함께 성장할 수 있는 기회를 제공합니다. 지금 지원하고 새로운 도전을 시작해보세요!'}
+        {
+          '고민중이신가요?\nLeets에서는 다양한 분야의 사람들과 함께 성장할 수 있는 기회를 제공합니다. 지금 지원하고 새로운 도전을 시작해보세요!'
+        }
       </MoreText>
 
       <ButtonContainer>

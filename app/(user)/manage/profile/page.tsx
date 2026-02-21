@@ -293,7 +293,13 @@ const ProfilePage = () => {
       <TitleRow>
         <BackButton onClick={() => router.back()}>
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M17.5 21L10.5 14L17.5 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M17.5 21L10.5 14L17.5 7"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </BackButton>
         <Title>프로필 관리</Title>
@@ -301,15 +307,19 @@ const ProfilePage = () => {
       <Card>
         <FieldGroup>
           <FieldLabel>프로필 사진</FieldLabel>
-          <FieldHint>
-            {'사진 추가를 권장합니다\n사진은 프로젝트 하단 팀원 부분에 표시됩니다'}
-          </FieldHint>
+          <FieldHint>{'사진 추가를 권장합니다\n사진은 프로젝트 하단 팀원 부분에 표시됩니다'}</FieldHint>
           <AvatarPlaceholder $src={previewUrl} onClick={handleAvatarClick}>
             {!previewUrl && (
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                 <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="2" />
                 <circle cx="17" cy="21" r="3" stroke="currentColor" strokeWidth="2" />
-                <path d="M8 32L16 24L22 30L30 22L40 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M8 32L16 24L22 30L30 22L40 32"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             )}
           </AvatarPlaceholder>
@@ -324,22 +334,14 @@ const ProfilePage = () => {
 
         <FieldGroup>
           <FieldLabel>이름</FieldLabel>
-          <InputField
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="이름을 입력해주세요"
-          />
+          <InputField value={name} onChange={(e) => setName(e.target.value)} placeholder="이름을 입력해주세요" />
         </FieldGroup>
 
         <FieldGroup>
           <FieldLabel>파트</FieldLabel>
           <SegmentContainer>
             {POSITIONS.map((pos) => (
-              <SegmentItem
-                key={pos}
-                $active={position === pos}
-                onClick={() => setPosition(pos)}
-              >
+              <SegmentItem key={pos} $active={position === pos} onClick={() => setPosition(pos)}>
                 {POSITION_LABELS[pos]}
               </SegmentItem>
             ))}
@@ -348,12 +350,7 @@ const ProfilePage = () => {
 
         <FieldGroup>
           <FieldLabel>링크</FieldLabel>
-          <InputField
-            type="url"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            placeholder="https://"
-          />
+          <InputField type="url" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://" />
           <HelpText>깃허브 또는 개인 포트폴리오 링크를 첨부해주세요.</HelpText>
         </FieldGroup>
       </Card>
