@@ -4,7 +4,7 @@ export const schedulePhases: SchedulePhase[] = [
   {
     id: 1,
     startDate: getKSTDate(new Date('2026-02-19')),
-    endDate: getKSTDate(new Date('2026-02-20'), true),
+    endDate: getKSTDate(new Date('2026-02-25'), true),
     title: 'Leets와 함께 도전할 당신을\n기다리고 있어요.',
     subtitle: '',
     notice: '2026년 2월 26일 모집 시작',
@@ -21,7 +21,7 @@ export const schedulePhases: SchedulePhase[] = [
   },
   {
     id: 3,
-    startDate: getKSTDate(new Date('2026-02-21')),
+    startDate: getKSTDate(new Date('2026-03-09')),
     endDate: getKSTDate(new Date('2026-03-15'), true),
     title: 'Leets 7기 지원이 마감되었습니다.',
     subtitle: '',
