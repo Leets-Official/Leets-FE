@@ -14,7 +14,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { result } = await getProjectDetail({ portfolioId: id });
+      const { result } = await getProjectDetail({ portfolioId: Number(id) });
       if (!isAxiosError(result)) {
         setProject(result);
         return;
@@ -29,7 +29,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
     return null;
   }
 
-  const { summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
+  const { name: projectName, summary, description, type, startDate, endDate, logoImgName, mainImgName, serviceUrl, contributors } =
     project;
 
   const handleProjectClick = () => {
@@ -82,14 +82,14 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
       <S.HeroSection>
         <S.HeroText>
           {/* PC: just title */}
-          <S.ProjectTitle>{summary?.split('\n')[0] || 'Project Name'}</S.ProjectTitle>
+          <S.ProjectTitle>{projectName || 'Project Name'}</S.ProjectTitle>
 
           {/* Mobile: favicon + title row */}
           <S.MobileTitleRow>
             {logoImgName && (
               <S.Favicon src={`/assets/image/Portfolio/${logoImgName}`} alt="logo" width={48} height={48} />
             )}
-            <S.MobileTitle>{summary?.split('\n')[0] || 'Project Name'}</S.MobileTitle>
+            <S.MobileTitle>{projectName || 'Project Name'}</S.MobileTitle>
           </S.MobileTitleRow>
 
           <S.Summary>{summary}</S.Summary>

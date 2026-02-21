@@ -67,7 +67,6 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
       </S.SearchContainer>
       <S.ApplicationColumn>
         <S.Name>이름</S.Name>
-        <S.GPA>학점</S.GPA>
         <S.Grade>학년</S.Grade>
         <S.Position>파트</S.Position>
         <S.InterviewDate>면접 일시</S.InterviewDate>
@@ -78,10 +77,9 @@ const ApplicationList = ({ applications }: { applications: ApplicationType[] }) 
         {renderList
           .slice(start, end)
           .map(
-            ({ id, name, gpa, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+            ({ id, name, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
               <S.Application key={id} href={`/admin/application/${id}`}>
                 <S.Name>{name}</S.Name>
-                <S.GPA>{gpa}</S.GPA>
                 <S.Grade>{grade}</S.Grade>
                 <S.Position>{career}</S.Position>
                 <S.InterviewDate>{Formatter.normalizeDate(fixedInterviewDate)}</S.InterviewDate>
