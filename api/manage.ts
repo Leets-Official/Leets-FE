@@ -15,4 +15,4 @@ export const saveProject = (data: {
 }) => http.post<any>({ url: '/portfolios', data });
 
 export const getPresignedUrl = (fileName: string) =>
-  http.post<{ url: string }>({ url: '/storages/pre-authenticated-url', data: { fileName } });
+  http.post<{ url: string }>({ url: '/storages/pre-authenticated-url', params: { fileName } });
