@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { spacing } from '@/styles/theme';
+import { colors, spacing } from '@/styles/theme';
 
 export const FooterBar = styled.footer`
   width: 100%;
@@ -16,21 +16,23 @@ export const FooterBar = styled.footer`
   }
 `;
 
-export const Divider = styled.hr`
+export const Divider = styled.hr<{ $variant: 'white' | 'dark' }>`
   width: 100%;
   border: none;
-  border-top: 1px solid rgba(21, 52, 100, 0.2);
+  border-top: 1px solid
+    ${({ $variant }) => ($variant === 'white' ? colors.neutral.white : 'rgba(21, 52, 100, 0.2)')};
   margin: 0;
 `;
 
-export const Copyright = styled.p`
+export const Copyright = styled.p<{ $variant: 'white' | 'dark' }>`
   font-size: 12px;
   font-weight: 500;
-  color: rgba(21, 52, 100, 0.2);
   line-height: 14.4px;
   letter-spacing: -0.24px;
   text-align: center;
   margin-top: 32px;
+  color: ${({ $variant }) =>
+    $variant === 'white' ? colors.neutral.white : 'rgba(21, 52, 100, 0.2)'};
 
   @media (max-width: 820px) {
     font-size: 10px;
