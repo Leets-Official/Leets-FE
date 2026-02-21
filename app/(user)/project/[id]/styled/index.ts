@@ -230,11 +230,12 @@ export const TeamSection = styled.div`
 `;
 
 export const TeamGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 21px;
 
   @media (max-width: 820px) {
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
 `;
@@ -253,16 +254,11 @@ export const ProfileCard = styled(Link)`
 `;
 
 export const ProfileImage = styled.img`
-  width: 224px;
-  height: 224px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   object-fit: cover;
   object-position: center;
-
-  @media (max-width: 820px) {
-    width: 101px;
-    height: 101px;
-  }
 `;
 
 export const ProfileInfo = styled.div`
