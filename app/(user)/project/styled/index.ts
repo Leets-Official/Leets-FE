@@ -20,7 +20,7 @@ export const PageWrapper = styled.div`
   flex: 1;
 
   @media (min-width: 820px) {
-    padding: 0;
+    padding: 0 ${spacing.page.mobilePadding};
     padding-bottom: 120px;
   }
 `;
@@ -40,15 +40,34 @@ export const Header = styled.header`
   }
 `;
 
-export const TabContainer = styled.div`
+export const TabScrollWrapper = styled.div`
+  position: relative;
   margin-top: 60px;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 680px) {
+    margin-left: -${spacing.page.mobilePadding};
+    width: calc(100% + 2 * ${spacing.page.mobilePadding});
+  }
+`;
+
+export const TabContainer = styled.div`
   list-style: none;
   display: flex;
   gap: 30px;
   justify-content: center;
 
   @media screen and (max-width: 680px) {
-    gap: 10px;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 ${spacing.page.mobilePadding};
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -68,9 +87,10 @@ export const Tab = styled.button<{ selected: boolean }>`
   }
 
   @media screen and (max-width: 680px) {
-    font-size: 12px;
+    font-size: 14px;
     width: 60px;
     height: 40px;
+    flex-shrink: 0;
   }
 `;
 

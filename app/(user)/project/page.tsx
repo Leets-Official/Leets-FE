@@ -9,31 +9,18 @@ import * as gtag from '@/lib/gtag';
 import * as S from './styled';
 
 const generations = [
-  {
-    title: '전체',
-  },
-  {
-    title: '1기',
-  },
-  {
-    title: '2기',
-  },
-  {
-    title: '3기',
-  },
-  {
-    title: '4기',
-  },
-  {
-    title: '5기',
-  },
+  { title: '전체' },
+  { title: '1기' },
+  { title: '2기' },
+  { title: '3기' },
+  { title: '4기' },
+  { title: '5기' },
 ] as const;
 
 const Page = () => {
   const [generation, setGeneration] = useState<number>(0);
   const [projects, setProjects] = useState<GetProjectListResponse>([[], []]);
   const [finalProjects, toryProjects] = projects;
-
   useEffect(() => {
     const fetch = async () => {
       const { result } = await getProjectList({ generation })!;
@@ -47,23 +34,25 @@ const Page = () => {
   return (
     <>
       <S.Header>Project</S.Header>
-      <S.TabContainer>
-        {generations.map(({ title }, idx) => (
-          <div key={title}>
-            <S.Tab
-              key={title}
-              type="button"
-              selected={idx === generation}
-              onClick={() => {
-                setGeneration(idx);
-                gtag.event({ action: 'tab_click', category: 'project', label: title as string, value: 10 });
-              }}>
-              {title}
-            </S.Tab>
-            {idx === generation && <S.Underline layoutId="underline" />}
-          </div>
-        ))}
-      </S.TabContainer>
+      <S.TabScrollWrapper>
+        <S.TabContainer>
+          {generations.map(({ title }, idx) => (
+            <div key={title}>
+              <S.Tab
+                key={title}
+                type="button"
+                selected={idx === generation}
+                onClick={() => {
+                  setGeneration(idx);
+                  gtag.event({ action: 'tab_click', category: 'project', label: title as string, value: 10 });
+                }}>
+                {title}
+              </S.Tab>
+              {idx === generation && <S.Underline layoutId="underline" />}
+            </div>
+          ))}
+        </S.TabContainer>
+      </S.TabScrollWrapper>
 
       <S.ProjectsContainer>
         <Projects projects={finalProjects}>
