@@ -16,6 +16,7 @@ export type AdminLoginRequest = {
 };
 
 export type MeResponse = {
+  uid: string;
   submitStatus: SubmitStatus;
 };
 

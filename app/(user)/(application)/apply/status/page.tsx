@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE } from '@/constants';
-import { getUserApplication, patchInterviewAttendance } from '@/api';
+import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
 import { Alert } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
 import { ApplicationStatusType } from '@/types';
@@ -342,6 +342,7 @@ const StatusPage = () => {
   const mockStatus = searchParams.get('status') as ApplicationStatusType | null;
   const accessToken = session.data?.accessToken;
   const submitStatus = session.data?.submitStatus;
+  const uid = session.data?.uid || '';
   const userName = session.data?.user?.name || '';
 
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
@@ -363,13 +364,11 @@ const StatusPage = () => {
     if (isMock) return;
     const fetchStatus = async () => {
       if (!accessToken) return;
-      const { result } = await getUserApplication(accessToken);
+      const { result } = await getUserApplicationStatus(accessToken);
       if (!isAxiosError(result)) {
-        setApplicationStatus(result.applicationStatus);
-        if (result.interview) {
-          setInterviewDate(result.interview.fixedInterviewDate || '');
-          setInterviewPlace(result.interview.place || '');
-        }
+        setApplicationStatus(result.status);
+        setInterviewDate(result.interviewDate || '');
+        setInterviewPlace(result.interviewPlace || '');
         setIsLoading(false);
       }
     };
@@ -392,7 +391,7 @@ const StatusPage = () => {
       return;
     }
 
-    const { result } = await patchInterviewAttendance(status, accessToken);
+    const { result } = await patchInterviewAttendance(status, uid, accessToken);
 
     if (!isAxiosError(result)) {
       setHasInterview(status);

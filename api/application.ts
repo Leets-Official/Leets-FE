@@ -3,6 +3,7 @@ import { POSITION_FILTER_MAP } from '@/constants';
 import {
   GetApplicationRequest,
   GetApplicationResponse,
+  GetApplicationStatusResponse,
   PatchApplication,
   PostApplication,
   GetApplicationDetaiResponse,
@@ -68,6 +69,34 @@ export const getUserApplication = (accessToken: string) =>
     },
   });
 
+export const getUserApplicationStatus = (accessToken: string) =>
+  http.get<GetApplicationStatusResponse>({
+    url: '/application/status',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+export const getTemporaryApplication = (accessToken: string) =>
+  http.get<GetApplicationDetaiResponse>({
+    url: '/temporary-application',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+export const putTemporaryApplication = (
+  application: Omit<PostApplication, 'submitStatus'>,
+  accessToken: string,
+) =>
+  http.put<GetApplicationDetaiResponse>({
+    url: '/temporary-application',
+    data: application,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
 export const postInterviewInformation = ({
   id,
   fixedInterviewDate,
@@ -105,11 +134,12 @@ export const patchInterviewInformation = ({
 
 export const patchInterviewAttendance = (
   hasInterview: 'CHECK' | 'UNCHECK',
+  uid: string,
   accessToken: string,
 ) =>
   http.patch<GetApplicationDetaiResponse>({
-    url: '/application/interview',
-    data: { hasInterview },
+    url: '/interview',
+    data: { uid, hasInterview },
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

@@ -93,6 +93,14 @@ export type PatchApplicationDetailRequest = {
 
 export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;
 
+export type GetApplicationStatusResponse = {
+  id: number;
+  status: ApplicationStatusType;
+  hasInterview: InterviewStatusType;
+  interviewDate: string;
+  interviewPlace: string;
+};
+
 export type ApplicationInputProp = {
   position: PositionType;
   input: ApplicationInput;

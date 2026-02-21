@@ -15,7 +15,7 @@ import {
   PM_TEXTAREAS,
 } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus, ApplicationTextarea } from '@/types';
-import { postApplication, patchApplication, getUserApplication } from '@/api';
+import { postApplication, putTemporaryApplication, getTemporaryApplication } from '@/api';
 import { useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
@@ -107,7 +107,7 @@ const ApplyForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await getUserApplication(accessToken);
+      const { result } = await getTemporaryApplication(accessToken);
       if (!isAxiosError(result)) {
         const { motive, capability, conflict, expectation, passion, user, position: fetchPosition } = result;
         setApplicationText({ motive, capability, conflict, expectation, passion });
@@ -148,15 +148,10 @@ const ApplyForm = () => {
     const applicationData = {
       ...applicationInput,
       ...applicationText,
-      position,
-      submitStatus: SUBMIT_STATUS.SAVE as SubmitStatus,
+      position: position.replace('/', '_') as PositionType,
     };
 
-    const requestApplication = submitStatus === SUBMIT_STATUS.NONE ? postApplication : patchApplication;
-    const { result } = await requestApplication(
-      { ...applicationData, position: applicationData.position.replace('/', '_') as PositionType },
-      accessToken,
-    );
+    const { result } = await putTemporaryApplication(applicationData, accessToken);
 
     if (!isAxiosError(result)) {
       await session.update({ submitStatus: SUBMIT_STATUS.SAVE });
@@ -179,15 +174,11 @@ const ApplyForm = () => {
     const applicationData = {
       ...applicationInput,
       ...applicationText,
-      position,
+      position: position.replace('/', '_') as PositionType,
       submitStatus: SUBMIT_STATUS.SUBMIT as SubmitStatus,
     };
 
-    const requestApplication = submitStatus === SUBMIT_STATUS.NONE ? postApplication : patchApplication;
-    const { result } = await requestApplication(
-      { ...applicationData, position: applicationData.position.replace('/', '_') as PositionType },
-      accessToken,
-    );
+    const { result } = await postApplication(applicationData, accessToken);
 
     if (!isAxiosError(result)) {
       await session.update({ submitStatus: SUBMIT_STATUS.SUBMIT });
