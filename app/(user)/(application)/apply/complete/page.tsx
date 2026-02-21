@@ -5,145 +5,110 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import styled from 'styled-components';
 import { SUBMIT_STATUS, USER } from '@/constants';
-import { colors, radius } from '@/styles/theme';
+import { colors, spacing, gradients } from '@/styles/theme';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
+import CopyrightFooter from '@/components/Common/CopyrightFooter';
+
+/* ========== Styled Components ========== */
 
 const PageContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(180deg, ${colors.blue[500]} 0%, #6ea7fc 50%, ${colors.blue[200]} 100%);
+  background: ${gradients.submitComplete};
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const ContentWrapper = styled.div`
-  width: 100%;
-  max-width: 560px;
+const Section = styled.div`
+  width: ${spacing.page.contentWidth};
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px 32px;
+  justify-content: center;
+  padding: 0 32px;
+  gap: 60px;
   flex: 1;
-  justify-content: center;
 
   @media (max-width: 820px) {
-    padding: 40px 20px;
+    padding: 0 ${spacing.page.mobilePadding};
   }
 `;
 
-const Card = styled.div`
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: ${radius.formCard};
-  padding: 60px 40px;
+const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  box-shadow: 0 8px 32px rgba(21, 52, 100, 0.15);
-  backdrop-filter: blur(10px);
-
-  @media (max-width: 820px) {
-    padding: 40px 24px;
-  }
+  gap: 12px;
+  width: 100%;
 `;
-
-const CheckCircle = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: ${colors.blue[500]};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CheckIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-    <path
-      d="M12 20L18 26L28 14"
-      stroke="#ffffff"
-      strokeWidth="3.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const Title = styled.h1`
-  font-size: 28px;
+  font-size: 70px;
   font-weight: 700;
-  color: ${colors.blue[800]};
-  letter-spacing: -0.56px;
-  line-height: 33.6px;
+  color: ${colors.neutral.white};
+  letter-spacing: -1.4px;
+  line-height: 84px;
   text-align: center;
+  white-space: nowrap;
 
   @media (max-width: 820px) {
-    font-size: 22px;
-    line-height: 26.4px;
+    font-size: 35px;
+    line-height: 43.2px;
+    letter-spacing: -0.72px;
   }
 `;
 
 const Description = styled.p`
-  font-size: 16px;
-  font-weight: 500;
-  color: ${colors.blue[600]};
-  letter-spacing: -0.32px;
-  line-height: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  color: ${colors.neutral.white};
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
   text-align: center;
-  white-space: pre-line;
+  word-break: keep-all;
+  white-space: pre-wrap;
 
   @media (max-width: 820px) {
-    font-size: 14px;
-    line-height: 21px;
+    font-size: clamp(13px, 3.8vw, 19px);
+    line-height: 1.6;
+    letter-spacing: -0.02em;
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  margin-top: 16px;
-`;
-
-const PrimaryButton = styled.button`
-  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+const Highlight = styled.strong`
   font-weight: 700;
-  font-size: 16px;
-  letter-spacing: -0.32px;
-  width: 100%;
-  height: 52px;
-  border-radius: ${radius.button};
-  border: none;
-  background: ${colors.blue[500]};
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.25s ease;
-
-  &:hover {
-    background: ${colors.blue[600]};
-  }
 `;
 
-const SecondaryButton = styled.button`
+const ActionButton = styled.button`
   font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 28px;
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.32px;
-  width: 100%;
-  height: 52px;
-  border-radius: ${radius.button};
-  border: 1.5px solid ${colors.blue[200]};
-  background: transparent;
-  color: ${colors.blue[700]};
+  letter-spacing: -0.56px;
+  line-height: 33.6px;
+  width: 320px;
+  height: 66px;
+  border-radius: 99px;
+  border: none;
+  background: ${colors.neutral.lightBg};
+  color: ${colors.blue[500]};
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: opacity 0.2s ease;
 
   &:hover {
-    background: ${colors.blue[50]};
-    border-color: ${colors.blue[400]};
+    opacity: 0.9;
+  }
+
+  @media (max-width: 820px) {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    width: 200px;
+    height: 48px;
   }
 `;
+
+/* ========== Page Component ========== */
 
 const CompletePage = () => {
   const session = useSession();
@@ -168,25 +133,19 @@ const CompletePage = () => {
 
   return (
     <PageContainer>
-      <ContentWrapper>
-        <Card>
-          <CheckCircle>
-            <CheckIcon />
-          </CheckCircle>
-          <Title>지원서가 제출되었습니다</Title>
+      <HeaderTemplate variant="white" />
+      <Section>
+        <TextBlock>
+          <Title>지원서가 제출되었습니다!</Title>
           <Description>
-            {'서류 심사 결과는 이메일로 안내드릴 예정입니다.\n지원해 주셔서 감사합니다!'}
+            {'서류 심사 결과는 '}
+            <Highlight>3월 10일</Highlight>
+            {' 홈페이지에서 확인 가능합니다.\n지원해 주셔서 감사합니다!'}
           </Description>
-          <ButtonGroup>
-            <PrimaryButton onClick={() => router.push(USER.APPLY_STATUS)}>
-              상태 조회하기
-            </PrimaryButton>
-            <SecondaryButton onClick={() => router.push(USER.APPLY_VIEW)}>
-              내 지원서 보기
-            </SecondaryButton>
-          </ButtonGroup>
-        </Card>
-      </ContentWrapper>
+        </TextBlock>
+        <ActionButton onClick={() => router.push(USER.APPLY_STATUS)}>지원 상태 조회하기</ActionButton>
+      </Section>
+      <CopyrightFooter variant="white" />
     </PageContainer>
   );
 };

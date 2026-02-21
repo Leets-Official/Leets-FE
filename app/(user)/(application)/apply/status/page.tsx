@@ -8,306 +8,326 @@ import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE } from '@/constants';
 import { getUserApplication, patchInterviewAttendance } from '@/api';
 import { Alert } from '@/utils';
-import { colors, radius, gradients } from '@/styles/theme';
+import { colors, spacing } from '@/styles/theme';
 import { ApplicationStatusType } from '@/types';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
+import CopyrightFooter from '@/components/Common/CopyrightFooter';
+
+import Confetti from '@/components/Common/Confetti';
 
 /* ========== Styled Components ========== */
 
 const PageContainer = styled.div`
   min-height: 100vh;
-  background: ${colors.neutral.lightBg};
+  background:
+    linear-gradient(180deg, rgba(53, 132, 251, 0) 0%, rgba(53, 132, 251, 0.2) 100%), ${colors.neutral.lightBg};
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: ${gradients.statusCheck};
-    pointer-events: none;
-    z-index: 0;
-  }
 `;
 
-const ContentWrapper = styled.div`
-  width: 100%;
-  max-width: 560px;
+const Section = styled.div`
+  width: ${spacing.page.contentWidth};
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 32px;
+  justify-content: center;
+  padding: 120px 20px;
+  gap: 40px;
   flex: 1;
-  justify-content: center;
-  z-index: 1;
 
   @media (max-width: 820px) {
-    padding: 40px 20px;
+    padding: 60px ${spacing.page.mobilePadding};
+    gap: 30px;
   }
 `;
 
-const Card = styled.div`
-  width: 100%;
-  background: #ffffff;
-  border-radius: ${radius.formCard};
-  border: 1px solid rgba(53, 132, 251, 0.15);
-  padding: 48px 40px;
+const StatusTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  box-shadow: 0 4px 24px rgba(53, 132, 251, 0.12);
-
-  @media (max-width: 820px) {
-    padding: 36px 24px;
-    gap: 16px;
-  }
+  gap: 10px;
+  width: 100%;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 14px;
-  font-weight: 600;
-  color: ${colors.blue[500]};
-  letter-spacing: -0.28px;
-  text-transform: uppercase;
-`;
-
-const StatusIconWrapper = styled.div<{ $type: 'success' | 'fail' | 'pending' }>`
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
+const StatusRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  background: ${({ $type }) => {
-    if ($type === 'success') return colors.state.success;
-    if ($type === 'fail') return colors.state.error;
-    return colors.blue[400];
-  }};
+  gap: 2px;
+  flex-wrap: wrap;
 `;
 
-const StatusTitle = styled.h1`
-  font-size: 28px;
-  font-weight: 700;
+const NameText = styled.span`
+  font-size: 36px;
+  font-weight: 762;
   color: ${colors.blue[800]};
-  letter-spacing: -0.56px;
-  line-height: 33.6px;
-  text-align: center;
+  letter-spacing: -0.72px;
+  line-height: 43.2px;
 
   @media (max-width: 820px) {
-    font-size: 22px;
-    line-height: 26.4px;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
   }
 `;
 
-const StatusDescription = styled.p`
-  font-size: 15px;
+const LabelText = styled.span`
+  font-size: 36px;
   font-weight: 500;
-  color: ${colors.blue[600]};
-  letter-spacing: -0.3px;
-  line-height: 22.5px;
+  color: ${colors.blue[800]};
+  letter-spacing: -0.72px;
+  line-height: 43.2px;
+
+  @media (max-width: 820px) {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+  }
+`;
+
+const StatusValue = styled.span`
+  font-size: 64px;
+  font-weight: 762;
+  color: ${colors.blue[500]};
+  letter-spacing: -1.28px;
+  line-height: 76.8px;
+
+  @media (max-width: 820px) {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.6px;
+  }
+`;
+
+const StatusSuffix = styled.span`
+  font-size: 64px;
+  font-weight: 500;
+  color: ${colors.blue[800]};
+  letter-spacing: -1.28px;
+  line-height: 76.8px;
+
+  @media (max-width: 820px) {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.6px;
+  }
+`;
+
+const InfoText = styled.p`
+  font-size: 24px;
+  font-weight: 600;
+  color: ${colors.blue[800]};
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
   text-align: center;
   white-space: pre-line;
-`;
-
-const Divider = styled.hr`
-  width: 100%;
-  border: none;
-  border-top: 1px solid rgba(53, 132, 251, 0.1);
-  margin: 8px 0;
-`;
-
-const InterviewInfoBox = styled.div`
-  width: 100%;
-  background: ${colors.blue[50]};
-  border-radius: ${radius.card};
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-const InterviewInfoLabel = styled.span`
-  font-size: 12px;
-  font-weight: 600;
-  color: ${colors.blue[500]};
-  letter-spacing: -0.24px;
-  text-transform: uppercase;
-`;
-
-const InterviewInfoRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const InterviewInfoText = styled.span`
-  font-size: 15px;
-  font-weight: 600;
-  color: ${colors.blue[800]};
-  letter-spacing: -0.3px;
-  line-height: 22px;
-`;
-
-const InterviewButtonGroup = styled.div`
-  display: flex;
-  gap: 12px;
-  width: 100%;
 
   @media (max-width: 820px) {
-    flex-direction: column;
-    gap: 10px;
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
+  }
+`;
+
+const SolidButton = styled.button`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.56px;
+  line-height: 33.6px;
+  width: 320px;
+  height: 66px;
+  border-radius: 99px;
+  border: none;
+  background: ${colors.blue[500]};
+  color: ${colors.neutral.white};
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
+    width: 180px;
+    height: 33px;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  @media (max-width: 820px) {
+    gap: 12px;
   }
 `;
 
 const AttendButton = styled.button`
   font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: -0.3px;
-  flex: 1;
-  height: 48px;
-  border-radius: ${radius.button};
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.56px;
+  line-height: 33.6px;
+  white-space: nowrap;
+  min-width: 300px;
+  border-radius: 99px;
   border: none;
   background: ${colors.blue[500]};
-  color: #ffffff;
+  color: ${colors.neutral.white};
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: opacity 0.2s ease;
+  padding: 16px 36px;
 
   &:hover {
-    background: ${colors.blue[600]};
+    opacity: 0.9;
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
+    min-width: 120px;
+    padding: 8px 14px;
   }
 `;
 
 const DeclineButton = styled.button`
   font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: -0.3px;
-  flex: 1;
-  height: 48px;
-  border-radius: ${radius.button};
-  border: 1.5px solid ${colors.neutral.disabledBg};
-  background: #ffffff;
-  color: ${colors.blue[700]};
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.56px;
+  line-height: 33.6px;
+  white-space: nowrap;
+  border-radius: 99px;
+  border: 1.4px solid ${colors.blue[500]};
+  background: transparent;
+  color: ${colors.blue[500]};
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: opacity 0.2s ease;
+  padding: 16px 36px;
 
   &:hover {
-    background: ${colors.neutral.lightBg};
-    border-color: ${colors.blue[300]};
+    opacity: 0.8;
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
+    padding: 8px 14px;
+    border-width: 1px;
   }
 `;
 
 const AttendedBadge = styled.div<{ $attend: boolean }>`
-  font-size: 14px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 28px;
   font-weight: 600;
-  letter-spacing: -0.28px;
-  padding: 10px 24px;
-  border-radius: ${radius.chip};
+  letter-spacing: -0.56px;
+  line-height: 33.6px;
+  padding: 16px 36px;
+  border-radius: 99px;
   background: ${({ $attend }) => ($attend ? 'rgba(39, 190, 34, 0.1)' : 'rgba(207, 17, 17, 0.1)')};
   color: ${({ $attend }) => ($attend ? colors.state.success : colors.state.error)};
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
+    padding: 8px 14px;
+  }
 `;
 
-const ActionButtonGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  margin-top: 8px;
-`;
-
-const PrimaryAction = styled.button`
+const ViewLink = styled.button`
   font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-weight: 700;
   font-size: 16px;
+  font-weight: 500;
   letter-spacing: -0.32px;
-  width: 100%;
-  height: 52px;
-  border-radius: ${radius.button};
+  line-height: 19.2px;
+  color: rgba(21, 52, 100, 0.5);
+  background: none;
   border: none;
-  background: ${colors.blue[500]};
-  color: #ffffff;
   cursor: pointer;
-  transition: all 0.25s ease;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+  transition: color 0.2s ease;
 
   &:hover {
-    background: ${colors.blue[600]};
+    color: rgba(21, 52, 100, 0.7);
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.28px;
   }
 `;
 
-const SecondaryAction = styled.button`
-  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+const FailStatusValue = styled.span`
+  font-size: 48px;
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.32px;
-  width: 100%;
-  height: 52px;
-  border-radius: ${radius.button};
-  border: 1.5px solid ${colors.blue[200]};
-  background: transparent;
-  color: ${colors.blue[700]};
-  cursor: pointer;
-  transition: all 0.25s ease;
+  color: ${colors.blue[800]};
+  opacity: 0.5;
+  letter-spacing: -0.96px;
+  line-height: 57.6px;
 
-  &:hover {
-    background: ${colors.blue[50]};
-    border-color: ${colors.blue[400]};
+  @media (max-width: 820px) {
+    font-size: 24px;
+    line-height: 28.8px;
+    letter-spacing: -0.48px;
   }
 `;
 
-/* ========== SVG Icons ========== */
+const FailSuffix = styled.span`
+  font-size: 48px;
+  font-weight: 500;
+  color: ${colors.blue[800]};
+  letter-spacing: -0.96px;
+  line-height: 57.6px;
 
-const CheckSVG = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <path d="M10 18L16 24L26 12" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+  @media (max-width: 820px) {
+    font-size: 24px;
+    line-height: 28.8px;
+    letter-spacing: -0.48px;
+  }
+`;
 
-const XSvg = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <path d="M12 12L24 24M24 12L12 24" stroke="#fff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const FailInfoText = styled.p`
+  font-size: 20px;
+  font-weight: 500;
+  color: ${colors.blue[800]};
+  opacity: 0.55;
+  letter-spacing: -0.4px;
+  line-height: 30px;
+  text-align: center;
+  white-space: pre-line;
 
-const ClockSvg = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="18" r="10" stroke="#fff" strokeWidth="2.5" />
-    <path d="M18 12V18L22 22" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.28px;
+  }
+`;
 
 /* ========== Helper ========== */
 
-type StatusInfo = {
-  iconType: 'success' | 'fail' | 'pending';
-  sectionLabel: string;
-};
-
-const getStatusInfo = (status: ApplicationStatusType): StatusInfo => {
-  switch (status) {
-    case 'PASS_PAPER':
-      return { iconType: 'success', sectionLabel: '서류 전형 결과' };
-    case 'FAIL_PAPER':
-      return { iconType: 'fail', sectionLabel: '서류 전형 결과' };
-    case 'PASS':
-      return { iconType: 'success', sectionLabel: '최종 결과' };
-    case 'FAIL':
-      return { iconType: 'fail', sectionLabel: '최종 결과' };
-    default:
-      return { iconType: 'pending', sectionLabel: '서류 전형 결과' };
-  }
-};
-
-const StatusIcon = ({ type }: { type: 'success' | 'fail' | 'pending' }) => {
-  if (type === 'success') return <CheckSVG />;
-  if (type === 'fail') return <XSvg />;
-  return <ClockSvg />;
+const STATUS_LABEL: Record<ApplicationStatusType, string> = {
+  PENDING: '서류 심사중',
+  PASS_PAPER: '서류 합격',
+  FAIL_PAPER: '서류 탈락',
+  PASS: '최종 합격',
+  FAIL: '최종 탈락',
 };
 
 /* ========== Page Component ========== */
@@ -322,11 +342,12 @@ const StatusPage = () => {
   const mockStatus = searchParams.get('status') as ApplicationStatusType | null;
   const accessToken = session.data?.accessToken;
   const submitStatus = session.data?.submitStatus;
+  const userName = session.data?.user?.name || '';
 
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
     isMock && mockStatus && VALID_STATUSES.includes(mockStatus) ? mockStatus : 'PENDING',
   );
-  const [interviewDate, setInterviewDate] = useState(isMock ? '2025.09.06 (토) 14:00' : '');
+  const [interviewDate, setInterviewDate] = useState(isMock ? '2026.03.11 (수) 14:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');
   const [hasInterview, setHasInterview] = useState<'CHECK' | 'UNCHECK' | 'PENDING'>('PENDING');
   const [isLoading, setIsLoading] = useState(!isMock);
@@ -381,65 +402,80 @@ const StatusPage = () => {
 
   if (isLoading) return null;
 
+  const isFail = applicationStatus === 'FAIL' || applicationStatus === 'FAIL_PAPER';
+  const isPass = applicationStatus === 'PASS';
   const statusMessage = APPLICATION_STATUS_MESSAGE[applicationStatus];
-  const { iconType, sectionLabel } = getStatusInfo(applicationStatus);
+  const statusLabel = STATUS_LABEL[applicationStatus];
+  const showInterviewInfo = applicationStatus === 'PASS_PAPER' && (interviewDate || interviewPlace);
+  const showInterviewButtons = applicationStatus === 'PASS_PAPER' && hasInterview === 'PENDING';
+  const showInterviewBadge = applicationStatus === 'PASS_PAPER' && hasInterview !== 'PENDING';
+
+  const interviewInfoText = [
+    interviewPlace && `면접 장소: ${interviewPlace}`,
+    interviewDate && `면접 일시: ${interviewDate}`,
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   return (
     <PageContainer>
-      <ContentWrapper>
-        <Card>
-          <SectionTitle>{sectionLabel}</SectionTitle>
+      <HeaderTemplate variant="black" />
+      {isPass && <Confetti />}
+      <Section>
+        <StatusTextBlock>
+          <StatusRow>
+            <NameText>{isMock ? '홍길동' : userName}</NameText>
+            <LabelText>님의 지원 상태는</LabelText>
+          </StatusRow>
+          <StatusRow>
+            {isFail ? (
+              <>
+                <FailStatusValue>{statusLabel}</FailStatusValue>
+                <FailSuffix>입니다.</FailSuffix>
+              </>
+            ) : (
+              <>
+                <StatusValue>{statusLabel}</StatusValue>
+                <StatusSuffix>입니다.</StatusSuffix>
+              </>
+            )}
+          </StatusRow>
+        </StatusTextBlock>
 
-          <StatusIconWrapper $type={iconType}>
-            <StatusIcon type={iconType} />
-          </StatusIconWrapper>
+        {isFail ? (
+          <FailInfoText>{statusMessage.description}</FailInfoText>
+        ) : (
+          <InfoText>{showInterviewInfo ? interviewInfoText : statusMessage.description}</InfoText>
+        )}
 
-          <StatusTitle>{statusMessage.title}</StatusTitle>
-          <StatusDescription>{statusMessage.description}</StatusDescription>
-
-          {/* Interview info for PASS_PAPER */}
-          {applicationStatus === 'PASS_PAPER' && (interviewDate || interviewPlace) && (
-            <>
-              <Divider />
-              <InterviewInfoBox>
-                <InterviewInfoLabel>면접 안내</InterviewInfoLabel>
-                {interviewDate && (
-                  <InterviewInfoRow>
-                    <InterviewInfoText>일시: {interviewDate}</InterviewInfoText>
-                  </InterviewInfoRow>
-                )}
-                {interviewPlace && (
-                  <InterviewInfoRow>
-                    <InterviewInfoText>장소: {interviewPlace}</InterviewInfoText>
-                  </InterviewInfoRow>
-                )}
-              </InterviewInfoBox>
-            </>
-          )}
-
-          {/* Interview attendance buttons */}
-          {applicationStatus === 'PASS_PAPER' && hasInterview === 'PENDING' && (
-            <InterviewButtonGroup>
+        {/* Interview attendance buttons for PASS_PAPER */}
+        {showInterviewButtons && (
+          <>
+            <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
-              <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참석</DeclineButton>
-            </InterviewButtonGroup>
-          )}
+              <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
+            </ButtonGroup>
+            <ViewLink onClick={() => router.push(USER.APPLY_VIEW)}>내 지원서 보기</ViewLink>
+          </>
+        )}
 
-          {/* Interview attendance confirmed badge */}
-          {applicationStatus === 'PASS_PAPER' && hasInterview !== 'PENDING' && (
+        {/* Interview attendance badge */}
+        {showInterviewBadge && (
+          <>
             <AttendedBadge $attend={hasInterview === 'CHECK'}>
               {hasInterview === 'CHECK' ? '면접 참석 확인됨' : '면접 불참석'}
             </AttendedBadge>
-          )}
+            <ViewLink onClick={() => router.push(USER.APPLY_VIEW)}>내 지원서 보기</ViewLink>
+          </>
+        )}
 
-          <Divider />
+        {/* View button for non-PASS_PAPER statuses */}
+        {applicationStatus !== 'PASS_PAPER' && (
+          <SolidButton onClick={() => router.push(USER.APPLY_VIEW)}>내 지원서 보기</SolidButton>
+        )}
+      </Section>
 
-          <ActionButtonGroup>
-            <SecondaryAction onClick={() => router.push(USER.APPLY_VIEW)}>내 지원서 보기</SecondaryAction>
-            <SecondaryAction onClick={() => router.push(USER.HOME)}>홈으로 돌아가기</SecondaryAction>
-          </ActionButtonGroup>
-        </Card>
-      </ContentWrapper>
+      <CopyrightFooter />
     </PageContainer>
   );
 };

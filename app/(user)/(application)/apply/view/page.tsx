@@ -17,8 +17,10 @@ import {
   PM_TEXTAREAS,
 } from '@/constants';
 import { getUserApplication } from '@/api';
-import { colors, radius, spacing } from '@/styles/theme';
+import { colors, radius, spacing, shadows } from '@/styles/theme';
 import { GetApplicationDetaiResponse } from '@/types';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
+import CopyrightFooter from '@/components/Common/CopyrightFooter';
 
 /* ========== Mock Data ========== */
 
@@ -53,9 +55,6 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: ${spacing.page.maxWidth};
-  margin: 0 auto;
-  width: 100%;
 `;
 
 const Section = styled.div`
@@ -64,56 +63,72 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 32px;
-  gap: 40px;
+  padding: 40px 32px;
+  gap: 20px;
   flex: 1;
 
   @media (max-width: 820px) {
-    padding: 60px ${spacing.page.mobilePadding};
+    padding: 30px ${spacing.page.mobilePadding};
+    gap: 16px;
   }
 `;
 
-const SectionText = styled.div`
+const TitlePC = styled.h1`
+  font-size: 36px;
+  font-weight: 700;
+  color: ${colors.blue[800]};
+  letter-spacing: -0.72px;
+  line-height: 43.2px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+
+  @media (max-width: 820px) {
+    display: none;
+  }
+`;
+
+const TitleMobile = styled.div`
+  display: none;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
 
   @media (max-width: 820px) {
-    gap: 4px;
+    display: flex;
   }
 `;
 
-const TitleText = styled.h1`
-  font-size: 80px;
+const BackIcon = styled.button`
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: ${colors.blue[800]};
+`;
+
+const TitleMobileText = styled.h1`
+  font-size: 24px;
   font-weight: 700;
-  color: ${colors.blue[500]};
-  letter-spacing: -1.6px;
-  line-height: 96px;
-
-  @media (max-width: 820px) {
-    font-size: 36px;
-    line-height: 43px;
-  }
+  color: ${colors.blue[800]};
+  letter-spacing: -0.48px;
+  line-height: 28.8px;
 `;
 
-const SubtitleText = styled.p`
-  font-size: 20px;
-  font-weight: 600;
-  color: ${colors.blue[500]};
-  letter-spacing: -0.4px;
-  line-height: 24px;
-
-  @media (max-width: 820px) {
-    font-size: 16px;
-    line-height: 19px;
-  }
+const ContentWrapper = styled.div`
+  width: ${spacing.page.innerWidth};
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 `;
 
-const FormCard = styled.div`
-  background: #ffffff;
+const Card = styled.div`
+  background: ${colors.neutral.white};
   border-radius: ${radius.formCard};
   padding: 50px;
   width: 720px;
@@ -121,33 +136,32 @@ const FormCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.gap.formField};
+  box-shadow: ${shadows.cardStrong};
 
   @media (max-width: 820px) {
     width: 100%;
+    max-width: 480px;
     padding: 28px 24px;
     gap: 30px;
   }
 `;
 
-const CardTitle = styled.h2`
-  font-size: 18px;
-  font-weight: 700;
-  color: ${colors.blue[800]};
-  letter-spacing: -0.36px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(53, 132, 251, 0.1);
+const FieldGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${spacing.gap.formField};
+
+  @media (max-width: 820px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 `;
 
-const FieldGroup = styled.div`
+const FieldItem = styled.div<{ $fullWidth?: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-`;
-
-const FieldItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  ${({ $fullWidth }) => $fullWidth && 'grid-column: 1 / -1;'}
 `;
 
 const FieldLabel = styled.span`
@@ -155,141 +169,71 @@ const FieldLabel = styled.span`
   font-weight: 600;
   color: ${colors.blue[800]};
   letter-spacing: -0.32px;
-  line-height: 19px;
+  line-height: 19.2px;
 
   @media (max-width: 820px) {
     font-size: 14px;
     letter-spacing: -0.28px;
-    line-height: 17px;
+    line-height: 16.8px;
   }
 `;
 
-const FieldValue = styled.span`
+const FieldValueBox = styled.div`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: ${colors.blue[800]};
   letter-spacing: -0.3px;
   line-height: 22px;
-  padding: 0 2px;
+  padding: 12px 16px;
+  background: #E4EEFF;
+  border: 1px solid rgba(31, 79, 150, 0.2);
+  border-radius: ${radius.input};
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    min-height: 40px;
+    padding: 10px 14px;
+  }
 `;
 
-const TextareaValue = styled.div`
+const TextareaValueBox = styled.div`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: ${colors.blue[800]};
   letter-spacing: -0.3px;
   line-height: 24px;
   white-space: pre-wrap;
-  background: ${colors.blue[50]};
-  border-radius: ${radius.input};
   padding: 16px;
-  border: 1px solid rgba(53, 132, 251, 0.08);
-`;
-
-const PositionBadge = styled.span`
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 14px;
-  border-radius: ${radius.pill};
-  background: ${colors.blue[100]};
-  color: ${colors.blue[700]};
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.28px;
-  width: fit-content;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+  background: #E4EEFF;
+  border: 1px solid rgba(31, 79, 150, 0.2);
+  border-radius: ${radius.input};
+  min-height: 133px;
 
   @media (max-width: 820px) {
-    gap: 12px;
-    width: 100%;
+    font-size: 14px;
+    padding: 14px;
   }
 `;
 
-const BackButton = styled.button`
-  font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.32px;
-  width: 200px;
-  height: 52px;
-  border-radius: ${radius.button};
-  border: 1.5px solid ${colors.blue[200]};
-  background: #ffffff;
-  color: ${colors.blue[700]};
-  cursor: pointer;
-  transition: all 0.25s ease;
 
-  &:hover {
-    background: ${colors.blue[50]};
-    border-color: ${colors.blue[400]};
-  }
+/* ========== SVG ========== */
 
-  @media (max-width: 820px) {
-    width: 100%;
-  }
-`;
-
-const StatusButton = styled.button`
-  font-family: 'Pretendard Variable', Pretendard, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: -0.32px;
-  width: 200px;
-  height: 52px;
-  border-radius: ${radius.button};
-  border: none;
-  background: ${colors.blue[500]};
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.25s ease;
-
-  &:hover {
-    background: ${colors.blue[600]};
-  }
-
-  @media (max-width: 820px) {
-    width: 100%;
-  }
-`;
-
-const Copyright = styled.footer`
-  width: ${spacing.page.contentWidth};
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 0 32px 36px;
-
-  @media (max-width: 820px) {
-    padding: 0 ${spacing.page.mobilePadding} 24px;
-  }
-`;
-
-const CopyrightBorder = styled.div`
-  width: 100%;
-  height: 1px;
-  background: rgba(21, 52, 100, 0.2);
-`;
-
-const CopyrightText = styled.p`
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(21, 52, 100, 0.2);
-  letter-spacing: -0.24px;
-  line-height: 14px;
-
-  @media (max-width: 820px) {
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: -0.2px;
-  }
-`;
+const BackArrowSvg = () => (
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+    <path
+      d="M17.5 21L10.5 14L17.5 7"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 /* ========== Page Component ========== */
 
@@ -361,52 +305,46 @@ const ViewPage = () => {
 
   return (
     <PageContainer>
+      <HeaderTemplate variant="black" />
       <Section>
-        <SectionText>
-          <TitleText>My Application</TitleText>
-          <SubtitleText>제출된 지원서를 확인할 수 있습니다</SubtitleText>
-        </SectionText>
+        <TitlePC>내 지원서</TitlePC>
+        <TitleMobile>
+          <BackIcon onClick={() => router.push(USER.APPLY_STATUS)}>
+            <BackArrowSvg />
+          </BackIcon>
+          <TitleMobileText>내 지원서</TitleMobileText>
+        </TitleMobile>
 
-        {/* Basic Info Card */}
-        <FormCard>
-          <CardTitle>기본 정보</CardTitle>
-          <FieldGroup>
-            <FieldItem>
-              <FieldLabel>지원 직무</FieldLabel>
-              <PositionBadge>{positionLabel}</PositionBadge>
-            </FieldItem>
-            {inputLayout.map(({ id, title }) => (
-              <FieldItem key={id}>
-                <FieldLabel>{title}</FieldLabel>
-                <FieldValue>{getFieldValue(id) || '-'}</FieldValue>
+        <ContentWrapper>
+          {/* Basic Info Card */}
+          <Card>
+            <FieldGrid>
+              <FieldItem>
+                <FieldLabel>지원 직무</FieldLabel>
+                <FieldValueBox>{positionLabel}</FieldValueBox>
               </FieldItem>
-            ))}
-          </FieldGroup>
-        </FormCard>
+              {inputLayout.map(({ id, title }) => (
+                <FieldItem key={id}>
+                  <FieldLabel>{title}</FieldLabel>
+                  <FieldValueBox>{getFieldValue(id) || '-'}</FieldValueBox>
+                </FieldItem>
+              ))}
+            </FieldGrid>
+          </Card>
 
-        {/* Self Introduction Card */}
-        <FormCard>
-          <CardTitle>자기소개서</CardTitle>
-          <FieldGroup>
+          {/* Essay Card */}
+          <Card>
             {textareaLayout.map(({ id, title }) => (
               <FieldItem key={id}>
                 <FieldLabel>{title}</FieldLabel>
-                <TextareaValue>{getFieldValue(id) || '-'}</TextareaValue>
+                <TextareaValueBox>{getFieldValue(id) || '-'}</TextareaValueBox>
               </FieldItem>
             ))}
-          </FieldGroup>
-        </FormCard>
-
-        <ButtonContainer>
-          <BackButton onClick={() => router.push(USER.APPLY_COMPLETE)}>돌아가기</BackButton>
-          <StatusButton onClick={() => router.push(USER.APPLY_STATUS)}>상태 조회하기</StatusButton>
-        </ButtonContainer>
+          </Card>
+        </ContentWrapper>
       </Section>
 
-      <Copyright>
-        <CopyrightBorder />
-        <CopyrightText>Copyright 2023-2026. Leets All rights reserved.</CopyrightText>
-      </Copyright>
+      <CopyrightFooter />
     </PageContainer>
   );
 };
