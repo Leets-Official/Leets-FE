@@ -24,6 +24,8 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
+import CopyrightFooter from '@/components/Common/CopyrightFooter';
 import * as S from './styled';
 
 const InputTextareas = dynamic(() => import('@/components/Form/ApplyForm/InputTextareas'));
@@ -207,6 +209,7 @@ const ApplyForm = () => {
 
   return (
     <S.PageContainer>
+      <HeaderTemplate variant="black" />
       <S.Section>
         <S.SectionText>
           <S.TitleText>Join Us!</S.TitleText>
@@ -466,10 +469,7 @@ const ApplyForm = () => {
         </S.Form>
       </S.Section>
 
-      <S.Copyright>
-        <S.CopyrightBorder />
-        <S.CopyrightText>Copyright 2023-2026. Leets All rights reserved.</S.CopyrightText>
-      </S.Copyright>
+      <CopyrightFooter />
     </S.PageContainer>
   );
 };
