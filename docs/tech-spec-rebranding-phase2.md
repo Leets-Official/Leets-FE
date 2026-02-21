@@ -431,16 +431,19 @@ pathname.includes('apply') → token 확인 → 있으면 PASS, 없으면 /login
 | `getUserApplication` | GET `/application/me` | /apply/view |
 | `getUserApplicationStatus` | GET `/application/status` | /apply/status |
 | `patchInterviewAttendance` | PATCH `/interview` | /apply/status (uid 필수) |
-| `saveProfile` | POST `/profile` | /manage/profile |
-| `getPresignedUrl` | POST `/storages/pre-authenticated-url` | /manage/profile, /manage/project |
-| `saveProject` | POST `/portfolios` | /manage/project |
-| `getProjectList` | GET `/project` | /manage/portfolio |
+| `saveProfile` | POST `/profile` | /manage/profile ⚠️ V2 미지원 |
+| `getPresignedUrl` | POST `/storages/pre-authenticated-url?fileName=` | /manage/profile, /manage/project |
+| `saveProject` | POST `/portfolios` | /manage/project ⚠️ V2 미지원 |
+| `getProjectList` | GET `/portfolios` | /manage/portfolio |
+
+> ⚠️ **V2 미지원 API**: `POST /profile`, `GET /profile/me`, `POST /portfolios`(쓰기)는 현재 V2 Swagger에 존재하지 않음. 백엔드 구현 완료 후 연결 필요.
 
 **NextAuth 세션 토큰 구조** (`strategy: 'jwt'`, HttpOnly 쿠키):
 
 | 필드 | 출처 | 용도 |
 |------|------|------|
 | `accessToken` | `POST /user/login` 응답 | 백엔드 API Bearer 인증 |
+| `refreshToken` | `POST /user/login` 응답 | 토큰 갱신 (저장만, 현재 미사용) |
 | `uid` | `GET /user/me` 응답 | 면접 출석 응답 시 uid 파라미터 |
 | `submitStatus` | `GET /user/me` 응답 | 지원 상태 기반 라우트 제어 |
 
@@ -472,7 +475,45 @@ pathname.includes('apply') → token 확인 → 있으면 PASS, 없으면 /login
 - `types/type/Application.ts` — `GetApplicationStatusResponse` 타입 추가
 - `types/type/Login.ts` — `MeResponse.uid` 필드 추가
 
-### 9.2 헤더 로그인 버튼 Flash 수정
+### 9.2 API v2 Swagger 타입 및 컴포넌트 정합성 수정 (2026-02-22)
+
+백엔드 API가 v1 → v2로 업데이트됨에 따라 타입, API 호출 방식, 컴포넌트를 v2 스펙에 맞게 수정.
+
+**타입 변경:**
+
+| 파일 | 변경 내용 |
+|------|-----------|
+| `types/type/Login.ts` | `LoginResponse`에 `refreshToken: string` 추가 |
+| | `MeResponse`에 `sid`, `name`, `phone`, `email`, `major` 추가 |
+| | `MeRequest`를 `LoginResponse` 별칭에서 `{ accessToken: string }` 독립 타입으로 분리 (`refreshToken` 필수화로 인한 호출 에러 방지) |
+| `types/type/Application.ts` | `GetApplicationResponse`에서 `gpa` 필드 제거 (v2 응답에 없음) |
+| `types/type/Project.ts` | `portfolioId` 타입 `string` → `number` |
+| | `GetProjectResponse`에 `generation: number`, `name: string`, `scope: string` 추가 |
+| | `GetProjectRequest.portfolioId` 타입 `string` → `number` |
+
+**API 호출 방식 변경:**
+
+| 함수 | Before | After |
+|------|--------|-------|
+| `getPresignedUrl` | `data: { fileName }` (request body) | `params: { fileName }` (query param) |
+
+**컴포넌트 수정:**
+
+| 파일 | 변경 내용 |
+|------|-----------|
+| `components/Admin/ApplicationList/index.tsx` | `gpa` 컬럼 헤더(학점) 및 렌더링 제거 |
+| `app/(user)/project/[id]/page.tsx` | `portfolioId: id` → `portfolioId: Number(id)` (string→number 타입 에러 해결) |
+| | 프로젝트 타이틀을 `summary.split('\n')[0]` 대신 API 응답 `name` 필드 사용 |
+
+**V2 미지원 엔드포인트 현황** (백엔드 구현 대기):
+
+| 기능 | 엔드포인트 | 영향 페이지 |
+|------|-----------|------------|
+| 프로필 조회 | `GET /profile/me` | `/manage/profile` |
+| 프로필 저장 | `POST /profile` | `/manage/profile` |
+| 프로젝트 등록 | `POST /portfolios` | `/manage/project` |
+
+### 9.3 헤더 로그인 버튼 Flash 수정
 
 **문제**: `useSession()`이 클라이언트 사이드에서 `/api/auth/session`을 XHR로 fetch하는 동안 status가 `loading`이라 비로그인 상태로 렌더링됨 → 구글 로그인 버튼이 잠깐 보인 후 로그아웃 버튼으로 교체되는 flash 발생.
 
@@ -487,7 +528,7 @@ After:  서버에서 getServerSession() → SessionProvider(session=초기값) �
 - `app/(user)/layout.tsx` — `async`, `getServerSession(authOptions)` 추가
 - `app/lib/Provider/SessionProvider.tsx` — `session?: Session | null` prop 추가
 
-### 9.3 프로젝트 상세 팀원 그리드 수정
+### 9.4 프로젝트 상세 팀원 그리드 수정
 
 **문제**: 팀원 섹션이 `flex-wrap` + 고정 224px 카드로 구성되어 PageWrapper 최대 너비(920px)에서 4개가 한 줄에 들어가지 않고 가운데 정렬도 안됨 (`4 × 224px + 3 × 21px = 959px > 920px`).
 
@@ -555,6 +596,7 @@ npx next build      # ✅ 통과 (2026-02-21)
 - **프로필 파트**: 현재 4종 (FE/BE/D/PM), BX/BI 별도 분리 미반영
 - **Mock 바이패스**: 프로덕션 배포 시 비활성화 필요 (환경 변수 분기 권장)
 - **지원 분야 페이지**: PositionGrid 데이터가 하드코딩, 추후 CMS/API 연동 검토
+- **관리 포털 API v2 미지원**: `POST /profile`, `GET /profile/me`, `POST /portfolios`(쓰기)가 v2 Swagger에 없어 `/manage/profile`, `/manage/project` 저장 기능 미연결 상태. 백엔드 구현 완료 후 연결 필요
 
 ---
 
