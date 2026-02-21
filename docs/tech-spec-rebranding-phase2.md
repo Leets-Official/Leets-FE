@@ -34,7 +34,7 @@ Phase 1에서 구축한 디자인 시스템과 랜딩 페이지를 기반으로,
 |------|--------|-------|
 | 지원 포지션 | DEV / UX_UI / PM (3종) | FRONTEND / BACKEND / BX_BI / UX_UI / PM (5종) |
 | 지원서 폼 | 단일 페이지 | 3-Step (기본 정보 → 자기소개서 → 제출 확인) |
-| 헤더 로그인 | 로그아웃 버튼 | "ㅇㅇㅇ님" → `/manage` 링크 |
+| 헤더 로그인 | 구글 로그인 버튼 없음 | Google 로그인 / 로그아웃 버튼 (SSR 세션 주입, flash 없음) |
 | 관리 포털 | 없음 | 프로필/프로젝트/포트폴리오 관리 |
 | 지원 후 페이지 | 없음 | 제출 완료, 상태 조회, 지원서 보기 |
 | 희망 직무 필드 | 존재 | 삭제 |
@@ -94,9 +94,9 @@ Phase 1에서 구축한 디자인 시스템과 랜딩 페이지를 기반으로,
   - `/manage/profile`: 프로필 사진, 이름, 파트 선택 (세그먼트 컨트롤), 링크 입력
   - `/manage/project`: 프로젝트 등록 폼 (기수/규모, 기간, 제목, 슬로건, 설명, 썸네일, 팀원)
   - `/manage/portfolio`: 참여한 프로젝트 그리드 (3열 PC / 1열 모바일)
-- **헤더 변경**: 로그아웃 버튼 → "ㅇㅇㅇ님" 텍스트 (클릭 시 `/manage`로 이동)
-  - Nav 컴포넌트 (랜딩/지원 페이지용)
-  - HeaderTemplate 컴포넌트 (관리 포털용) 동시 변경
+- **헤더**: Google 로그인 버튼(비로그인) / 로그아웃 버튼(로그인) 표시
+  - HeaderTemplate — `useSession()` 기반, SSR 세션 주입으로 flash 없음
+  - `/manage` 링크는 별도 네비게이션 메뉴 없이 관리 포털은 직접 URL 접근
 
 ### 2.5 개발 중 페이지 접근 어려움
 
@@ -267,7 +267,7 @@ export const MANAGE = {
 
 ```
 <PageContainer>                    bg: #F4F8FE, min-height: 100vh
-  <HeaderTemplate variant="black"/>  로고(검정) + "프로젝트" + "ㅇㅇㅇ님" 메뉴
+  <HeaderTemplate variant="black"/>  로고(검정) + "프로젝트" 메뉴 + 로그아웃 버튼
   <ContentArea>                    max-width: 960px, padding-bottom: 120px (PC) / 80px (mobile)
     {children}
   </ContentArea>
@@ -373,16 +373,18 @@ export const MANAGE = {
 /position → sessionStorage.setItem('selectedApplyPosition', position)
     ↓
 /apply → sessionStorage.getItem() → position 초기값 설정
+         getTemporaryApplication() → 임시저장 데이터 복원
     ↓ (Step 1~2 임시저장)
-postApplication / patchApplication → session.update({ submitStatus: 'SAVE' })
+putTemporaryApplication(data) → PUT /temporary-application (submitStatus 제외)
     ↓ (Step 3 최종 제출)
-postApplication / patchApplication → session.update({ submitStatus: 'SUBMIT' })
+postApplication(data + submitStatus: 'SUBMIT') → POST /application
+    → session.update({ submitStatus: 'SUBMIT' })
     ↓
 /apply/complete → router.push(USER.APPLY_COMPLETE)
     ↓
-/apply/status → getUserApplication() → applicationStatus 기반 UI 분기
+/apply/status → getUserApplicationStatus() → { status, hasInterview, interviewDate, interviewPlace }
     ↓ (서류 합격 시)
-patchInterviewAttendance('CHECK' | 'UNCHECK') → 면접 응답
+patchInterviewAttendance('CHECK' | 'UNCHECK', uid) → PATCH /interview (uid 필수)
 ```
 
 ### 6.2 관리 포털 플로우
@@ -421,29 +423,101 @@ pathname.includes('apply') → token 확인 → 있으면 PASS, 없으면 /login
 
 ## 8. API Dependencies
 
-| API | Method | 사용 페이지 |
-|-----|--------|------------|
-| `postApplication` | POST `/application` | /apply (신규 지원) |
-| `patchApplication` | PATCH `/application` | /apply (수정) |
-| `getUserApplication` | GET `/application/me` | /apply/status, /apply/view |
-| `patchInterviewAttendance` | PATCH `/application/interview` | /apply/status |
-| `saveProfile` | (프로필 저장) | /manage/profile |
-| `saveProject` | (프로젝트 저장) | /manage/project |
-| `getProjectList` | GET (프로젝트 목록) | /manage/portfolio |
-| `getPresignedUrl` | (S3 업로드 URL) | /manage/profile, /manage/project |
+| API 함수 | Method + Endpoint | 사용 페이지 |
+|----------|-------------------|------------|
+| `getTemporaryApplication` | GET `/temporary-application` | /apply (임시저장 복원) |
+| `putTemporaryApplication` | PUT `/temporary-application` | /apply (임시저장) |
+| `postApplication` | POST `/application` | /apply (최종 제출) |
+| `getUserApplication` | GET `/application/me` | /apply/view |
+| `getUserApplicationStatus` | GET `/application/status` | /apply/status |
+| `patchInterviewAttendance` | PATCH `/interview` | /apply/status (uid 필수) |
+| `saveProfile` | POST `/profile` | /manage/profile |
+| `getPresignedUrl` | POST `/storages/pre-authenticated-url` | /manage/profile, /manage/project |
+| `saveProject` | POST `/portfolios` | /manage/project |
+| `getProjectList` | GET `/project` | /manage/portfolio |
+
+**NextAuth 세션 토큰 구조** (`strategy: 'jwt'`, HttpOnly 쿠키):
+
+| 필드 | 출처 | 용도 |
+|------|------|------|
+| `accessToken` | `POST /user/login` 응답 | 백엔드 API Bearer 인증 |
+| `uid` | `GET /user/me` 응답 | 면접 출석 응답 시 uid 파라미터 |
+| `submitStatus` | `GET /user/me` 응답 | 지원 상태 기반 라우트 제어 |
 
 ---
 
-## 9. Testing & Validation
+## 9. 사후 개선 사항 (2026-02-22)
 
-### 9.1 빌드 검증
+### 9.1 백엔드 API 연결
+
+7기 모집 Swagger 기준으로 프론트엔드 API 호출 업데이트:
+
+| 변경 항목 | Before | After |
+|-----------|--------|-------|
+| 지원 현황 엔드포인트 | `GET /application/me` | `GET /application/status` |
+| 지원 현황 응답 필드 | `applicationStatus`, `interview.fixedInterviewDate` | `status`, `interviewDate`, `interviewPlace` (flat) |
+| 임시저장 | `POST/PATCH /application` (submitStatus: SAVE) | `PUT /temporary-application` (submitStatus 없음) |
+| 임시저장 복원 | `GET /application/me` | `GET /temporary-application` |
+| 최종 제출 | `POST/PATCH` 조건 분기 | 항상 `POST /application` |
+| 면접 출석 응답 URL | `PATCH /application/interview` | `PATCH /interview` |
+| 면접 출석 응답 body | `{ hasInterview }` | `{ uid, hasInterview }` (uid 필수) |
+| 세션 uid | 미저장 | JWT + Session에 `uid` 추가 저장 |
+
+**영향 파일:**
+- `api/application.ts` — 3개 함수 추가, `patchInterviewAttendance` 수정
+- `app/(user)/(application)/apply/page.tsx` — 임시저장/제출 로직 단순화
+- `app/(user)/(application)/apply/status/page.tsx` — 새 엔드포인트 + uid 전달
+- `app/lib/authOptions.ts` — uid JWT 저장
+- `next-auth.d.ts` — Session/JWT uid 타입 선언
+- `types/type/Application.ts` — `GetApplicationStatusResponse` 타입 추가
+- `types/type/Login.ts` — `MeResponse.uid` 필드 추가
+
+### 9.2 헤더 로그인 버튼 Flash 수정
+
+**문제**: `useSession()`이 클라이언트 사이드에서 `/api/auth/session`을 XHR로 fetch하는 동안 status가 `loading`이라 비로그인 상태로 렌더링됨 → 구글 로그인 버튼이 잠깐 보인 후 로그아웃 버튼으로 교체되는 flash 발생.
+
+**해결**: `app/(user)/layout.tsx`를 `async`로 변경하고 `getServerSession(authOptions)`로 서버에서 세션을 fetch한 뒤 `SessionProvider`의 `session` 초기값으로 전달. `useSession()`이 처음부터 `authenticated`/`unauthenticated` 상태를 반환하여 flash 없음.
+
+```
+Before: SessionProvider(session=undefined) → 클라이언트 XHR → status: loading → authenticated
+After:  서버에서 getServerSession() → SessionProvider(session=초기값) → 즉시 authenticated
+```
+
+**영향 파일:**
+- `app/(user)/layout.tsx` — `async`, `getServerSession(authOptions)` 추가
+- `app/lib/Provider/SessionProvider.tsx` — `session?: Session | null` prop 추가
+
+### 9.3 프로젝트 상세 팀원 그리드 수정
+
+**문제**: 팀원 섹션이 `flex-wrap` + 고정 224px 카드로 구성되어 PageWrapper 최대 너비(920px)에서 4개가 한 줄에 들어가지 않고 가운데 정렬도 안됨 (`4 × 224px + 3 × 21px = 959px > 920px`).
+
+**해결**: CSS Grid로 전환.
+
+```ts
+// Before
+display: flex; flex-wrap: wrap; gap: 21px;
+// After
+display: grid; grid-template-columns: repeat(4, 1fr); gap: 21px;
+// Mobile (≤820px)
+grid-template-columns: repeat(3, 1fr); gap: 16px;
+```
+
+`ProfileImage`도 고정 px 제거 → `width: 100%; aspect-ratio: 1/1`로 반응형 처리.
+
+**영향 파일:** `app/(user)/project/[id]/styled/index.ts`
+
+---
+
+## 10. Testing & Validation
+
+### 10.1 빌드 검증
 
 ```bash
 npx tsc --noEmit    # ✅ 통과 (2026-02-21)
 npx next build      # ✅ 통과 (2026-02-21)
 ```
 
-### 9.2 Mock 데이터 테스트 경로
+### 10.2 Mock 데이터 테스트 경로
 
 | 페이지 | URL |
 |--------|-----|
@@ -454,26 +528,27 @@ npx next build      # ✅ 통과 (2026-02-21)
 | 지원 현황 (최종합격) | `localhost:3000/apply/status?mock=true&status=PASS` |
 | 지원서 조회 | `localhost:3000/apply/view?mock=true` |
 
-### 9.3 수동 테스트 체크리스트
+### 10.3 수동 테스트 체크리스트
 
 - [ ] Position 카드 4종 호버 + 모바일 뷰 확인
 - [ ] Apply Step 1 → 2 → 3 스텝 전환 + 스테퍼 클릭 복귀
-- [ ] Apply 임시저장 + 복원
+- [ ] Apply 임시저장 + 복원 (`PUT /temporary-application` → `GET /temporary-application`)
 - [ ] Apply 제출 → complete 페이지 도달
 - [ ] Status 5가지 상태 확인 (mock query)
-- [ ] Status 면접 참석/불참석 버튼 동작
+- [ ] Status 면접 참석/불참석 버튼 동작 (uid 포함 전송 확인)
 - [ ] View 페이지 포지션별 필드 분기 확인
 - [ ] Manage 홈 → 프로필/프로젝트/포트폴리오 네비게이션
 - [ ] Profile 프로필 사진 업로드 + 파트 선택 + 저장
 - [ ] Project 기수/규모 선택 + 썸네일 업로드 + 팀원 추가/삭제 + 등록
 - [ ] Portfolio 프로젝트 그리드 렌더링 + 호버 오버레이
-- [ ] 헤더: 로그인 시 "ㅇㅇㅇ님" 표시, 클릭 시 /manage 이동
-- [ ] 헤더: 미로그인 시 Google 로그인 버튼 표시
+- [ ] 헤더: 로그인 시 로그아웃 버튼 표시 (flash 없음 확인)
+- [ ] 헤더: 미로그인 시 Google 로그인 버튼 표시 (flash 없음 확인)
+- [ ] 프로젝트 상세 팀원 PC 4열, 모바일 3열 정렬 확인
 - [ ] 모든 페이지 820px 브레이크포인트 반응형 확인
 
 ---
 
-## 10. Known Limitations
+## 11. Known Limitations
 
 - **프로젝트 관리**: 현재 등록만 가능하고 수정/삭제 기능은 미구현 (API 의존)
 - **포트폴리오**: `generation: 0`으로 전체 조회만 지원, 기수별 필터링 미구현
@@ -483,7 +558,7 @@ npx next build      # ✅ 통과 (2026-02-21)
 
 ---
 
-## 11. Future Work (Phase 3+)
+## 12. Future Work (Phase 3+)
 
 - [ ] Project 갤러리 페이지 (`/project`) 리브랜딩
 - [ ] Admin 페이지 리브랜딩
