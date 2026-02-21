@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { StyledProvider, NextAuthProvider } from '@/lib';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import * as gtag from '@/lib/gtag';
+import ScrollToTop from '@/components/Common/ScrollToTop';
 
 export const revalidate = 60 * 5;
 
@@ -33,7 +34,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body>
         <Suspense>
           <NextAuthProvider>
-            <StyledProvider>{children}</StyledProvider>
+            <StyledProvider>
+              {children}
+              <ScrollToTop />
+            </StyledProvider>
           </NextAuthProvider>
         </Suspense>
         <GoogleAnalytics gaId={gtag.GA_TRACKING_ID as string} />
