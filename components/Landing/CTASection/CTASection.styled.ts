@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { colors, spacing } from '@/styles/theme';
+import { colors, radius, spacing } from '@/styles/theme';
 import { MQ, mobileMQ } from '@/constants/viewports';
 
 export const CTAContainer = styled.section`
@@ -22,22 +22,25 @@ export const CTAContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 10px;
 `;
 
 export const Chip = styled.span`
   display: inline-flex;
   align-items: center;
-  padding: 8px 20px;
-  border-radius: 999px;
-  border: 1.4px solid ${colors.blue[500]};
+  padding: 8px 16px;
+  border-radius: ${radius.chip};
+  border: 1px solid ${colors.blue[500]};
+  background: rgba(53, 132, 251, 0.2);
   font-size: 16px;
   font-weight: 600;
+  letter-spacing: -0.02em;
   color: ${colors.blue[700]};
+  margin-bottom: 4px;
 
   @media (max-width: 541px) {
     font-size: 12px;
-    padding: 6px 14px;
+    padding: 6px 12px;
   }
 `;
 
@@ -47,10 +50,20 @@ export const Slogan = styled.h2`
   text-align: center;
   line-height: 1.15;
   white-space: pre-line;
+  font-size: min(36px, 7vw);
+  margin-bottom: 14px;
 
-  ${MQ({
-    fontSize: ['36px', '56px', '72px', '80px'],
-  })}
+  @media (min-width: 820px) {
+    font-size: 56px;
+  }
+
+  @media (min-width: 1180px) {
+    font-size: 72px;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 80px;
+  }
 `;
 
 export const SubHeadline = styled.p`
@@ -58,6 +71,7 @@ export const SubHeadline = styled.p`
   color: ${colors.blue[800]};
   text-align: center;
   line-height: 1.3;
+  white-space: pre-line;
 
   ${MQ({
     fontSize: ['20px', '28px', '32px', '36px'],
@@ -87,7 +101,7 @@ export const CountdownWrapper = styled.div`
   align-items: center;
   gap: 1.5rem;
   color: ${colors.blue[800]};
-  margin-top: 12px;
+  margin-top: 20px;
 
   @media (max-width: 541px) {
     gap: 0.75rem;
@@ -137,9 +151,9 @@ export const Separator = styled.div`
 export const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 32px;
   width: 100%;
-  max-width: 478px;
+  max-width: 320px;
 
   > button {
     width: 100%;

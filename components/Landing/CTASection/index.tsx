@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { getCurrentPhase } from '@/utils/ScheduleBanner';
-import { USER } from '@/constants';
+import { APPLY_DATE, USER } from '@/constants';
 import * as gtag from '@/lib/gtag';
 import Button from '@/components/Common/Button';
 import * as S from './CTASection.styled';
@@ -55,44 +55,18 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
   );
 }
 
-function getCTAContent(phaseId: number | null) {
-  switch (phaseId) {
-    case 3:
-      return {
-        showChip: true,
-        subHeadline: 'Leets 7기 모집이 시작되었습니다!',
-        tagline: '2월 26일 23:59에 접수 마감',
-        mobileOnlyTagline: false,
-        showCountdown: true,
-        showApplyButton: true,
-      };
-    case 1:
-    case 2:
-      return {
-        showChip: true,
-        subHeadline: 'Leets와 함께 도전할 당신을\n기다리고 있어요.',
-        tagline: '2026년 2월 모집 예정',
-        mobileOnlyTagline: false,
-        showCountdown: true,
-        showApplyButton: false,
-      };
-    default:
-      return {
-        showChip: false,
-        subHeadline: null,
-        tagline: 'Build, Collaborate, Upscale\nLeets!',
-        mobileOnlyTagline: true,
-        showCountdown: false,
-        showApplyButton: false,
-      };
-  }
-}
+const COUNTDOWN_TARGET: Record<number, Date> = {
+  1: APPLY_DATE.START,
+  2: APPLY_DATE.END,
+};
 
 const CTASection = () => {
   const currentPhase = getCurrentPhase();
   const router = useRouter();
   const phaseId = currentPhase?.id ?? null;
-  const { showChip, subHeadline, tagline, mobileOnlyTagline, showCountdown, showApplyButton } = getCTAContent(phaseId);
+  const isDefault = phaseId === null;
+  const showChip = phaseId === 1 || phaseId === 2;
+  const countdownTarget = phaseId ? COUNTDOWN_TARGET[phaseId] : null;
 
   const handleApply = () => {
     gtag.event({
@@ -113,16 +87,15 @@ const CTASection = () => {
         transition={{ duration: 0.8 }}>
         <S.CTAContent>
           {showChip && <S.Chip>Leets 7th Recruiting</S.Chip>}
-          <S.Slogan>{'함께 도전하며\n우리의 가치를 증명하는 곳.'}</S.Slogan>
-          {subHeadline && <S.SubHeadline>{subHeadline}</S.SubHeadline>}
-          {tagline && <S.Tagline $mobileOnly={mobileOnlyTagline}>{tagline}</S.Tagline>}
-          {showCountdown && currentPhase && (
-            <CountdownTimer targetDate={currentPhase.endDate} />
-          )}
-          {showApplyButton && (
+          {isDefault && <S.Slogan>{'함께 도전하며\n우리의 가치를 증명하는 곳.'}</S.Slogan>}
+          {currentPhase?.title && <S.SubHeadline>{currentPhase.title}</S.SubHeadline>}
+          {currentPhase?.notice && <S.Tagline $mobileOnly={false}>{currentPhase.notice}</S.Tagline>}
+          {isDefault && <S.Tagline $mobileOnly>{'Build, Collaborate, Upscale\nLeets!'}</S.Tagline>}
+          {countdownTarget && <CountdownTimer targetDate={countdownTarget} />}
+          {currentPhase?.buttonText && (
             <S.ButtonGroup>
-              <Button variant="solid" colorScheme="blue" size="large" onClick={handleApply}>
-                지원하기
+              <Button variant="solid" colorScheme="blue" size="medium" onClick={handleApply}>
+                {currentPhase.buttonText}
               </Button>
             </S.ButtonGroup>
           )}
