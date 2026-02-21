@@ -17,6 +17,7 @@ import {
   PM_TEXTAREAS,
 } from '@/constants';
 import { getUserApplication } from '@/api';
+import { Validator } from '@/utils';
 import { colors, radius, spacing, shadows } from '@/styles/theme';
 import { GetApplicationDetaiResponse } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
@@ -220,6 +221,17 @@ const TextareaValueBox = styled.div`
   }
 `;
 
+const FieldLink = styled.a`
+  color: ${colors.blue[500]};
+  text-decoration: underline;
+  word-break: break-all;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
+`;
+
 /* ========== SVG ========== */
 
 const BackArrowSvg = () => (
@@ -320,12 +332,23 @@ const ViewPage = () => {
                 <FieldLabel>지원 직무</FieldLabel>
                 <FieldValueBox>{positionLabel}</FieldValueBox>
               </FieldItem>
-              {inputLayout.map(({ id, title }) => (
-                <FieldItem key={id}>
-                  <FieldLabel>{title}</FieldLabel>
-                  <FieldValueBox>{getFieldValue(id) || '-'}</FieldValueBox>
-                </FieldItem>
-              ))}
+              {inputLayout.map(({ id, title }) => {
+                const value = getFieldValue(id);
+                return (
+                  <FieldItem key={id}>
+                    <FieldLabel>{title}</FieldLabel>
+                    <FieldValueBox>
+                      {Validator.isUrl(value) ? (
+                        <FieldLink href={value} target="_blank" rel="noopener noreferrer">
+                          {value}
+                        </FieldLink>
+                      ) : (
+                        value || '-'
+                      )}
+                    </FieldValueBox>
+                  </FieldItem>
+                );
+              })}
             </FieldGrid>
           </Card>
 

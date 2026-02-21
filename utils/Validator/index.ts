@@ -33,4 +33,8 @@ export class Validator {
     }
     return this.numberValidator(value);
   }
+
+  static isUrl(value: string) {
+    return /^https?:\/\//i.test(value);
+  }
 }
