@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const ApplicationDetailLayout = ({ children }: { children: ReactNode }) => (
-  <S.ContentContainer>
+  <>
     <WithLogout>
       <Nav />
     </WithLogout>
-    {children}
-  </S.ContentContainer>
+    <S.ContentWrapper>{children}</S.ContentWrapper>
+  </>
 );
 
 export default ApplicationDetailLayout;

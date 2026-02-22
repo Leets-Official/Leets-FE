@@ -1,21 +1,21 @@
 export const APPLICATION_STATUS_TEXT_COLOR = {
-  PENDING: '#989898',
-  PASS: '#1a9882',
-  PASS_PAPER: '#1a9882',
-  FAIL: '#eb3d4d',
-  FAIL_PAPER: '#eb3d4d',
+  PENDING: 'rgba(21, 52, 100, 0.40)',
+  PASS: 'rgba(39, 190, 34, 0.80)',
+  PASS_PAPER: 'rgba(39, 190, 34, 0.80)',
+  FAIL: 'rgba(240, 81, 81, 1)',
+  FAIL_PAPER: 'rgba(240, 81, 81, 1)',
 } as const;
 
 export const APPLICATION_STATUS_BG_COLOR = {
-  PENDING: '#e9e8e8',
-  PASS: '#e9faf7',
-  PASS_PAPER: '#e9faf7',
-  FAIL: '#feecee',
-  FAIL_PAPER: '#feecee',
+  PENDING: 'rgba(21, 52, 100, 0.08)',
+  PASS: 'rgba(39, 190, 34, 0.15)',
+  PASS_PAPER: 'rgba(39, 190, 34, 0.15)',
+  FAIL: 'rgba(240, 81, 81, 0.10)',
+  FAIL_PAPER: 'rgba(240, 81, 81, 0.10)',
 } as const;
 
 export const INTERVIEW_ATTEND_STATUS_COLOR = {
-  CHECK: '#4a93ff',
-  UNCHECK: '#f3758b',
-  PENDING: '#e9e8e8',
+  CHECK: '#3584fb',
+  UNCHECK: '#F05151',
+  PENDING: 'rgba(21, 52, 100, 0.15)',
 } as const;

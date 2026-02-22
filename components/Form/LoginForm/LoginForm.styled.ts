@@ -4,50 +4,96 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 `;
 
 export const InputSection = styled.section`
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
+
+  @media (max-width: 819px) {
+    gap: 16px;
+  }
+`;
+
+export const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const InputLabel = styled.label`
+  font-size: 16px;
+  font-weight: 600;
+  color: #153464;
+  letter-spacing: -0.32px;
+
+  @media (max-width: 819px) {
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
 `;
 
 export const InputStyle = styled.input`
-  font-size: 16px;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 
   width: 100%;
-  height: 56px;
+  height: 48px;
 
-  ::placeholder {
-    color: #94a3b8;
-    ${({ placeholder }) => placeholder}
+  color: #153464;
+  background: #fcfdff;
+
+  border: 1px solid rgba(31, 79, 150, 0.2);
+  border-radius: 8px;
+  padding: 0 16px;
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba(31, 79, 150, 0.2);
+    font-size: 14px;
+    font-weight: 500;
   }
 
   &:focus {
-    outline: none;
-    border-color: #4a93ff;
+    border-color: #3584fb;
   }
 
-  padding: 12px;
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  box-sizing: border-box;
-  margin-bottom: 13px;
+  @media (max-width: 819px) {
+    height: 40px;
+  }
 `;
 
+/* 모바일에서만 표시 (PC는 카드 밖 PcLoginButton 사용) */
 export const LoginButton = styled.button`
-  font-weight: 700;
-  font-size: 16px;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
 
   width: 100%;
-  height: 52px;
+  height: 48px;
 
   border: none;
-  border-radius: 8px;
-  margin-top: 55px;
-  color: white;
-  background: #4a93ff;
+  border-radius: 99px;
+  color: #ffffff;
+  background: #3584fb;
   cursor: pointer;
+
+  &:hover {
+    background: #2a69c8;
+  }
+  &:active {
+    background: #1f4f96;
+  }
+
+  @media (min-width: 820px) {
+    display: none;
+  }
 `;
