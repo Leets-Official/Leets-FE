@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useSessionData } from '@/hooks';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE } from '@/constants';
@@ -335,15 +335,13 @@ const STATUS_LABEL: Record<ApplicationStatusType, string> = {
 const VALID_STATUSES: ApplicationStatusType[] = ['PENDING', 'PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'];
 
 const StatusPage = () => {
-  const session = useSession();
+  const { accessToken, submitStatus, uid: rawUid, userName: rawUserName } = useSessionData();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMock = searchParams.get('mock') === 'true';
   const mockStatus = searchParams.get('status') as ApplicationStatusType | null;
-  const accessToken = session.data?.accessToken;
-  const submitStatus = session.data?.submitStatus;
-  const uid = session.data?.uid || '';
-  const userName = session.data?.user?.name || '';
+  const uid = rawUid || '';
+  const userName = rawUserName || '';
 
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
     isMock && mockStatus && VALID_STATUSES.includes(mockStatus) ? mockStatus : 'PENDING',

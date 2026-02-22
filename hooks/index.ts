@@ -13,3 +13,4 @@ export { default as useSort } from './useSort';
 export { default as useFilter } from './useFilter';
 export { default as useApplicationFilterContext } from './useApplicationFilterContext';
 export { default as useQuery } from './useQuery';
+export { default as useSessionData } from './useSessionData';

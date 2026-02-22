@@ -20,8 +20,8 @@ import { useBeforeUnload } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import { Fragment, FormEvent, useState, SetStateAction, useEffect, useMemo, Suspense } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useSessionData } from '@/hooks';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
@@ -55,10 +55,8 @@ const ApplyForm = () => {
   const [submitConfirmed, setSubmitConfirmed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const session = useSession();
+  const { accessToken, submitStatus, update } = useSessionData();
   const router = useRouter();
-  const accessToken = session.data?.accessToken;
-  const submitStatus = session.data?.submitStatus;
   const { allowLeave } = useBeforeUnload();
 
   type InputField = { id: string; title: string; holderText: string; required: boolean; maxLength: number };
@@ -116,7 +114,7 @@ const ApplyForm = () => {
         setPosition(fetchPosition.replace('_', '/') as PositionType);
       }
     };
-    // session.update()가 JWT 쿠키에 반영 안 될 수 있어 submitStatus에만 의존하지 않고
+    // update()가 JWT 쿠키에 반영 안 될 수 있어 submitStatus에만 의존하지 않고
     // 인증된 상태면 무조건 시도 (SUBMIT은 리다이렉트되므로 제외)
     if (accessToken && submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
       fetchData();
@@ -157,7 +155,7 @@ const ApplyForm = () => {
     const { result } = await putTemporaryApplication(applicationData, accessToken);
 
     if (!isAxiosError(result)) {
-      await session.update({ submitStatus: SUBMIT_STATUS.SAVE });
+      await update({ submitStatus: SUBMIT_STATUS.SAVE });
       Alert.success(APPLICATION.COMPLETE_SAVE);
     }
   };
@@ -184,7 +182,7 @@ const ApplyForm = () => {
     const { result } = await postApplication(applicationData, accessToken);
 
     if (!isAxiosError(result)) {
-      await session.update({ submitStatus: SUBMIT_STATUS.SUBMIT });
+      await update({ submitStatus: SUBMIT_STATUS.SUBMIT });
       Alert.success(APPLICATION.COMPLETE_SUBMIT);
       router.push(USER.APPLY_COMPLETE);
     }
