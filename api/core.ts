@@ -11,7 +11,9 @@ const axiosInstance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-const handleRequest = (config: AxiosRequestConfig, injectToken?: string) => {
+export type ApiRequestConfig = AxiosRequestConfig & { silent?: boolean };
+
+const handleRequest = (config: ApiRequestConfig, injectToken?: string) => {
   /* config.headers에 이미 Authorization이 있으면 (유저 토큰 명시 전달) 건드리지 않음 */
   if ((config.headers as Record<string, string>)?.Authorization) {
     return config;
@@ -30,10 +32,12 @@ const handleRequest = (config: AxiosRequestConfig, injectToken?: string) => {
 
 const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
 
-const handleError = (error: unknown) => {
+const handleError = (error: unknown, silent?: boolean) => {
   if (axios.isAxiosError(error)) {
-    const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
-    Alert.error(message);
+    if (!silent) {
+      const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
+      Alert.error(message);
+    }
     return { result: error };
   }
   Alert.error(UNEXPECTED_ERROR);
@@ -42,10 +46,12 @@ const handleError = (error: unknown) => {
 
 const createApiMethod =
   (_axiosInstance: AxiosInstance, methodType: Method) =>
-  <T>(config: AxiosRequestConfig, injectToken?: string): Promise<BaseResponse<T>> =>
-    _axiosInstance({ ...handleRequest(config, injectToken), method: methodType })
+  <T>(config: ApiRequestConfig, injectToken?: string): Promise<BaseResponse<T>> => {
+    const { silent, ...axiosConfig } = config;
+    return _axiosInstance({ ...handleRequest(axiosConfig, injectToken), method: methodType })
       .then(handleResponse)
-      .catch(handleError);
+      .catch((error) => handleError(error, silent));
+  };
 
 export default {
   get: createApiMethod(axiosInstance, HTTP_METHODS.GET),

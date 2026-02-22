@@ -80,6 +80,7 @@ export const getUserApplicationStatus = (accessToken: string) =>
 export const getTemporaryApplication = (accessToken: string) =>
   http.get<GetApplicationDetaiResponse>({
     url: '/temporary-application',
+    silent: true,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
