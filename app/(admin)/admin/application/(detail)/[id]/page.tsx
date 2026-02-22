@@ -6,13 +6,13 @@ import { getCookie } from 'cookies-next';
 import { isAxiosError } from 'axios';
 import { getApplicationDetail, getComments as getCommentsRequest } from '@/api';
 import { ACCESS_TOKEN, ADMIN } from '@/constants';
-import { GetApplicationDetaiResponse, CommentsResponse } from '@/types';
+import { GetApplicationDetailResponse, CommentsResponse } from '@/types';
 import Application from '@/components/Admin/Application';
 import * as S from './styled';
 
 const Page = ({ params: { id } }: { params: { id: string } }) => {
   const router = useRouter();
-  const [application, setApplication] = useState<GetApplicationDetaiResponse | null>(null);
+  const [application, setApplication] = useState<GetApplicationDetailResponse | null>(null);
   const [comments, setComments] = useState<CommentsResponse>([]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
         return;
       }
 
-      setApplication(appRes.result as GetApplicationDetaiResponse);
+      setApplication(appRes.result as GetApplicationDetailResponse);
       setComments(commentsRes.result as CommentsResponse);
     };
 

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useSessionData } from '@/hooks';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
 import {
@@ -19,7 +19,7 @@ import {
 import { getUserApplication } from '@/api';
 import { Validator } from '@/utils';
 import { colors, radius, spacing, shadows } from '@/styles/theme';
-import { GetApplicationDetaiResponse } from '@/types';
+import { GetApplicationDetailResponse } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
 import CopyrightFooter from '@/components/Common/CopyrightFooter';
 
@@ -249,13 +249,11 @@ const BackArrowSvg = () => (
 /* ========== Page Component ========== */
 
 const ViewPage = () => {
-  const session = useSession();
+  const { accessToken, submitStatus } = useSessionData();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMock = searchParams.get('mock') === 'true';
-  const accessToken = session.data?.accessToken;
-  const submitStatus = session.data?.submitStatus;
-  const [application, setApplication] = useState<GetApplicationDetaiResponse | null>(null);
+  const [application, setApplication] = useState<GetApplicationDetailResponse | null>(null);
   const [isLoading, setIsLoading] = useState(!isMock);
 
   useEffect(() => {

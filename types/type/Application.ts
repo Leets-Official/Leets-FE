@@ -69,7 +69,7 @@ export type PatchApplication = Application & {
 
 export type PostApplication = PatchApplication;
 
-export type GetApplicationDetaiResponse = Application & {
+export type GetApplicationDetailResponse = Application & {
   user: Applicant;
   id: number;
   grade: string;
@@ -84,14 +84,14 @@ export type GetApplicationDetaiResponse = Application & {
   };
 };
 
-export type ApplicationDetailType = GetApplicationDetaiResponse;
+export type ApplicationDetailType = GetApplicationDetailResponse;
 
 export type PatchApplicationDetailRequest = {
   id: number;
   applicationStatus: ApplicationStatusType;
 };
 
-export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;
+export type PatchApplicationDetailResponse = GetApplicationDetailResponse;
 
 export type GetApplicationStatusResponse = {
   id: number;

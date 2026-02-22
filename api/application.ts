@@ -6,7 +6,7 @@ import {
   GetApplicationStatusResponse,
   PatchApplication,
   PostApplication,
-  GetApplicationDetaiResponse,
+  GetApplicationDetailResponse,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
 } from '@/types';
@@ -46,7 +46,7 @@ export const patchApplication = (application: PatchApplication, accessToken: str
   });
 
 export const getApplicationDetail = ({ id }: { id: string }, accessToken: string) =>
-  http.get<GetApplicationDetaiResponse>({
+  http.get<GetApplicationDetailResponse>({
     url: `/application/${id}`,
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -62,7 +62,7 @@ export const patchApplicationDetail = ({ id, applicationStatus }: PatchApplicati
   });
 
 export const getUserApplication = (accessToken: string) =>
-  http.get<GetApplicationDetaiResponse>({
+  http.get<GetApplicationDetailResponse>({
     url: '/application/me',
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -78,7 +78,7 @@ export const getUserApplicationStatus = (accessToken: string) =>
   });
 
 export const getTemporaryApplication = (accessToken: string) =>
-  http.get<GetApplicationDetaiResponse>({
+  http.get<GetApplicationDetailResponse>({
     url: '/temporary-application',
     silent: true,
     headers: {
@@ -90,7 +90,7 @@ export const putTemporaryApplication = (
   application: Omit<PostApplication, 'submitStatus'>,
   accessToken: string,
 ) =>
-  http.put<GetApplicationDetaiResponse>({
+  http.put<GetApplicationDetailResponse>({
     url: '/temporary-application',
     data: application,
     headers: {
@@ -107,7 +107,7 @@ export const postInterviewInformation = ({
   fixedInterviewDate: string;
   place: string;
 }) =>
-  http.post<GetApplicationDetaiResponse>({
+  http.post<GetApplicationDetailResponse>({
     url: '/interview',
     data: {
       applicationId: id,
@@ -125,7 +125,7 @@ export const patchInterviewInformation = ({
   fixedInterviewDate: string;
   place: string;
 }) =>
-  http.patch<GetApplicationDetaiResponse>({
+  http.patch<GetApplicationDetailResponse>({
     url: `/interview/${id}`,
     data: {
       fixedInterviewDate,
@@ -138,7 +138,7 @@ export const patchInterviewAttendance = (
   uid: string,
   accessToken: string,
 ) =>
-  http.patch<GetApplicationDetaiResponse>({
+  http.patch<GetApplicationDetailResponse>({
     url: '/interview',
     data: { uid, hasInterview },
     headers: {
