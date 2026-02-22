@@ -39,6 +39,7 @@ export type ApplicationStatusType = KeyOf<typeof APPLICATION_STATUS_MAP>;
 
 export type GetApplicationRequest = {
   position: KeyOf<typeof POSITION_FILTER_MAP>;
+  status?: string;
 };
 
 export type InterviewStatusType = 'CHECK' | 'UNCHECK' | 'PENDING';

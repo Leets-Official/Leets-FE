@@ -11,20 +11,20 @@ import {
   PatchApplicationDetailResponse,
 } from '@/types';
 
-export const getApplicationList = ({ position }: GetApplicationRequest) => {
-  if (position === POSITION_FILTER_MAP.All) {
-    return http.get<GetApplicationResponse[]>({
-      url: '/application',
-    });
-  }
+export const getApplicationList = ({ position, status }: GetApplicationRequest) => {
+  const params: string[] = [];
+
   if (position === 'SAVE') {
-    return http.get<GetApplicationResponse[]>({
-      url: `/application?status=${position}`,
-    });
+    return http.get<GetApplicationResponse[]>({ url: '/application?status=SAVE' });
   }
-  return http.get<GetApplicationResponse[]>({
-    url: `/application?position=${position}`,
-  });
+  if (position && position !== POSITION_FILTER_MAP.All) {
+    params.push(`position=${position}`);
+  }
+  if (status) {
+    params.push(`status=${status}`);
+  }
+  const query = params.length ? `?${params.join('&')}` : '';
+  return http.get<GetApplicationResponse[]>({ url: `/application${query}` });
 };
 
 export const postApplication = (application: PostApplication, accessToken: string) =>
