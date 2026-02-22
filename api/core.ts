@@ -12,6 +12,10 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 const handleRequest = (config: AxiosRequestConfig, injectToken?: string) => {
+  /* config.headers에 이미 Authorization이 있으면 (유저 토큰 명시 전달) 건드리지 않음 */
+  if ((config.headers as Record<string, string>)?.Authorization) {
+    return config;
+  }
   const accessToken = getCookie(ACCESS_TOKEN);
   return !injectToken && !accessToken
     ? config
