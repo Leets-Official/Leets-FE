@@ -92,47 +92,72 @@ const ApplicationStatus = ({
 
   return (
     <S.ApplicationStatusContainer>
+      {/* 합격 상태 헤더 */}
       <S.TitleContainer>
         <S.Title>합격 상태</S.Title>
         <S.ApplicationStatus $applicationStatus={applicationStatus}>
           {APPLICATION_STATUS_MAP[applicationStatus]}
         </S.ApplicationStatus>
       </S.TitleContainer>
-      <S.SubHeader>합격 상태 변경</S.SubHeader>
+
+      <S.Divider />
+
+      {/* 합격 상태 변경 */}
+      <S.SubHeader>합격 상태 변경하기</S.SubHeader>
       <FilterDropDown
         defaultValue="합격 상태"
         list={APPLICATION_STAUTS_LIST}
         selected={selectedApplicationStatus as KeyOf<typeof DROPDOWN_MAP>}
         setSelected={(selected) => setSelectedApplicationCondition(selected)}
-        customWidth={60}
+        customWidth={100}
       />
-      <S.SubHeader>저장 일시</S.SubHeader>
-      <S.DateContainer>{Formatter.normalizeDate(updatedAt)}</S.DateContainer>
+
+      {/* 접수 일시 */}
       <S.SubHeader>접수 일시</S.SubHeader>
-      <S.DateContainer>{Formatter.normalizeDate(appliedAt)}</S.DateContainer>
-      <S.SubHeader>면접 일시</S.SubHeader>
-      <S.DateContainer>{Formatter.normalizeDate(fixedInterviewDate)}</S.DateContainer>
+      <S.DateContainer>{Formatter.normalizeDate(appliedAt) || '—'}</S.DateContainer>
+
+      {/* 임시저장 일시 */}
+      <S.SubHeader>임시저장 일시</S.SubHeader>
+      <S.DateContainer>{Formatter.normalizeDate(updatedAt) || '—'}</S.DateContainer>
+
+      {/* 현재 면접 일시 */}
+      <S.SubHeader>현재 면접 일시</S.SubHeader>
+      <S.DateContainer>{Formatter.normalizeDate(fixedInterviewDate) || '—'}</S.DateContainer>
+
+      {/* 면접 장소 */}
       <S.SubHeader>면접 장소</S.SubHeader>
-      <S.DateContainer>
-        <S.Place defaultValue={place || ''} onChange={(e) => setNewPlace(e.target.value)} />
-      </S.DateContainer>
-      <S.SubHeader>면접 일시</S.SubHeader>
+      <S.Place
+        defaultValue={place || ''}
+        placeholder="면접 장소를 입력해 주세요"
+        onChange={(e) => setNewPlace(e.target.value)}
+      />
+
+      {/* 면접 일시 변경 */}
+      <S.SubHeader>면접 일시 변경</S.SubHeader>
       {fixedInterviewDate ? (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           value={fixedInterviewDate ? dayjs(fixedInterviewDate) : null}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={handleDate}
+          getPopupContainer={(trigger) =>
+            window.innerWidth <= 819 ? trigger.parentElement || document.body : document.body
+          }
         />
       ) : (
         <S.DateInput
           showTime={{ format: DEFAULT_TIME.TIME_FORMAT }}
           format={DEFAULT_TIME.FULL_TIME_FORMAT}
           onChange={handleDate}
+          getPopupContainer={(trigger) =>
+            window.innerWidth <= 819 ? trigger.parentElement || document.body : document.body
+          }
         />
       )}
+
+      {/* 저장 버튼 */}
       <S.ButtonContainer>
-        <S.ChangeButton onClick={submitApplicationStatus}>변경하기</S.ChangeButton>
+        <S.ChangeButton onClick={submitApplicationStatus}>저장하기</S.ChangeButton>
       </S.ButtonContainer>
     </S.ApplicationStatusContainer>
   );

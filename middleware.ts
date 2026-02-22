@@ -1,13 +1,19 @@
-import { type NextRequest, NextResponse, userAgent } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { ACCESS_TOKEN, APPLY_PERIOD } from '@/constants';
 import { Schedule } from './utils/Schedule';
 
 export async function middleware(request: NextRequest) {
   const {
-    nextUrl: { pathname },
+    nextUrl: { pathname, searchParams },
     url,
   } = request;
+
+  // Development mock bypass
+  if (searchParams.get('mock') === 'true') {
+    return NextResponse.next();
+  }
+
   const accessToken = request.cookies.get(ACCESS_TOKEN);
 
   if (pathname.includes('admin')) {
@@ -29,13 +35,6 @@ export async function middleware(request: NextRequest) {
   }
 
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-  const {
-    device: { type = 'desktop' },
-  } = userAgent(request);
-
-  if (type !== 'desktop') {
-    return NextResponse.redirect(new URL('/', url));
-  }
 
   if (pathname.includes('apply')) {
     if (token?.accessToken) {
@@ -50,5 +49,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/login', '/apply'],
+  matcher: ['/admin/:path*', '/login', '/apply/:path*', '/apply'],
 };

@@ -2,39 +2,48 @@
 
 import styled from 'styled-components';
 
-export const CommentsContainer = styled.div`
+/* PC + Mobile 모두 표시 */
+export const CommentsWrapper = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  gap: 9px;
-
-  margin-bottom: 15vh;
+  gap: 12px;
 `;
 
-export const CommentContainer = styled.div`
-  font-weight: 400;
-  font-size: 14px;
-
+export const CommentsContainer = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
+`;
 
-  background: #cfe1fd;
-  padding: 22px 24px;
+/* ── 메모 카드 (Figma: #A8CAFD bg, 12px radius) ── */
+export const CommentContainer = styled.div`
+  width: 100%;
+  background: #a8cafd;
   border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const CommentContent = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: #020812;
   line-height: 1.5;
-  word-break: break-all;
-
+  letter-spacing: -0.28px;
+  word-break: break-word;
   white-space: pre-wrap;
 `;
 
 export const CommentAuthor = styled.div`
-  color: #3685fc;
-  text-align: end;
+  font-size: 14px;
+  font-weight: 500;
+  color: #020812;
+  letter-spacing: -0.28px;
+  text-align: right;
+  opacity: 0.6;
 `;
+

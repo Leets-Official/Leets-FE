@@ -1,11 +1,18 @@
+export interface PositionColorTheme {
+  gradient: string;
+  hoverShadow: string;
+  mobileChipBg: string;
+  mobileChipBorder: string;
+  mobileChipText: string;
+}
+
 export interface PositionData {
   id: string;
   title: string;
   description: string;
   hoverDescription: string;
-  icon: string;
+  iconSrc: string;
   skills: string[];
-  url: string;
-  baseColor: string;
-  hoverGradient: string;
+  applyPosition: string;
+  colorTheme: PositionColorTheme;
 }

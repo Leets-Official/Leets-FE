@@ -1,33 +1,45 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { colors, radius } from '@/styles/theme';
 
 export const ListStyle = styled(motion.li)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   list-style: none;
-  background: white;
-  padding-bottom: 40px;
+  gap: 12px;
+
+  & + & {
+    margin-top: 36px;
+  }
+
+  @media (max-width: 820px) {
+    & + & {
+      margin-top: 30px;
+    }
+  }
 `;
 
 export const LabelStyle = styled.label`
-  font-family: 'Pretendard', sans-serif;
-  font-style: normal;
-  font-weight: 500;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-weight: 600;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 19px;
+  letter-spacing: -0.32px;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
-  margin-bottom: 8px;
-  background: white;
-  color: #666666;
+  color: ${colors.blue[800]};
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.28px;
+  }
 `;
 
 export const PStyle = styled.p`
-  background: white;
   margin-right: 8px;
   white-space: pre-wrap;
 `;
@@ -35,43 +47,56 @@ export const PStyle = styled.p`
 export const RequireStyle = styled.div`
   width: 8px;
   height: 8px;
-
   border-radius: 8px;
-  background: #e15241;
+  background: ${colors.state.errorText};
 `;
 
 export const TextareaStyle = styled.textarea`
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 22px;
 
   width: 100%;
-  height: 168px;
+  height: 133px;
 
-  transition: all 150ms;
+  transition: border-color 150ms;
 
-  border: 1.5px solid #e6e6e6;
-  border-radius: 8px;
+  border: 1px solid rgba(21, 52, 100, 0.2);
+  border-radius: ${radius.input};
   background: white;
-  padding: 8px;
+  padding: 12px 16px;
   resize: none;
 
   &::placeholder {
-    color: #adb1bd;
+    color: ${colors.neutral.disabledText};
+  }
+  &:hover {
+    border-color: rgba(21, 52, 100, 0.4);
   }
   &:focus {
     outline: none;
-    border: 1.5px solid #3685fc;
+    border-color: ${colors.blue[500]};
+  }
+
+  @media (max-width: 820px) {
+    height: 120px;
+    font-size: 14px;
   }
 `;
 
 export const TextLengthContainer = styled.div`
-  font-size: 14px;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.24px;
 
   display: flex;
   justify-content: flex-end;
 
-  margin-top: 10px;
-  color: #777980;
+  color: rgba(21, 52, 100, 0.4);
+
+  @media (max-width: 820px) {
+    font-size: 11px;
+  }
 `;

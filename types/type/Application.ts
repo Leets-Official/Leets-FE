@@ -13,7 +13,6 @@ export type ApplicationInput = ApplicationLink & {
   major: string;
   algorithm: string;
   project: string;
-  career: string;
   phone: string;
   interviewDay: string;
   interviewTime: string;
@@ -40,6 +39,7 @@ export type ApplicationStatusType = KeyOf<typeof APPLICATION_STATUS_MAP>;
 
 export type GetApplicationRequest = {
   position: KeyOf<typeof POSITION_FILTER_MAP>;
+  status?: string;
 };
 
 export type InterviewStatusType = 'CHECK' | 'UNCHECK' | 'PENDING';
@@ -47,7 +47,6 @@ export type InterviewStatusType = 'CHECK' | 'UNCHECK' | 'PENDING';
 export type GetApplicationResponse = {
   id: number;
   name: string;
-  gpa: string;
   grade: string;
   position: string;
   career: string;
@@ -70,7 +69,7 @@ export type PatchApplication = Application & {
 
 export type PostApplication = PatchApplication;
 
-export type GetApplicationDetaiResponse = Application & {
+export type GetApplicationDetailResponse = Application & {
   user: Applicant;
   id: number;
   grade: string;
@@ -85,14 +84,22 @@ export type GetApplicationDetaiResponse = Application & {
   };
 };
 
-export type ApplicationDetailType = GetApplicationDetaiResponse;
+export type ApplicationDetailType = GetApplicationDetailResponse;
 
 export type PatchApplicationDetailRequest = {
   id: number;
   applicationStatus: ApplicationStatusType;
 };
 
-export type PatchApplicationDetailResponse = GetApplicationDetaiResponse;
+export type PatchApplicationDetailResponse = GetApplicationDetailResponse;
+
+export type GetApplicationStatusResponse = {
+  id: number;
+  status: ApplicationStatusType;
+  hasInterview: InterviewStatusType;
+  interviewDate: string;
+  interviewPlace: string;
+};
 
 export type ApplicationInputProp = {
   position: PositionType;
