@@ -603,9 +603,127 @@ npx next build      # ✅ 통과 (2026-02-21)
 ## 12. Future Work (Phase 3+)
 
 - [ ] Project 갤러리 페이지 (`/project`) 리브랜딩
-- [ ] Admin 페이지 리브랜딩
+- [x] ~~Admin 페이지 리브랜딩~~ → 섹션 13 참고 (2026-02-23 완료)
 - [ ] 프로젝트 수정/삭제 기능
 - [ ] 기수별 포트폴리오 필터링
 - [ ] Mock 바이패스 환경 변수 분기 (`process.env.NODE_ENV`)
 - [ ] 프로필 파트에 BX/BI 추가
 - [ ] 성능 최적화 (Next.js Image 컴포넌트 통일)
+
+---
+
+## 13. 어드민 패널 개선 (2026-02-23)
+
+### 13.1 레이아웃 및 네비게이션
+
+**목표**: 헤더-콘텐츠 좌측 정렬 일치, 로그아웃 버튼 스타일 통일
+
+| 변경 항목 | Before | After |
+|-----------|--------|-------|
+| 헤더 패딩 | `padding: 0 208px` (고정값) | `NavInner` — `max-width: 1024px; margin: 0 auto; padding: 0 32px` |
+| 로그아웃 버튼 | pill 버튼 (`border-radius: 100px`, border, shadow) | 텍스트 버튼 (`border-radius: 8px`, hover bg만) — 프로젝트 링크와 동일 스타일 |
+| 모바일 헤더 | 프로젝트 버튼 숨김 | 프로젝트 버튼 표시 |
+
+**영향 파일:**
+- `components/Admin/WithLogout/WithLogout.styled.ts` — `NavContainer` 패딩 제거, `NavInner` 신규
+- `components/Admin/WithLogout/index.tsx` — `NavInner` 래퍼 추가, `LogoutContainer` 제거
+
+### 13.2 지원서 목록 테이블 및 필터
+
+**URL searchParams 기반 필터 상태 유지**
+
+필터 상태를 `useState` 대신 URL searchParams에 저장하여 상세 페이지 진입 후 뒤로가기 시 필터 복원:
+
+| 파라미터 | 키 | 기본값 |
+|---------|-----|--------|
+| 포지션 탭 | `position` | `All` |
+| 합격 여부 | `status` | `''` |
+| 면접 여부 | `interview` | `''` |
+| 면접 날짜 정렬 | `sort` | `''` |
+
+**모바일 테이블 레이아웃 개선**
+
+- `ColInterviewStatus` + `ColInterviewDate` → `ColInterviewCombined` (면접 dot + 날짜 한 셀, flex:1)
+- 모바일 컬럼 너비: ColName 56px / ColPosition 64px / ColStatus 72px
+- `TabsContainer` 모바일: `width: fit-content` (오른쪽 여백 제거)
+
+**포지션 탭 UX_UI 통합**
+
+`UX_UI`를 D 탭(`BX_BI`)에 통합. D 탭 선택 시 두 포지션을 병렬 fetch 후 병합:
+
+```typescript
+// page.tsx — D 탭 선택 시 BX_BI + UX_UI 병합
+if (position === 'BX_BI') {
+  const [bxBi, uxUi] = await Promise.all([
+    getApplicationList({ position: 'BX_BI' }),
+    getApplicationList({ position: 'UX_UI' }),
+  ]);
+  setApplications([...bxBi.result, ...uxUi.result]);
+}
+```
+
+탭 목록: `전체 / FE / BE / D / PM / 임시` (6개, 기존 7개에서 UI 탭 제거)
+
+**StatusDropdown 컴포넌트 신규 추가**
+
+`components/Admin/StatusDropdown/` — 합격 여부 / 면접 여부 / 면접 날짜 공용 드롭다운 필터
+
+**영향 파일:**
+- `components/Admin/ApplicationList/index.tsx`
+- `components/Admin/ApplicationList/ApplicationList.styled.ts`
+- `app/(admin)/admin/application/(list)/page.tsx`
+- `api/application.ts`
+
+### 13.3 지원서 상세 페이지
+
+**사이드바 순서**: 합격상태 카드 → 메모 (PC)
+
+**포트폴리오 URL 링크 연결**
+
+```typescript
+// Application/index.tsx
+{Validator.isUrl(application.portfolio) ? (
+  <S.PortfolioLink href={application.portfolio} target="_blank" rel="noopener noreferrer">
+    {application.portfolio}
+  </S.PortfolioLink>
+) : (
+  <S.LongValue>{application.portfolio}</S.LongValue>
+)}
+```
+
+**모바일 FAB + 바텀 시트**
+
+- 모바일에서 면접 정보 입력: 하단 FAB 버튼 → 바텀 시트 슬라이드 업
+- Drag-to-close: `touchstart/touchmove/touchend`로 드래그 델타 추적, 80px 초과 시 시트 닫힘
+
+**DatePicker 팝업 위치**
+
+```typescript
+// 모바일: 컨테이너 안에 고정, PC: body에 자유 렌더링
+getPopupContainer={(trigger) =>
+  window.innerWidth <= 819 ? trigger.parentElement || document.body : document.body
+}
+```
+
+CSS도 `@media (max-width: 819px)` 안으로 이동하여 PC에서 팝업 미제한.
+
+**가로 스크롤 방지**
+- `ApplicationContainer`: `overflow-x: hidden`
+- `PersonalInformation` grid: `1fr` → `minmax(0, 1fr)` (content overflow 방지)
+- `LongValue`: `min-width: 0; width: 100%`
+
+**영향 파일:**
+- `components/Admin/Application/index.tsx`
+- `components/Admin/Application/Application.styled.ts`
+- `components/Admin/Application/ApplicationStatus/index.tsx`
+- `components/Admin/Application/ApplicationStatus/ApplicationStatus.styled.ts`
+
+### 13.4 메모 기능 개선
+
+- **500자 제한**: `maxLength={500}`, `onChange`에서 `.slice(0, 500)` 적용
+- **글자 수 카운터**: textarea 하단 우측 `{n} / 500` 표시, 500자 도달 시 `#e53935` 강조
+- **placeholder**: "메모를 입력해 주세요. (최대 500자)"
+
+**영향 파일:**
+- `components/Admin/Application/Comments/CommentsForm/index.tsx`
+- `components/Admin/Application/Comments/CommentsForm/CommentsForm.styled.ts`
