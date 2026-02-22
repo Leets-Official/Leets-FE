@@ -98,6 +98,7 @@ const ApplyForm = () => {
   }, [applicationInput, applicationText, step2Inputs, textareaLayout]);
 
   useEffect(() => {
+    if (submitStatus === undefined) return; // 세션 로딩 중 - 아직 렌더링하지 않음
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY_COMPLETE);
       return;
@@ -107,7 +108,7 @@ const ApplyForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { result } = await getTemporaryApplication(accessToken);
+      const { result } = await getTemporaryApplication(accessToken!);
       if (!isAxiosError(result)) {
         const { motive, capability, conflict, expectation, passion, user, position: fetchPosition } = result;
         setApplicationText({ motive, capability, conflict, expectation, passion });
@@ -115,7 +116,9 @@ const ApplyForm = () => {
         setPosition(fetchPosition.replace('_', '/') as PositionType);
       }
     };
-    if (submitStatus && submitStatus === SUBMIT_STATUS.SAVE) {
+    // session.update()가 JWT 쿠키에 반영 안 될 수 있어 submitStatus에만 의존하지 않고
+    // 인증된 상태면 무조건 시도 (SUBMIT은 리다이렉트되므로 제외)
+    if (accessToken && submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
       fetchData();
     }
   }, [submitStatus, accessToken]);
