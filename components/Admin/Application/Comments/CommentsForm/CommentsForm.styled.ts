@@ -1,36 +1,70 @@
+'use client';
+
 import styled from 'styled-components';
 
-export const AddCommentButton = styled.button`
-  all: unset;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  width: 100%;
-  height: 43px;
-
-  text-align: center;
-  background: #3685fc;
-  cursor: pointer;
-  color: white;
-  margin-bottom: 9px;
-
-  border-radius: 10px;
+export const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const CommentTextarea = styled.textarea`
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #153464;
+  letter-spacing: -0.28px;
+  line-height: 1.5;
   width: 100%;
-
-  background: #cfe1fd;
-  padding: 22px 24px;
+  min-height: 80px;
+  background: #a8cafd;
+  border: 1px solid transparent;
   border-radius: 12px;
-  resize: none;
-  border: 1px solid #cfe1fd;
+  padding: 16px 20px;
+  resize: vertical;
+  outline: none;
 
-  overflow: hidden;
+  &::placeholder {
+    color: rgba(2, 8, 18, 0.4);
+  }
 
   &:focus {
-    outline: none;
-    border: 1px solid #3685fc;
+    border-color: #3584fb;
+  }
+`;
+
+export const TextareaWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const CharCount = styled.span<{ $isOver: boolean }>`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ $isOver }) => ($isOver ? '#e53935' : 'rgba(21, 52, 100, 0.45)')};
+  text-align: right;
+  letter-spacing: -0.24px;
+`;
+
+export const AddCommentButton = styled.button`
+  all: unset;
+  font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.28px;
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  background: #3584fb;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background: #2a69c8;
   }
 `;
