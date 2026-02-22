@@ -15,4 +15,16 @@ export class Formatter {
     const minutes = dateObject.getMinutes().toString().padStart(2, '0');
     return `${year}.${month}.${day} ${hours}:${minutes}`;
   }
+
+  /* 지원서 목록 면접 일시: 2025.08.04(월) */
+  static formatInterviewDate(dateTime: string) {
+    if (!dateTime) return '-';
+    const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+    const d = new Date(dateTime);
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    const dayOfWeek = DAYS[d.getDay()];
+    return `${year}.${month}.${day}(${dayOfWeek})`;
+  }
 }
