@@ -727,3 +727,75 @@ CSS도 `@media (max-width: 819px)` 안으로 이동하여 PC에서 팝업 미제
 **영향 파일:**
 - `components/Admin/Application/Comments/CommentsForm/index.tsx`
 - `components/Admin/Application/Comments/CommentsForm/CommentsForm.styled.ts`
+
+---
+
+## 14. 버그 수정 및 API 개선 (2026-02-23)
+
+### 14.1 임시저장 불러오기 버그 수정
+
+**문제**: 지원서 임시저장 후 페이지를 나갔다 돌아오면 저장된 내용이 복원되지 않는 버그
+
+**원인 분석**:
+
+1. **`isLoading` 조기 해제**: 세션 로딩 중(`submitStatus === undefined`)에도 `setIsLoading(false)`가 호출되어 빈 폼이 먼저 렌더링됨
+
+2. **`session.update()` 의존 문제 (핵심)**: `handleSave`에서 `session.update({ submitStatus: 'SAVE' })`를 호출하지만, Next.js App Router 환경에서 `session.update()`는 현재 페이지의 메모리 상태만 업데이트함. 페이지 이탈 전에 JWT 쿠키 반영이 보장되지 않아, 재진입 시 쿠키에서 읽은 `submitStatus`가 `'NONE'`으로 남아 `fetchData()`가 호출되지 않음
+
+**수정**:
+
+```typescript
+// apply/page.tsx — isLoading: 세션 로드 전 렌더링 방지
+useEffect(() => {
+  if (submitStatus === undefined) return; // 세션 로딩 중
+  if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+    router.replace(USER.APPLY_COMPLETE);
+    return;
+  }
+  setIsLoading(false);
+}, [submitStatus, router]);
+
+// fetch 조건: session.update()에 의존하지 않고 인증 여부로 판단
+// silent: true → 임시저장 없는 신규 유저 404 에러 토스트 미노출
+if (accessToken && submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
+  fetchData();
+}
+```
+
+**영향 파일:**
+- `app/(user)/(application)/apply/page.tsx`
+
+### 14.2 API 에러 토스트 억제 옵션 추가
+
+**문제**: `getTemporaryApplication` 호출 시 임시저장이 없는 신규 유저에게 404 에러 토스트가 노출되는 UX 문제
+
+**수정**: `api/core.ts`에 `silent?: boolean` 옵션 추가
+
+```typescript
+// api/core.ts
+export type ApiRequestConfig = AxiosRequestConfig & { silent?: boolean };
+
+const handleError = (error: unknown, silent?: boolean) => {
+  if (axios.isAxiosError(error)) {
+    if (!silent) {
+      const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
+      Alert.error(message);
+    }
+    return { result: error };
+  }
+  // ...
+};
+```
+
+`getTemporaryApplication`에 `silent: true` 적용 — 에러 응답이 와도 토스트 미노출.
+
+**영향 파일:**
+- `api/core.ts`
+- `api/application.ts`
+
+### 14.3 지원 시작일 수정
+
+`APPLY_DATE.START`를 `2026-02-26` → `2026-02-20`으로 수정.
+
+**영향 파일:**
+- `constants/schedule.ts`
