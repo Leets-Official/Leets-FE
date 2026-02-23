@@ -107,9 +107,23 @@ const ApplyForm = () => {
     const fetchData = async () => {
       const { result } = await getTemporaryApplication(accessToken!);
       if (!isAxiosError(result)) {
-        const { motive, capability, conflict, expectation, passion, user, position: fetchPosition } = result;
+        const {
+          motive, capability, conflict, expectation, passion,
+          user, position: fetchPosition,
+          name, grade, major, algorithm, project, phone, interviewDay, interviewTime, portfolio,
+        } = result;
         setApplicationText({ motive, capability, conflict, expectation, passion });
-        setApplicationInput({ ...user, ...result });
+        setApplicationInput({
+          name: name ?? user.name,
+          grade,
+          major,
+          algorithm,
+          project,
+          phone: phone ?? user.phone,
+          interviewDay,
+          interviewTime,
+          portfolio,
+        });
         setPosition(fetchPosition.replace('_', '/') as PositionType);
       }
     };
