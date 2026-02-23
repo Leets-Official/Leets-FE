@@ -106,7 +106,7 @@ const ApplyForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { result } = await getTemporaryApplication(accessToken!);
-      if (!isAxiosError(result)) {
+      if (result && !isAxiosError(result)) {
         const {
           motive, capability, conflict, expectation, passion,
           user, position: fetchPosition,
