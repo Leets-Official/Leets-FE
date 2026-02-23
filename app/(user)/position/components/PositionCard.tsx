@@ -133,7 +133,7 @@ const HoverTitle = styled.h3`
 
 const ApplyLabel = styled.span`
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 600;
   color: #ffffff;
   line-height: 14.4px;
   letter-spacing: -0.24px;
@@ -141,11 +141,11 @@ const ApplyLabel = styled.span`
 `;
 
 const HoverDesc = styled.p`
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 500;
   color: #ffffff;
-  line-height: 18px;
-  letter-spacing: -0.3px;
+  line-height: 20.4px;
+  letter-spacing: -0.34px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
 `;
 
@@ -160,11 +160,11 @@ const DetailBox = styled.div`
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #ffffff;
-  line-height: 17px;
-  letter-spacing: -0.28px;
+  line-height: 19.2px;
+  letter-spacing: -0.32px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
 `;
@@ -182,10 +182,10 @@ const PCChip = styled.span`
   color: #ffffff;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.28px;
   border: 1px solid #ffffff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
