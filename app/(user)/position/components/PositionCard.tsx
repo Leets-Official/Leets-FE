@@ -44,6 +44,10 @@ const Card = styled.div<{ $gradient: string; $hoverShadow: string }>`
     opacity: 1;
   }
 
+  @media (min-width: 821px) and (max-width: 1180px) {
+    height: 300px;
+  }
+
   @media (max-width: 820px) {
     height: auto;
     border: 1px solid rgba(53, 132, 251, 0.2);
@@ -120,7 +124,7 @@ const HoverHeader = styled.div`
 
 const HoverTitle = styled.h3`
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   color: #ffffff;
   line-height: 33.6px;
   letter-spacing: -0.56px;
@@ -129,7 +133,7 @@ const HoverTitle = styled.h3`
 
 const ApplyLabel = styled.span`
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   color: #ffffff;
   line-height: 14.4px;
   letter-spacing: -0.24px;
@@ -138,7 +142,7 @@ const ApplyLabel = styled.span`
 
 const HoverDesc = styled.p`
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
   line-height: 18px;
   letter-spacing: -0.3px;
@@ -157,7 +161,7 @@ const DetailBox = styled.div`
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: #ffffff;
   line-height: 17px;
   letter-spacing: -0.28px;
@@ -178,8 +182,8 @@ const PCChip = styled.span`
   color: #ffffff;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 18px;
   letter-spacing: -0.3px;
   border: 1px solid #ffffff;
@@ -208,7 +212,7 @@ const MobileTitleRow = styled.div`
 
 const MobileTitle = styled.span`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: ${colors.blue[800]};
   letter-spacing: -0.32px;
   line-height: 19.2px;
@@ -216,7 +220,7 @@ const MobileTitle = styled.span`
 
 const MobileApplyLabel = styled.span`
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${colors.blue[800]};
   line-height: 13.2px;
 `;
@@ -235,7 +239,7 @@ const MobileTextBlock = styled.div`
 
 const MobileDesc = styled.p`
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: ${colors.blue[800]};
   letter-spacing: -0.24px;
   line-height: 14.4px;
@@ -243,7 +247,7 @@ const MobileDesc = styled.p`
 
 const MobileDetail = styled.p`
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${colors.blue[800]};
   letter-spacing: -0.24px;
   line-height: 14.4px;
@@ -267,7 +271,7 @@ const MobileChip = styled.span<{
   padding: 4px 8px;
   border-radius: 999px;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 12px;
   letter-spacing: -0.2px;
 `;
