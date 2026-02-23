@@ -123,6 +123,7 @@ const ApplyForm = () => {
           interviewDay,
           interviewTime,
           portfolio,
+          sid: 'null',
         });
         setPosition(fetchPosition.replace('_', '/') as PositionType);
       }

@@ -23,6 +23,7 @@ export const APPLICATION_INPUT_DEFAULT = {
   portfolio: '',
   interviewDay: '',
   interviewTime: '',
+  sid: 'null',
 };
 
 export const APPLICATION_DEFAULT = {

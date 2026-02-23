@@ -16,6 +16,7 @@ export type ApplicationInput = ApplicationLink & {
   phone: string;
   interviewDay: string;
   interviewTime: string;
+  sid: string;
 };
 
 export type ApplicationTextarea = {
