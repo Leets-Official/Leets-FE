@@ -1,6 +1,4 @@
 export interface PositionColorTheme {
-  gradient: string;
-  hoverShadow: string;
   mobileChipBg: string;
   mobileChipBorder: string;
   mobileChipText: string;

@@ -12,7 +12,7 @@ import { PositionData } from '../types/position';
 
 // ============ Card Container ============
 
-const Card = styled.div<{ $gradient: string; $hoverShadow: string }>`
+const Card = styled.div`
   position: relative;
   border-radius: 12px;
   cursor: pointer;
@@ -25,23 +25,9 @@ const Card = styled.div<{ $gradient: string; $hoverShadow: string }>`
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: ${({ $gradient }) => $gradient};
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 0;
-  }
-
   &:hover {
-    border-color: transparent;
-    box-shadow: ${({ $hoverShadow }) => $hoverShadow};
-  }
-
-  &:hover::before {
-    opacity: 1;
+    border-color: rgba(53, 132, 251, 0.35);
+    box-shadow: 0 4px 16px rgba(53, 132, 251, 0.25);
   }
 
   @media (min-width: 821px) and (max-width: 1180px) {
@@ -51,10 +37,6 @@ const Card = styled.div<{ $gradient: string; $hoverShadow: string }>`
   @media (max-width: 820px) {
     height: auto;
     border: 1px solid rgba(53, 132, 251, 0.2);
-
-    &::before {
-      display: none;
-    }
 
     &:hover {
       border-color: rgba(53, 132, 251, 0.2);
@@ -101,6 +83,7 @@ const HoverView = styled.div`
   inset: 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 28px;
   gap: 12px;
   z-index: 1;
@@ -123,72 +106,57 @@ const HoverHeader = styled.div`
 `;
 
 const HoverTitle = styled.h3`
-  font-size: 28px;
-  font-weight: 600;
-  color: #ffffff;
-  line-height: 33.6px;
-  letter-spacing: -0.56px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  font-weight: 700;
+  color: #3584fb;
+  line-height: 24px;
+  letter-spacing: -0.4px;
 `;
 
 const ApplyLabel = styled.span`
   font-size: 12px;
   font-weight: 600;
-  color: #ffffff;
+  color: rgba(21, 52, 100, 0.8);
   line-height: 14.4px;
   letter-spacing: -0.24px;
   white-space: nowrap;
 `;
 
 const HoverDesc = styled.p`
-  font-size: 17px;
-  font-weight: 500;
-  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(21, 52, 100, 0.8);
   line-height: 20.4px;
   letter-spacing: -0.34px;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
 `;
 
 const DetailBox = styled.div`
-  background: linear-gradient(
-    135deg,
-    rgba(2, 8, 18, 0.1) 0%,
-    rgba(2, 8, 18, 0) 25%,
-    rgba(2, 8, 18, 0.2) 71.2%,
-    rgba(2, 8, 18, 0) 100%
-  );
-  padding: 8px 12px;
+  background: rgba(21, 52, 100, 0.04);
+  padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 16px;
-  font-weight: 500;
-  color: #ffffff;
+  border: 1px solid rgba(31, 79, 150, 0.18);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(21, 52, 100, 0.8);
   line-height: 19.2px;
   letter-spacing: -0.32px;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
 `;
 
 const ChipsRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  flex: 1;
-  align-items: flex-end;
 `;
 
 const PCChip = styled.span`
-  background: rgba(21, 52, 100, 0.1);
-  color: #ffffff;
+  color: rgba(21, 52, 100, 0.7);
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.28px;
-  border: 1px solid #ffffff;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(31, 79, 150, 0.18);
 `;
 
 // ============ Mobile View ============
@@ -199,7 +167,7 @@ const MobileView = styled.div`
   @media (max-width: 820px) {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     padding: 20px;
   }
 `;
@@ -211,7 +179,7 @@ const MobileTitleRow = styled.div`
 `;
 
 const MobileTitle = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: ${colors.blue[800]};
   letter-spacing: -0.32px;
@@ -239,7 +207,7 @@ const MobileTextBlock = styled.div`
 
 const MobileDesc = styled.p`
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${colors.blue[800]};
   letter-spacing: -0.24px;
   line-height: 14.4px;
@@ -271,7 +239,7 @@ const MobileChip = styled.span<{
   padding: 4px 8px;
   border-radius: 999px;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 12px;
   letter-spacing: -0.2px;
 `;
@@ -304,7 +272,7 @@ export default function PositionCard({ position }: PositionCardProps) {
   const { colorTheme } = position;
 
   return (
-    <Card $gradient={colorTheme.gradient} $hoverShadow={colorTheme.hoverShadow} onClick={handleApply}>
+    <Card onClick={handleApply}>
       {/* PC Default */}
       <DefaultView>
         <Image src={position.iconSrc} alt={position.title} width={150} height={150} style={{ objectFit: 'contain' }} />
