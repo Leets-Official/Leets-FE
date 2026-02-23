@@ -16,12 +16,11 @@ import {
 } from '@/constants';
 import { KeyOf, PositionType, SubmitStatus, ApplicationTextarea } from '@/types';
 import { postApplication, putTemporaryApplication, getTemporaryApplication } from '@/api';
-import { useBeforeUnload } from '@/hooks';
+import { useBeforeUnload, useSessionData } from '@/hooks';
 import { isAxiosError } from 'axios';
 import { Alert } from '@/utils';
 import { Fragment, FormEvent, useState, SetStateAction, useEffect, useMemo, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSessionData } from '@/hooks';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';

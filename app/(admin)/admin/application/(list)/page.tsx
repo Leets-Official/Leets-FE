@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, memo, Suspense } from 'react';
+import { useEffect, memo, Suspense, useState } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { useState } from 'react';
 import { ApplicationType, KeyOf } from '@/types';
 import { getApplicationList } from '@/api';
 import { POSITION_FILTER_MAP } from '@/constants';

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { ApplicationDetailType, CommentsResponse } from '@/types';
 import { APPLY_POSITION, SHORT_INFO_LAYOUT, LONG_INFO_LAYOUT, SELF_INTRODUCTION_LAYOUT } from '@/constants';
 import { Validator } from '@/utils';
