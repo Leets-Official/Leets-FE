@@ -17,7 +17,6 @@ const POSITION_LABEL: Record<string, string> = {
   BACKEND: 'BE',
   BX_BI: 'D',
   PM: 'PM',
-  SAVE: '임시',
 };
 
 /* UX_UI는 D 탭(BX_BI)에 통합 — 별도 탭 미노출 */

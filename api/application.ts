@@ -14,9 +14,6 @@ import {
 export const getApplicationList = ({ position, status }: GetApplicationRequest) => {
   const params: string[] = [];
 
-  if (position === 'SAVE') {
-    return http.get<GetApplicationResponse[]>({ url: '/application?status=SAVE' });
-  }
   if (position && position !== POSITION_FILTER_MAP.All) {
     params.push(`position=${position}`);
   }
