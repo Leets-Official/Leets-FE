@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import Nav, { Apply } from '@/components/Common/Nav';
+import HeaderTemplate from '@/components/Common/HeaderTemplate';
+import CopyrightFooter from '@/components/Common/CopyrightFooter';
 import { PageContainer, PageWrapper } from './styled';
 
 export const metadata: Metadata = {
@@ -8,12 +9,11 @@ export const metadata: Metadata = {
 };
 
 const ProjectLayout = ({ children }: { children: ReactNode }) => (
-  <>
-    <Nav />
-    <PageContainer>
-      <PageWrapper>{children}</PageWrapper>
-    </PageContainer>
-  </>
+  <PageContainer>
+    <HeaderTemplate variant="black" />
+    <PageWrapper>{children}</PageWrapper>
+    <CopyrightFooter />
+  </PageContainer>
 );
 
 export default ProjectLayout;

@@ -6,4 +6,4 @@ export const HTTP_METHODS: Record<string, 'get' | 'post' | 'patch' | 'put' | 'de
   DELETE: 'delete',
 } as const;
 
-export const ACCESS_TOKEN = 'accessToken' as const;
+export const ACCESS_TOKEN = 'admin-access-token' as const;

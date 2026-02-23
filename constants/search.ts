@@ -24,15 +24,16 @@ export const PAGINATION = {
 } as const;
 
 export const APPLY_POSITION = {
-  DEV: '개발',
-  UX_UI: 'UX_UI',
+  FRONTEND: '프론트엔드',
+  BACKEND: '백엔드',
+  BX_BI: 'BX/BI',
+  UX_UI: 'UX/UI',
   PM: 'PM',
 } as const;
 
 export const POSITION_FILTER_MAP = {
   All: 'All',
   ...APPLY_POSITION,
-  SAVE: '임시저장',
 } as const;
 
 export const POSITION_TYPES = Object.keys(POSITION_FILTER_MAP) as (keyof typeof POSITION_FILTER_MAP)[];

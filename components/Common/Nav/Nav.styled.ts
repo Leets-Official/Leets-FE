@@ -15,9 +15,32 @@ export const NavContainer = styled.nav<{ $darkMode: boolean }>`
 `;
 
 export const LinkContainer = styled(Link)<{ color?: string }>`
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 
-  background: inherit;
+  svg {
+    height: 20px;
+    width: auto;
+  }
+
+  @media screen and (max-width: 541px) {
+    svg {
+      height: 16px;
+    }
+  }
+`;
+
+export const NavLinksContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+`;
+
+export const NavLink = styled(Link)`
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
   color: inherit;
   text-decoration: none;
 
@@ -29,33 +52,31 @@ export const LinkContainer = styled(Link)<{ color?: string }>`
 export const WelcomeContainer = styled.div<{ name: string }>`
   display: flex;
   justify-content: ${({ name }) => (name ? 'space-between' : 'flex-end')};
-
-  background: white;
 `;
 
 export const WelcomeStyle = styled.div`
   font-family: 'Pretendard', sans-serif;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-
-  background: white;
 `;
 
 export const LogoutButton = styled.button`
   font-family: 'Pretendard', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 
   display: ${({ name }) => (name ? '' : 'none')};
 
-  color: #3685fc;
-  background: white;
+  color: inherit;
+  background: transparent;
   padding: 0;
   cursor: pointer;
-  margin-left: 30px;
   border: none;
+
+  @media screen and (max-width: 541px) {
+    font-size: 14px;
+  }
 `;
 
 export const Apply = styled(Link)`

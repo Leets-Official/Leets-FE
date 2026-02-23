@@ -18,7 +18,7 @@ export const itemVariants = {
 };
 
 const InputTexts = ({ position, input, setInput }: ApplicationInputProp) => {
-  const LAYOUT = position === 'DEV' ? DEV_INPUTS : position === 'PM' ? PM_INPUTS : DESING_INPUTS;
+  const LAYOUT = position === 'FRONTEND' || position === 'BACKEND' ? DEV_INPUTS : position === 'PM' ? PM_INPUTS : DESING_INPUTS;
 
   return (
     <motion.div initial="hidden" animate="show" variants={containerVariants}>

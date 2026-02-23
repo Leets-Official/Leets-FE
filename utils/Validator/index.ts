@@ -1,6 +1,6 @@
 export class Validator {
   static isValidInput(id: string, value: string) {
-    if (id === 'name' || id === 'major' || id === 'career') {
+    if (id === 'name' || id === 'major') {
       return this.koreanValidator(value);
     }
     if (id === 'SID') {
@@ -32,5 +32,9 @@ export class Validator {
       return value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
     }
     return this.numberValidator(value);
+  }
+
+  static isUrl(value: string) {
+    return /^https?:\/\//i.test(value);
   }
 }

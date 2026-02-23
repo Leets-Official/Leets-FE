@@ -8,7 +8,7 @@ import * as S from './InputTextareas.styled';
 import { containerVariants, itemVariants } from '../InputTexts';
 
 const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => {
-  const LAYOUT = position === 'DEV' ? DEV_TEXTAREAS : position === 'PM' ? PM_TEXTAREAS : DESIGN_TEXTAREAS;
+  const LAYOUT = position === 'FRONTEND' || position === 'BACKEND' ? DEV_TEXTAREAS : position === 'PM' ? PM_TEXTAREAS : DESIGN_TEXTAREAS;
 
   const handleOnInput = (e: FormEvent<HTMLTextAreaElement>, maxLength: number) => {
     const inputValue = e.currentTarget.value;
@@ -23,7 +23,6 @@ const InputTextarea = ({ position, text, setText }: ApplicationTextareaProp) => 
         <S.ListStyle key={id} variants={itemVariants}>
           <S.LabelStyle htmlFor={id}>
             <S.PStyle>{title}</S.PStyle>
-            {required && <S.RequireStyle />}
           </S.LabelStyle>
           <S.TextareaStyle
             id={id}

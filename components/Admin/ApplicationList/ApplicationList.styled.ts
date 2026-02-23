@@ -1,189 +1,282 @@
+'use client';
+
 import { styled } from 'styled-components';
-import RestButtonImage from '@/public/assets/image/Admin/ResetButtonImage.svg';
 import { InterviewStatusType, ApplicationStatusType } from '@/types';
-import { INTERVIEW_ATTEND_STATUS_COLOR, APPLICATION_STATUS_TEXT_COLOR, APPLICATION_STATUS_BG_COLOR } from '@/constants';
+import {
+  INTERVIEW_ATTEND_STATUS_COLOR,
+  APPLICATION_STATUS_TEXT_COLOR,
+  APPLICATION_STATUS_BG_COLOR,
+} from '@/constants';
 import Link from 'next/link';
+
+/* ── Container ── */
 
 export const ApplicationContainer = styled.section`
   width: 100%;
-  height: 73vh;
-
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
-export const ApplicationColumn = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.07px;
+/* ── Controls row ──
+ * PC:     [SearchWrapper flex:1]   [FiltersGroup →]
+ * Mobile: [SearchWrapper full-width]
+ *         [FiltersGroup full-width / wrap]
+ */
 
-  width: 100%;
-  height: 8%;
-
+export const ControlsRow = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  margin-top: 14px;
-  color: #777980;
-  border-bottom: 1px solid #f0f1f3;
-  background: white;
-  border-radius: 10px 10px 0 0;
-  padding-left: 10px;
-`;
-
-export const SearchContainer = styled.div`
-  display: flex;
   justify-content: space-between;
-`;
-
-export const DropDownContainer = styled.div`
-  width: 60%;
-
-  display: flex;
-  justify-content: flex-end;
-
   gap: 10px;
-`;
 
-export const ImageContainer = styled(RestButtonImage)`
-  width: 18px;
-  height: 18px;
-
-  margin-left: 8px;
-`;
-
-export const InitFilterButton = styled.button`
-  width: 8%;
-  height: 45px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #8b909a;
-  background: #f9f9fc;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-
-  &:hover ${ImageContainer} {
-    @keyframes exampleAnimation {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-    animation-name: exampleAnimation;
-    animation-play-state: running;
-    animation-duration: 0.3s;
+  @media (max-width: 819px) {
+    flex-direction: column;
+    align-items: stretch;
   }
 `;
 
-export const Checkbox = styled.input`
-  margin-right: 5px;
+/* Search takes remaining space on PC; full width on mobile */
+export const SearchWrapper = styled.div`
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: 819px) {
+    width: 100%;
+  }
 `;
 
-export const Name = styled.div`
-  width: 11%;
-
+/* Filters group: right side on PC, wrapping row on mobile */
+export const FiltersGroup = styled.div`
   display: flex;
   align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 819px) {
+    width: 100%;
+  }
 `;
 
-export const GPA = styled.div`
-  width: 7.5%;
-`;
+/* ── Segmented tab control ── */
 
-export const Grade = styled.div`
-  width: 7%;
-`;
-
-export const Position = styled.div`
-  width: 10%;
-`;
-
-export const InterviewDate = styled.div`
-  width: 40%;
-`;
-
-export const InterviewStatus = styled.div`
-  width: 12%;
-`;
-
-export const CheckInterview = styled.div<{ $hasInterview: InterviewStatusType }>`
-  width: 25px;
-  height: 25px;
-
+export const TabsContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  border-radius: 30px;
-  background: ${({ $hasInterview }) => INTERVIEW_ATTEND_STATUS_COLOR[$hasInterview]};
-`;
-
-export const StatusContainer = styled.div`
-  width: 12%;
-`;
-
-export const Status = styled.div<{ $applicationStatus: ApplicationStatusType }>`
-  width: 70%;
-  padding: 4px 10px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(31, 79, 150, 0.2);
   border-radius: 8px;
+  padding: 4px;
+  gap: 2px;
+  flex-shrink: 0;
+
+  @media (max-width: 819px) {
+    flex-wrap: wrap;
+    width: fit-content;
+  }
+`;
+
+export const Tab = styled.button<{ $active: boolean }>`
+  all: unset;
+  font-size: 13px;
+  font-weight: ${({ $active }) => ($active ? 700 : 500)};
+  color: ${({ $active }) => ($active ? '#ffffff' : 'rgba(31,79,150,0.5)')};
+  background: ${({ $active }) => ($active ? '#3584fb' : 'transparent')};
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: ${({ $active }) => ($active ? '#3584fb' : 'rgba(53,132,251,0.08)')};
+    color: ${({ $active }) => ($active ? '#ffffff' : '#153464')};
+  }
+`;
+
+export const InitFilterButton = styled.button`
+  all: unset;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(21, 52, 100, 0.6);
+  background: #ffffff;
+  border: 1px solid rgba(21, 52, 100, 0.3);
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  &:hover {
+    background: #f4f8fe;
+    color: #153464;
+  }
+`;
+
+/* ── Table ── */
+
+export const TableWrapper = styled.div`
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(31, 79, 150, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+`;
+
+const cellBase = `
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(21, 52, 100, 0.6);
+  letter-spacing: -0.26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const TableHeader = styled.div`
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(31, 79, 150, 0.12);
+  padding: 0 16px;
+`;
+
+export const TableBody = styled.div`
+  width: 100%;
+`;
+
+export const TableRow = styled(Link)`
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(31, 79, 150, 0.08);
+  text-decoration: none;
+  color: #153464;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  transition: background 0.12s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: rgba(53, 132, 251, 0.06);
+  }
+`;
+
+/* ── Column widths ── */
+
+export const ColName = styled.div`
+  ${cellBase}
+  width: 110px;
+  flex-shrink: 0;
+
+  @media (max-width: 819px) {
+    width: 56px;
+  }
+`;
+
+export const ColGrade = styled.div`
+  ${cellBase}
+  width: 56px;
+  flex-shrink: 0;
+
+  @media (max-width: 819px) {
+    display: none;
+  }
+`;
+
+export const ColPosition = styled.div`
+  ${cellBase}
+  width: 100px;
+  flex-shrink: 0;
+
+  @media (max-width: 819px) {
+    width: 64px;
+  }
+`;
+
+export const ColInterviewDate = styled.div`
+  ${cellBase}
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: 819px) {
+    display: none;
+  }
+`;
+
+/* 모바일 전용: 면접 여부 dot + 일시 텍스트 한 컬럼 */
+export const ColInterviewCombined = styled.div`
+  ${cellBase}
+  display: none;
+
+  @media (max-width: 819px) {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+`;
+
+export const ColInterviewStatus = styled.div`
+  ${cellBase}
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 819px) {
+    display: none;
+  }
+`;
+
+export const ColStatus = styled.div`
+  ${cellBase}
+  width: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 819px) {
+    width: 72px;
+  }
+`;
+
+/* ── Status elements ── */
+
+export const InterviewDot = styled.div<{ $hasInterview: InterviewStatusType }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: ${({ $hasInterview }) => INTERVIEW_ATTEND_STATUS_COLOR[$hasInterview]};
+  flex-shrink: 0;
+`;
+
+export const StatusBadge = styled.div<{ $applicationStatus: ApplicationStatusType }>`
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 7px;
+  border-radius: 8px;
+  white-space: nowrap;
   background: ${({ $applicationStatus }) => APPLICATION_STATUS_BG_COLOR[$applicationStatus]};
   color: ${({ $applicationStatus }) => APPLICATION_STATUS_TEXT_COLOR[$applicationStatus]};
 `;
 
-export const ApplicationComponentContainer = styled.section`
-  width: 100%;
-  height: 80%;
+/* ── Pagination ── */
 
-  background: white;
-`;
-
-export const Application = styled(Link)`
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.07px;
-
-  width: 100%;
-  height: 50px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: black;
-  background: white;
-  padding-left: 10px;
-  border-bottom: 1px solid #f0f1f3;
-  cursor: pointer;
-  text-decoration: none;
-
-  &:hover {
-    background: #cfe1fd;
-  }
-`;
-
-export const PaginationContainer = styled.div`
-  width: 100%;
-  height: 8%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: #777980;
-  border-bottom: 1px solid #f0f1f3;
-  background: white;
-  border-radius: 0 0 10px 10px;
-  padding-left: 10px;
+export const PaginationWrapper = styled.div`
+  padding: 4px 0;
+  border-top: 1px solid rgba(31, 79, 150, 0.08);
 `;

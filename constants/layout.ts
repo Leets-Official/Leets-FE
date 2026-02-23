@@ -1,12 +1,14 @@
 export const CONTACT_LAYOUT = [
   { title: 'Github', value: 'https://github.com/Leets-Official', hasLink: true },
-  { title: 'Mail', value: 'leetsland@gmail.com', hasLink: false },
+  { title: 'Mail', value: 'contact@leets.land', hasLink: false },
   { title: 'Open Kakao', value: 'https://pf.kakao.com/_LtLyG', hasLink: true },
   { title: 'Insta', value: 'https://instagram.com/leets_official', hasLink: true },
 ] as const;
 
 const PROJECT_TEXT = {
   title: 'Project',
+  imageName: 'Project',
+  variant: 'number' as const,
   height: 384,
   benefits: [
     '웹페이지, 모바일 앱을 만들어 배포하며\n실무 경험을 쌓아요.',
@@ -17,37 +19,39 @@ const PROJECT_TEXT = {
 };
 
 const STUDY_TEXT = {
-  title: `Study & Networking`,
+  title: `Study&\nNetworking`,
+  imageName: 'Study & Networking',
+  variant: 'icon' as const,
   height: 455,
   benefits: [
-    '전공과 직무와 관련된\n스터디를 통해 전문성을 갖춰요.',
-    '정기적으로 진행되는 스터디를 통해\n지속적으로 성장해요.',
-    '비슷한 관심사를 갖고 있는 사람과\n어울리며 인적 네트워크를 연결해요.',
-    '사람들과의 네트워크는 미래의 협업과\n취업에서 유리하게 작용해요.',
-    '서로의 성장을 응원하는 분위기에서\n더 넓고 더 깊게 공부해요.',
+    '진로에 대해 같은 관심사를 갖고 있는 사람과 어울릴 수 있어요.',
+    '흥미 직무에 대한 고민을 깊게 지속할 수 있는 원동력을 제공해요.',
+    '졸업 관련 프로젝트를 진행할 때 원활하게 팀원을 모을 수 있어요.',
+    '동작하는 프로젝트를 실제로 배포해 보며 실무에 가까운 경험을 쌓아요.',
+    '매 기수마다 현업 전문가를 초청한 컨퍼런스를 진행해요.\n현업의 시선과 관점을 경험하고, 자신만의 커리어 방향을 구체적으로 설계해요.',
+    '실력을 보다 깊게 쌓을 수 있는 스터디 환경이 조성돼요.\n스터디는 자율적으로 참가 및 개설할 수 있어요.',
+  ],
+  icons: [
+    '/assets/image/Icons/study-1.png',
+    '/assets/image/Icons/study-2.png',
+    '/assets/image/Icons/study-3.png',
+    '/assets/image/Icons/study-4.png',
+    '/assets/image/Icons/study-5.png',
+    '/assets/image/Icons/study-6.png',
   ],
 };
 
 const ENTERTIANMENT_TEXT = {
-  title: 'Entertainment',
+  title: 'MT&\nRecreation',
+  imageName: 'Entertainment',
+  variant: 'bubble' as const,
   height: 434,
-  benefits: [`공부할 때 열심히 공부하고, \n놀 때 신나게 즐겨요.`, '월 1회 진행되는 \nLeets DAY!', 'Leet’s PLAY!'],
+  benefits: [
+    '운영진이 기획하는 다양한 행사!',
+    '동아리원 간 친밀한 유대감을 쌓아요.',
+    'MT에서 잊지 못할 추억도 만들어요.',
+  ],
 };
-
-export const MOBILE_PROMOTION_LAYOUT = [
-  {
-    ...PROJECT_TEXT,
-    height: 176,
-  },
-  {
-    ...STUDY_TEXT,
-    height: 210,
-  },
-  {
-    ...ENTERTIANMENT_TEXT,
-    height: 200,
-  },
-];
 
 export const PROMOTION_LAYOUT = [
   {
@@ -67,7 +71,6 @@ export const SHORT_INFO_LAYOUT = [
   { title: '이름', value: 'name' },
   { title: '학년', value: 'grade' },
   { title: '전공', value: 'major' },
-  { title: '희망 직무', value: 'career' },
   { title: '전화번호', value: 'phone' },
   { title: '희망 면접 날짜', value: 'interviewDay' },
   { title: '희망 면접 시간', value: 'interviewTime' },
