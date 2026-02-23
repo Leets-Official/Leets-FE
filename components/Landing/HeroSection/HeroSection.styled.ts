@@ -7,6 +7,7 @@ export const HeroContainer = styled.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +54,7 @@ export const HeroImage = styled.img`
     max-height: none;
     width: 100%;
     height: 65vh;
+    height: 65svh;
     object-fit: cover;
   }
 `;
