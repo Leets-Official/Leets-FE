@@ -15,6 +15,7 @@ const generations = [
   { title: '3기' },
   { title: '4기' },
   { title: '5기' },
+  { title: '6기' },
 ] as const;
 
 const Page = () => {
