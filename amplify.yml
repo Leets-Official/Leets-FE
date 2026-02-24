@@ -1,0 +1,23 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install --legacy-peer-deps
+    build:
+      commands:
+        - echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env
+        - echo "GOOGLE_ID=$GOOGLE_ID" >> .env
+        - echo "GOOGLE_SECRET=$GOOGLE_SECRET" >> .env
+        - echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
+        - echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" >> .env
+        - echo "NEXT_PUBLIC_IMAGE_HOST=$NEXT_PUBLIC_IMAGE_HOST" >> .env
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
