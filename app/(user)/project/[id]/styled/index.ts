@@ -56,13 +56,25 @@ export const MobileTitleRow = styled.div`
   }
 `;
 
-export const Favicon = styled(Image)`
-  border-radius: 12px;
-  object-fit: contain;
+export const FaviconWrapper = styled.div`
+  display: none;
 
-  @media (min-width: 821px) {
-    display: none;
+  @media (max-width: 820px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    padding: 4px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: ${colors.neutral.white};
   }
+`;
+
+export const Favicon = styled(Image)`
+  object-fit: contain;
 `;
 
 export const ProjectTitle = styled.h1`

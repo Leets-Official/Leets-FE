@@ -87,7 +87,9 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
           {/* Mobile: favicon + title row */}
           <S.MobileTitleRow>
             {logoImgName && (
-              <S.Favicon src={`/assets/image/Portfolio/${logoImgName}`} alt="logo" width={48} height={48} />
+              <S.FaviconWrapper>
+                <S.Favicon src={`/assets/image/Portfolio/${logoImgName}`} alt="logo" width={40} height={40} />
+              </S.FaviconWrapper>
             )}
             <S.MobileTitle>{projectName || 'Project Name'}</S.MobileTitle>
           </S.MobileTitleRow>
@@ -135,7 +137,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
               target="_blank"
               onClick={() => handleContributorsClick(name, githubUrl || profileUrl)}>
               <S.ProfileImage
-                src={githubUrl ? `${githubUrl}.png` : profileUrl ? profile : '/assets/image/default-profile.png'}
+                src={githubUrl ? `${githubUrl}.png` : (profile && !profile.endsWith('/o/default.png')) ? profile : '/assets/image/default-profile.png'}
                 alt={name}
               />
               <S.ProfileInfo>
