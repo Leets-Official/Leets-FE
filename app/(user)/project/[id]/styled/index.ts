@@ -58,7 +58,7 @@ export const MobileTitleRow = styled.div`
 
 export const Favicon = styled(Image)`
   border-radius: 12px;
-  object-fit: contain;
+  object-fit: cover;
 
   @media (min-width: 821px) {
     display: none;
