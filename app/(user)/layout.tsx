@@ -4,6 +4,7 @@ import { StyledProvider, NextAuthProvider, authOptions } from '@/lib';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import * as gtag from '@/lib/gtag';
 import ScrollToTop from '@/components/Common/ScrollToTop';
+import CursorSpotlight from '@/components/Common/CursorSpotlight';
 import { getServerSession } from 'next-auth';
 
 export const revalidate = 60 * 5;
@@ -39,6 +40,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
         <Suspense>
           <NextAuthProvider session={session}>
             <StyledProvider>
+              <CursorSpotlight />
               {children}
               <ScrollToTop />
             </StyledProvider>
