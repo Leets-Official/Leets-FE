@@ -4,9 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { colors } from '@/styles/theme';
-import { USER } from '@/constants';
+import { USER, APPLY_PERIOD, SUBMIT_STATUS } from '@/constants';
 import { Schedule, Alert } from '@/utils';
+import { useSessionData } from '@/hooks';
 import * as gtag from '@/lib/gtag';
 import { PositionData } from '../types/position';
 
@@ -252,6 +254,7 @@ interface PositionCardProps {
 
 export default function PositionCard({ position }: PositionCardProps) {
   const router = useRouter();
+  const { submitStatus } = useSessionData();
 
   const handleApply = () => {
     const period = Schedule.getCurrentPeriod();
@@ -261,12 +264,31 @@ export default function PositionCard({ position }: PositionCardProps) {
       label: position.title,
       value: 1,
     });
-    if (period === 'CLOSE') {
+
+    if (period === APPLY_PERIOD.BEFORE) {
       Alert.error('지원 기간이 아닙니다.');
       return;
     }
-    sessionStorage.setItem('selectedApplyPosition', position.applyPosition);
-    router.push(USER.APPLY);
+
+    if (period === APPLY_PERIOD.RECRUIT) {
+      sessionStorage.setItem('selectedApplyPosition', position.applyPosition);
+      router.push(USER.APPLY);
+      return;
+    }
+
+    // AFTER: 지원기간 종료 후
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+      router.push(USER.APPLY_STATUS);
+      return;
+    }
+
+    Swal.fire({
+      icon: 'info',
+      title: '지원 기간이 종료되었습니다',
+      text: '다음 기수에서 만나요! 🙂',
+      confirmButtonText: '확인',
+      customClass: { popup: 'swal-custom-popup' },
+    });
   };
 
   const { colorTheme } = position;
