@@ -39,7 +39,8 @@
     "no-use-before-define": "off",
     "react/jsx-props-no-spreading": "off",
     "no-unused-vars": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "import/no-extraneous-dependencies": ["error", { "packageDir": "./" }]
   },
   "settings": {
     "import/parsers": {
