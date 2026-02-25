@@ -73,16 +73,18 @@ export const CardContainer = styled.div<CardContainerProps>`
   height: 100%;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: ${shadows.cardStrong};
-    background: ${colors.blue[800]};
-    border-color: ${colors.blue[700]};
-    z-index: 100000;
-  }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: ${shadows.cardStrong};
+      background: ${colors.blue[800]};
+      border-color: ${colors.blue[700]};
+      z-index: 100000;
+    }
 
-  &:hover ${ShineOverlay} {
-    opacity: 1;
+    &:hover ${ShineOverlay} {
+      opacity: 1;
+    }
   }
 
   ${({ $variant, $size }) => {
@@ -99,8 +101,10 @@ export const CardNumber = styled.span<{ $size: 'small' | 'large' }>`
   letter-spacing: -1.2px;
   transition: color 0.25s ease;
 
-  ${CardContainer}:hover & {
-    color: ${colors.neutral.white};
+  @media (hover: hover) and (pointer: fine) {
+    ${CardContainer}:hover & {
+      color: ${colors.neutral.white};
+    }
   }
 
   ${({ $size }) =>
@@ -135,8 +139,10 @@ export const CardIcon = styled.div`
     object-fit: contain;
   }
 
-  ${CardContainer}:hover & {
-    filter: brightness(0) invert(1);
+  @media (hover: hover) and (pointer: fine) {
+    ${CardContainer}:hover & {
+      filter: brightness(0) invert(1);
+    }
   }
 
   @media (min-width: 820px) {
@@ -155,8 +161,10 @@ export const CardText = styled.p`
   word-break: keep-all;
   transition: color 0.25s ease;
 
-  ${CardContainer}:hover & {
-    color: ${colors.neutral.white};
+  @media (hover: hover) and (pointer: fine) {
+    ${CardContainer}:hover & {
+      color: ${colors.neutral.white};
+    }
   }
 
   @media (min-width: 820px) {

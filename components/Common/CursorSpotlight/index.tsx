@@ -6,6 +6,8 @@ const CursorSpotlight = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const el = ref.current;
     if (!el) return;
 
