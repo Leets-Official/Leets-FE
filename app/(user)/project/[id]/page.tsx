@@ -60,16 +60,14 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
     FRONT_END: 'FE',
     BACK_END: 'BE',
     UX_UI: 'UX/UI',
-    BX_BI: 'BX/BI',
     PM: 'PM',
   };
 
   const POSITION_ORDER: Record<string, number> = {
     UX_UI: 0,
-    BX_BI: 1,
-    PM: 2,
-    FRONT_END: 3,
-    BACK_END: 4,
+    PM: 1,
+    FRONT_END: 2,
+    BACK_END: 3,
   };
 
   const sortedContributors = [...(contributors ?? [])].sort(

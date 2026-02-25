@@ -363,12 +363,11 @@ const PROJECT_TYPES = [
   { value: 'FINAL', label: '최종' },
   { value: 'TOY', label: '토이' },
 ];
-const POSITIONS = ['FRONT_END', 'BACK_END', 'UX_UI', 'BX_BI', 'PM'] as const;
+const POSITIONS = ['FRONT_END', 'BACK_END', 'UX_UI', 'PM'] as const;
 const POSITION_LABELS: Record<string, string> = {
   FRONT_END: 'FE',
   BACK_END: 'BE',
   UX_UI: 'UX/UI',
-  BX_BI: 'BX/BI',
   PM: 'PM',
 };
 
