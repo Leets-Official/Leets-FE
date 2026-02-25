@@ -367,8 +367,8 @@ const StatusPage = () => {
         setApplicationStatus(result.status);
         setInterviewDate(result.interviewDate || '');
         setInterviewPlace(result.interviewPlace || '');
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
     if (submitStatus === SUBMIT_STATUS.SUBMIT && accessToken) {
       fetchStatus();

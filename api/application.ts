@@ -69,6 +69,7 @@ export const getUserApplication = (accessToken: string) =>
 export const getUserApplicationStatus = (accessToken: string) =>
   http.get<GetApplicationStatusResponse>({
     url: '/application/status',
+    silent: true,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

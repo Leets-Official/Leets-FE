@@ -271,6 +271,10 @@ export default function PositionCard({ position }: PositionCardProps) {
     }
 
     if (period === APPLY_PERIOD.RECRUIT) {
+      if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+        router.push(USER.APPLY_COMPLETE);
+        return;
+      }
       sessionStorage.setItem('selectedApplyPosition', position.applyPosition);
       router.push(USER.APPLY);
       return;
