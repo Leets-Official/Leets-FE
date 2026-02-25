@@ -4,8 +4,9 @@ export const DEFAULT_TIME = {
 } as const;
 
 export const APPLY_PERIOD = {
-  RECRUIT: 'RECRUIT',
-  CLOSE: 'CLOSE',
+  BEFORE: 'BEFORE',   // 지원 시작 전
+  RECRUIT: 'RECRUIT', // 지원 기간 중
+  AFTER: 'AFTER',     // 지원 기간 종료 후
 } as const;
 
 export const TIMELINE = {
