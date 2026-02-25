@@ -19,6 +19,7 @@ export const TIMELINE = {
 
 export const APPLY_DATE = { START: new Date('2026-02-26T00:00:00+09:00'), END: new Date('2026-03-08T23:59:59+09:00') };
 
+export const PAPER_RESULT_DATE = new Date('2026-03-10T16:00:00+09:00');
 export const INTERVIEW_RESPONSE_DEADLINE = new Date('2026-03-10T23:59:59+09:00');
 export const INTERVIEW_END_DATE = new Date('2026-03-13T23:59:59+09:00');
 export const FINAL_RESULT_DATE = new Date('2026-03-15T18:00:00+09:00');
