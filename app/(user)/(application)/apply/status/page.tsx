@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSessionData } from '@/hooks';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
-import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, PAPER_RESULT_DATE, INTERVIEW_RESPONSE_DEADLINE, INTERVIEW_END_DATE, FINAL_RESULT_DATE } from '@/constants';
+import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, PAPER_RESULT_DATE, INTERVIEW_RESPONSE_DEADLINE, FINAL_RESULT_DATE } from '@/constants';
 import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
 import { Alert, Schedule, Formatter } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
@@ -435,23 +435,22 @@ const StatusPage = () => {
   const now = Schedule.getKSTDate(new Date());
   const isBeforeDeadline = now <= INTERVIEW_RESPONSE_DEADLINE;
   const isAfterPaperResult = now >= PAPER_RESULT_DATE;
-  const isAfterInterviewEnd = now > INTERVIEW_END_DATE;
   const isAfterFinalResult = now >= FINAL_RESULT_DATE;
 
   // 서류 결과 발표(03.10 16:00) 전 → 서류 심사중으로 표시 (mock 제외)
   const showAsPending = !isMock && !isAfterPaperResult;
 
-  // 어드민이 PASS/FAIL을 미리 설정했지만 면접이 아직 진행 중 → 서류 합격으로 표시
+  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(03.10 16:00~23:59) → 서류 합격으로 표시
   const showAsPaperPass =
     isAfterPaperResult &&
+    isBeforeDeadline &&
     !isAfterFinalResult &&
-    !isAfterInterviewEnd &&
     (applicationStatus === 'PASS' || applicationStatus === 'FAIL');
 
-  // 면접 종료 ~ 최종 발표 전 → 면접 검토중으로 표시
+  // 응답 마감(03.10 23:59) 이후 ~ 최종 발표 전 → 면접 검토중으로 표시
   const showAsReviewing =
+    !isBeforeDeadline &&
     !isAfterFinalResult &&
-    isAfterInterviewEnd &&
     (applicationStatus === 'PASS' || applicationStatus === 'FAIL' || applicationStatus === 'PASS_PAPER');
 
   const displayStatus: DisplayStatusType =
