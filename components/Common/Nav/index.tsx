@@ -4,15 +4,17 @@ import { signOut, useSession } from 'next-auth/react';
 import { APPLY_PERIOD, USER } from '@/constants';
 import { ReactNode, memo, MouseEvent } from 'react';
 import { Alert, Schedule } from '@/utils';
-import { useRouter } from 'next/navigation';
+import { useTransitionRouter } from '@/hooks/useTransitionRouter';
 import LogoBlack from '@/public/assets/image/Logo/Logo_black.svg';
 import LogoWhite from '@/public/assets/image/Logo/Logo_white.svg';
 import * as S from './Nav.styled';
 
 const Nav = ({ children, darkMode = true }: { children?: ReactNode; darkMode?: boolean }) => {
+  const { push } = useTransitionRouter();
+
   return (
     <S.NavContainer $darkMode={darkMode}>
-      <S.LinkContainer href={USER.HOME}>
+      <S.LinkContainer href={USER.HOME} onClick={(e) => { e.preventDefault(); push(USER.HOME); }}>
         {darkMode ? <LogoWhite /> : <LogoBlack />}
       </S.LinkContainer>
       {children}
@@ -22,6 +24,7 @@ const Nav = ({ children, darkMode = true }: { children?: ReactNode; darkMode?: b
 
 export const Logout = () => {
   const { data: session } = useSession();
+  const { push } = useTransitionRouter();
   const name = session?.user?.name;
 
   const handleLogout = () => {
@@ -30,7 +33,9 @@ export const Logout = () => {
 
   return (
     <S.NavLinksContainer>
-      <S.NavLink href="/project">프로젝트</S.NavLink>
+      <S.NavLink href="/project" onClick={(e) => { e.preventDefault(); push('/project'); }}>
+        프로젝트
+      </S.NavLink>
       {name && (
         <S.LogoutButton type="button" onClick={handleLogout} name={name}>
           로그아웃
@@ -41,7 +46,7 @@ export const Logout = () => {
 };
 
 export const Apply = () => {
-  const { push } = useRouter();
+  const { push } = useTransitionRouter();
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
 
