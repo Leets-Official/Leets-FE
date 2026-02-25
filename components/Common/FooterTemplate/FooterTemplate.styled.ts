@@ -35,8 +35,8 @@ export const ContactContent = styled.div`
 
   @media (min-width: 820px) {
     flex-direction: row;
-    gap: 80px;
-    align-items: flex-start;
+    gap: 48px;
+    align-items: center;
   }
 `;
 
@@ -52,56 +52,31 @@ export const ContactHeading = styled.h3`
   })}
 `;
 
-export const ContactGrid = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-export const ContactItem = styled.div`
+export const IconRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  gap: 24px;
+  gap: 16px;
+  align-items: center;
 `;
 
-export const ContactTitle = styled.span`
-  font-size: ${typography.scale.bodyM.size};
-  font-weight: 600;
-  color: ${colors.blue[800]};
-  min-width: 60px;
-
-  ${mobileMQ({
-    fontSize: ['14px', '15px'],
-  })}
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const ContactValue = styled.span`
-  font-size: ${typography.scale.bodyM.size};
-  font-weight: 500;
-  color: ${colors.blue[900]};
-  letter-spacing: -0.01em;
-
-  ${mobileMQ({
-    fontSize: ['13px', '14px'],
-  })}
-`;
-
-export const ContactLink = styled.a`
-  font-size: ${typography.scale.bodyM.size};
-  font-weight: 500;
-  color: ${colors.blue[900]};
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  transition: color 0.2s ease;
+export const IconLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.blue[700]};
+  font-size: 26px;
+  transition: color 0.2s ease, transform 0.2s ease;
 
   &:hover {
     color: ${colors.blue[500]};
+    transform: translateY(-2px);
   }
-
-  ${mobileMQ({
-    fontSize: ['13px', '14px'],
-  })}
 `;
 
 export const Divider = styled.hr`
