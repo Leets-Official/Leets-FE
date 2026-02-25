@@ -58,7 +58,7 @@ export const DEV_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '9.6 ~ 9.8 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
@@ -105,7 +105,7 @@ export const DESING_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '9.6 ~ 9.8 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
@@ -152,7 +152,7 @@ export const PM_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '9.6 ~ 9.8 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
