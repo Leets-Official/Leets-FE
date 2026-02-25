@@ -99,7 +99,8 @@ const ApplyForm = () => {
       router.replace('/login');
       return;
     }
-    if (submitStatus === undefined) return; // 세션 로딩 중 - 아직 렌더링하지 않음
+    if (status === 'loading') return;
+    // authenticated: submitStatus가 undefined여도 SUBMIT이 아니면 폼 표시
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY_COMPLETE);
       return;

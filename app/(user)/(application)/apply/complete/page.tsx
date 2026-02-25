@@ -121,10 +121,6 @@ const CompletePage = () => {
   useEffect(() => {
     if (isMock) return;
     if (session.status === 'loading') return;
-    if (session.status === 'unauthenticated') {
-      router.replace('/login');
-      return;
-    }
     if (submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY);
       return;
