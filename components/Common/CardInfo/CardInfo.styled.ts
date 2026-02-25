@@ -1,7 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { colors, radius } from '@/styles/theme';
+import { colors, radius, shadows } from '@/styles/theme';
 
 interface CardContainerProps {
   $variant: 'icon' | 'number';
@@ -51,6 +51,12 @@ export const CardContainer = styled.div<CardContainerProps>`
   border: 1px solid ${colors.blue[500]};
   border-radius: ${radius.card};
   height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: ${shadows.cardStrong};
+  }
 
   ${({ $variant, $size }) => {
     if ($size === 'small' && $variant === 'icon') return smallIconStyles;
@@ -109,6 +115,7 @@ export const CardText = styled.p`
   letter-spacing: -0.28px;
   color: ${colors.blue[800]};
   white-space: pre-line;
+  word-break: keep-all;
 
   @media (min-width: 820px) {
     font-size: 16px;

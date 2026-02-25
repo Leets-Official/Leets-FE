@@ -49,18 +49,16 @@ export const Title = styled.h2`
 export const ProjectLink = styled(Link)`
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   font-size: 16px;
   font-weight: 700;
   color: ${colors.blue[500]};
   text-decoration: none;
   margin-top: 8px;
-  transition:
-    gap 0.2s ease,
-    opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 
   &:hover {
     opacity: 0.8;
-    gap: 8px;
   }
 
   @media (min-width: 820px) {
@@ -72,10 +70,15 @@ export const ProjectArrow = styled.div`
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
 
   img {
     width: 100%;
     height: 100%;
+  }
+
+  ${ProjectLink}:hover & {
+    transform: translateX(6px);
   }
 
   @media (min-width: 820px) {
