@@ -18,7 +18,7 @@ const GradientBackground = styled.div`
     width: 100%;
     height: 100%;
     background: radial-gradient(
-      1255px 818px at 50% 0%,
+      100vw 80vh at 50% 0%,
       rgba(53, 132, 251, 1) 0%,
       rgba(53, 132, 251, 0) 100%
     );
