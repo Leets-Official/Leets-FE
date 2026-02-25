@@ -60,7 +60,12 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 12px !important;
   }
 
-  /* SweetAlert2 toast 텍스트 크기 */
+  /* SweetAlert2: html font-size 62.5% 보정 (em 단위 기반 아이콘/텍스트 깨짐 방지) */
+  .swal2-container {
+    font-size: 1.6rem !important;
+  }
+
+  /* SweetAlert2 toast 스타일 */
   .swal2-toast.swal-custom-popup {
     padding: 16px 20px !important;
 
@@ -73,6 +78,5 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 15px !important;
       margin-top: 2px !important;
     }
-
   }
 `;
