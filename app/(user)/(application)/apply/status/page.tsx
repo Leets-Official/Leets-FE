@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE } from '@/constants';
 import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
-import { Alert } from '@/utils';
+import { Alert, Schedule, Formatter } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
 import { ApplicationStatusType } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
@@ -303,6 +303,21 @@ const FailSuffix = styled.span`
   }
 `;
 
+const DeadlineHint = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(21, 52, 100, 0.5);
+  letter-spacing: -0.32px;
+  line-height: 22px;
+  text-align: center;
+
+  @media (max-width: 820px) {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.24px;
+  }
+`;
+
 const FailInfoText = styled.p`
   font-size: 20px;
   font-weight: 500;
@@ -370,7 +385,8 @@ const StatusPage = () => {
       const { result } = await getUserApplicationStatus(accessToken);
       if (!isAxiosError(result)) {
         setApplicationStatus(result.status);
-        setInterviewDate(result.interviewDate || '');
+        setHasInterview(result.hasInterview ?? 'PENDING');
+        setInterviewDate(result.interviewDate ? Formatter.formatInterviewDateTime(result.interviewDate) : '');
         setInterviewPlace(result.interviewPlace || '');
       }
       setIsLoading(false);
@@ -407,13 +423,17 @@ const StatusPage = () => {
 
   if (isLoading) return null;
 
+  const INTERVIEW_RESPONSE_DEADLINE = new Date('2026-03-10T23:59:59+09:00');
+  const isBeforeDeadline = Schedule.getKSTDate(new Date()) <= INTERVIEW_RESPONSE_DEADLINE;
+
   const isFail = applicationStatus === 'FAIL' || applicationStatus === 'FAIL_PAPER';
   const isPass = applicationStatus === 'PASS';
   const statusMessage = APPLICATION_STATUS_MESSAGE[applicationStatus];
   const statusLabel = STATUS_LABEL[applicationStatus];
   const showInterviewInfo = applicationStatus === 'PASS_PAPER' && (interviewDate || interviewPlace);
-  const showInterviewButtons = applicationStatus === 'PASS_PAPER' && hasInterview === 'PENDING';
+  const showInterviewButtons = applicationStatus === 'PASS_PAPER' && hasInterview === 'PENDING' && isBeforeDeadline;
   const showInterviewBadge = applicationStatus === 'PASS_PAPER' && hasInterview !== 'PENDING';
+  const canChangeInterview = showInterviewBadge && isBeforeDeadline;
 
   const interviewInfoText = [
     interviewPlace && `면접 장소: ${interviewPlace}`,
@@ -453,9 +473,10 @@ const StatusPage = () => {
           <InfoText>{showInterviewInfo ? interviewInfoText : statusMessage.description}</InfoText>
         )}
 
-        {/* Interview attendance buttons for PASS_PAPER */}
+        {/* Interview attendance buttons for PASS_PAPER (PENDING) */}
         {showInterviewButtons && (
           <>
+            <DeadlineHint>3월 10일 23:59까지 응답해 주세요.</DeadlineHint>
             <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
               <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
@@ -464,12 +485,21 @@ const StatusPage = () => {
           </>
         )}
 
-        {/* Interview attendance badge */}
+        {/* Interview attendance badge (responded) */}
         {showInterviewBadge && (
           <>
             <AttendedBadge $attend={hasInterview === 'CHECK'}>
               {hasInterview === 'CHECK' ? '면접 참석 확인됨' : '면접 불참석'}
             </AttendedBadge>
+            {canChangeInterview && (
+              <>
+                <DeadlineHint>3월 10일 23:59 이전까지 변경 가능합니다.</DeadlineHint>
+                <ButtonGroup>
+                  <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
+                  <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
+                </ButtonGroup>
+              </>
+            )}
             <ViewLink onClick={() => router.push(USER.APPLY_VIEW)}>내 지원서 보기</ViewLink>
           </>
         )}
