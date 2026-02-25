@@ -26,7 +26,7 @@ const Projects = ({
 
       <S.ProjectContainer>
         <AnimatePresence mode="wait">
-          {projects.map(({ portfolioId, name, mainImgName }) => (
+          {projects.map(({ portfolioId, name, mainImgName }, idx) => (
             <S.Project
               initial={{ scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -34,7 +34,13 @@ const Projects = ({
               whileHover={{ scale: 1.02 }}
               key={portfolioId}
               href={`/project/${portfolioId}`}>
-              <S.ImageStyle src={`/assets/image/Portfolio/${mainImgName}`} alt={name} fill />
+              <S.ImageStyle
+                src={`/assets/image/Portfolio/${mainImgName}`}
+                alt={name}
+                fill
+                sizes="(max-width: 820px) 100vw, 320px"
+                priority={idx < 3}
+              />
               <S.Blur>{name}</S.Blur>
             </S.Project>
           ))}
