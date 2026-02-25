@@ -10,7 +10,7 @@ const Contributors = ({
 }) => {
   const FE = contributors.filter(({ position }) => position === 'FRONT_END');
   const BE = contributors.filter(({ position }) => position === 'BACK_END');
-  const DE = contributors.filter(({ position }) => position === 'UX_UI' || position === 'BX_BI');
+  const DE = contributors.filter(({ position }) => position === 'UX_UI');
 
   const formatUrl = (url: string | null) => {
     if (!url) {
