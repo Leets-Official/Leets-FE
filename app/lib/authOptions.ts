@@ -24,8 +24,11 @@ export const authOptions: NextAuthOptions = {
         return { ...token, submitStatus: session.submitStatus };
       }
       if (account) {
+        console.log('[authOptions] account.provider:', account.provider, '/ has id_token:', !!account.id_token);
+        console.log('[authOptions] NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
         try {
           const loginRes = await postUserLogin({ idToken: account?.id_token! });
+          console.log('[authOptions] postUserLogin result:', JSON.stringify(loginRes));
           if (isAxiosError(loginRes.result)) return token;
 
           const { accessToken } = loginRes.result;
@@ -39,9 +42,9 @@ export const authOptions: NextAuthOptions = {
             // eslint-disable-next-line no-param-reassign
             token.submitStatus = meRes.result.submitStatus;
           }
-        } catch {
-          // server-side API call failed (Alert/Swal throws in Node.js context)
-          // return token as-is to avoid error=Callback redirect
+        } catch (err) {
+          // server-side API call failed
+          console.error('[authOptions] jwt callback error:', err);
         }
       }
       return token;
