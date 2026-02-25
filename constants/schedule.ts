@@ -4,8 +4,9 @@ export const DEFAULT_TIME = {
 } as const;
 
 export const APPLY_PERIOD = {
-  RECRUIT: 'RECRUIT',
-  CLOSE: 'CLOSE',
+  BEFORE: 'BEFORE', // 지원 시작 전
+  RECRUIT: 'RECRUIT', // 지원 기간 중
+  AFTER: 'AFTER', // 지원 기간 종료 후
 } as const;
 
 export const TIMELINE = {
@@ -16,4 +17,4 @@ export const TIMELINE = {
   OT: '26.03.16',
 } as const;
 
-export const APPLY_DATE = { START: new Date('2026-02-26T00:00:00+09:00'), END: new Date('2026-03-08T23:59:59+09:00') };
+export const APPLY_DATE = { START: new Date('2026-02-25T00:00:00+09:00'), END: new Date('2026-03-08T23:59:59+09:00') };

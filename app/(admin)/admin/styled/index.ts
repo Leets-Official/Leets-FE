@@ -11,6 +11,11 @@ export const AdminContainer = styled.main`
   color: #153464;
   display: flex;
   flex-direction: column;
+
+  &,
+  * {
+    cursor: auto !important;
+  }
 `;
 
 /* ── Login page ── */

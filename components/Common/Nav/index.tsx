@@ -1,9 +1,11 @@
 'use client';
 
 import { signOut, useSession } from 'next-auth/react';
-import { APPLY_PERIOD, USER } from '@/constants';
+import { APPLY_PERIOD, SUBMIT_STATUS, USER } from '@/constants';
 import { ReactNode, memo, MouseEvent } from 'react';
+import Swal from 'sweetalert2';
 import { Alert, Schedule } from '@/utils';
+import { useSessionData } from '@/hooks';
 import { useTransitionRouter } from '@/hooks/useTransitionRouter';
 import LogoBlack from '@/public/assets/image/Logo/Logo_black.svg';
 import LogoWhite from '@/public/assets/image/Logo/Logo_white.svg';
@@ -47,15 +49,36 @@ export const Logout = () => {
 
 export const Apply = () => {
   const { push } = useTransitionRouter();
+  const { submitStatus } = useSessionData();
+
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
 
     const period = Schedule.getCurrentPeriod();
-    if (period !== APPLY_PERIOD.RECRUIT) {
+
+    if (period === APPLY_PERIOD.BEFORE) {
       Alert.error('지원 기간이 아닙니다.');
       return;
     }
-    push(USER.APPLY);
+
+    if (period === APPLY_PERIOD.RECRUIT) {
+      push(USER.APPLY);
+      return;
+    }
+
+    // AFTER: 지원기간 종료 후
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
+      push(USER.APPLY_STATUS);
+      return;
+    }
+
+    Swal.fire({
+      icon: 'info',
+      title: '지원 기간이 종료되었습니다',
+      text: '다음 기수에서 만나요! 🙂',
+      confirmButtonText: '확인',
+      customClass: { popup: 'swal-custom-popup' },
+    });
   };
 
   return (

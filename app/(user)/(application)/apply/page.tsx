@@ -54,7 +54,7 @@ const ApplyForm = () => {
   const [submitConfirmed, setSubmitConfirmed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { accessToken, submitStatus, update } = useSessionData();
+  const { accessToken, submitStatus, update, status } = useSessionData();
   const router = useRouter();
   const { allowLeave } = useBeforeUnload();
 
@@ -95,13 +95,18 @@ const ApplyForm = () => {
   }, [applicationInput, applicationText, step2Inputs, textareaLayout]);
 
   useEffect(() => {
-    if (submitStatus === undefined) return; // 세션 로딩 중 - 아직 렌더링하지 않음
+    if (status === 'unauthenticated') {
+      router.replace('/login');
+      return;
+    }
+    if (status === 'loading') return;
+    // authenticated: submitStatus가 undefined여도 SUBMIT이 아니면 폼 표시
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY_COMPLETE);
       return;
     }
     setIsLoading(false);
-  }, [submitStatus, router]);
+  }, [submitStatus, status, router]);
 
   useEffect(() => {
     const fetchData = async () => {

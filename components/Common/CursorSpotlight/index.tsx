@@ -31,7 +31,7 @@ const CursorSpotlight = () => {
         transform: 'translate(-200px, -200px)',
         filter: 'blur(6px)',
         pointerEvents: 'none',
-        zIndex: 5,
+        zIndex: 99999,
       }}
     />
   );

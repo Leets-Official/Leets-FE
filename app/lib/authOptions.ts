@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import { isAxiosError } from 'axios';
 import { postUserLogin, getApplicant } from '@/api';
 
 export const authOptions: NextAuthOptions = {
@@ -23,18 +24,31 @@ export const authOptions: NextAuthOptions = {
         return { ...token, submitStatus: session.submitStatus };
       }
       if (account) {
-        const {
-          result: { accessToken },
-        } = await postUserLogin({ idToken: account?.id_token! });
-        const {
-          result: { uid, submitStatus },
-        } = await getApplicant({ accessToken });
-        // eslint-disable-next-line no-param-reassign
-        token.uid = uid;
-        // eslint-disable-next-line no-param-reassign
-        token.submitStatus = submitStatus;
-        // eslint-disable-next-line no-param-reassign
-        token.accessToken = accessToken;
+        console.log('[authOptions] account.provider:', account.provider, '/ has id_token:', !!account.id_token);
+        console.log('[authOptions] NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+        try {
+          const loginRes = await postUserLogin({ idToken: account?.id_token! });
+          console.log('[authOptions] postUserLogin result:', JSON.stringify(loginRes));
+          if (isAxiosError(loginRes.result)) {
+            console.error('[authOptions] postUserLogin failed:', loginRes.result.response?.status, loginRes.result.message);
+            return token;
+          }
+
+          const { accessToken } = loginRes.result;
+          // eslint-disable-next-line no-param-reassign
+          token.accessToken = accessToken;
+
+          const meRes = await getApplicant({ accessToken });
+          if (!isAxiosError(meRes.result)) {
+            // eslint-disable-next-line no-param-reassign
+            token.uid = meRes.result.uid;
+            // eslint-disable-next-line no-param-reassign
+            token.submitStatus = meRes.result.submitStatus;
+          }
+        } catch (err) {
+          // server-side API call failed
+          console.error('[authOptions] jwt callback error:', err);
+        }
       }
       return token;
     },
@@ -43,7 +57,7 @@ export const authOptions: NextAuthOptions = {
         // eslint-disable-next-line no-param-reassign
         session.accessToken = token.accessToken;
       }
-      if (token.submitStatus) {
+      if (token.submitStatus !== undefined) {
         // eslint-disable-next-line no-param-reassign
         session.submitStatus = token.submitStatus;
       }

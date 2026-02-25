@@ -120,14 +120,13 @@ const CompletePage = () => {
 
   useEffect(() => {
     if (isMock) return;
+    if (session.status === 'loading') return;
     if (submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY);
       return;
     }
-    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
-      setIsLoading(false);
-    }
-  }, [submitStatus, router, isMock]);
+    setIsLoading(false);
+  }, [submitStatus, session.status, router, isMock]);
 
   if (isLoading) return null;
 

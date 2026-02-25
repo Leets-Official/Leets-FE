@@ -33,14 +33,17 @@ const handleRequest = (config: ApiRequestConfig, injectToken?: string) => {
 const handleResponse = <T>(response: AxiosResponse<T>) => response.data;
 
 const handleError = (error: unknown, silent?: boolean) => {
+  const isServer = typeof window === 'undefined';
   if (axios.isAxiosError(error)) {
-    if (!silent) {
+    if (!silent && !isServer) {
       const { message = UNEXPECTED_ERROR } = error.response?.data.result || {};
       Alert.error(message);
     }
     return { result: error };
   }
-  Alert.error(UNEXPECTED_ERROR);
+  if (!isServer) {
+    Alert.error(UNEXPECTED_ERROR);
+  }
   throw Error(UNEXPECTED_ERROR);
 };
 

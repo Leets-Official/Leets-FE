@@ -335,7 +335,7 @@ const STATUS_LABEL: Record<ApplicationStatusType, string> = {
 const VALID_STATUSES: ApplicationStatusType[] = ['PENDING', 'PASS_PAPER', 'FAIL_PAPER', 'PASS', 'FAIL'];
 
 const StatusPage = () => {
-  const { accessToken, submitStatus, uid: rawUid, userName: rawUserName } = useSessionData();
+  const { accessToken, submitStatus, uid: rawUid, userName: rawUserName, status } = useSessionData();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMock = searchParams.get('mock') === 'true';
@@ -360,20 +360,28 @@ const StatusPage = () => {
 
   useEffect(() => {
     if (isMock) return;
+    if (status === 'loading') return;
+
     const fetchStatus = async () => {
-      if (!accessToken) return;
+      if (!accessToken) {
+        setIsLoading(false);
+        return;
+      }
       const { result } = await getUserApplicationStatus(accessToken);
       if (!isAxiosError(result)) {
         setApplicationStatus(result.status);
         setInterviewDate(result.interviewDate || '');
         setInterviewPlace(result.interviewPlace || '');
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
-    if (submitStatus === SUBMIT_STATUS.SUBMIT && accessToken) {
+
+    if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       fetchStatus();
+    } else {
+      setIsLoading(false);
     }
-  }, [submitStatus, accessToken, isMock]);
+  }, [submitStatus, accessToken, isMock, status]);
 
   const handleInterviewAttendance = async (attend: boolean) => {
     const confirmMsg = attend
@@ -382,17 +390,17 @@ const StatusPage = () => {
 
     if (!window.confirm(confirmMsg)) return;
 
-    const status = attend ? 'CHECK' : 'UNCHECK';
+    const attendStatus = attend ? 'CHECK' : 'UNCHECK';
 
     if (isMock) {
-      setHasInterview(status);
+      setHasInterview(attendStatus);
       return;
     }
 
-    const { result } = await patchInterviewAttendance(status, uid, accessToken);
+    const { result } = await patchInterviewAttendance(attendStatus, uid, accessToken);
 
     if (!isAxiosError(result)) {
-      setHasInterview(status);
+      setHasInterview(attendStatus);
       Alert.success(attend ? '면접 참석이 확인되었습니다.' : '면접 불참석이 접수되었습니다.');
     }
   };
