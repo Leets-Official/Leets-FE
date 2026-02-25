@@ -29,7 +29,10 @@ export const authOptions: NextAuthOptions = {
         try {
           const loginRes = await postUserLogin({ idToken: account?.id_token! });
           console.log('[authOptions] postUserLogin result:', JSON.stringify(loginRes));
-          if (isAxiosError(loginRes.result)) return token;
+          if (isAxiosError(loginRes.result)) {
+            console.error('[authOptions] postUserLogin failed:', loginRes.result.response?.status, loginRes.result.message);
+            return token;
+          }
 
           const { accessToken } = loginRes.result;
           // eslint-disable-next-line no-param-reassign

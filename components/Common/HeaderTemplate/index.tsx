@@ -12,7 +12,7 @@ interface HeaderTemplateProps {
 
 const HeaderTemplate = ({ variant = 'white', hideAuth = false }: HeaderTemplateProps) => {
   const sessionData = useSession();
-  const isLoggedIn = !!sessionData?.data?.user;
+  const isLoggedIn = !!sessionData?.data?.accessToken;
   const { push } = useTransitionRouter();
 
   const logoSrc =
@@ -33,7 +33,7 @@ const HeaderTemplate = ({ variant = 'white', hideAuth = false }: HeaderTemplateP
               로그아웃
             </S.MenuButton>
           ) : (
-            <S.AuthButton $variant={variant} onClick={() => signIn('google', { callbackUrl: USER.HOME })}>
+            <S.AuthButton $variant={variant} onClick={() => signIn('google', { callbackUrl: USER.APPLY })}>
               <S.GoogleIcon src="/assets/image/googleLogo.png" alt="" />
               <span>Google 계정으로 로그인</span>
             </S.AuthButton>
