@@ -45,6 +45,7 @@ const largeNumberStyles = css`
   }
 `;
 
+
 export const ShineOverlay = styled.div`
   position: absolute;
   inset: 0;
@@ -77,6 +78,7 @@ export const CardContainer = styled.div<CardContainerProps>`
     box-shadow: ${shadows.cardStrong};
     background: ${colors.blue[800]};
     border-color: ${colors.blue[700]};
+    z-index: 100000;
   }
 
   &:hover ${ShineOverlay} {
