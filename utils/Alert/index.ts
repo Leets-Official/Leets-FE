@@ -9,6 +9,8 @@ export class Alert {
       title,
       confirmButtonText: '확인',
       confirmButtonColor: '#3685FC',
+      customClass: { popup: 'swal-custom-popup' },
+      scrollbarPadding: false,
     });
   }
 
@@ -18,6 +20,8 @@ export class Alert {
       title,
       confirmButtonText: '확인',
       confirmButtonColor: '#3685FC',
+      customClass: { popup: 'swal-custom-popup' },
+      scrollbarPadding: false,
     });
   }
 }
