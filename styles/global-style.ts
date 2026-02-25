@@ -66,6 +66,12 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem !important;
   }
 
+  /* admin-mode: 포탈 포함 모든 요소 커서 복원 */
+  html.admin-mode,
+  html.admin-mode * {
+    cursor: auto !important;
+  }
+
   /* SweetAlert2 toast 스타일 */
   .swal2-toast.swal-custom-popup {
     padding: 16px 20px !important;

@@ -1,6 +1,7 @@
 'use client';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 import { USER } from '@/constants';
 import { useTransitionRouter } from '@/hooks/useTransitionRouter';
 import * as S from './HeaderTemplate.styled';
@@ -14,6 +15,7 @@ const HeaderTemplate = ({ variant = 'white', hideAuth = false }: HeaderTemplateP
   const sessionData = useSession();
   const isLoggedIn = !!sessionData?.data?.accessToken;
   const { push } = useTransitionRouter();
+  const pathname = usePathname();
 
   const logoSrc =
     variant === 'white' ? '/assets/image/Logo/Logo_white.svg' : '/assets/image/Logo/Logo_black.svg';
@@ -33,7 +35,7 @@ const HeaderTemplate = ({ variant = 'white', hideAuth = false }: HeaderTemplateP
               로그아웃
             </S.MenuButton>
           ) : (
-            <S.AuthButton $variant={variant} onClick={() => signIn('google', { callbackUrl: USER.APPLY })}>
+            <S.AuthButton $variant={variant} onClick={() => signIn('google', { callbackUrl: pathname })}>
               <S.GoogleIcon src="/assets/image/googleLogo.png" alt="" />
               <span>Google 계정으로 로그인</span>
             </S.AuthButton>
