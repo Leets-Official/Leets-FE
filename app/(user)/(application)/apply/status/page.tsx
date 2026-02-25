@@ -390,17 +390,17 @@ const StatusPage = () => {
 
     if (!window.confirm(confirmMsg)) return;
 
-    const status = attend ? 'CHECK' : 'UNCHECK';
+    const attendStatus = attend ? 'CHECK' : 'UNCHECK';
 
     if (isMock) {
-      setHasInterview(status);
+      setHasInterview(attendStatus);
       return;
     }
 
-    const { result } = await patchInterviewAttendance(status, uid, accessToken);
+    const { result } = await patchInterviewAttendance(attendStatus, uid, accessToken);
 
     if (!isAxiosError(result)) {
-      setHasInterview(status);
+      setHasInterview(attendStatus);
       Alert.success(attend ? '면접 참석이 확인되었습니다.' : '면접 불참석이 접수되었습니다.');
     }
   };
