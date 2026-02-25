@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import { isAxiosError } from 'axios';
 import { postUserLogin, getApplicant } from '@/api';
 
 export const authOptions: NextAuthOptions = {
@@ -23,18 +24,25 @@ export const authOptions: NextAuthOptions = {
         return { ...token, submitStatus: session.submitStatus };
       }
       if (account) {
-        const {
-          result: { accessToken },
-        } = await postUserLogin({ idToken: account?.id_token! });
-        const {
-          result: { uid, submitStatus },
-        } = await getApplicant({ accessToken });
-        // eslint-disable-next-line no-param-reassign
-        token.uid = uid;
-        // eslint-disable-next-line no-param-reassign
-        token.submitStatus = submitStatus;
-        // eslint-disable-next-line no-param-reassign
-        token.accessToken = accessToken;
+        try {
+          const loginRes = await postUserLogin({ idToken: account?.id_token! });
+          if (isAxiosError(loginRes.result)) return token;
+
+          const { accessToken } = loginRes.result;
+          // eslint-disable-next-line no-param-reassign
+          token.accessToken = accessToken;
+
+          const meRes = await getApplicant({ accessToken });
+          if (!isAxiosError(meRes.result)) {
+            // eslint-disable-next-line no-param-reassign
+            token.uid = meRes.result.uid;
+            // eslint-disable-next-line no-param-reassign
+            token.submitStatus = meRes.result.submitStatus;
+          }
+        } catch {
+          // server-side API call failed (Alert/Swal throws in Node.js context)
+          // return token as-is to avoid error=Callback redirect
+        }
       }
       return token;
     },
