@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - nvm use 20
-        - npm install --legacy-peer-deps
+        - npm ci --legacy-peer-deps
     build:
       commands:
         - echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env

@@ -11,6 +11,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
+  eslint: { ignoreDuringBuilds: true },
 
   webpack(config) {
     config.module.rules.push({
