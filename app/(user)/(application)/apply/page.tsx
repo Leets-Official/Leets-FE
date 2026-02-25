@@ -142,9 +142,12 @@ const ApplyForm = () => {
 
   useEffect(() => {
     const savedPosition = sessionStorage.getItem('selectedApplyPosition');
+    sessionStorage.removeItem('selectedApplyPosition');
     if (savedPosition && submitStatus === SUBMIT_STATUS.NONE) {
-      setPosition(savedPosition as KeyOf<typeof APPLY_POSITION>);
-      sessionStorage.removeItem('selectedApplyPosition');
+      const validPositions = Object.keys(APPLY_POSITION);
+      if (validPositions.includes(savedPosition)) {
+        setPosition(savedPosition as KeyOf<typeof APPLY_POSITION>);
+      }
     }
   }, [submitStatus]);
 
@@ -234,7 +237,7 @@ const ApplyForm = () => {
               <S.StepperPC>
                 {STEP_LABELS.map((label, i) => {
                   const stepNum = i + 1;
-                  const status = getStepStatus(stepNum);
+                  const stepStatus = getStepStatus(stepNum);
                   return (
                     <Fragment key={stepNum}>
                       {i > 0 && (
@@ -243,10 +246,10 @@ const ApplyForm = () => {
                         />
                       )}
                       <S.StepDotWrapper
-                        $clickable={status !== 'upcoming'}
-                        onClick={() => status !== 'upcoming' && goToStep(stepNum)}>
-                        <S.StepDot $status={status} />
-                        <S.StepLabelPC $status={status}>{label}</S.StepLabelPC>
+                        $clickable={stepStatus !== 'upcoming'}
+                        onClick={() => stepStatus !== 'upcoming' && goToStep(stepNum)}>
+                        <S.StepDot $status={stepStatus} />
+                        <S.StepLabelPC $status={stepStatus}>{label}</S.StepLabelPC>
                       </S.StepDotWrapper>
                     </Fragment>
                   );
