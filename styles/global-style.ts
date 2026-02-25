@@ -74,10 +74,5 @@ export const GlobalStyle = createGlobalStyle`
       margin-top: 2px !important;
     }
 
-    .swal2-icon {
-      width: 28px !important;
-      height: 28px !important;
-      margin: 0 10px 0 0 !important;
-    }
   }
 `;

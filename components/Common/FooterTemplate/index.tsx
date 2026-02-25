@@ -19,8 +19,7 @@ const handleEmailClick = (e: React.MouseEvent, email: string) => {
   e.preventDefault();
   navigator.clipboard.writeText(email);
   Swal.fire({
-    icon: 'success',
-    title: '이메일 주소가 복사됐어요!',
+    title: '📋 이메일 주소가 복사됐어요!',
     text: 'contact@leets.land',
     toast: true,
     position: 'top',
