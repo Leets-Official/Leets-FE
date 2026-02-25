@@ -45,17 +45,42 @@ const largeNumberStyles = css`
   }
 `;
 
+export const ShineOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  filter: blur(10px);
+  background: radial-gradient(
+    130px at var(--shine-x, 50%) var(--shine-y, 50%),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.25) 45%,
+    transparent 70%
+  );
+`;
+
 export const CardContainer = styled.div<CardContainerProps>`
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
   display: flex;
   background: ${colors.neutral.cardBg};
   border: 1px solid ${colors.blue[500]};
   border-radius: ${radius.card};
   height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: ${shadows.cardStrong};
+    background: ${colors.blue[800]};
+    border-color: ${colors.blue[700]};
+  }
+
+  &:hover ${ShineOverlay} {
+    opacity: 1;
   }
 
   ${({ $variant, $size }) => {
@@ -70,6 +95,11 @@ export const CardNumber = styled.span<{ $size: 'small' | 'large' }>`
   font-weight: 300;
   color: ${colors.blue[800]};
   letter-spacing: -1.2px;
+  transition: color 0.25s ease;
+
+  ${CardContainer}:hover & {
+    color: ${colors.neutral.white};
+  }
 
   ${({ $size }) =>
     $size === 'large'
@@ -95,11 +125,16 @@ export const CardIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: filter 0.25s ease;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  ${CardContainer}:hover & {
+    filter: brightness(0) invert(1);
   }
 
   @media (min-width: 820px) {
@@ -116,6 +151,11 @@ export const CardText = styled.p`
   color: ${colors.blue[800]};
   white-space: pre-line;
   word-break: keep-all;
+  transition: color 0.25s ease;
+
+  ${CardContainer}:hover & {
+    color: ${colors.neutral.white};
+  }
 
   @media (min-width: 820px) {
     font-size: 16px;
