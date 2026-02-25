@@ -266,12 +266,12 @@ const ViewPage = () => {
   useEffect(() => {
     if (isMock) return;
     if (status === 'loading') return;
+    if (!accessToken) {
+      setIsLoading(false);
+      return;
+    }
 
     const fetchApplication = async () => {
-      if (!accessToken) {
-        setIsLoading(false);
-        return;
-      }
       const { result } = await getUserApplication(accessToken);
       if (!isAxiosError(result)) {
         setApplication(result);
@@ -279,12 +279,8 @@ const ViewPage = () => {
       setIsLoading(false);
     };
 
-    if (submitStatus === SUBMIT_STATUS.SUBMIT || submitStatus === SUBMIT_STATUS.SAVE) {
-      fetchApplication();
-    } else {
-      setIsLoading(false);
-    }
-  }, [accessToken, submitStatus, isMock, status]);
+    fetchApplication();
+  }, [accessToken, isMock, status]);
 
   const mockData = isMock ? MOCK_APPLICATION : null;
   const position = isMock ? mockData?.position || 'FRONTEND' : application?.position?.replace('_', '/') || 'FRONTEND';
