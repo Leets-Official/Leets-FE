@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
         // eslint-disable-next-line no-param-reassign
         session.accessToken = token.accessToken;
       }
-      if (token.submitStatus) {
+      if (token.submitStatus !== undefined) {
         // eslint-disable-next-line no-param-reassign
         session.submitStatus = token.submitStatus;
       }
