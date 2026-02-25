@@ -19,7 +19,6 @@ const WithLogout = ({ children }: { children: ReactNode }) => {
       <S.NavInner>
         {children}
         <S.NavRight>
-          <S.NavMenuItem href="/project">프로젝트</S.NavMenuItem>
           <S.LogoutButton onClick={logoutHandler}>로그아웃</S.LogoutButton>
         </S.NavRight>
       </S.NavInner>

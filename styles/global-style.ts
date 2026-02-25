@@ -66,6 +66,19 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem !important;
   }
 
+  /* SweetAlert2는 body 직접 하위에 append되어 AdminContainer cursor: auto 범위 밖 */
+  /* admin-mode 클래스일 때만 커서 복원 */
+  html.admin-mode .swal2-container,
+  html.admin-mode .swal2-container * {
+    cursor: auto !important;
+  }
+
+  /* Ant Design DatePicker 드롭다운도 body에 포탈로 렌더링되므로 커서 복원 */
+  html.admin-mode .ant-picker-dropdown,
+  html.admin-mode .ant-picker-dropdown * {
+    cursor: auto !important;
+  }
+
   /* SweetAlert2 toast 스타일 */
   .swal2-toast.swal-custom-popup {
     padding: 16px 20px !important;

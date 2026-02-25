@@ -2,7 +2,7 @@ import * as S from './Nav.styled';
 
 const Nav = () => {
   return (
-    <S.HeaderContainer href="/">
+    <S.HeaderContainer href="/admin/application">
       <S.LogoContainer />
     </S.HeaderContainer>
   );

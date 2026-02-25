@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="ko">
+    <html lang="ko" className="admin-mode">
       <body className={DM_SANS.className}>
         <Suspense>
           <StyledProvider>
