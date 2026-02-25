@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { USER } from '@/constants';
+import { useTransitionRouter } from '@/hooks/useTransitionRouter';
 import * as S from './HeaderTemplate.styled';
 
 interface HeaderTemplateProps {
@@ -11,6 +12,7 @@ interface HeaderTemplateProps {
 const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
   const sessionData = useSession();
   const isLoggedIn = !!sessionData?.data?.user;
+  const { push } = useTransitionRouter();
 
   const logoSrc =
     variant === 'white' ? '/assets/image/Logo/Logo_white.svg' : '/assets/image/Logo/Logo_black.svg';
@@ -18,11 +20,11 @@ const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
   return (
     <S.HeaderContainer $variant={variant}>
       <S.HeaderInner>
-        <S.LogoLink href={USER.HOME} $variant={variant}>
+        <S.LogoLink href={USER.HOME} $variant={variant} onClick={(e) => { e.preventDefault(); push(USER.HOME); }}>
           <S.LogoImage src={logoSrc} alt="Leets" />
         </S.LogoLink>
         <S.MenuContainer>
-          <S.MenuItem href="/project" $variant={variant}>
+          <S.MenuItem href="/project" $variant={variant} onClick={(e) => { e.preventDefault(); push('/project'); }}>
             프로젝트
           </S.MenuItem>
           {isLoggedIn ? (
