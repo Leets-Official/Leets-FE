@@ -32,22 +32,9 @@ const Page = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (position === 'BX_BI') {
-        /* D 탭: BX_BI + UX_UI 병합 */
-        const [bxBi, uxUi] = await Promise.all([
-          getApplicationList({ position: 'BX_BI' }),
-          getApplicationList({ position: 'UX_UI' }),
-        ]);
-        const merged = [
-          ...(!isAxiosError(bxBi.result) ? bxBi.result : []),
-          ...(!isAxiosError(uxUi.result) ? uxUi.result : []),
-        ];
-        setApplications(merged);
-      } else {
-        const { result } = await getApplicationList({ position });
-        if (!isAxiosError(result)) {
-          setApplications(result);
-        }
+      const { result } = await getApplicationList({ position });
+      if (!isAxiosError(result)) {
+        setApplications(result);
       }
     };
     fetchData();

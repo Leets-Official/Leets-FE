@@ -15,12 +15,11 @@ const POSITION_LABEL: Record<string, string> = {
   All: '전체',
   FRONTEND: 'FE',
   BACKEND: 'BE',
-  BX_BI: 'D',
+  UX_UI: 'D',
   PM: 'PM',
 };
 
-/* UX_UI는 D 탭(BX_BI)에 통합 — 별도 탭 미노출 */
-const VISIBLE_POSITION_TYPES = POSITION_TYPES.filter((pos) => pos !== 'UX_UI');
+const VISIBLE_POSITION_TYPES = POSITION_TYPES;
 
 const STATUS_OPTIONS = [
   { value: '', label: '합격 여부' },
@@ -109,7 +108,7 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
         <S.FiltersGroup>
           <S.TabsContainer>
             {VISIBLE_POSITION_TYPES.map((pos) => (
-              <S.Tab key={pos} $active={pos === position || (pos === 'BX_BI' && position === 'UX_UI')} onClick={() => onPositionChange(pos)}>
+              <S.Tab key={pos} $active={pos === position} onClick={() => onPositionChange(pos)}>
                 {POSITION_LABEL[pos] ?? pos}
               </S.Tab>
             ))}

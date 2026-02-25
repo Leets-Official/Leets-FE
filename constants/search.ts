@@ -26,7 +26,6 @@ export const PAGINATION = {
 export const APPLY_POSITION = {
   FRONTEND: '프론트엔드',
   BACKEND: '백엔드',
-  BX_BI: 'BX/BI',
   UX_UI: 'UX/UI',
   PM: 'PM',
 } as const;

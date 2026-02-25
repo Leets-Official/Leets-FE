@@ -32,5 +32,5 @@ export const APPLICATION_DEFAULT = {
   user: {
     phone: '',
   },
-  position: 'FRONTEND' as 'FRONTEND' | 'BACKEND' | 'BX_BI' | 'UX_UI' | 'PM',
+  position: 'FRONTEND' as 'FRONTEND' | 'BACKEND' | 'UX_UI' | 'PM',
 };
