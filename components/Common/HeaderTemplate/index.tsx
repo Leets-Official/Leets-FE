@@ -7,9 +7,10 @@ import * as S from './HeaderTemplate.styled';
 
 interface HeaderTemplateProps {
   variant?: 'white' | 'black';
+  hideAuth?: boolean;
 }
 
-const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
+const HeaderTemplate = ({ variant = 'white', hideAuth = false }: HeaderTemplateProps) => {
   const sessionData = useSession();
   const isLoggedIn = !!sessionData?.data?.user;
   const { push } = useTransitionRouter();
@@ -27,7 +28,7 @@ const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
           <S.MenuItem href="/project" $variant={variant} onClick={(e) => { e.preventDefault(); push('/project'); }}>
             프로젝트
           </S.MenuItem>
-          {isLoggedIn ? (
+          {!hideAuth && (isLoggedIn ? (
             <S.MenuButton $variant={variant} onClick={() => signOut({ callbackUrl: USER.HOME })}>
               로그아웃
             </S.MenuButton>
@@ -36,7 +37,7 @@ const HeaderTemplate = ({ variant = 'white' }: HeaderTemplateProps) => {
               <S.GoogleIcon src="/assets/image/googleLogo.png" alt="" />
               <span>Google 계정으로 로그인</span>
             </S.AuthButton>
-          )}
+          ))}
         </S.MenuContainer>
       </S.HeaderInner>
     </S.HeaderContainer>
