@@ -48,6 +48,7 @@ export const Title = styled.h2`
 
 export const ProjectLink = styled(Link)`
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 4px;
   font-size: 16px;
