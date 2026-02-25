@@ -1,89 +1,83 @@
 'use client';
 
 import styled from 'styled-components';
-import { MQ } from '@/constants';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
-export const LoginBackground = styled.div`
-  width: 100%;
-  height: 100vh;
-
+export const LoginContent = styled.div`
+  position: relative;
+  z-index: 1;
+  flex: 1;
   display: flex;
-  justify-content: center;
-  background: white;
-`;
-
-export const LoginContainer = styled(motion.div)`
-  width: 45%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  background: white;
-`;
-
-export const ButtonContainer = styled.div`
-  width: 100%;
-
-  display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-
-  background: white;
+  gap: 20px;
+  padding: 40px 20px;
+  text-align: center;
 `;
 
-export const ButtonStyle = styled.button`
-  width: 320px;
-  height: 60px;
-
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-  background: white;
-  cursor: pointer;
-`;
-
-export const ImageStyle = styled(Image)`
-  width: 30px;
-  height: 30px;
-
-  background: white;
-`;
-
-export const TextStyle = styled.div`
-  ${MQ({
-    fontFamily: 'Pretendard "sans-serif"',
-    fontWeight: '400',
-    fontSize: [13, 18, 18, 20.0],
-    lineHeight: '24px',
-    background: 'white',
-  })}
-`;
-
-export const HeadStyle = styled.h1`
-  font-weight: 500;
-  font-size: 8.8vw;
+export const Title = styled.h1`
+  font-family: 'Pretendard', sans-serif;
+  font-size: 100px;
+  font-weight: 700;
+  color: #153464;
+  margin: 0;
   letter-spacing: -0.03em;
 
-  width: content;
-  height: auto;
-
-  background: white;
-  text-align: center;
-  padding-bottom: 148px;
+  @media (max-width: 820px) {
+    font-size: 80px;
+  }
 `;
 
-export const WriteStyle = styled.p`
+export const Subtitle = styled.p`
   font-family: 'Pretendard', sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  letter-spacing: 0;
-
-  text-align: center;
-  background: white;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(21, 52, 100, 0.6);
+  line-height: 1.6;
+  margin: 0;
 `;
+
+export const ErrorMessage = styled.p`
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 190, 190, 1);
+  background: rgba(255, 80, 80, 0.15);
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 0;
+  box-sizing: border-box;
+`;
+
+export const GoogleButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: #ffffff;
+  border: 0px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+  }
+`;
+
+export const GoogleIcon = styled(Image)``;
