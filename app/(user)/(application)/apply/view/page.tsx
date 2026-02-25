@@ -249,7 +249,7 @@ const BackArrowSvg = () => (
 /* ========== Page Component ========== */
 
 const ViewPage = () => {
-  const { accessToken, submitStatus } = useSessionData();
+  const { accessToken, submitStatus, status } = useSessionData();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMock = searchParams.get('mock') === 'true';
@@ -265,18 +265,26 @@ const ViewPage = () => {
 
   useEffect(() => {
     if (isMock) return;
+    if (status === 'loading') return;
+
     const fetchApplication = async () => {
-      if (!accessToken) return;
+      if (!accessToken) {
+        setIsLoading(false);
+        return;
+      }
       const { result } = await getUserApplication(accessToken);
       if (!isAxiosError(result)) {
         setApplication(result);
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
-    if (accessToken && (submitStatus === SUBMIT_STATUS.SUBMIT || submitStatus === SUBMIT_STATUS.SAVE)) {
+
+    if (submitStatus === SUBMIT_STATUS.SUBMIT || submitStatus === SUBMIT_STATUS.SAVE) {
       fetchApplication();
+    } else {
+      setIsLoading(false);
     }
-  }, [accessToken, submitStatus, isMock]);
+  }, [accessToken, submitStatus, isMock, status]);
 
   const mockData = isMock ? MOCK_APPLICATION : null;
   const position = isMock ? mockData?.position || 'FRONTEND' : application?.position?.replace('_', '/') || 'FRONTEND';
