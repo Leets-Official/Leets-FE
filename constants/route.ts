@@ -1,6 +1,6 @@
 export const ADMIN = {
-  HOME: '/admin/application',
-  LOGIN: '/admin',
+  HOME: '/leets-portal-x7/application',
+  LOGIN: '/leets-portal-x7',
 } as const;
 
 export const USER = {

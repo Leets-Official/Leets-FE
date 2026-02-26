@@ -30,7 +30,7 @@ export const DEV_INPUTS = [
   {
     id: 'algorithm',
     title: '알고리즘',
-    holderText: '알고리즘 수준을 입력하세요. (ex 백준/릿코드/프로그래머스)',
+    holderText: '알고리즘 수준을 입력하세요. (ex 백준 골드/프로그래머스 level 2 등)',
     required: false,
     maxLength: MAX_LENGTH.ALGORITHM,
   },
