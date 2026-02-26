@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: { default: '', template: '%s · Leets' },
-  description: 'Who Cares?',
+  description: 'Build, Collaborate, Upscale',
   icons: {
     icon: '/favicon.ico',
   },
