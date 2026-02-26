@@ -78,33 +78,38 @@ export const SHORT_INFO_LAYOUT = [
 ] as const;
 
 export const LONG_INFO_LAYOUT = [
-  { title: '알고리즘', value: 'algorithm' },
-  { title: '프로젝트 경험', value: 'project' },
+  { title: '알고리즘', value: 'algorithm', multiline: true },
+  { title: '프로젝트 경험', value: 'project', multiline: true },
 ] as const;
 
 export const SELF_INTRODUCTION_LAYOUT = [
   {
     title: '여러 동아리 중 Leets를 선택한 이유와 개발자/디자이너/기획자가 되고자 다짐하게 된 계기를 작성해 주세요.',
     value: 'motive',
+    maxLength: 500,
   },
   {
     title:
       'Leets에서 어떠한 서비스를 완성해내고 싶은지 듣고 싶어요. 그리고 내가 어떤 모습으로 Leets에서 활동하고 있을지 작성해주세요.',
     value: 'expectation',
+    maxLength: 500,
   },
   {
     title:
       '개발자/디자이너/기획자로서 가장 중요하다고 생각되는 능력과 본인이 그 능력을 향상하기 위해 어떤 노력을 하셨는지 작성해 주세요.',
     value: 'capability',
+    maxLength: 500,
   },
   {
     title:
       '지금까지 살아오면서 갈등을 경험했을 때, 이를 어떻게 해결했는지 적어주세요. 갈등 경험이 없다면 갈등 상황이 생겼을 때 이를 어떻게 해결할 것인지 작성해 주세요.',
     value: 'conflict',
+    maxLength: 500,
   },
   {
     title:
       '지금까지 결과와 무관하게 끝까지 열정을 다했던 경험, 가장 애정을 갖고 후회 없이 최선을 다했다고 생각하는 경험을 말씀해 주시고 이를 통해 깨달은 점과 스스로 변화한 점을 작성해 주세요.',
     value: 'passion',
+    maxLength: 500,
   },
 ] as const;

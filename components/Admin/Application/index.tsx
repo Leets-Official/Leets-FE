@@ -48,10 +48,12 @@ const Application = ({ application, comments }: { application: ApplicationDetail
               {SHORT_INFO_LAYOUT.map(({ title, value }) => (
                 <Info key={title} title={title} value={String(applicationWithPosition[value] ?? '')} />
               ))}
-              {LONG_INFO_LAYOUT.map(({ title, value }) => (
-                <LongInfo key={title} title={title} value={String(applicationWithPosition[value] ?? '')} />
-              ))}
             </S.PersonalInformation>
+            <S.LongInfoList>
+              {LONG_INFO_LAYOUT.filter(({ value }) => !!applicationWithPosition[value]).map(({ title, value }) => (
+                <LongInfo key={title} title={title} value={String(applicationWithPosition[value])} />
+              ))}
+            </S.LongInfoList>
           </S.PersonalInformationContainer>
 
           {/* 링크 */}
@@ -70,8 +72,13 @@ const Application = ({ application, comments }: { application: ApplicationDetail
 
           {/* 자기소개 */}
           <S.SelfIntroductionContainer>
-            {SELF_INTRODUCTION_LAYOUT.map(({ title, value }) => (
-              <SelfIntroduction key={title} title={title} value={String(applicationWithPosition[value] ?? '')} />
+            {SELF_INTRODUCTION_LAYOUT.map(({ title, value, maxLength }) => (
+              <SelfIntroduction
+                key={title}
+                title={title}
+                value={String(applicationWithPosition[value] ?? '')}
+                maxLength={maxLength}
+              />
             ))}
           </S.SelfIntroductionContainer>
         </S.ApplicationTextContainer>
@@ -116,6 +123,8 @@ export default Application;
 interface ApplicationProps {
   title: string;
   value: string;
+  maxLength?: number;
+  multiline?: boolean;
 }
 
 const Info = ({ title, value }: ApplicationProps) => (
@@ -128,13 +137,18 @@ const Info = ({ title, value }: ApplicationProps) => (
 const LongInfo = ({ title, value }: ApplicationProps) => (
   <S.Info>
     <S.Key>{title}</S.Key>
-    <S.LongValue>{value}</S.LongValue>
+    <S.LongTextValue>{value}</S.LongTextValue>
   </S.Info>
 );
 
-const SelfIntroduction = ({ title, value }: ApplicationProps) => (
+const SelfIntroduction = ({ title, value, maxLength }: ApplicationProps) => (
   <S.SelfIntroduction>
     <S.SubTitle>{title}</S.SubTitle>
     <S.Text>{value}</S.Text>
+    {maxLength !== undefined && (
+      <S.CharCount>
+        {value.length}/{maxLength}
+      </S.CharCount>
+    )}
   </S.SelfIntroduction>
 );
