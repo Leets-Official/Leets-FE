@@ -16,17 +16,17 @@ export async function middleware(request: NextRequest) {
 
   const accessToken = request.cookies.get(ACCESS_TOKEN);
 
-  if (pathname.includes('admin')) {
-    if (pathname === '/admin') {
+  if (pathname.includes('leets-portal-x7')) {
+    if (pathname === '/leets-portal-x7') {
       if (accessToken) {
-        return NextResponse.redirect(new URL('/admin/application', url));
+        return NextResponse.redirect(new URL('/leets-portal-x7/application', url));
       }
       return NextResponse.next();
     }
     if (accessToken) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(new URL('/admin', url));
+    return NextResponse.redirect(new URL('/leets-portal-x7', url));
   }
 
   const period = Schedule.getCurrentPeriod();
@@ -57,5 +57,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/login', '/apply/:path*', '/apply'],
+  matcher: ['/leets-portal-x7/:path*', '/login', '/apply/:path*', '/apply'],
 };

@@ -2,7 +2,7 @@ import * as S from './Nav.styled';
 
 const Nav = () => {
   return (
-    <S.HeaderContainer href="/admin/application">
+    <S.HeaderContainer href="/leets-portal-x7/application">
       <S.LogoContainer />
     </S.HeaderContainer>
   );
