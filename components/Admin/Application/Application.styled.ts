@@ -141,14 +141,36 @@ export const LongValue = styled.div`
   height: 44px;
   display: flex;
   align-items: center;
-  word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   grid-column: 1 / -1;
-  /* flex 컨텍스트(LinkContainer)에서 긴 URL이 부모를 확장하지 않도록 */
   min-width: 0;
   width: 100%;
+`;
+
+export const LongInfoList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+export const LongTextValue = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: #153464;
+  line-height: 1.6;
+  letter-spacing: -0.28px;
+  background: #e4eeff;
+  border: 1px solid rgba(31, 79, 150, 0.2);
+  border-radius: 8px;
+  padding: 14px 16px;
+  min-height: 44px;
+  max-height: 160px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
 `;
 
 export const LinkContainer = styled.div`
@@ -184,6 +206,14 @@ export const SelfIntroduction = styled.div`
   @media (max-width: 819px) {
     padding: 24px 20px;
   }
+`;
+
+export const CharCount = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b93c8;
+  letter-spacing: -0.24px;
+  text-align: right;
 `;
 
 export const Text = styled.div`
