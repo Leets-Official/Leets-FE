@@ -138,7 +138,7 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
           {filteredList
             .slice(start, end)
             .map(({ id, name, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
-              <S.TableRow key={id} href={`/admin/application/${id}`}>
+              <S.TableRow key={id} href={`/leets-portal-x7/application/${id}`}>
                 <S.ColName>{name}</S.ColName>
                 <S.ColGrade>{grade}</S.ColGrade>
                 <S.ColPosition>{career}</S.ColPosition>
