@@ -7,11 +7,11 @@ export const revalidate = 60 * 5;
 
 export const metadata: Metadata = {
   title: { default: '관리자', template: '%s · Leets' },
-  description: 'Who Cares?',
+  description: 'Build, Collaborate, Upscale?',
   metadataBase: new URL('https://leets.land'),
   openGraph: {
     title: 'Leets',
-    description: 'Who Cares?',
+    description: 'Build, Collaborate, Upscale?',
     url: 'https://leets.land',
     siteName: 'Leets',
   },

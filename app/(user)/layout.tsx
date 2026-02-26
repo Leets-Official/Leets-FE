@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'Build · Collaborate · Upscale',
     url: 'https://leets.land',
     siteName: 'Leets',
-    images: ['/opengraph-image.png'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/favicon.ico',
