@@ -1,8 +1,6 @@
 'use client';
 
 import { styled } from 'styled-components';
-import Link from 'next/link';
-
 export const ContentWrapper = styled.section`
   width: 100%;
   max-width: 1024px;
@@ -24,7 +22,7 @@ export const PageHeader = styled.div`
   margin-bottom: 24px;
 `;
 
-export const BackLink = styled(Link)`
+export const BackLink = styled.button`
   all: unset;
   display: flex;
   align-items: center;
