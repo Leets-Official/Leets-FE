@@ -69,7 +69,9 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
 
   /* 검색어 변경 시 첫 페이지로 리셋 */
   useEffect(() => {
-    handlePageChange(1);
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('pageNumber');
+    router.replace(`${pathname}?${params.toString()}`);
   }, [searchInput]);
 
   /* 필터 값을 URL에 반영하고 페이지 1로 리셋 */
