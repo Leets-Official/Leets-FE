@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import SearchBar from '@/components/Admin/SearchBar';
 import Pagination from '@/components/Admin/Pagination';
@@ -67,8 +67,13 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
     indices: { start, end },
   } = usePagination();
 
+  const isFirstRender = useRef(true);
   /* 검색어 변경 시 첫 페이지로 리셋 */
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     const params = new URLSearchParams(searchParams.toString());
     params.delete('pageNumber');
     router.replace(`${pathname}?${params.toString()}`);
