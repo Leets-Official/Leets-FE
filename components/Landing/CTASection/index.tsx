@@ -58,6 +58,7 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
 const COUNTDOWN_TARGET: Record<number, Date> = {
   1: APPLY_DATE.START,
   2: APPLY_DATE.END,
+  3: APPLY_DATE.END,
 };
 
 const CTASection = () => {
@@ -65,7 +66,7 @@ const CTASection = () => {
   const router = useRouter();
   const phaseId = currentPhase?.id ?? null;
   const isDefault = phaseId === null;
-  const showChip = phaseId === 1 || phaseId === 2;
+  const showChip = phaseId === 1 || phaseId === 2 || phaseId === 3;
   const countdownTarget = phaseId ? COUNTDOWN_TARGET[phaseId] : null;
 
   const handleApply = () => {

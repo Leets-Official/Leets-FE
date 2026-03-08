@@ -7,6 +7,7 @@ import {
   SUBMIT_STATUS,
   APPLICATION,
   APPLY_POSITION,
+  APPLY_DATE_EARLY_END,
   DEV_INPUTS,
   DESING_INPUTS,
   PM_INPUTS,
@@ -103,6 +104,12 @@ const ApplyForm = () => {
     // authenticated: submitStatus가 undefined여도 SUBMIT이 아니면 폼 표시
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       router.replace(USER.APPLY_COMPLETE);
+      return;
+    }
+    // BE, PM은 조기 마감 (3/8) - 직접 URL 접근 방어
+    const selectedPosition = sessionStorage.getItem('selectedApplyPosition');
+    if ((selectedPosition === 'BACKEND' || selectedPosition === 'PM') && new Date() > APPLY_DATE_EARLY_END) {
+      router.replace('/');
       return;
     }
     setIsLoading(false);
@@ -291,6 +298,7 @@ const ApplyForm = () => {
                           setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)
                         }
                         customWidth={100}
+                        disabledItems={['BACKEND', 'PM']}
                       />
                     </S.FieldItem>
 

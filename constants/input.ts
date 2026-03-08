@@ -44,7 +44,7 @@ export const DEV_INPUTS = [
   {
     id: 'portfolio',
     title: 'Github/포트폴리오',
-    holderText: 'Github 주소를 입력하세요.',
+    holderText: 'Github/포트폴리오 주소를 입력하세요. (여러 개도 입력 가능합니다.)',
     required: false,
     maxLength: MAX_LENGTH.PORTFOLIO,
   },
@@ -58,7 +58,7 @@ export const DEV_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.12 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
@@ -90,8 +90,8 @@ export const DESING_INPUTS = [
   },
   {
     id: 'portfolio',
-    title: 'Figma/포트폴리오',
-    holderText: 'Figma/포트폴리오 주소를 입력하세요.',
+    title: 'Figma/비헨스/포트폴리오',
+    holderText: 'Figma/비헨스/포트폴리오 주소를 입력하세요. (여러 개도 입력 가능합니다.)',
     required: false,
     maxLength: MAX_LENGTH.PORTFOLIO,
   },
@@ -105,7 +105,7 @@ export const DESING_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.12 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },

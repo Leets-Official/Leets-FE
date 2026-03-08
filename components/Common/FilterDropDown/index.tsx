@@ -16,6 +16,7 @@ const FilterDropDown = ({
   initOtherSort,
   customWidth,
   defaultValue,
+  disabledItems,
 }: FilterDropdownProps) => {
   const { isOpen, toggleDropdown, dropdownRef } = useDropDown();
   const value = selected || defaultValue;
@@ -29,6 +30,7 @@ const FilterDropDown = ({
   };
 
   const clickHandler = (type: string) => {
+    if (disabledItems?.includes(type)) return;
     setSelected(type);
     toggleDropdown();
 
@@ -47,11 +49,15 @@ const FilterDropDown = ({
         {isOpen && (
           <S.DropdownContent>
             <S.Ul>
-              {list.map((type) => (
-                <S.List key={type} onClick={() => clickHandler(type)}>
-                  {DROPDOWN_MAP[type as KeyOf<typeof DROPDOWN_MAP>] || type}
-                </S.List>
-              ))}
+              {list.map((type) => {
+                const isDisabled = disabledItems?.includes(type) ?? false;
+                return (
+                  <S.List key={type} $disabled={isDisabled} onClick={() => clickHandler(type)}>
+                    {DROPDOWN_MAP[type as KeyOf<typeof DROPDOWN_MAP>] || type}
+                    {isDisabled && ' (마감)'}
+                  </S.List>
+                );
+              })}
             </S.Ul>
           </S.DropdownContent>
         )}

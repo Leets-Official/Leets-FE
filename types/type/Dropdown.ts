@@ -12,4 +12,5 @@ export type FilterDropdownProps = {
   initOtherSort?: () => void;
   customWidth?: number;
   defaultValue: string;
+  disabledItems?: string[];
 };

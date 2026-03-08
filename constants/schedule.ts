@@ -17,7 +17,8 @@ export const TIMELINE = {
   OT: '26.03.16',
 } as const;
 
-export const APPLY_DATE = { START: new Date('2026-02-26T00:00:00+09:00'), END: new Date('2026-03-08T23:59:59+09:00') };
+export const APPLY_DATE = { START: new Date('2026-02-26T00:00:00+09:00'), END: new Date('2026-03-11T23:59:59+09:00') };
+export const APPLY_DATE_EARLY_END = new Date('2026-03-08T23:59:59+09:00'); // BE, PM 마감
 
 export const PAPER_RESULT_DATE = new Date('2026-03-10T18:00:00+09:00');
 export const INTERVIEW_RESPONSE_DEADLINE = new Date('2026-03-10T23:59:59+09:00');

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { colors } from '@/styles/theme';
-import { USER, APPLY_PERIOD, SUBMIT_STATUS } from '@/constants';
+import { USER, APPLY_PERIOD, SUBMIT_STATUS, APPLY_DATE_EARLY_END } from '@/constants';
 import { Schedule, Alert } from '@/utils';
 import { useSessionData } from '@/hooks';
 import * as gtag from '@/lib/gtag';
@@ -273,6 +273,18 @@ export default function PositionCard({ position }: PositionCardProps) {
     if (period === APPLY_PERIOD.RECRUIT) {
       if (submitStatus === SUBMIT_STATUS.SUBMIT) {
         router.push(USER.APPLY_COMPLETE);
+        return;
+      }
+      // BE, PM은 조기 마감 (3/8), FE, UX_UI는 연장 마감 (3/16)
+      const isEarlyDeadlinePosition = position.applyPosition === 'BACKEND' || position.applyPosition === 'PM';
+      if (isEarlyDeadlinePosition && new Date() > APPLY_DATE_EARLY_END) {
+        Swal.fire({
+          icon: 'info',
+          title: '지원 기간이 종료되었습니다',
+          text: '다음 기수에서 만나요! 🙂',
+          confirmButtonText: '확인',
+          customClass: { popup: 'swal-custom-popup' },
+        });
         return;
       }
       sessionStorage.setItem('selectedApplyPosition', position.applyPosition);
