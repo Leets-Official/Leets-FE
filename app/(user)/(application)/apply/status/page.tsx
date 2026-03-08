@@ -5,8 +5,17 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSessionData } from '@/hooks';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
-import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, PAPER_RESULT_DATE, INTERVIEW_RESPONSE_DEADLINE, FINAL_RESULT_DATE } from '@/constants';
-import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
+import {
+  SUBMIT_STATUS,
+  USER,
+  APPLICATION_STATUS_MESSAGE,
+  PAPER_RESULT_DATE,
+  PAPER_RESULT_DATE_ADDITIONAL,
+  INTERVIEW_RESPONSE_DEADLINE,
+  INTERVIEW_RESPONSE_DEADLINE_ADDITIONAL,
+  FINAL_RESULT_DATE,
+} from '@/constants';
+import { getUserApplicationStatus, getUserApplication, patchInterviewAttendance } from '@/api';
 import { Alert, Schedule, Formatter } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
 import { ApplicationStatusType } from '@/types';
@@ -368,11 +377,16 @@ const StatusPage = () => {
   const userName = rawUserName || '';
 
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
-    mockIsReviewing ? 'PASS_PAPER' : isMock && mockStatus && VALID_STATUSES.includes(mockStatus) ? mockStatus : 'PENDING',
+    mockIsReviewing
+      ? 'PASS_PAPER'
+      : isMock && mockStatus && VALID_STATUSES.includes(mockStatus)
+        ? mockStatus
+        : 'PENDING',
   );
   const [interviewDate, setInterviewDate] = useState(isMock ? '2026.03.11 (수) 14:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');
   const [hasInterview, setHasInterview] = useState<'CHECK' | 'UNCHECK' | 'PENDING'>('PENDING');
+  const [isAdditionalApplicant, setIsAdditionalApplicant] = useState(false);
   const [isLoading, setIsLoading] = useState(!isMock);
 
   useEffect(() => {
@@ -391,12 +405,19 @@ const StatusPage = () => {
         setIsLoading(false);
         return;
       }
-      const { result } = await getUserApplicationStatus(accessToken);
+      const [{ result }, { result: appResult }] = await Promise.all([
+        getUserApplicationStatus(accessToken),
+        getUserApplication(accessToken),
+      ]);
       if (!isAxiosError(result)) {
         setApplicationStatus(result.status);
         setHasInterview(result.hasInterview ?? 'PENDING');
         setInterviewDate(result.interviewDate ? Formatter.formatInterviewDateTime(result.interviewDate) : '');
         setInterviewPlace(result.interviewPlace || '');
+      }
+      if (!isAxiosError(appResult) && appResult.appliedAt) {
+        const appliedAt = new Date(appResult.appliedAt);
+        setIsAdditionalApplicant(appliedAt >= new Date('2026-03-09T03:00:00+09:00'));
       }
       setIsLoading(false);
     };
@@ -433,14 +454,16 @@ const StatusPage = () => {
   if (isLoading) return null;
 
   const now = Schedule.getKSTDate(new Date());
-  const isBeforeDeadline = now <= INTERVIEW_RESPONSE_DEADLINE;
-  const isAfterPaperResult = now >= PAPER_RESULT_DATE;
+  const interviewResponseDeadline = isAdditionalApplicant ? INTERVIEW_RESPONSE_DEADLINE_ADDITIONAL : INTERVIEW_RESPONSE_DEADLINE;
+  const isBeforeDeadline = now <= interviewResponseDeadline;
+  const paperResultDate = isAdditionalApplicant ? PAPER_RESULT_DATE_ADDITIONAL : PAPER_RESULT_DATE;
+  const isAfterPaperResult = now >= paperResultDate;
   const isAfterFinalResult = now >= FINAL_RESULT_DATE;
 
-  // 서류 결과 발표(03.10 16:00) 전 → 서류 심사중으로 표시 (mock 제외)
+  // 서류 결과 발표(03.10 18:00) 전 → 서류 심사중으로 표시 (mock 제외)
   const showAsPending = !isMock && !isAfterPaperResult;
 
-  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(03.10 16:00~23:59) → 서류 합격으로 표시
+  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(03.10 18:00~23:59) → 서류 합격으로 표시
   const showAsPaperPass =
     isAfterPaperResult &&
     isBeforeDeadline &&
@@ -467,7 +490,9 @@ const StatusPage = () => {
   const statusMessage =
     displayStatus === 'INTERVIEW_REVIEWING'
       ? INTERVIEW_REVIEWING_MESSAGE
-      : APPLICATION_STATUS_MESSAGE[displayStatus as ApplicationStatusType];
+      : displayStatus === 'PENDING' && isAdditionalApplicant
+        ? APPLICATION_STATUS_MESSAGE.PENDING_ADDITIONAL
+        : APPLICATION_STATUS_MESSAGE[displayStatus as ApplicationStatusType];
   const statusLabel = STATUS_LABEL[displayStatus];
   const showInterviewInfo = displayStatus === 'PASS_PAPER' && (interviewDate || interviewPlace);
   const showInterviewButtons = displayStatus === 'PASS_PAPER' && hasInterview === 'PENDING' && isBeforeDeadline;
@@ -515,7 +540,7 @@ const StatusPage = () => {
         {/* Interview attendance buttons for PASS_PAPER (PENDING) */}
         {showInterviewButtons && (
           <>
-            <DeadlineHint>3월 10일 23:59까지 응답해 주세요.</DeadlineHint>
+            <DeadlineHint>{isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'}까지 응답해 주세요.</DeadlineHint>
             <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
               <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
@@ -532,7 +557,7 @@ const StatusPage = () => {
             </AttendedBadge>
             {canChangeInterview && (
               <>
-                <DeadlineHint>3월 10일 23:59 이전까지 변경 가능합니다.</DeadlineHint>
+                <DeadlineHint>{isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'} 이전까지 변경 가능합니다.</DeadlineHint>
                 <ButtonGroup>
                   <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
                   <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>

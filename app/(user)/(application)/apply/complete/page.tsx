@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import styled from 'styled-components';
+import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER } from '@/constants';
+import { getUserApplication } from '@/api';
 import { colors, spacing, gradients } from '@/styles/theme';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
 import CopyrightFooter from '@/components/Common/CopyrightFooter';
@@ -110,13 +112,17 @@ const ActionButton = styled.button`
 
 /* ========== Page Component ========== */
 
+const ADDITIONAL_APPLY_START = new Date('2026-03-09T03:00:00+09:00');
+
 const CompletePage = () => {
   const session = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMock = searchParams.get('mock') === 'true';
   const submitStatus = session.data?.submitStatus;
+  const accessToken = session.data?.accessToken as string | undefined;
   const [isLoading, setIsLoading] = useState(!isMock);
+  const [isAdditionalApplicant, setIsAdditionalApplicant] = useState(false);
 
   useEffect(() => {
     if (isMock) return;
@@ -125,10 +131,22 @@ const CompletePage = () => {
       router.replace(USER.APPLY);
       return;
     }
+
+    const fetchAppliedAt = async () => {
+      if (!accessToken) return;
+      const { result } = await getUserApplication(accessToken);
+      if (!isAxiosError(result) && result.appliedAt) {
+        setIsAdditionalApplicant(new Date(result.appliedAt) >= ADDITIONAL_APPLY_START);
+      }
+    };
+
+    fetchAppliedAt();
     setIsLoading(false);
-  }, [submitStatus, session.status, router, isMock]);
+  }, [submitStatus, session.status, router, isMock, accessToken]);
 
   if (isLoading) return null;
+
+  const resultDateText = isAdditionalApplicant ? '3월 12일 11:00' : '3월 10일 18:00';
 
   return (
     <PageContainer>
@@ -138,7 +156,7 @@ const CompletePage = () => {
           <Title>지원서가 제출되었습니다!</Title>
           <Description>
             {'서류 심사 결과는 '}
-            <Highlight>3월 10일</Highlight>
+            <Highlight>{resultDateText}</Highlight>
             {' 홈페이지에서 확인 가능합니다.\n지원해 주셔서 감사합니다!'}
           </Description>
         </TextBlock>
