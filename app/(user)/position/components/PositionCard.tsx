@@ -275,8 +275,8 @@ export default function PositionCard({ position }: PositionCardProps) {
         router.push(USER.APPLY_COMPLETE);
         return;
       }
-      // BE, PM은 조기 마감 (3/8), FE, UX_UI는 연장 마감 (3/16)
-      const isEarlyDeadlinePosition = position.applyPosition === 'BACKEND' || position.applyPosition === 'PM';
+      // BE는 조기 마감 (3/8), FE/UX_UI/PM은 연장 마감 (3/16)
+      const isEarlyDeadlinePosition = position.applyPosition === 'BACKEND';
       if (isEarlyDeadlinePosition && new Date() > APPLY_DATE_EARLY_END) {
         Swal.fire({
           icon: 'info',

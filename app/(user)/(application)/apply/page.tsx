@@ -106,9 +106,9 @@ const ApplyForm = () => {
       router.replace(USER.APPLY_COMPLETE);
       return;
     }
-    // BE, PM은 조기 마감 (3/8) - 직접 URL 접근 방어
+    // BE는 조기 마감 (3/8) - 직접 URL 접근 방어
     const selectedPosition = sessionStorage.getItem('selectedApplyPosition');
-    if ((selectedPosition === 'BACKEND' || selectedPosition === 'PM') && new Date() > APPLY_DATE_EARLY_END) {
+    if (selectedPosition === 'BACKEND' && new Date() > APPLY_DATE_EARLY_END) {
       router.replace('/');
       return;
     }
@@ -298,7 +298,7 @@ const ApplyForm = () => {
                           setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)
                         }
                         customWidth={100}
-                        disabledItems={['BACKEND', 'PM']}
+                        disabledItems={['BACKEND']}
                       />
                     </S.FieldItem>
 

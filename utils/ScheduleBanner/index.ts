@@ -23,7 +23,7 @@ export const schedulePhases: SchedulePhase[] = [
     id: 3,
     startDate: getKSTDate(new Date('2026-03-09')),
     endDate: getKSTDate(new Date('2026-03-16'), true),
-    title: '웹 프론트엔드, 디자이너 추가 모집 중',
+    title: '프론트엔드, 디자이너, 기획 추가 모집 중',
     subtitle: '',
     notice: '3월 11일 23:59에 접수 마감',
     buttonText: '지원하기',
