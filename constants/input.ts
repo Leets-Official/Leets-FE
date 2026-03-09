@@ -138,7 +138,7 @@ export const PM_INPUTS = [
   {
     id: 'portfolio',
     title: '포트폴리오',
-    holderText: '포트폴리오 주소를 입력하세요.',
+    holderText: '포트폴리오 주소를 입력하세요. (여러 개도 입력 가능합니다.)',
     required: false,
     maxLength: MAX_LENGTH.PORTFOLIO,
   },
@@ -152,7 +152,7 @@ export const PM_INPUTS = [
   {
     id: 'interviewDay',
     title: '면접 선호 요일',
-    holderText: '3.11 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
+    holderText: '3.12 ~ 3.13 중 가능한 날을 선택하세요. 어렵다면 다른 날짜를 적어주세요.',
     required: true,
     maxLength: MAX_LENGTH.INTERVIEW_DAY,
   },
