@@ -144,15 +144,15 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
         <S.TableBody>
           {filteredList
             .slice(start, end)
-            .map(({ id, name, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+            .map(({ id, name, grade, position, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
               <S.TableRow key={id} href={`/leets-portal-x7/application/${id}`}>
                 <S.ColName>{name}</S.ColName>
                 <S.ColGrade>{grade}</S.ColGrade>
-                <S.ColPosition>{career}</S.ColPosition>
-                <S.ColInterviewDate>{Formatter.formatInterviewDate(fixedInterviewDate)}</S.ColInterviewDate>
+                <S.ColPosition>{POSITION_LABEL[position] ?? position}</S.ColPosition>
+                <S.ColInterviewDate>{Formatter.formatInterviewDateTime(fixedInterviewDate)}</S.ColInterviewDate>
                 <S.ColInterviewCombined>
                   <S.InterviewDot $hasInterview={hasInterview} />
-                  {Formatter.formatInterviewDate(fixedInterviewDate) || '미정'}
+                  {Formatter.formatInterviewDateTime(fixedInterviewDate) || '미정'}
                 </S.ColInterviewCombined>
                 <S.ColInterviewStatus>
                   <S.InterviewDot $hasInterview={hasInterview} />
