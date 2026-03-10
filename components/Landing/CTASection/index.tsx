@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { getCurrentPhase } from '@/utils/ScheduleBanner';
-import { APPLY_DATE, USER } from '@/constants';
+import { APPLY_DATE, USER, SUBMIT_STATUS } from '@/constants';
+import { useSessionData } from '@/hooks';
 import * as gtag from '@/lib/gtag';
 import Button from '@/components/Common/Button';
 import * as S from './CTASection.styled';
@@ -64,10 +65,12 @@ const COUNTDOWN_TARGET: Record<number, Date> = {
 const CTASection = () => {
   const currentPhase = getCurrentPhase();
   const router = useRouter();
+  const { submitStatus } = useSessionData();
   const phaseId = currentPhase?.id ?? null;
   const isDefault = phaseId === null;
   const showChip = phaseId === 1 || phaseId === 2 || phaseId === 3;
   const countdownTarget = phaseId ? COUNTDOWN_TARGET[phaseId] : null;
+  const isSubmitted = submitStatus === SUBMIT_STATUS.SUBMIT;
 
   const handleApply = () => {
     gtag.event({
@@ -77,6 +80,10 @@ const CTASection = () => {
       value: 1,
     });
     router.push(USER.POSITION);
+  };
+
+  const handleCheckStatus = () => {
+    router.push(USER.APPLY_STATUS);
   };
 
   return (
@@ -93,12 +100,20 @@ const CTASection = () => {
           {currentPhase?.notice && <S.Tagline $mobileOnly={false}>{currentPhase.notice}</S.Tagline>}
           {isDefault && <S.Tagline $mobileOnly>{'Build, Collaborate, Upscale\nLeets!'}</S.Tagline>}
           {countdownTarget && <CountdownTimer targetDate={countdownTarget} />}
-          {currentPhase?.buttonText && (
+          {isSubmitted ? (
             <S.ButtonGroup>
-              <Button variant="solid" colorScheme="blue" size="medium" onClick={handleApply}>
-                {currentPhase.buttonText}
+              <Button variant="solid" colorScheme="blue" size="medium" onClick={handleCheckStatus}>
+                지원 상태 조회
               </Button>
             </S.ButtonGroup>
+          ) : (
+            currentPhase?.buttonText && (
+              <S.ButtonGroup>
+                <Button variant="solid" colorScheme="blue" size="medium" onClick={handleApply}>
+                  {currentPhase.buttonText}
+                </Button>
+              </S.ButtonGroup>
+            )
           )}
         </S.CTAContent>
       </motion.div>
