@@ -544,7 +544,7 @@ const StatusPage = () => {
         {showInterviewButtons && (
           <>
             <DeadlineHint>
-              {isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'}까지 응답해 주세요.
+              {isAdditionalApplicant ? '3월 13일 23:59' : '3월 11일 23:59'}까지 응답해 주세요.
             </DeadlineHint>
             <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
@@ -563,7 +563,7 @@ const StatusPage = () => {
             {canChangeInterview && (
               <>
                 <DeadlineHint>
-                  {isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'} 이전까지 변경 가능합니다.
+                  {isAdditionalApplicant ? '3월 13일 23:59' : '3월 11일 23:59'} 이전까지 변경 가능합니다.
                 </DeadlineHint>
                 <ButtonGroup>
                   <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
