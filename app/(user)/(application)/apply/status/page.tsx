@@ -359,7 +359,8 @@ const STATUS_LABEL: Record<DisplayStatusType, string> = {
 
 const INTERVIEW_REVIEWING_MESSAGE = {
   title: '면접 검토중',
-  description: '면접 결과를 집계 중입니다.\n최종 결과는 3월 15일 18:00에 발표됩니다.',
+  description:
+    '면접 결과를 집계 중입니다.\n최종 결과는 3월 15일 18:00에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.',
 };
 
 /* ========== Page Component ========== */
@@ -454,7 +455,9 @@ const StatusPage = () => {
   if (isLoading) return null;
 
   const now = Schedule.getKSTDate(new Date());
-  const interviewResponseDeadline = isAdditionalApplicant ? INTERVIEW_RESPONSE_DEADLINE_ADDITIONAL : INTERVIEW_RESPONSE_DEADLINE;
+  const interviewResponseDeadline = isAdditionalApplicant
+    ? INTERVIEW_RESPONSE_DEADLINE_ADDITIONAL
+    : INTERVIEW_RESPONSE_DEADLINE;
   const isBeforeDeadline = now <= interviewResponseDeadline;
   const paperResultDate = isAdditionalApplicant ? PAPER_RESULT_DATE_ADDITIONAL : PAPER_RESULT_DATE;
   const isAfterPaperResult = now >= paperResultDate;
@@ -540,7 +543,9 @@ const StatusPage = () => {
         {/* Interview attendance buttons for PASS_PAPER (PENDING) */}
         {showInterviewButtons && (
           <>
-            <DeadlineHint>{isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'}까지 응답해 주세요.</DeadlineHint>
+            <DeadlineHint>
+              {isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'}까지 응답해 주세요.
+            </DeadlineHint>
             <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
               <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
@@ -557,7 +562,9 @@ const StatusPage = () => {
             </AttendedBadge>
             {canChangeInterview && (
               <>
-                <DeadlineHint>{isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'} 이전까지 변경 가능합니다.</DeadlineHint>
+                <DeadlineHint>
+                  {isAdditionalApplicant ? '3월 12일 23:59' : '3월 10일 23:59'} 이전까지 변경 가능합니다.
+                </DeadlineHint>
                 <ButtonGroup>
                   <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
                   <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
