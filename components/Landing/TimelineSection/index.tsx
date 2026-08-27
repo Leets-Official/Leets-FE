@@ -8,6 +8,8 @@ import * as gtag from '@/lib/gtag';
 import Button from '@/components/Common/Button';
 import * as S from './TimelineSection.styled';
 
+const LEETS_INSTAGRAM = 'https://instagram.com/leets_official';
+
 const TimelineSection = () => {
   const router = useRouter();
 
@@ -56,6 +58,22 @@ const TimelineSection = () => {
             </motion.div>
           ))}
         </S.TimelineContainer>
+
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}>
+          <S.TimelineNote>
+            1주차부터 매주 수요일 18시에 정규 모임이 진행됩니다.
+            <br />
+            자세한 일정은{' '}
+            <S.NoteLink href={LEETS_INSTAGRAM} target="_blank" rel="noopener noreferrer">
+              인스타그램
+            </S.NoteLink>
+            에서 확인해 주세요.
+          </S.TimelineNote>
+        </motion.div>
 
         <S.ButtonContainer>
           <Button variant="solid" colorScheme="blue" size="medium" onClick={handleApply}>

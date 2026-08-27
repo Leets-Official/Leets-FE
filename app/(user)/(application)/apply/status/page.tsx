@@ -350,7 +350,7 @@ const STATUS_LABEL: Record<DisplayStatusType, string> = {
 
 const INTERVIEW_REVIEWING_MESSAGE = {
   title: '면접 검토중',
-  description: '면접 결과를 집계 중입니다.\n최종 결과는 3월 15일 18:00에 발표됩니다.',
+  description: '면접 결과를 집계 중입니다.\n최종 결과는 9월 12일 18:00에 발표됩니다.',
 };
 
 /* ========== Page Component ========== */
@@ -370,7 +370,7 @@ const StatusPage = () => {
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
     mockIsReviewing ? 'PASS_PAPER' : isMock && mockStatus && VALID_STATUSES.includes(mockStatus) ? mockStatus : 'PENDING',
   );
-  const [interviewDate, setInterviewDate] = useState(isMock ? '2026.03.11 (수) 14:00' : '');
+  const [interviewDate, setInterviewDate] = useState(isMock ? '2026.09.07 (월) 14:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');
   const [hasInterview, setHasInterview] = useState<'CHECK' | 'UNCHECK' | 'PENDING'>('PENDING');
   const [isLoading, setIsLoading] = useState(!isMock);
@@ -437,17 +437,17 @@ const StatusPage = () => {
   const isAfterPaperResult = now >= PAPER_RESULT_DATE;
   const isAfterFinalResult = now >= FINAL_RESULT_DATE;
 
-  // 서류 결과 발표(03.10 16:00) 전 → 서류 심사중으로 표시 (mock 제외)
+  // 서류 결과 발표(09.04 18:00) 전 → 서류 심사중으로 표시 (mock 제외)
   const showAsPending = !isMock && !isAfterPaperResult;
 
-  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(03.10 16:00~23:59) → 서류 합격으로 표시
+  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(09.04 18:00~09.05 23:59) → 서류 합격으로 표시
   const showAsPaperPass =
     isAfterPaperResult &&
     isBeforeDeadline &&
     !isAfterFinalResult &&
     (applicationStatus === 'PASS' || applicationStatus === 'FAIL');
 
-  // 응답 마감(03.10 23:59) 이후 ~ 최종 발표 전 → 면접 검토중으로 표시
+  // 응답 마감(09.05 23:59) 이후 ~ 최종 발표 전 → 면접 검토중으로 표시
   const showAsReviewing =
     !isBeforeDeadline &&
     !isAfterFinalResult &&
@@ -515,7 +515,7 @@ const StatusPage = () => {
         {/* Interview attendance buttons for PASS_PAPER (PENDING) */}
         {showInterviewButtons && (
           <>
-            <DeadlineHint>3월 10일 23:59까지 응답해 주세요.</DeadlineHint>
+            <DeadlineHint>9월 5일 23:59까지 응답해 주세요.</DeadlineHint>
             <ButtonGroup>
               <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
               <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
@@ -532,7 +532,7 @@ const StatusPage = () => {
             </AttendedBadge>
             {canChangeInterview && (
               <>
-                <DeadlineHint>3월 10일 23:59 이전까지 변경 가능합니다.</DeadlineHint>
+                <DeadlineHint>9월 5일 23:59 이전까지 변경 가능합니다.</DeadlineHint>
                 <ButtonGroup>
                   <AttendButton onClick={() => handleInterviewAttendance(true)}>면접 참석</AttendButton>
                   <DeclineButton onClick={() => handleInterviewAttendance(false)}>면접 불참</DeclineButton>
