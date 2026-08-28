@@ -21,7 +21,7 @@ export const CHANGE_APPLICATION_STATUS = {
 export const APPLICATION_STATUS_MESSAGE = {
   PENDING: {
     title: '서류 심사 중',
-    description: '지원서가 검토되고 있습니다.\n결과는 3월 10일 16:00에 발표됩니다.',
+    description: '지원서가 검토되고 있습니다.\n결과는 9월 4일 18:00에 발표됩니다.',
   },
   PASS_PAPER: {
     title: '서류 합격',
@@ -34,7 +34,7 @@ export const APPLICATION_STATUS_MESSAGE = {
   PASS: {
     title: '최종 합격',
     description:
-      '축하합니다! 최종 합격하셨습니다.\n\nOT는 3월 16일에 진행됩니다.\n자세한 안내는 카톡방 초대 후 안내드리겠습니다.',
+      '축하합니다! 최종 합격하셨습니다.\n\nOT는 9월 14일 18:00에 진행됩니다.\n자세한 안내는 카톡방 초대 후 안내드리겠습니다.',
   },
   FAIL: {
     title: '최종 탈락',

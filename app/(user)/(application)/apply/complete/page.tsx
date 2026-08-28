@@ -138,7 +138,7 @@ const CompletePage = () => {
           <Title>지원서가 제출되었습니다!</Title>
           <Description>
             {'서류 심사 결과는 '}
-            <Highlight>3월 10일</Highlight>
+            <Highlight>9월 4일</Highlight>
             {' 홈페이지에서 확인 가능합니다.\n지원해 주셔서 감사합니다!'}
           </Description>
         </TextBlock>

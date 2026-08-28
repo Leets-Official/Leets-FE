@@ -162,6 +162,36 @@ export const EntryValue = styled.span`
   }
 `;
 
+export const TimelineNote = styled.p`
+  width: 100%;
+  max-width: 480px;
+  margin: 24px auto 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${colors.blue[500]};
+  line-height: 21px;
+  letter-spacing: -0.28px;
+  text-align: center;
+
+  @media (min-width: 820px) {
+    margin-top: 32px;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.36px;
+  }
+`;
+
+export const NoteLink = styled.a`
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: ${colors.blue[800]};
+  }
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
