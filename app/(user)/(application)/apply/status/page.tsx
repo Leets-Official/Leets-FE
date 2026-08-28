@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { isAxiosError } from 'axios';
 import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, PAPER_RESULT_DATE, INTERVIEW_RESPONSE_DEADLINE, FINAL_RESULT_DATE } from '@/constants';
 import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
-import { Alert, Schedule, Formatter } from '@/utils';
+import { Alert, Formatter } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
 import { ApplicationStatusType } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
@@ -432,7 +432,7 @@ const StatusPage = () => {
 
   if (isLoading) return null;
 
-  const now = Schedule.getKSTDate(new Date());
+  const now = new Date();
   const isBeforeDeadline = now <= INTERVIEW_RESPONSE_DEADLINE;
   const isAfterPaperResult = now >= PAPER_RESULT_DATE;
   const isAfterFinalResult = now >= FINAL_RESULT_DATE;
