@@ -106,7 +106,7 @@ const ApplyForm = () => {
       router.replace(USER.APPLY_COMPLETE);
       return;
     }
-    // BE는 조기 마감 (3/8) - 직접 URL 접근 방어
+    // 파트별 조기 마감 시 직접 URL 접근 방어 (8기는 전체 마감과 동일해 동작하지 않음)
     const selectedPosition = sessionStorage.getItem('selectedApplyPosition');
     if (selectedPosition === 'BACKEND' && new Date() > APPLY_DATE_EARLY_END) {
       router.replace('/');

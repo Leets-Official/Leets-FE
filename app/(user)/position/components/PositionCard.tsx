@@ -275,7 +275,7 @@ export default function PositionCard({ position }: PositionCardProps) {
         router.push(USER.APPLY_COMPLETE);
         return;
       }
-      // BE는 조기 마감 (3/8), FE/UX_UI/PM은 연장 마감 (3/16)
+      // 파트별 조기 마감 대응 (8기는 APPLY_DATE_EARLY_END가 전체 마감과 같아 동작하지 않음)
       const isEarlyDeadlinePosition = position.applyPosition === 'BACKEND';
       if (isEarlyDeadlinePosition && new Date() > APPLY_DATE_EARLY_END) {
         Swal.fire({
