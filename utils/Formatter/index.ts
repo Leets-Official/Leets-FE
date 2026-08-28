@@ -28,7 +28,7 @@ export class Formatter {
     return `${year}.${month}.${day}(${dayOfWeek})`;
   }
 
-  /* 어드민 목록 면접 일시: 2026.03.12(목) 14:00 */
+  /* 어드민 목록 면접 일시: 2026.09.07(월) 14:00 */
   static formatInterviewDateTime(dateTime: string) {
     if (!dateTime) return '-';
     const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
