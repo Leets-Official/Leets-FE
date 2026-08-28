@@ -298,7 +298,7 @@ const ApplyForm = () => {
                           setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)
                         }
                         customWidth={100}
-                        disabledItems={['BACKEND']}
+                        disabledItems={new Date() > APPLY_DATE_EARLY_END ? ['BACKEND'] : []}
                       />
                     </S.FieldItem>
 
