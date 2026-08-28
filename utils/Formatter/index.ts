@@ -28,9 +28,9 @@ export class Formatter {
     return `${year}.${month}.${day}(${dayOfWeek})`;
   }
 
-  /* 결과 페이지 면접 일시: 2026.03.12 (목) 22:11 */
+  /* 어드민 목록 면접 일시: 2026.03.12(목) 14:00 */
   static formatInterviewDateTime(dateTime: string) {
-    if (!dateTime) return '';
+    if (!dateTime) return '-';
     const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
     const d = new Date(dateTime);
     const year = d.getFullYear();
@@ -39,6 +39,6 @@ export class Formatter {
     const dayOfWeek = DAYS[d.getDay()];
     const hours = d.getHours().toString().padStart(2, '0');
     const minutes = d.getMinutes().toString().padStart(2, '0');
-    return `${year}.${month}.${day} (${dayOfWeek}) ${hours}:${minutes}`;
+    return `${year}.${month}.${day}(${dayOfWeek}) ${hours}:${minutes}`;
   }
 }

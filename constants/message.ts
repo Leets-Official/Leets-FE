@@ -21,7 +21,8 @@ export const CHANGE_APPLICATION_STATUS = {
 export const APPLICATION_STATUS_MESSAGE = {
   PENDING: {
     title: '서류 심사 중',
-    description: '지원서가 검토되고 있습니다.\n결과는 9월 4일 18:00에 발표됩니다.',
+    description:
+      '지원서가 검토되고 있습니다.\n결과는 9월 4일 18:00에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.\n\n면접 대상자 발표 후 9월 5일 23:59까지 면접 참석 여부를 선택해 주세요.',
   },
   PASS_PAPER: {
     title: '서류 합격',

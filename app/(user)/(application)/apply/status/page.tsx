@@ -350,7 +350,8 @@ const STATUS_LABEL: Record<DisplayStatusType, string> = {
 
 const INTERVIEW_REVIEWING_MESSAGE = {
   title: '면접 검토중',
-  description: '면접 결과를 집계 중입니다.\n최종 결과는 9월 12일 18:00에 발표됩니다.',
+  description:
+    '면접 결과를 집계 중입니다.\n최종 결과는 9월 12일 18:00에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.',
 };
 
 /* ========== Page Component ========== */
@@ -368,7 +369,11 @@ const StatusPage = () => {
   const userName = rawUserName || '';
 
   const [applicationStatus, setApplicationStatus] = useState<ApplicationStatusType>(
-    mockIsReviewing ? 'PASS_PAPER' : isMock && mockStatus && VALID_STATUSES.includes(mockStatus) ? mockStatus : 'PENDING',
+    mockIsReviewing
+      ? 'PASS_PAPER'
+      : isMock && mockStatus && VALID_STATUSES.includes(mockStatus)
+        ? mockStatus
+        : 'PENDING',
   );
   const [interviewDate, setInterviewDate] = useState(isMock ? '2026.09.07 (월) 14:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');

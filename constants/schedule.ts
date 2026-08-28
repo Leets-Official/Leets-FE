@@ -19,6 +19,8 @@ export const TIMELINE = {
 } as const;
 
 export const APPLY_DATE = { START: new Date('2026-08-28T00:00:00+09:00'), END: new Date('2026-09-03T23:59:59+09:00') };
+// 파트별 조기 마감(7기 추가 모집 대응). 8기는 전 파트 마감이 같아 APPLY_DATE.END와 동일한 값으로 비활성화.
+export const APPLY_DATE_EARLY_END = new Date('2026-09-03T23:59:59+09:00');
 
 export const PAPER_RESULT_DATE = new Date('2026-09-04T18:00:00+09:00');
 export const INTERVIEW_RESPONSE_DEADLINE = new Date('2026-09-05T23:59:59+09:00');

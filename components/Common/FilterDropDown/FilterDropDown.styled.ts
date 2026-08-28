@@ -96,7 +96,7 @@ export const Ul = styled.ul`
   overflow: hidden;
 `;
 
-export const List = styled.li`
+export const List = styled.li<{ $disabled?: boolean }>`
   font-family: 'Pretendard Variable', Pretendard, sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -110,14 +110,14 @@ export const List = styled.li`
   align-items: center;
   padding: 0 16px;
 
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   white-space: pre-wrap;
 
-  color: ${colors.blue[800]};
+  color: ${({ $disabled }) => ($disabled ? 'rgba(21, 52, 100, 0.3)' : colors.blue[800])};
   transition: background 150ms;
 
   &:hover {
-    background: #E4EFFF;
+    background: ${({ $disabled }) => ($disabled ? 'transparent' : '#E4EFFF')};
   }
 
   @media (max-width: 820px) {

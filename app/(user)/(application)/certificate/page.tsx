@@ -129,7 +129,7 @@ const Certificate = () => {
             <br />• 부서명 : 전략기획부
             <br />• 담당자 : 조혜원
             <br />
-            • 연락처 : leetsland@gmail.com
+            • 연락처 : contact@leets.land
             <br />
             ※ 개인정보 보호 담당부서로 연결됩니다.
             <br />
@@ -143,7 +143,7 @@ const Certificate = () => {
             • 부서명 : 전략기획부
             <br />
             • 담당자 : 나아연
-            <br />• 연락처 : leetsland@gmail.com
+            <br />• 연락처 : contact@leets.land
           </S.Text>
           <S.TitleContainer>제11조(권익침해 구제방법)</S.TitleContainer>
           <S.Text>

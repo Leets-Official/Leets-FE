@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import SearchBar from '@/components/Admin/SearchBar';
 import Pagination from '@/components/Admin/Pagination';
@@ -67,9 +67,16 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
     indices: { start, end },
   } = usePagination();
 
+  const isFirstRender = useRef(true);
   /* 검색어 변경 시 첫 페이지로 리셋 */
   useEffect(() => {
-    handlePageChange(1);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('pageNumber');
+    router.replace(`${pathname}?${params.toString()}`);
   }, [searchInput]);
 
   /* 필터 값을 URL에 반영하고 페이지 1로 리셋 */
@@ -137,15 +144,15 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
         <S.TableBody>
           {filteredList
             .slice(start, end)
-            .map(({ id, name, grade, career, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+            .map(({ id, name, grade, position, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
               <S.TableRow key={id} href={`/leets-portal-x7/application/${id}`}>
                 <S.ColName>{name}</S.ColName>
                 <S.ColGrade>{grade}</S.ColGrade>
-                <S.ColPosition>{career}</S.ColPosition>
-                <S.ColInterviewDate>{Formatter.formatInterviewDate(fixedInterviewDate)}</S.ColInterviewDate>
+                <S.ColPosition>{POSITION_LABEL[position] ?? position}</S.ColPosition>
+                <S.ColInterviewDate>{Formatter.formatInterviewDateTime(fixedInterviewDate)}</S.ColInterviewDate>
                 <S.ColInterviewCombined>
                   <S.InterviewDot $hasInterview={hasInterview} />
-                  {Formatter.formatInterviewDate(fixedInterviewDate) || '미정'}
+                  {Formatter.formatInterviewDateTime(fixedInterviewDate) || '미정'}
                 </S.ColInterviewCombined>
                 <S.ColInterviewStatus>
                   <S.InterviewDot $hasInterview={hasInterview} />
