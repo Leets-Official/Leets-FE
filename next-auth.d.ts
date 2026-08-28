@@ -13,6 +13,7 @@ declare module 'next-auth/jwt' {
   interface JWT {
     accessToken?: Account.accessToken;
     submitStatus?: SubmitStatus;
+    submitStatusFetchedAt?: number;
     uid?: string;
   }
 }
