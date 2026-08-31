@@ -181,6 +181,59 @@ export const TimelineNote = styled.p`
   }
 `;
 
+export const NoticeBox = styled.div`
+  width: 100%;
+  max-width: 480px;
+  margin: 16px auto 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: ${colors.neutral.lightBg};
+  border: 1px solid ${colors.blue[100]};
+  text-align: center;
+
+  @media (min-width: 820px) {
+    margin-top: 20px;
+    padding: 18px 24px;
+    border-radius: 16px;
+  }
+`;
+
+export const NoticeTitle = styled.strong`
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: ${colors.blue[600]};
+  line-height: 19.5px;
+  letter-spacing: -0.26px;
+  margin-bottom: 6px;
+
+  @media (min-width: 820px) {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+    margin-bottom: 8px;
+  }
+`;
+
+export const NoticeText = styled.p`
+  font-size: 13px;
+  font-weight: 500;
+  color: ${colors.blue[800]};
+  line-height: 19.5px;
+  letter-spacing: -0.26px;
+
+  @media (min-width: 820px) {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+  }
+`;
+
+export const NoticeStrong = styled.strong`
+  font-weight: 700;
+  color: ${colors.blue[600]};
+`;
+
 export const NoteLink = styled.a`
   color: inherit;
   font-weight: 600;
