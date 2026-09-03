@@ -288,7 +288,16 @@ const ApplyForm = () => {
         router.push(USER.APPLY_COMPLETE);
         return; // 성공 시 이동하므로 잠금을 유지해 재제출을 막는다.
       }
-      setIsSubmitting(false); // 실패 시에만 재시도 허용
+
+      // 409: 서버가 중복 제출을 막은 경우. 이미 접수된 것이므로 완료 페이지로 보낸다.
+      // (에러 메시지는 api/core 의 공통 핸들러가 이미 노출한다.)
+      if (result.response?.status === 409) {
+        await update({ submitStatus: SUBMIT_STATUS.SUBMIT });
+        router.push(USER.APPLY_COMPLETE);
+        return;
+      }
+
+      setIsSubmitting(false); // 그 외 실패에서만 재시도 허용
     } catch (error) {
       setIsSubmitting(false);
       throw error;

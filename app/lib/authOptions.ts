@@ -30,11 +30,8 @@ export const authOptions: NextAuthOptions = {
         return { ...token, submitStatus: session.submitStatus, submitStatusFetchedAt: Date.now() };
       }
       if (account) {
-        console.log('[authOptions] account.provider:', account.provider, '/ has id_token:', !!account.id_token);
-        console.log('[authOptions] NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
         try {
           const loginRes = await postUserLogin({ idToken: account?.id_token! });
-          console.log('[authOptions] postUserLogin result:', JSON.stringify(loginRes));
           if (isAxiosError(loginRes.result)) {
             console.error('[authOptions] postUserLogin failed:', loginRes.result.response?.status, loginRes.result.message);
             return token;
