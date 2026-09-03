@@ -85,6 +85,31 @@ export type GetApplicationDetailResponse = Application & {
   };
 };
 
+/**
+ * GET/PUT /temporary-application 실제 응답 스펙.
+ * ApplicationResponse와 달리 `user` 객체가 없고, 미입력 필드는 null 로 올 수 있다.
+ * 이전에는 GetApplicationDetailResponse 로 잘못 타이핑되어 있어
+ * 존재하지 않는 `user.name` 접근이 컴파일 타임에 걸러지지 않았다.
+ */
+export type TemporaryApplicationResponse = {
+  name: string | null;
+  phone: string | null;
+  major: string | null;
+  grade: string | null;
+  project: string | null;
+  algorithm: string | null;
+  portfolio: string | null;
+  position: PositionType | null;
+  career: string | null;
+  interviewDay: string | null;
+  interviewTime: string | null;
+  motive: string | null;
+  expectation: string | null;
+  capability: string | null;
+  conflict: string | null;
+  passion: string | null;
+};
+
 export type ApplicationDetailType = GetApplicationDetailResponse;
 
 export type PatchApplicationDetailRequest = {

@@ -19,8 +19,8 @@ import { KeyOf, PositionType, SubmitStatus, ApplicationTextarea } from '@/types'
 import { postApplication, putTemporaryApplication, getTemporaryApplication } from '@/api';
 import { useBeforeUnload, useSessionData } from '@/hooks';
 import { isAxiosError } from 'axios';
-import { Alert } from '@/utils';
-import { Fragment, FormEvent, useState, SetStateAction, useEffect, useMemo, Suspense } from 'react';
+import { Alert, Validator } from '@/utils';
+import { Fragment, FormEvent, useState, SetStateAction, useEffect, useMemo, useRef, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import FilterDropDown from '@/components/Common/FilterDropDown';
@@ -32,6 +32,14 @@ const InputTextareas = dynamic(() => import('@/components/Form/ApplyForm/InputTe
 
 const STEP_LABELS = ['기본 정보', '자기소개서', '제출'] as const;
 const STEP2_INPUT_IDS = new Set(['interviewDay', 'interviewTime']);
+
+/**
+ * 임시저장 응답의 빈 값(null | undefined | 공백)으로 이미 채워진 폼 값을 덮어쓰지 않는다.
+ * 기존 코드는 `name ?? user.name` 이었는데, 서버가 빈 문자열을 주면 `??` 가
+ * 단축평가되어 빈 문자열이 그대로 주입되면서 개인정보가 소실됐다.
+ */
+const keepFilled = (next: string | null | undefined, current: string) =>
+  (next ?? '').trim() === '' ? current : (next as string);
 
 const SaveIcon = () => (
   <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +62,13 @@ const ApplyForm = () => {
   const [maxStep, setMaxStep] = useState(1);
   const [submitConfirmed, setSubmitConfirmed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  /* 임시저장 복원은 마운트당 1회만. 이전에는 submitStatus 변경마다 재실행되어
+     사용자가 입력한 값을 서버의 빈 값으로 덮어썼다. */
+  const hasRestoredRef = useRef(false);
+  /* 사용자가 직접 건드린 필드는 복원이 절대 덮어쓰지 않는다. */
+  const dirtyFieldsRef = useRef<Set<string>>(new Set<string>());
 
   const { accessToken, submitStatus, update, status } = useSessionData();
   const router = useRouter();
@@ -116,35 +131,63 @@ const ApplyForm = () => {
   }, [submitStatus, status, router]);
 
   useEffect(() => {
+    // 마운트당 1회만 복원한다. submitStatus / accessToken 이 바뀌어도 재실행하지 않는다.
+    if (hasRestoredRef.current) return;
+    if (!accessToken || submitStatus === undefined || submitStatus === SUBMIT_STATUS.SUBMIT) return;
+
+    hasRestoredRef.current = true;
+    let cancelled = false;
+
     const fetchData = async () => {
-      const { result } = await getTemporaryApplication(accessToken!);
-      if (result && !isAxiosError(result)) {
+      try {
+        const { result } = await getTemporaryApplication(accessToken);
+        if (cancelled || !result || isAxiosError(result)) return;
+
         const {
           motive, capability, conflict, expectation, passion,
-          user, position: fetchPosition,
+          position: fetchPosition,
           name, grade, major, algorithm, project, phone, interviewDay, interviewTime, portfolio,
         } = result;
-        setApplicationText({ motive, capability, conflict, expectation, passion });
-        setApplicationInput({
-          name: name ?? user.name,
-          grade,
-          major,
-          algorithm,
-          project,
-          phone: phone ?? user.phone,
-          interviewDay,
-          interviewTime,
-          portfolio,
-          sid: 'null',
+
+        // 서버의 빈 값이나 사용자가 이미 입력한 값을 덮어쓰지 않도록 이전 상태 기준으로 병합
+        setApplicationText((prev) => ({
+          motive: keepFilled(motive, prev.motive),
+          capability: keepFilled(capability, prev.capability),
+          conflict: keepFilled(conflict, prev.conflict),
+          expectation: keepFilled(expectation, prev.expectation),
+          passion: keepFilled(passion, prev.passion),
+        }));
+
+        setApplicationInput((prev) => {
+          const restored: Record<string, string | null | undefined> = {
+            name, grade, major, algorithm, project, phone, interviewDay, interviewTime, portfolio,
+          };
+          const next = { ...prev };
+          Object.entries(restored).forEach(([key, value]) => {
+            if (dirtyFieldsRef.current.has(key)) return;
+            (next as Record<string, string>)[key] = keepFilled(
+              value,
+              (prev as Record<string, string>)[key] ?? '',
+            );
+          });
+          return next;
         });
-        setPosition(fetchPosition.replace('_', '/') as PositionType);
+
+        if (fetchPosition && !dirtyFieldsRef.current.has('position')) {
+          setPosition(fetchPosition.replace('_', '/') as PositionType);
+        }
+      } catch (error) {
+        // 복원 실패가 폼 사용을 막아서는 안 된다. 사용자는 빈 폼에서 계속 작성할 수 있다.
+        // eslint-disable-next-line no-console
+        console.error('[apply] 임시저장 복원 실패', error);
       }
     };
-    // update()가 JWT 쿠키에 반영 안 될 수 있어 submitStatus에만 의존하지 않고
-    // 인증된 상태면 무조건 시도 (SUBMIT은 리다이렉트되므로 제외)
-    if (accessToken && submitStatus !== undefined && submitStatus !== SUBMIT_STATUS.SUBMIT) {
-      fetchData();
-    }
+
+    fetchData();
+
+    return () => {
+      cancelled = true;
+    };
   }, [submitStatus, accessToken]);
 
   useEffect(() => {
@@ -169,10 +212,17 @@ const ApplyForm = () => {
   };
 
   const handleInputChange = (id: string, value: string) => {
-    setApplicationInput({ ...applicationInput, [id]: value });
+    dirtyFieldsRef.current.add(id);
+    // 전화번호는 숫자만 허용하고 11자리에서 하이픈을 자동 삽입한다.
+    const nextValue = id === 'phone' ? Validator.isValidInput('phone', value) : value;
+    // 함수형 업데이트: 같은 틱에 여러 필드가 변경돼도 유실되지 않는다.
+    setApplicationInput((prev) => ({ ...prev, [id]: nextValue }));
   };
 
   const handleSave = async () => {
+    if (isSaving || isSubmitting) return;
+
+    setIsSaving(true);
     allowLeave();
 
     const applicationData = {
@@ -181,11 +231,15 @@ const ApplyForm = () => {
       position: position.replace('/', '_') as PositionType,
     };
 
-    const { result } = await putTemporaryApplication(applicationData, accessToken);
+    try {
+      const { result } = await putTemporaryApplication(applicationData, accessToken);
 
-    if (!isAxiosError(result)) {
-      await update({ submitStatus: SUBMIT_STATUS.SAVE });
-      Alert.success(APPLICATION.COMPLETE_SAVE);
+      if (!isAxiosError(result)) {
+        await update({ submitStatus: SUBMIT_STATUS.SAVE });
+        Alert.success(APPLICATION.COMPLETE_SAVE);
+      }
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -193,13 +247,30 @@ const ApplyForm = () => {
     e.preventDefault();
 
     if (step !== 3 || !submitConfirmed) return;
-
-    allowLeave();
+    // 중복 제출 차단: 응답 대기 중 재진입을 막는다.
+    if (isSubmitting || isSaving) return;
 
     if (submitStatus === SUBMIT_STATUS.SUBMIT) {
       Alert.error(APPLICATION.EXIST_APPLICATION);
       return;
     }
+
+    // 제출 직전 최종 재검증. step 3 도달 이후 값이 비워지는 경우를 막는 마지막 방어선.
+    if (!isStep1Valid || !isStep2Valid) {
+      Alert.error(APPLICATION.ASK_FILL_REQUIRED);
+      goToStep(!isStep1Valid ? 1 : 2);
+      return;
+    }
+
+    const phoneDigits = applicationInput.phone.replace(/[^0-9]/g, '');
+    if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+      Alert.error(APPLICATION.INVALID_PHONE);
+      goToStep(1);
+      return;
+    }
+
+    setIsSubmitting(true);
+    allowLeave();
 
     const applicationData = {
       ...applicationInput,
@@ -208,12 +279,28 @@ const ApplyForm = () => {
       submitStatus: SUBMIT_STATUS.SUBMIT as SubmitStatus,
     };
 
-    const { result } = await postApplication(applicationData, accessToken);
+    try {
+      const { result } = await postApplication(applicationData, accessToken);
 
-    if (!isAxiosError(result)) {
-      await update({ submitStatus: SUBMIT_STATUS.SUBMIT });
-      Alert.success(APPLICATION.COMPLETE_SUBMIT);
-      router.push(USER.APPLY_COMPLETE);
+      if (!isAxiosError(result)) {
+        await update({ submitStatus: SUBMIT_STATUS.SUBMIT });
+        Alert.success(APPLICATION.COMPLETE_SUBMIT);
+        router.push(USER.APPLY_COMPLETE);
+        return; // 성공 시 이동하므로 잠금을 유지해 재제출을 막는다.
+      }
+
+      // 409: 서버가 중복 제출을 막은 경우. 이미 접수된 것이므로 완료 페이지로 보낸다.
+      // (에러 메시지는 api/core 의 공통 핸들러가 이미 노출한다.)
+      if (result.response?.status === 409) {
+        await update({ submitStatus: SUBMIT_STATUS.SUBMIT });
+        router.push(USER.APPLY_COMPLETE);
+        return;
+      }
+
+      setIsSubmitting(false); // 그 외 실패에서만 재시도 허용
+    } catch (error) {
+      setIsSubmitting(false);
+      throw error;
     }
   };
 
@@ -294,9 +381,10 @@ const ApplyForm = () => {
                         defaultValue="선택"
                         list={Object.keys(APPLY_POSITION).map((value) => value.replace('_', '/'))}
                         selected={position as KeyOf<typeof APPLY_POSITION>}
-                        setSelected={(selected) =>
-                          setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>)
-                        }
+                        setSelected={(selected) => {
+                          dirtyFieldsRef.current.add('position');
+                          setPosition(selected as SetStateAction<KeyOf<typeof APPLY_POSITION>>);
+                        }}
                         customWidth={100}
                         disabledItems={new Date() > APPLY_DATE_EARLY_END ? ['BACKEND'] : []}
                       />
@@ -402,7 +490,7 @@ const ApplyForm = () => {
                     )}
                   </S.FieldGrid>
 
-                  <S.TempSaveLink type="button" onClick={handleSave}>
+                  <S.TempSaveLink type="button" onClick={handleSave} disabled={isSaving || isSubmitting}>
                     <SaveIcon /> 임시저장
                   </S.TempSaveLink>
                 </>
@@ -434,7 +522,7 @@ const ApplyForm = () => {
                     </Suspense>
                   </S.InputContainer>
 
-                  <S.TempSaveLink type="button" onClick={handleSave}>
+                  <S.TempSaveLink type="button" onClick={handleSave} disabled={isSaving || isSubmitting}>
                     <SaveIcon /> 임시저장
                   </S.TempSaveLink>
                 </>
@@ -462,7 +550,11 @@ const ApplyForm = () => {
             {/* Buttons */}
             <S.ButtonContainer>
               {step === 1 && (
-                <S.NextButtonSingle type="button" $active={isStep1Valid} onClick={() => goToStep(2)}>
+                <S.NextButtonSingle
+                  type="button"
+                  $active={isStep1Valid}
+                  disabled={!isStep1Valid}
+                  onClick={() => isStep1Valid && goToStep(2)}>
                   다음
                 </S.NextButtonSingle>
               )}
@@ -471,7 +563,11 @@ const ApplyForm = () => {
                   <S.PrevButton type="button" onClick={() => goToStep(1)}>
                     이전
                   </S.PrevButton>
-                  <S.NextButtonPaired type="button" $active={isStep2Valid} onClick={() => goToStep(3)}>
+                  <S.NextButtonPaired
+                    type="button"
+                    $active={isStep2Valid}
+                    disabled={!isStep2Valid}
+                    onClick={() => isStep2Valid && goToStep(3)}>
                     다음
                   </S.NextButtonPaired>
                 </>
@@ -481,8 +577,11 @@ const ApplyForm = () => {
                   <S.PrevButton type="button" onClick={() => goToStep(2)}>
                     이전
                   </S.PrevButton>
-                  <S.SubmitButton type="submit" $active={submitConfirmed}>
-                    제출하기
+                  <S.SubmitButton
+                    type="submit"
+                    $active={submitConfirmed && !isSubmitting}
+                    disabled={!submitConfirmed || isSubmitting}>
+                    {isSubmitting ? '제출 중…' : '제출하기'}
                   </S.SubmitButton>
                 </>
               )}
