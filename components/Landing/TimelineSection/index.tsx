@@ -73,6 +73,16 @@ const TimelineSection = () => {
             </S.NoteLink>
             에서 확인해 주세요.
           </S.TimelineNote>
+
+          <S.NoticeBox>
+            <S.NoticeTitle>1주차 일정 변경 안내</S.NoticeTitle>
+            <S.NoticeText>
+              교내 축제 일정으로 1주차 정규 모임이 <S.NoticeStrong>9월 16일에서 9월 23일로</S.NoticeStrong> 한 주
+              순연되었습니다.
+              <br />
+              OT는 9월 14일 그대로 진행됩니다.
+            </S.NoticeText>
+          </S.NoticeBox>
         </motion.div>
 
         <S.ButtonContainer>
