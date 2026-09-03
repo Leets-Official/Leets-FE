@@ -9,6 +9,7 @@ import {
   GetApplicationDetailResponse,
   PatchApplicationDetailRequest,
   PatchApplicationDetailResponse,
+  TemporaryApplicationResponse,
 } from '@/types';
 
 export const getApplicationList = ({ position, status }: GetApplicationRequest) => {
@@ -76,7 +77,7 @@ export const getUserApplicationStatus = (accessToken: string) =>
   });
 
 export const getTemporaryApplication = (accessToken: string) =>
-  http.get<GetApplicationDetailResponse>({
+  http.get<TemporaryApplicationResponse>({
     url: '/temporary-application',
     silent: true,
     headers: {
@@ -88,7 +89,7 @@ export const putTemporaryApplication = (
   application: Omit<PostApplication, 'submitStatus'>,
   accessToken: string,
 ) =>
-  http.put<GetApplicationDetailResponse>({
+  http.put<TemporaryApplicationResponse>({
     url: '/temporary-application',
     data: application,
     headers: {

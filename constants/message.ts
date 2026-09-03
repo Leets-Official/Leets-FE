@@ -11,6 +11,8 @@ export const APPLICATION = {
   REJECT_CHANGE_APPLICATION_STATUS: '제출하지 않은 지원자의 값은\n변경할 수 없습니다.',
   ASK_INPUT_DATE: '면접 일시를 입력해야 합니다.',
   ASK_ITERVIEW_INFO: '면접 정보를 입력해야 합니다.',
+  ASK_FILL_REQUIRED: '필수 항목이 비어 있습니다.\n해당 단계로 이동하니 확인 후 다시 제출해주세요.',
+  INVALID_PHONE: '전화번호 형식을 확인해주세요.\n(숫자 10~11자리)',
 } as const;
 
 export const CHANGE_APPLICATION_STATUS = {
