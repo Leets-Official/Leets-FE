@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { APPLICATION_STATUS_MAP, SUBMIT_STATUS, POSITION_FILTER_MAP, APPLY_POSITION } from '@/constants';
 import { Applicant } from './User';
+import { RoundType } from './Schedule';
 import { KeyOf, ValueOf } from '../Helper';
 
 type ApplicationLink = {
@@ -125,6 +126,11 @@ export type GetApplicationStatusResponse = {
   hasInterview: InterviewStatusType;
   interviewDate: string;
   interviewPlace: string;
+  /**
+   * 지원자가 속한 모집 회차. 회차마다 서류 발표·면접 응답 마감 시각이 다르므로
+   * 화면 분기에 필요하다. 서버 미지원 시 정규(REGULAR)로 간주한다.
+   */
+  round?: RoundType;
 };
 
 export type ApplicationInputProp = {

@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { getCurrentPhase } from '@/utils/ScheduleBanner';
-import { APPLY_DATE, USER, SUBMIT_STATUS } from '@/constants';
+import { getCurrentPhase, getNextPhaseBoundary } from '@/utils/ScheduleBanner';
+import { ROUND_SCHEDULE, USER, SUBMIT_STATUS } from '@/constants';
 import { useSessionData } from '@/hooks';
 import * as gtag from '@/lib/gtag';
 import Button from '@/components/Common/Button';
@@ -56,19 +56,44 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
   );
 }
 
+// 접수 관련 구간(1: 모집 예정, 2: 정규 접수중, 4: 추가 접수중)에만 카운트다운을 노출한다.
 const COUNTDOWN_TARGET: Record<number, Date> = {
-  1: APPLY_DATE.START,
-  2: APPLY_DATE.END,
+  1: ROUND_SCHEDULE.REGULAR.applyStart,
+  2: ROUND_SCHEDULE.REGULAR.applyEnd,
+  4: ROUND_SCHEDULE.ADDITIONAL.applyEnd,
 };
 
 const CTASection = () => {
-  const currentPhase = getCurrentPhase();
+  const [currentPhase, setCurrentPhase] = useState(getCurrentPhase);
+
+  // 접수 시작·마감 시각에 페이지를 열어둔 채여도 새로고침 없이 배너가 전환되도록,
+  // 다음 단계 경계에 맞춰 타이머를 걸고 스스로 재예약한다.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    const scheduleNext = () => {
+      const boundary = getNextPhaseBoundary();
+      if (!boundary) return;
+
+      // setTimeout 의 최대 지연 한계와 장시간 대기 중의 시계 오차를 피하려고
+      // 1시간 단위로 끊어서 다시 예약한다.
+      const delay = Math.min(Math.max(boundary.getTime() - Date.now() + 500, 0), 60 * 60 * 1000);
+
+      timer = setTimeout(() => {
+        setCurrentPhase(getCurrentPhase());
+        scheduleNext();
+      }, delay);
+    };
+
+    scheduleNext();
+    return () => clearTimeout(timer);
+  }, []);
   const router = useRouter();
   const { submitStatus } = useSessionData();
   const phaseId = currentPhase?.id ?? null;
   const isDefault = phaseId === null;
-  const showChip = phaseId === 1 || phaseId === 2;
-  const countdownTarget = phaseId ? COUNTDOWN_TARGET[phaseId] : null;
+  const showChip = phaseId === 1 || phaseId === 2 || phaseId === 4;
+  const countdownTarget = phaseId ? (COUNTDOWN_TARGET[phaseId] ?? null) : null;
   const isSubmitted = submitStatus === SUBMIT_STATUS.SUBMIT;
 
   const handleApply = () => {
@@ -93,7 +118,7 @@ const CTASection = () => {
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.8 }}>
         <S.CTAContent>
-          {showChip && <S.Chip>Leets 7th Recruiting</S.Chip>}
+          {showChip && <S.Chip>Leets 8th Recruiting</S.Chip>}
           {isDefault && <S.Slogan>{'함께 도전하며\n우리의 가치를 증명하는 곳.'}</S.Slogan>}
           {currentPhase?.title && <S.SubHeadline>{currentPhase.title}</S.SubHeadline>}
           {currentPhase?.notice && <S.Tagline $mobileOnly={false}>{currentPhase.notice}</S.Tagline>}

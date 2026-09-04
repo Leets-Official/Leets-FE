@@ -5,11 +5,11 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useSessionData } from '@/hooks';
 import styled from 'styled-components';
 import { isAxiosError } from 'axios';
-import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, PAPER_RESULT_DATE, INTERVIEW_RESPONSE_DEADLINE, FINAL_RESULT_DATE } from '@/constants';
+import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, EARLIEST_PAPER_RESULT_DATE, FINAL_RESULT_DATE, ROUND } from '@/constants';
 import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
-import { Alert, Formatter } from '@/utils';
+import { Alert, Formatter, Schedule } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
-import { ApplicationStatusType } from '@/types';
+import { ApplicationStatusType, RoundType } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
 import CopyrightFooter from '@/components/Common/CopyrightFooter';
 
@@ -378,6 +378,10 @@ const StatusPage = () => {
   const [interviewDate, setInterviewDate] = useState(isMock ? '2026.09.07 (월) 14:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');
   const [hasInterview, setHasInterview] = useState<'CHECK' | 'UNCHECK' | 'PENDING'>('PENDING');
+  // 회차별로 서류 발표·면접 응답 마감이 다르다. 서버가 round 를 주기 전까지는 정규로 간주한다.
+  const [round, setRound] = useState<RoundType>(
+    isMock && searchParams.get('round') === 'ADDITIONAL' ? ROUND.ADDITIONAL : ROUND.REGULAR,
+  );
   const [isLoading, setIsLoading] = useState(!isMock);
 
   useEffect(() => {
@@ -391,11 +395,11 @@ const StatusPage = () => {
     if (isMock) return;
     if (status === 'loading') return;
 
-    // 서류 결과 발표 전에는 상태 API를 아예 호출하지 않는다.
+    // 어떤 회차도 결과가 없는 시점에는 상태 API를 아예 호출하지 않는다.
     // 화면은 어차피 '서류 심사중'으로 고정되지만, 호출하면 응답 본문에
     // 확정된 결과(PASS_PAPER 등)가 담겨 네트워크 탭으로 유출된다.
     // applicationStatus 기본값이 'PENDING' 이라 호출을 건너뛰어도 표시는 동일하다.
-    if (new Date() < PAPER_RESULT_DATE) {
+    if (new Date() < EARLIEST_PAPER_RESULT_DATE) {
       setIsLoading(false);
       return;
     }
@@ -408,6 +412,7 @@ const StatusPage = () => {
       const { result } = await getUserApplicationStatus(accessToken);
       if (!isAxiosError(result)) {
         setApplicationStatus(result.status);
+        setRound(result.round ?? ROUND.REGULAR);
         setHasInterview(result.hasInterview ?? 'PENDING');
         setInterviewDate(result.interviewDate ? Formatter.formatInterviewDateTime(result.interviewDate) : '');
         setInterviewPlace(result.interviewPlace || '');
@@ -447,8 +452,11 @@ const StatusPage = () => {
   if (isLoading) return null;
 
   const now = new Date();
-  const isBeforeDeadline = now <= INTERVIEW_RESPONSE_DEADLINE;
-  const isAfterPaperResult = now >= PAPER_RESULT_DATE;
+  // 정규/추가 회차마다 서류 발표·면접 응답 마감 시각이 다르다.
+  // 최종 합격자 발표(FINAL_RESULT_DATE)만 두 회차 통합이라 회차와 무관하다.
+  const roundSchedule = Schedule.getScheduleFor(round);
+  const isBeforeDeadline = now <= roundSchedule.interviewResponseDeadline;
+  const isAfterPaperResult = now >= roundSchedule.paperResult;
   const isAfterFinalResult = now >= FINAL_RESULT_DATE;
 
   // 서류 결과 발표(09.04 18:00) 전 → 서류 심사중으로 표시 (mock 제외)
