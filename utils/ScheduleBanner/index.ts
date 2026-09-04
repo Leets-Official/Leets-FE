@@ -63,3 +63,18 @@ export function getCurrentPhase(): SchedulePhase | null {
   const now = new Date();
   return schedulePhases.find((phase) => now >= phase.startDate && now <= phase.endDate) || null;
 }
+
+/**
+ * 지금 이후로 단계가 바뀔 수 있는 가장 가까운 시각.
+ * 화면을 열어둔 채로 접수 시작(예: 09.04 20:00)을 맞아도
+ * 새로고침 없이 배너가 전환되도록 타이머를 거는 데 쓴다.
+ */
+export function getNextPhaseBoundary(now: Date = new Date()): Date | null {
+  const boundaries = schedulePhases.flatMap((phase) => [
+    phase.startDate,
+    // endDate 는 구간에 포함되므로 1초 뒤가 실제 전환 시점이다
+    new Date(phase.endDate.getTime() + 1000),
+  ]);
+
+  return boundaries.filter((boundary) => boundary > now).sort((a, b) => a.getTime() - b.getTime())[0] ?? null;
+}
