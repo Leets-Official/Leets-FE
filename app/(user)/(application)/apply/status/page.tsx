@@ -391,6 +391,15 @@ const StatusPage = () => {
     if (isMock) return;
     if (status === 'loading') return;
 
+    // 서류 결과 발표 전에는 상태 API를 아예 호출하지 않는다.
+    // 화면은 어차피 '서류 심사중'으로 고정되지만, 호출하면 응답 본문에
+    // 확정된 결과(PASS_PAPER 등)가 담겨 네트워크 탭으로 유출된다.
+    // applicationStatus 기본값이 'PENDING' 이라 호출을 건너뛰어도 표시는 동일하다.
+    if (new Date() < PAPER_RESULT_DATE) {
+      setIsLoading(false);
+      return;
+    }
+
     const fetchStatus = async () => {
       if (!accessToken) {
         setIsLoading(false);
