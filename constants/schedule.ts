@@ -15,6 +15,12 @@ export const ROUND = {
   ADDITIONAL: 'ADDITIONAL', // 추가 모집
 } as const;
 
+/** 화면 표기용 회차 라벨 */
+export const ROUND_LABEL = {
+  REGULAR: '정규',
+  ADDITIONAL: '추가',
+} as const;
+
 export const TIMELINE = {
   지원기간: '26.08.28 ~ 26.09.03',
   '면접 대상자 발표': '26.09.04',

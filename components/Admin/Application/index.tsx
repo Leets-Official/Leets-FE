@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { ApplicationDetailType, CommentsResponse } from '@/types';
-import { APPLY_POSITION, SHORT_INFO_LAYOUT, LONG_INFO_LAYOUT, SELF_INTRODUCTION_LAYOUT } from '@/constants';
+import { APPLY_POSITION, SHORT_INFO_LAYOUT, LONG_INFO_LAYOUT, SELF_INTRODUCTION_LAYOUT, ROUND_LABEL } from '@/constants';
 import { Validator } from '@/utils';
 import ApplicationStatus from './ApplicationStatus';
 import * as S from './Application.styled';
@@ -19,7 +19,12 @@ const Application = ({ application, comments }: { application: ApplicationDetail
   const [sheetOpen, setSheetOpen] = useState(false);
   const [dragDelta, setDragDelta] = useState(0);
   const dragStartY = useRef(0);
-  const applicationWithPosition = { ...application, position: APPLY_POSITION[application.position] };
+  const applicationWithPosition = {
+    ...application,
+    position: APPLY_POSITION[application.position],
+    // 서버가 round 를 주기 전 데이터는 정규 회차로 간주한다.
+    round: ROUND_LABEL[application.round ?? 'REGULAR'],
+  };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     dragStartY.current = e.touches[0].clientY;

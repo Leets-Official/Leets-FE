@@ -5,7 +5,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import SearchBar from '@/components/Admin/SearchBar';
 import Pagination from '@/components/Admin/Pagination';
 import StatusDropdown from '@/components/Admin/StatusDropdown';
-import { DROPDOWN_MAP, NUMBER, POSITION_TYPES, POSITION_FILTER_MAP } from '@/constants';
+import { DROPDOWN_MAP, NUMBER, POSITION_TYPES, POSITION_FILTER_MAP, ROUND_LABEL } from '@/constants';
 import { usePagination, useApplicationExplore, useApplicationFilterContext } from '@/hooks';
 import { Formatter } from '@/utils';
 import { KeyOf, ApplicationType, InterviewStatusType, ApplicationStatusType } from '@/types';
@@ -37,6 +37,12 @@ const INTERVIEW_OPTIONS = [
   { value: 'PENDING', label: '미정' },
 ];
 
+const ROUND_OPTIONS = [
+  { value: '', label: '모집 회차' },
+  { value: 'REGULAR', label: '정규' },
+  { value: 'ADDITIONAL', label: '추가' },
+];
+
 const SORT_OPTIONS = [
   { value: '', label: '면접 날짜' },
   { value: 'ASC', label: '오름차순' },
@@ -57,6 +63,7 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
   /* URL searchParams에서 필터 값 읽기 */
   const filterStatus = searchParams.get('status') ?? '';
   const filterInterview = searchParams.get('interview') ?? '';
+  const filterRound = searchParams.get('round') ?? '';
   const filterSort = searchParams.get('sort') ?? '';
 
   const { initQuery } = useApplicationFilterContext()!;
@@ -92,6 +99,8 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
   /* 프론트 필터링 + 정렬 */
   const filteredList = renderList
     .filter((item) => !filterStatus || item.applicationStatus === (filterStatus as ApplicationStatusType))
+    // round 미제공 데이터는 정규로 간주한다.
+    .filter((item) => !filterRound || (item.round ?? 'REGULAR') === filterRound)
     .filter((item) => !filterInterview || item.interview.hasInterview === (filterInterview as InterviewStatusType))
     .sort((a, b) => {
       if (!filterSort) return 0;
@@ -120,6 +129,7 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
               </S.Tab>
             ))}
           </S.TabsContainer>
+          <StatusDropdown value={filterRound} options={ROUND_OPTIONS} onChange={(v) => updateFilter('round', v)} placeholder="모집 회차" />
           <StatusDropdown value={filterStatus} options={STATUS_OPTIONS} onChange={(v) => updateFilter('status', v)} placeholder="합격 여부" />
           <StatusDropdown value={filterInterview} options={INTERVIEW_OPTIONS} onChange={(v) => updateFilter('interview', v)} placeholder="면접 여부" />
           <StatusDropdown value={filterSort} options={SORT_OPTIONS} onChange={(v) => updateFilter('sort', v)} placeholder="면접 날짜" />
@@ -144,9 +154,12 @@ const ApplicationList = ({ applications, position, onPositionChange }: Applicati
         <S.TableBody>
           {filteredList
             .slice(start, end)
-            .map(({ id, name, grade, position, interview: { fixedInterviewDate, hasInterview }, applicationStatus }) => (
+            .map(({ id, name, grade, position, interview: { fixedInterviewDate, hasInterview }, applicationStatus, round }) => (
               <S.TableRow key={id} href={`/leets-portal-x7/application/${id}`}>
-                <S.ColName>{name}</S.ColName>
+                <S.ColName>
+                  <S.NameText>{name}</S.NameText>
+                  <S.RoundBadge $round={round ?? 'REGULAR'}>{ROUND_LABEL[round ?? 'REGULAR']}</S.RoundBadge>
+                </S.ColName>
                 <S.ColGrade>{grade}</S.ColGrade>
                 <S.ColPosition>{POSITION_LABEL[position] ?? position}</S.ColPosition>
                 <S.ColInterviewDate>{Formatter.formatInterviewDateTime(fixedInterviewDate)}</S.ColInterviewDate>

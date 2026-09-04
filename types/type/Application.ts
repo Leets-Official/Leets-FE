@@ -58,6 +58,9 @@ export type GetApplicationResponse = {
   };
   applicationStatus: ApplicationStatusType;
   phone: string;
+  /** 모집 회차. 면접 가능 구간이 회차마다 달라 배정 시 반드시 구분해야 한다. */
+  round?: RoundType;
+  appliedAt?: string;
 };
 
 export type ApplicationType = GetApplicationResponse;
@@ -74,6 +77,7 @@ export type PostApplication = PatchApplication;
 export type GetApplicationDetailResponse = Application & {
   user: Applicant;
   id: number;
+  round?: RoundType;
   grade: string;
   updatedAt: string;
   appliedAt: string;

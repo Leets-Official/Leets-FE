@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from 'styled-components';
-import { InterviewStatusType, ApplicationStatusType } from '@/types';
+import { InterviewStatusType, ApplicationStatusType, RoundType } from '@/types';
 import {
   INTERVIEW_ATTEND_STATUS_COLOR,
   APPLICATION_STATUS_TEXT_COLOR,
@@ -177,9 +177,13 @@ export const ColName = styled.div`
   ${cellBase}
   width: 110px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
   @media (max-width: 819px) {
-    width: 56px;
+    width: 64px;
+    gap: 3px;
   }
 `;
 
@@ -259,6 +263,38 @@ export const InterviewDot = styled.div<{ $hasInterview: InterviewStatusType }>`
   border-radius: 50%;
   background: ${({ $hasInterview }) => INTERVIEW_ATTEND_STATUS_COLOR[$hasInterview]};
   flex-shrink: 0;
+`;
+
+/** 이름이 길어도 회차 칩이 밀려 잘리지 않도록 이름 쪽만 줄인다. */
+export const NameText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+`;
+
+/**
+ * 모집 회차 칩. 정규/추가는 면접 가능 구간이 달라(정규 09.07~09.11, 추가 09.09~09.11)
+ * 목록에서 섞이면 면접 일정을 잘못 배정할 수 있어 한눈에 구분되게 한다.
+ * 추가 회차만 눈에 띄도록 정규는 무채색, 추가는 앰버 계열로 둔다.
+ */
+export const RoundBadge = styled.span<{ $round: RoundType }>`
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 3px 5px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: ${({ $round }) => ($round === 'ADDITIONAL' ? 'rgba(180, 105, 14, 0.14)' : 'rgba(21, 52, 100, 0.08)')};
+  color: ${({ $round }) => ($round === 'ADDITIONAL' ? '#8a4f08' : 'rgba(21, 52, 100, 0.55)')};
+
+  /* 좁은 화면에서는 공간을 아끼고 예외(추가 회차)만 눈에 띄게 둔다. */
+  @media (max-width: 819px) {
+    font-size: 9px;
+    padding: 2px 4px;
+    ${({ $round }) => $round === 'REGULAR' && 'display: none;'}
+  }
 `;
 
 export const StatusBadge = styled.div<{ $applicationStatus: ApplicationStatusType }>`

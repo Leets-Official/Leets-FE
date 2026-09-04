@@ -75,6 +75,7 @@ export const SHORT_INFO_LAYOUT = [
   { title: '희망 면접 날짜', value: 'interviewDay' },
   { title: '희망 면접 시간', value: 'interviewTime' },
   { title: '지원 파트', value: 'position' },
+  { title: '모집 회차', value: 'round' },
 ] as const;
 
 export const LONG_INFO_LAYOUT = [
