@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { getCurrentPhase } from '@/utils/ScheduleBanner';
-import { APPLY_DATE, USER, SUBMIT_STATUS } from '@/constants';
+import { ROUND_SCHEDULE, USER, SUBMIT_STATUS } from '@/constants';
 import { useSessionData } from '@/hooks';
 import * as gtag from '@/lib/gtag';
 import Button from '@/components/Common/Button';
@@ -56,9 +56,11 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
   );
 }
 
+// 접수 관련 구간(1: 모집 예정, 2: 정규 접수중, 4: 추가 접수중)에만 카운트다운을 노출한다.
 const COUNTDOWN_TARGET: Record<number, Date> = {
-  1: APPLY_DATE.START,
-  2: APPLY_DATE.END,
+  1: ROUND_SCHEDULE.REGULAR.applyStart,
+  2: ROUND_SCHEDULE.REGULAR.applyEnd,
+  4: ROUND_SCHEDULE.ADDITIONAL.applyEnd,
 };
 
 const CTASection = () => {
@@ -67,8 +69,8 @@ const CTASection = () => {
   const { submitStatus } = useSessionData();
   const phaseId = currentPhase?.id ?? null;
   const isDefault = phaseId === null;
-  const showChip = phaseId === 1 || phaseId === 2;
-  const countdownTarget = phaseId ? COUNTDOWN_TARGET[phaseId] : null;
+  const showChip = phaseId === 1 || phaseId === 2 || phaseId === 4;
+  const countdownTarget = phaseId ? (COUNTDOWN_TARGET[phaseId] ?? null) : null;
   const isSubmitted = submitStatus === SUBMIT_STATUS.SUBMIT;
 
   const handleApply = () => {
