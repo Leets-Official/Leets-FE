@@ -9,7 +9,7 @@ import { SUBMIT_STATUS, USER, APPLICATION_STATUS_MESSAGE, EARLIEST_PAPER_RESULT_
 import { getUserApplicationStatus, patchInterviewAttendance } from '@/api';
 import { Alert, Formatter, Schedule } from '@/utils';
 import { colors, spacing } from '@/styles/theme';
-import { ApplicationStatusType, RoundType } from '@/types';
+import { ApplicationStatusType, RoundType, RoundSchedule } from '@/types';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
 import CopyrightFooter from '@/components/Common/CopyrightFooter';
 
@@ -348,11 +348,37 @@ const STATUS_LABEL: Record<DisplayStatusType, string> = {
   INTERVIEW_REVIEWING: '면접 검토중',
 };
 
+/** '9월 7일 18:00' 형태로 KST 기준 표기 */
+const formatKstDateTime = (date: Date) =>
+  new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date);
+
+// 최종 발표는 정규·추가 통합이라 회차와 무관하다.
 const INTERVIEW_REVIEWING_MESSAGE = {
   title: '면접 검토중',
-  description:
-    '면접 결과를 집계 중입니다.\n최종 결과는 9월 12일 18:00에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.',
+  description: `면접 결과를 집계 중입니다.\n최종 결과는 ${formatKstDateTime(
+    FINAL_RESULT_DATE,
+  )}에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.`,
 };
+
+/**
+ * 서류 심사중 안내는 회차마다 발표일·응답 마감이 달라 회차 일정으로 만들어야 한다.
+ * (정규 09.04 18:00 발표 / 09.05 23:59 마감, 추가 09.07 18:00 발표 / 09.08 23:59 마감)
+ */
+const buildPendingMessage = (schedule: RoundSchedule) => ({
+  title: APPLICATION_STATUS_MESSAGE.PENDING.title,
+  description: `지원서가 검토되고 있습니다.\n결과는 ${formatKstDateTime(
+    schedule.paperResult,
+  )}에 발표됩니다.\n홈페이지에서 결과를 확인하실 수 있습니다.\n\n면접 대상자 발표 후 ${formatKstDateTime(
+    schedule.interviewResponseDeadline,
+  )}까지 면접 참석 여부를 선택해 주세요.`,
+});
 
 /* ========== Page Component ========== */
 
@@ -489,7 +515,9 @@ const StatusPage = () => {
   const statusMessage =
     displayStatus === 'INTERVIEW_REVIEWING'
       ? INTERVIEW_REVIEWING_MESSAGE
-      : APPLICATION_STATUS_MESSAGE[displayStatus as ApplicationStatusType];
+      : displayStatus === 'PENDING'
+        ? buildPendingMessage(roundSchedule)
+        : APPLICATION_STATUS_MESSAGE[displayStatus as ApplicationStatusType];
   const statusLabel = STATUS_LABEL[displayStatus];
   const showInterviewInfo = displayStatus === 'PASS_PAPER' && (interviewDate || interviewPlace);
   const showInterviewButtons = displayStatus === 'PASS_PAPER' && hasInterview === 'PENDING' && isBeforeDeadline;

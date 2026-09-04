@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import styled from 'styled-components';
-import { SUBMIT_STATUS, USER } from '@/constants';
+import { SUBMIT_STATUS, USER, ROUND } from '@/constants';
+import { getUserApplicationStatus } from '@/api';
+import { Schedule } from '@/utils';
+import { RoundType } from '@/types';
+import { isAxiosError } from 'axios';
 import { colors, spacing, gradients } from '@/styles/theme';
 import HeaderTemplate from '@/components/Common/HeaderTemplate';
 import CopyrightFooter from '@/components/Common/CopyrightFooter';
@@ -117,6 +121,9 @@ const CompletePage = () => {
   const isMock = searchParams.get('mock') === 'true';
   const submitStatus = session.data?.submitStatus;
   const [isLoading, setIsLoading] = useState(!isMock);
+  // 방금 제출한 회차 = 지금 접수 중인 회차. 접수 기간이 지난 뒤 재방문한 경우에만
+  // 서버에서 회차를 받아온다.
+  const [round, setRound] = useState<RoundType | null>(() => Schedule.getOpenRound());
 
   useEffect(() => {
     if (isMock) return;
@@ -128,7 +135,35 @@ const CompletePage = () => {
     setIsLoading(false);
   }, [submitStatus, session.status, router, isMock]);
 
+  useEffect(() => {
+    if (isMock || round) return;
+
+    const accessToken = session.data?.accessToken;
+    if (!accessToken) return;
+
+    let cancelled = false;
+    getUserApplicationStatus(accessToken)
+      .then(({ result }) => {
+        if (cancelled || !result || isAxiosError(result)) return;
+        setRound(result.round ?? ROUND.REGULAR);
+      })
+      .catch(() => {
+        /* 회차를 못 받아도 정규 일정으로 안내한다. */
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isMock, round, session.data?.accessToken]);
+
   if (isLoading) return null;
+
+  // 회차마다 서류 발표일이 다르다 (정규 09.04 / 추가 09.07)
+  const paperResultLabel = new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    month: 'long',
+    day: 'numeric',
+  }).format(Schedule.getScheduleFor(round).paperResult);
 
   return (
     <PageContainer>
@@ -138,7 +173,7 @@ const CompletePage = () => {
           <Title>지원서가 제출되었습니다!</Title>
           <Description>
             {'서류 심사 결과는 '}
-            <Highlight>9월 4일</Highlight>
+            <Highlight>{paperResultLabel}</Highlight>
             {' 홈페이지에서 확인 가능합니다.\n지원해 주셔서 감사합니다!'}
           </Description>
         </TextBlock>
