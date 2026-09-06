@@ -26,6 +26,11 @@ export const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  /* 코멘트가 페이지 경계에서 잘리지 않게 한다. */
+  @media print {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 `;
 
 export const CommentContent = styled.div`

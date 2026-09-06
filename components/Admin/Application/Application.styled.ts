@@ -117,6 +117,17 @@ export const Value = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* 화면에서는 한 줄 말줄임이지만 인쇄물에는 전문이 나와야 한다. */
+  @media print {
+    display: block;
+    height: auto;
+    padding: 8px 12px;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+    break-inside: avoid;
+  }
 `;
 
 export const PortfolioLink = styled.a`
@@ -144,6 +155,17 @@ export const PortfolioLink = styled.a`
   &:hover {
     color: #2a69c8;
   }
+  /* 화면에서는 한 줄 말줄임이지만 인쇄물에는 전문이 나와야 한다. */
+  @media print {
+    display: block;
+    height: auto;
+    padding: 8px 12px;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+    break-inside: avoid;
+  }
 `;
 
 export const LongValue = styled.div`
@@ -164,6 +186,17 @@ export const LongValue = styled.div`
   grid-column: 1 / -1;
   min-width: 0;
   width: 100%;
+  /* 화면에서는 한 줄 말줄임이지만 인쇄물에는 전문이 나와야 한다. */
+  @media print {
+    display: block;
+    height: auto;
+    padding: 8px 12px;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+    break-inside: avoid;
+  }
 `;
 
 export const LongInfoList = styled.div`
@@ -188,6 +221,13 @@ export const LongTextValue = styled.div`
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-word;
+  /* 화면에서는 스크롤이지만 인쇄물에서는 잘리면 안 된다. */
+  @media print {
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    break-inside: avoid;
+  }
 `;
 
 export const LinkContainer = styled.div`
@@ -270,6 +310,13 @@ export const Text = styled.div`
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-word;
+  /* 화면에서는 스크롤이지만 인쇄물에서는 잘리면 안 된다. */
+  @media print {
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    break-inside: avoid;
+  }
 `;
 
 /* 사이드바에서 모바일 숨김 (시트에서는 그냥 렌더링) */
