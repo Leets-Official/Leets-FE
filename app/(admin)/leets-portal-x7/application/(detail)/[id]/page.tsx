@@ -7,6 +7,7 @@ import { isAxiosError } from 'axios';
 import { getApplicationDetail, getComments as getCommentsRequest } from '@/api';
 import { ACCESS_TOKEN, ADMIN } from '@/constants';
 import { GetApplicationDetailResponse, CommentsResponse } from '@/types';
+import { Alert, buildApplicationMarkdown, buildApplicationFileName } from '@/utils';
 import Application from '@/components/Admin/Application';
 import * as S from './styled';
 
@@ -41,6 +42,29 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
 
   if (!application) return null;
 
+  const markdown = () => buildApplicationMarkdown(application, comments);
+
+  const handleCopyMarkdown = async () => {
+    try {
+      await navigator.clipboard.writeText(markdown());
+      Alert.success('지원서를 클립보드에 복사했습니다.');
+    } catch {
+      Alert.error('복사에 실패했습니다.\n다운로드를 이용해 주세요.');
+    }
+  };
+
+  const handleDownloadMarkdown = () => {
+    const blob = new Blob([markdown()], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = buildApplicationFileName(application);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <S.PageHeader>
@@ -50,6 +74,17 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
           </svg>
         </S.BackLink>
         <S.Title>지원서 상세</S.Title>
+        <S.HeaderActions>
+          <S.ActionButton type="button" onClick={handleCopyMarkdown}>
+            MD 복사
+          </S.ActionButton>
+          <S.ActionButton type="button" onClick={handleDownloadMarkdown}>
+            MD 다운로드
+          </S.ActionButton>
+          <S.ActionButton type="button" onClick={() => window.print()}>
+            인쇄 · PDF
+          </S.ActionButton>
+        </S.HeaderActions>
       </S.PageHeader>
       <Application application={application} comments={comments} />
     </>

@@ -23,6 +23,9 @@ export const MobileFab = styled.button`
     box-shadow: 0 4px 8px rgba(53, 132, 251, 0.4);
     z-index: 90;
   }
+  @media print {
+    display: none;
+  }
 `;
 
 export const MobileOverlay = styled.div<{ $open: boolean }>`
@@ -34,6 +37,9 @@ export const MobileOverlay = styled.div<{ $open: boolean }>`
     inset: 0;
     background: rgba(21, 52, 100, 0.4);
     z-index: 100;
+  }
+  @media print {
+    display: none;
   }
 `;
 

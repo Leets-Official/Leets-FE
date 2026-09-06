@@ -18,6 +18,13 @@ export const ApplicationContainer = styled.section`
     flex-direction: column;
     gap: 16px;
   }
+  /* 인쇄 시에는 한 단으로 펼쳐 사이드바(면접 정보·코멘트)까지 모두 출력한다. */
+  @media print {
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 0;
+    overflow-x: visible;
+  }
 `;
 
 export const ApplicationTextContainer = styled.div`
@@ -38,6 +45,9 @@ export const SideBar = styled.article`
   @media (max-width: 819px) {
     width: 100%;
   }
+  @media print {
+    width: 100%;
+  }
 `;
 
 /* ── Info cards ── */
@@ -50,6 +60,13 @@ export const PersonalInformationContainer = styled.div`
 
   @media (max-width: 819px) {
     padding: 24px 20px;
+  }
+  @media print {
+    padding: 12px 0;
+    border-radius: 0;
+    gap: 8px;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 `;
 
@@ -185,6 +202,12 @@ export const LinkContainer = styled.div`
   @media (max-width: 819px) {
     padding: 24px 20px;
   }
+  @media print {
+    padding: 12px 0;
+    border-radius: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 `;
 
 export const SelfIntroductionContainer = styled.div`
@@ -192,6 +215,9 @@ export const SelfIntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media print {
+    gap: 0;
+  }
 `;
 
 export const SelfIntroduction = styled.div`
@@ -206,6 +232,15 @@ export const SelfIntroduction = styled.div`
   @media (max-width: 819px) {
     padding: 24px 20px;
   }
+  /* 문항 단위로 페이지가 끊기지 않게 하고, 인쇄 여백을 줄여 밀도를 높인다. */
+  @media print {
+    padding: 12px 0;
+    border-radius: 0;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 6px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 `;
 
 export const CharCount = styled.div`
@@ -214,6 +249,9 @@ export const CharCount = styled.div`
   color: #6b93c8;
   letter-spacing: -0.24px;
   text-align: right;
+  @media print {
+    display: none;
+  }
 `;
 
 export const Text = styled.div`
@@ -238,6 +276,9 @@ export const DesktopOnly = styled.div`
   @media (max-width: 819px) {
     display: none;
   }
+  @media print {
+    display: block;
+  }
 `;
 
 /* ── Mobile: FAB + Bottom Sheet (면접 정보 입력) ── */
@@ -261,6 +302,9 @@ export const MobileSheet = styled.div<{ $open: boolean }>`
     overflow-y: auto;
     transform: ${({ $open }) => ($open ? 'translateY(0)' : 'translateY(100%)')};
     transition: transform 0.3s ease;
+  }
+  @media print {
+    display: none;
   }
 `;
 
