@@ -348,6 +348,18 @@ const STATUS_LABEL: Record<DisplayStatusType, string> = {
   INTERVIEW_REVIEWING: '면접 검토중',
 };
 
+/**
+ * 면접 당일 자정(로컬 기준). 면접 시각 자체를 경계로 쓰면 17:20 면접인 지원자가
+ * 17:25 에 장소를 다시 확인할 수 없게 되므로, 그날 하루는 일정을 계속 보여준다.
+ * 서버가 내려주는 fixedInterviewDate 는 오프셋 없는 문자열이라
+ * Formatter.formatInterviewDateTime 과 동일하게 로컬 시각으로 해석한다.
+ */
+const endOfInterviewDay = (rawDateTime: string) => {
+  const date = new Date(rawDateTime);
+  date.setHours(23, 59, 59, 999);
+  return date;
+};
+
 /** '9월 7일 18:00' 형태로 KST 기준 표기 */
 const formatKstDateTime = (date: Date) =>
   new Intl.DateTimeFormat('ko-KR', {
@@ -402,6 +414,8 @@ const StatusPage = () => {
         : 'PENDING',
   );
   const [interviewDate, setInterviewDate] = useState(isMock ? '2026.09.07 (월) 14:00' : '');
+  // 표시용 포맷 문자열과 별개로, 면접 종료 판정을 위해 원본 값도 보관한다.
+  const [interviewDateRaw, setInterviewDateRaw] = useState(isMock ? '2026-09-07T14:00:00' : '');
   const [interviewPlace, setInterviewPlace] = useState(isMock ? '가천대학교 AI관 301호' : '');
   const [hasInterview, setHasInterview] = useState<'CHECK' | 'UNCHECK' | 'PENDING'>('PENDING');
   // 회차별로 서류 발표·면접 응답 마감이 다르다. 서버가 round 를 주기 전까지는 정규로 간주한다.
@@ -441,6 +455,7 @@ const StatusPage = () => {
         setRound(result.round ?? ROUND.REGULAR);
         setHasInterview(result.hasInterview ?? 'PENDING');
         setInterviewDate(result.interviewDate ? Formatter.formatInterviewDateTime(result.interviewDate) : '');
+        setInterviewDateRaw(result.interviewDate ?? '');
         setInterviewPlace(result.interviewPlace || '');
       }
       setIsLoading(false);
@@ -488,16 +503,26 @@ const StatusPage = () => {
   // 서류 결과 발표(09.04 18:00) 전 → 서류 심사중으로 표시 (mock 제외)
   const showAsPending = !isMock && !isAfterPaperResult;
 
-  // 어드민이 PASS/FAIL을 미리 설정했지만 응답 기간 내(09.04 18:00~09.05 23:59) → 서류 합격으로 표시
+  /*
+   * 본인 면접이 끝났는지로 판정한다. 면접 주간(정규 09.07~09.11)에는 사람마다
+   * 면접일이 달라, 응답 마감 같은 공통 시각으로 끊으면 아직 면접을 보지 않은
+   * 지원자에게도 '면접 검토중'이 뜨고 면접 일정이 화면에서 사라진다.
+   * 일정이 아직 배정되지 않은 경우에는 회차의 면접 종료일을 폴백으로 쓴다.
+   */
+  const interviewFinished = interviewDateRaw
+    ? now > endOfInterviewDay(interviewDateRaw)
+    : now > roundSchedule.interviewEnd;
+
+  // 어드민이 PASS/FAIL을 미리 설정했더라도 본인 면접 전까지는 서류 합격으로 표시
   const showAsPaperPass =
     isAfterPaperResult &&
-    isBeforeDeadline &&
+    !interviewFinished &&
     !isAfterFinalResult &&
     (applicationStatus === 'PASS' || applicationStatus === 'FAIL');
 
-  // 응답 마감(09.05 23:59) 이후 ~ 최종 발표 전 → 면접 검토중으로 표시
+  // 본인 면접 종료 후 ~ 최종 발표 전 → 면접 검토중으로 표시
   const showAsReviewing =
-    !isBeforeDeadline &&
+    interviewFinished &&
     !isAfterFinalResult &&
     (applicationStatus === 'PASS' || applicationStatus === 'FAIL' || applicationStatus === 'PASS_PAPER');
 
