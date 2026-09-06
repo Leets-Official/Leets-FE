@@ -78,6 +78,8 @@ export type GetApplicationDetailResponse = Application & {
   user: Applicant;
   id: number;
   round?: RoundType;
+  /** 서버는 구글 계정 이메일을 최상위로 내려준다. (user.email 이 아님) */
+  email?: string;
   grade: string;
   updatedAt: string;
   appliedAt: string;

@@ -6,6 +6,9 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media print {
+    display: none;
+  }
 `;
 
 export const CommentTextarea = styled.textarea`

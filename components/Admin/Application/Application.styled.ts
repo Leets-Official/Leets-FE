@@ -215,8 +215,9 @@ export const SelfIntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* flex 컨테이너에서는 자식의 break-inside 가 무시되므로 인쇄 시 block 으로 바꾼다. */
   @media print {
-    gap: 0;
+    display: block;
   }
 `;
 
@@ -276,8 +277,9 @@ export const DesktopOnly = styled.div`
   @media (max-width: 819px) {
     display: none;
   }
+  /* 합격 상태·면접 정보는 입력 폼이라 인쇄물에 담지 않는다. (값은 MD 로 확인) */
   @media print {
-    display: block;
+    display: none;
   }
 `;
 

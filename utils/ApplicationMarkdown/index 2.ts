@@ -51,7 +51,7 @@ export const buildApplicationMarkdown = (
   SHORT_INFO_LAYOUT.forEach(({ title, value }) => {
     lines.push(`| ${title} | ${escapeTableCell(read(value))} |`);
   });
-  lines.push(`| 이메일 | ${escapeTableCell(application.email ?? application.user?.email ?? '')} |`);
+  lines.push(`| 이메일 | ${escapeTableCell(application.user?.email ?? '')} |`);
   lines.push('');
 
   lines.push('## 링크');
